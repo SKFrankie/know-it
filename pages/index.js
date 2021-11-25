@@ -18,17 +18,21 @@ export default function Home() {
           COMING this SPRING
         </Text>
         <Box>
-          <Text fontSize={{base :"80px",md:"100px"}} fontWeight="bold" color="red.300">
+          <Text
+            fontSize={{ base: "80px", md: "100px" }}
+            fontWeight="bold"
+            color="red.300"
+          >
             KNOW IT!
           </Text>
-          <Text color="blue.600" pb="5" fontSize={{base: "md", md: "xl"}}>
+          <Text color="blue.600" pb="5" fontSize={{ base: "md", md: "xl" }}>
             A learning by gaming Progressive Web App
           </Text>
         </Box>
         <Box
           fontStyle="italic"
           color="blue.600"
-          fontSize={{base: "xl", md:"3xl"}}
+          fontSize={{ base: "xl", md: "3xl" }}
           fontWeight="bold"
         >
           <Text>Test and improve your English!</Text>
@@ -40,7 +44,7 @@ export default function Home() {
           w="35vh"
           p="5"
           color="blue.600"
-          fontSize={{base: "md", md: "xl"}}
+          fontSize={{ base: "md", md: "xl" }}
         >
           Either you KNOW IT, or you don't
         </Text>
