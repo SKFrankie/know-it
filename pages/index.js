@@ -100,7 +100,6 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{
               duration: 2,
-              repeat: Infinity,
             }}
           >
             <Text pb="5" fontSize={{ base: "md", md: "xl" }}>
