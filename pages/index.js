@@ -20,7 +20,7 @@ export default function Home() {
           name="description"
           content="A learning by gaming Progressive Web App to test and improve your English!"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
