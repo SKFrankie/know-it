@@ -55,7 +55,6 @@ export default function Home() {
             h="150px"
             mt="60px"
             ml="80px"
-            w="120px"
             transform="rotate(-45deg)"
           >
             Either you KNOW IT, or you don't
