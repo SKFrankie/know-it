@@ -20,7 +20,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
           href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"
           rel="stylesheet"
@@ -48,7 +48,6 @@ export default function Home() {
           />
           <Box className="shape"></Box>
           <Text
-            fontSize="sm"
             fontSize={{ base: "xs", md: "sm" }}
             color="orange"
             position="relative"
