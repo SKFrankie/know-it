@@ -3,6 +3,9 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 const theme = extendTheme({
   colors: {
     primary: "red",
+  },
+  fonts: {
+    body: "Maven Pro, system-ui, sans-serif",
   }
 })
 
