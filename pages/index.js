@@ -119,7 +119,18 @@ export default function Home() {
           }}
         >
           <Text fontSize={{ base: "40px", md: "5xl" }} pb="5">
-            Coming soon . . .
+            Coming soon
+          {[" ."," ."," ."].map((dot, index) => (
+            <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              delay: index * 0.5,
+              repeat: Infinity,
+              duration: 1.5,
+            }}
+             key={index}>{dot}</motion.span>
+          ))}
           </Text>
         </motion.div>
       </Flex>
