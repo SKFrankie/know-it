@@ -1,7 +1,6 @@
+import { Image } from '@chakra-ui/image';
 import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
-import Image from "next/image"
 import Head from 'next/head'
-import imageSrc from '../public/images/coming-soon-monster.png'
 
 export default function Home() {
   return (
@@ -43,7 +42,7 @@ export default function Home() {
           boxShadow="lg"
         >
           <Image
-            src={imageSrc}
+            src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
             alt="Coming Soon Monster"
             layout="fill"
           />
