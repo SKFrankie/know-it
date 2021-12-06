@@ -1,5 +1,7 @@
 import { Image } from '@chakra-ui/image';
 import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
+import { ScaleFade } from '@chakra-ui/transition';
+import { motion } from 'framer-motion';
 import Head from 'next/head'
 
 export default function Home() {
@@ -20,7 +22,11 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"
           rel="stylesheet"
@@ -41,12 +47,20 @@ export default function Home() {
           bg="#007EA7"
           boxShadow="lg"
         >
+          <motion.div
+            initial={{ x: 20, y: 100, scale: 0 }}
+            animate={{ x: 0, y:0, scale: 1 }}
+            transition={{
+              duration: 3,
+            }}
+          >
           <Image
             src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
             alt="Coming Soon Monster"
-            position="inherit"
+            position="absolute"
             transform="rotate(-10deg)"
           />
+          </motion.div>
           <Box className="shape"></Box>
           <Text
             fontSize={{ base: "xs", md: "sm" }}
@@ -62,26 +76,53 @@ export default function Home() {
             Either you KNOW IT, or you don't
           </Text>
         </Box>
-        <Box height="100px" display={{base: "flex", md: "none"}} />
+        <Box height="100px" display={{ base: "flex", md: "none" }} />
         <Box>
-          <Text
-            fontFamily="Ribeye Marrow"
-            fontSize={{ base: "60px", md: "100px" }}
-            fontWeight="bold"
+          <motion.div
+            initial={{ scale: 0, rotate: 180 }}
+            animate={{ rotate: 0, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+            }}
           >
-            KNOW IT!
-          </Text>
-          <Text pb="5" fontSize={{ base: "md", md: "xl" }}>
-            Learning by Gaming
-          </Text>
+            <Text
+              fontFamily="Ribeye Marrow"
+              fontSize={{ base: "60px", md: "100px" }}
+              fontWeight="bold"
+            >
+              KNOW IT!
+            </Text>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+            }}
+          >
+            <Text pb="5" fontSize={{ base: "md", md: "xl" }}>
+              Learning by Gaming
+            </Text>
+          </motion.div>
         </Box>
         <Box fontSize={{ base: "xl", md: "3xl" }} fontWeight="bold">
           <Text>Test and improve your English!</Text>
           <Text>Fun, FREE, and Exciting!</Text>
         </Box>
-        <Text fontSize={{base: "40px", md: "5xl"}} pb="5">
-          Coming soon . . .
-        </Text>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 2,
+          }}
+        >
+          <Text fontSize={{ base: "40px", md: "5xl" }} pb="5">
+            Coming soon . . .
+          </Text>
+        </motion.div>
       </Flex>
       <Text position="absolute" right="0" bottom="0" m="5" fontSize="md">
         a BluePopcorn Production
