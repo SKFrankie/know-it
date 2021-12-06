@@ -1,7 +1,5 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
   font-family:"Maven Pro", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -13,4 +11,19 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.shape{
+  text-align:center;
+  width:0;
+  height: 0;
+  position: relative;
+}
+.shape:before{
+  content:"";
+  width: 0;
+  height: 0;
+  border-bottom: 150px solid white;
+  border-left: 150px solid transparent;
+  position: absolute;
 }
