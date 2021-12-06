@@ -129,6 +129,7 @@ export default function Home() {
               repeat: Infinity,
               duration: 1.5,
             }}
+             style={{fontFamily: "Comic Sans MS"}}
              key={index}>{dot}</motion.span>
           ))}
           </Text>
