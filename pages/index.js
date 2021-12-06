@@ -20,7 +20,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
           href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"
           rel="stylesheet"
@@ -42,7 +42,7 @@ export default function Home() {
           boxShadow="lg"
         >
           <Image
-            src="/../public/images/coming-soon-monster.png"
+            src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
             alt="Coming Soon Monster"
             layout="fill"
           />
@@ -51,10 +51,10 @@ export default function Home() {
             fontSize={{ base: "xs", md: "sm" }}
             color="orange"
             position="relative"
-            w="150px"
             h="150px"
             mt="60px"
             ml="80px"
+            w="120px"
             transform="rotate(-45deg)"
           >
             Either you KNOW IT, or you don't
