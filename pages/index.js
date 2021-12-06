@@ -45,11 +45,13 @@ export default function Home() {
             src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
             alt="Coming Soon Monster"
             position="inherit"
+            transform="rotate(-10deg)"
           />
           <Box className="shape"></Box>
           <Text
             fontSize={{ base: "xs", md: "sm" }}
             color="orange"
+            fontWeight="bold"
             position="relative"
             h="150px"
             mt="60px"
