@@ -44,7 +44,7 @@ export default function Home() {
           <Image
             src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
             alt="Coming Soon Monster"
-            layout="fill"
+            position="inherit"
           />
           <Box className="shape"></Box>
           <Text
