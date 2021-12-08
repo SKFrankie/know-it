@@ -76,7 +76,7 @@ export default function Home() {
             Either you KNOW IT, or you don't
           </Text>
         </Box>
-        <Box height="100px" display={{ base: "flex", md: "none" }} />
+        <Box height={{base: "150px", sm: "100px"}} display={{ base: "flex", md: "none" }} />
         <Box>
           <motion.div
             initial={{ scale: 0, rotate: 180 }}
@@ -118,7 +118,7 @@ export default function Home() {
             duration: 2,
           }}
         >
-          <Text fontSize={{ base: "40px", md: "5xl" }} pb="5">
+          <Text fontSize={{ base: "20px", md: "5xl" }} pb="5">
             Coming soon
           {[" ."," ."," ."].map((dot, index) => (
             <motion.span
@@ -135,7 +135,7 @@ export default function Home() {
           </Text>
         </motion.div>
       </Flex>
-      <Text position="absolute" right="0" bottom="0" m="5" fontSize="md">
+      <Text position="absolute" right="0" bottom="0" mt="5" mr="2" fontSize="sm">
         a BluePopcorn Production
       </Text>
     </Flex>
