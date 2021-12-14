@@ -3,6 +3,7 @@ import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
 import { ScaleFade } from '@chakra-ui/transition';
 import { motion } from 'framer-motion';
 import Head from 'next/head'
+import Star from '../features/Star';
 
 export default function Home() {
   return (
@@ -37,7 +38,14 @@ export default function Home() {
         />
       </Head>
 
-      <Flex direction="column" as="main" w="80vh" justifyContent="space-around">
+      <Flex
+        placeSelf="center"
+        direction="column"
+        as="main"
+        w="100vw"
+        justifyContent="space-around"
+        textAlign="center"
+      >
         <Box
           position="absolute"
           top="0"
@@ -49,17 +57,17 @@ export default function Home() {
         >
           <motion.div
             initial={{ x: 20, y: 100, scale: 0 }}
-            animate={{ x: 0, y:0, scale: 1 }}
+            animate={{ x: 0, y: 0, scale: 1 }}
             transition={{
               duration: 3,
             }}
           >
-          <Image
-            src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
-            alt="Coming Soon Monster"
-            position="absolute"
-            transform="rotate(-10deg)"
-          />
+            <Image
+              src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
+              alt="Coming Soon Monster"
+              position="absolute"
+              transform="rotate(-10deg)"
+            />
           </motion.div>
           <Box className="shape"></Box>
           <Text
@@ -76,41 +84,53 @@ export default function Home() {
             Either you KNOW IT, or you don't
           </Text>
         </Box>
-        <Box height={{base: "150px", sm: "100px"}} display={{ base: "flex", md: "none" }} />
-        <Box>
-          <motion.div
-            initial={{ scale: 0, rotate: 180 }}
-            animate={{ rotate: 0, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 20,
-            }}
+        <Box
+          height={{ base: "150px", sm: "100px" }}
+          display={{ base: "flex", md: "none" }}
+        />
+        <motion.div
+          style={{
+            width: "100%",
+            height: "100%",
+            textAlign: "center",
+            textAlign: "-webkit-center",
+          }}
+          initial={{ scale: 0, rotate: 180 }}
+          animate={{ rotate: 0, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 50,
+          }}
+        >
+          <Flex
+            bg="#0291E1"
+            p="5"
+            borderTopLeftRadius={25}
+            borderBottomRightRadius={25}
+            w={{base:"90%", xl: "70%"}}
+            
+            h="70vh"
+            direction="column"
+            justify="center"
+            position="relative"
           >
             <Text
               fontFamily="Ribeye Marrow"
-              fontSize={{ base: "60px", md: "100px" }}
+              fontSize={{ base: "40px", md: "120px" }}
               fontWeight="bold"
             >
               KNOW IT!
             </Text>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              duration: 2,
-            }}
-          >
-            <Text pb="5" fontSize={{ base: "md", md: "xl" }}>
+            <Text pb="5" fontSize={{ base: "md", md: "lg" }}>
               Learning by Gaming
             </Text>
-          </motion.div>
-        </Box>
-        <Box fontSize={{ base: "xl", md: "3xl" }} fontWeight="bold">
-          <Text>Test and improve your English!</Text>
-          <Text>Fun, FREE, and Exciting!</Text>
-        </Box>
+            <Box m="5" fontSize={{ base: "xl", md: "4xl" }} fontWeight="bold">
+              <Text>Test and improve your English!</Text>
+            </Box>
+          <Star position="absolute" right="-50" top="-50"/>
+          </Flex>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -118,25 +138,35 @@ export default function Home() {
             duration: 2,
           }}
         >
-          <Text fontSize={{ base: "20px", md: "5xl" }} pb="5">
+          {/* <Text fontSize={{ base: "20px", md: "5xl" }} pb="5">
             Coming soon
-          {[" ."," ."," ."].map((dot, index) => (
-            <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              delay: index * 0.5,
-              repeat: Infinity,
-              duration: 1.5,
-            }}
-             style={{fontFamily: "Comic Sans MS"}}
-             key={index}>{dot}</motion.span>
-          ))}
-          </Text>
+            {[" .", " .", " ."].map((dot, index) => (
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  delay: index * 0.5,
+                  repeat: Infinity,
+                  duration: 1.5,
+                }}
+                style={{ fontFamily: "Comic Sans MS" }}
+                key={index}
+              >
+                {dot}
+              </motion.span>
+            ))}
+          </Text> */}
         </motion.div>
       </Flex>
-      <Text position="absolute" right="0" bottom="0" mt="5" mr="2" fontSize="sm">
-        a BluePopcorn Production
+      <Text
+        position="absolute"
+        right="0"
+        bottom="0"
+        mt="5"
+        mr="2"
+        fontSize="sm"
+      >
+       ©BluePopcorn Production
       </Text>
     </Flex>
   );
