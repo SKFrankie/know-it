@@ -3,6 +3,7 @@ import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
 import { ScaleFade } from "@chakra-ui/transition";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import Podium from "../features/Podium";
 import Star from "../features/Star";
 
 export default function Home() {
@@ -188,6 +189,7 @@ export default function Home() {
       >
         ©BluePopcorn Production
       </Text>
+      <Podium/>
     </Flex>
   );
 }
