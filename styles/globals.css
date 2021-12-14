@@ -27,3 +27,7 @@ a {
   border-left: 150px solid transparent;
   position: absolute;
 }
+
+.shape-transparent:before{
+  border-bottom: 150px solid #00B9F5;
+}

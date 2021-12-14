@@ -1,9 +1,9 @@
-import { Image } from '@chakra-ui/image';
-import { Box, Flex, Spacer, Text } from '@chakra-ui/layout'
-import { ScaleFade } from '@chakra-ui/transition';
-import { motion } from 'framer-motion';
-import Head from 'next/head'
-import Star from '../features/Star';
+import { Image } from "@chakra-ui/image";
+import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
+import { ScaleFade } from "@chakra-ui/transition";
+import { motion } from "framer-motion";
+import Head from "next/head";
+import Star from "../features/Star";
 
 export default function Home() {
   return (
@@ -69,20 +69,41 @@ export default function Home() {
               transform="rotate(-10deg)"
             />
           </motion.div>
-          <Box className="shape"></Box>
-          <Text
-            fontSize={{ base: "xs", md: "sm" }}
-            color="orange"
-            fontWeight="bold"
-            position="relative"
-            h="150px"
-            mt="60px"
-            ml="80px"
-            w="120px"
-            transform="rotate(-45deg)"
+
+          <Box className="shape shape-transparent"></Box>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 50,
+              duration: 2,
+            }}
           >
-            Either you KNOW IT, or you don't
-          </Text>
+            <Box className="shape"></Box>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 2,
+            }}
+          >
+            <Text
+              fontSize={{ base: "xs", md: "sm" }}
+              color="orange"
+              fontWeight="bold"
+              position="relative"
+              h="150px"
+              mt="60px"
+              ml="80px"
+              w="120px"
+              transform="rotate(-45deg)"
+            >
+              Either you KNOW IT, or you don't
+            </Text>
+          </motion.div>
         </Box>
         <Box
           height={{ base: "150px", sm: "100px" }}
@@ -108,8 +129,7 @@ export default function Home() {
             p="5"
             borderTopLeftRadius={25}
             borderBottomRightRadius={25}
-            w={{base:"90%", xl: "70%"}}
-            
+            w={{ base: "90%", xl: "70%" }}
             h="70vh"
             direction="column"
             justify="center"
@@ -128,7 +148,7 @@ export default function Home() {
             <Box m="5" fontSize={{ base: "xl", md: "4xl" }} fontWeight="bold">
               <Text>Test and improve your English!</Text>
             </Box>
-          <Star position="absolute" right="-50" top="-50"/>
+            <Star position="absolute" right="-50" top="-50" />
           </Flex>
         </motion.div>
         <motion.div
@@ -166,10 +186,8 @@ export default function Home() {
         mr="2"
         fontSize="sm"
       >
-       ©BluePopcorn Production
+        ©BluePopcorn Production
       </Text>
     </Flex>
   );
 }
-
-
