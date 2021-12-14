@@ -14,7 +14,7 @@ const Podium =({...props}) => {
         gridAutoFlow: 'column dense',
         justifyContent: 'center',
         justifyItems: 'center',
-        height: 250,
+        height: "110px",
         marginTop: '2rem',
       }}
         {...props}

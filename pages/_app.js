@@ -4,6 +4,7 @@ import "../styles/globals.css"
 const theme = extendTheme({
   colors: {
     primary: "red",
+    red: "#DB0000",
   },
   fonts: {
     body: "Maven Pro, system-ui, sans-serif",

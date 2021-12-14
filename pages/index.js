@@ -1,5 +1,6 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
+import { Button } from "@chakra-ui/react";
 import { ScaleFade } from "@chakra-ui/transition";
 import { motion } from "framer-motion";
 import Head from "next/head";
@@ -134,7 +135,7 @@ export default function Home() {
             borderTopLeftRadius={25}
             borderBottomRightRadius={25}
             w={{ base: "90%", xl: "70%" }}
-            h="70vh"
+            h="fit-content"
             direction="column"
             justify="center"
             position="relative"
@@ -149,38 +150,24 @@ export default function Home() {
             <Text pb="5" fontSize={{ base: "md", md: "lg" }}>
               Learning by Gaming
             </Text>
-            <Box m="5" fontSize={{ base: "xl", md: "4xl" }} fontWeight="bold">
+            <Box m="5" fontSize={{ base: "md", md: "4xl" }} fontWeight="bold">
               <Text>Test and improve your English!</Text>
             </Box>
-            <Star position="absolute" right="-50" top="-50" />
+            <Star boxSize={{base: "50px", md: "150px"}} position="absolute" right={{base: "-15", md:"-50"}} top={{base: "-15", md:"-50"}} />
           </Flex>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 2,
-          }}
+      <Box position={{base: "static", md: "absolute"}} left="0" bottom="0">
+        <Podium px="4" />
+        <Button
+          borderBottomRadius={{ base: 10, md: 0 }}
+          borderTopLeftRadius={{ base: 10, md: 0 }}
+          borderTopRightRadius={10}
+          w="100%"
+          bg="red"
         >
-          {/* <Text fontSize={{ base: "20px", md: "5xl" }} pb="5">
-            Coming soon
-            {[" .", " .", " ."].map((dot, index) => (
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                  delay: index * 0.5,
-                  repeat: Infinity,
-                  duration: 1.5,
-                }}
-                style={{ fontFamily: "Comic Sans MS" }}
-                key={index}
-              >
-                {dot}
-              </motion.span>
-            ))}
-          </Text> */}
-        </motion.div>
+          Coming Soon ...
+        </Button>
+      </Box>
       </Flex>
       <Text
         position="absolute"
@@ -192,7 +179,6 @@ export default function Home() {
       >
         ©BluePopcorn Production
       </Text>
-      <Podium position="absolute" left="0" bottom="0"/>
     </Flex>
   );
 }

@@ -2,7 +2,7 @@ import { Box, Image } from '@chakra-ui/react'
 import React from 'react'
 import { motion } from 'framer-motion';
 
-const Star = ({...props}) => {
+const Star = ({boxSize="150px", ...props}) => {
   const [isActive, setIsActive] = React.useState(false);
   return (
     <Box {...props} cursor={"pointer"}>
@@ -19,7 +19,7 @@ const Star = ({...props}) => {
           }}
         {...props}
       >
-        <Image boxSize="150px" src="/images/star.png" alt="star" />
+        <Image boxSize={boxSize} src="/images/star.png" alt="star" />
       </motion.div>
     </Box>
   );
