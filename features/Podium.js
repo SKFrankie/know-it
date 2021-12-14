@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { Box, Text } from '@chakra-ui/react'
 
 const Podium =({...props}) => {
-  const podium = [{position: 1, color: "#00AEE5"}, {position:0, color: "#01B84A"}, {position: 2, color: "#D90A0A"}]
+  const podium = [{position: 1, color: "#00AEE5", height: 2}, {position:0, color: "#01B84A", height: 4}, {position: 2, color: "#D90A0A", height: 1}]
   return (
     <Box
       style={{
@@ -82,7 +82,7 @@ const PodiumStep = ({ podium, step }) => {
         variants={{
           hidden: { height: 0, opacity: 0 },
           visible: {
-            height: 100 * (offset / podium.length),
+            height: 30 + 15* step.height,
             opacity: 1,
             transition: {
               delay: 2,
@@ -93,9 +93,9 @@ const PodiumStep = ({ podium, step }) => {
         }}
       >
         <Text
-          fontSize="2xl"
+          fontSize="3xl"
           fontWeight="bold"
-          style={{ alignSelf: "flex-end", color: "white" }}
+          style={{ alignSelf: "center", color: "white" }}
         >
           {step.position + 1}
         </Text>
