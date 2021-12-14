@@ -55,11 +55,10 @@ export default function Home() {
           left="0"
           w="150px"
           h="150px"
-          bg= "#007EA7"
+          bg="#007EA7"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition  = {{ delay: 1, duration: 1 }} 
-
+          transition={{ delay: 1, duration: 1 }}
         ></MotionBox>
         <Box position="absolute" top="0" left="0" w="150px" h="150px">
           <motion.div
@@ -125,8 +124,8 @@ export default function Home() {
             textAlign: "center",
             textAlign: "-webkit-center",
           }}
-            initial={{translateY: -100, opacity: 0}}
-            animate={{translateY: 0, opacity: 1}}
+          initial={{ translateY: -100, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1 }}
           transition={{
             type: "spring",
             stiffness: 260,
@@ -139,7 +138,7 @@ export default function Home() {
             borderTopLeftRadius={25}
             borderBottomRightRadius={25}
             w={{ base: "90%", xl: "70%" }}
-            h="fit-content"
+            h={{ base: "fit-content", md: "60vh" }}
             direction="column"
             justify="center"
             position="relative"
@@ -168,11 +167,13 @@ export default function Home() {
         <Box position={{ base: "static", md: "absolute" }} left="0" bottom="0">
           <Podium px="4" />
           <Button
-            borderBottomRadius={{ base: 10, md: 0 }}
-            borderTopLeftRadius={{ base: 10, md: 0 }}
-            borderTopRightRadius={10}
-            w="100%"
+            borderBottomRadius={{ base: 20, md: 0 }}
+            borderTopLeftRadius={{ base: 20, md: 0 }}
+            borderTopRightRadius={20}
+            w={{base: "90%", md:"100%"}}
+            p="30px"
             bg="red"
+            fontSize="xl"
           >
             Coming Soon ...
           </Button>
