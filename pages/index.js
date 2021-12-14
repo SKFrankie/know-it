@@ -61,6 +61,7 @@ export default function Home() {
             animate={{ x: 0, y: 0, scale: 1 }}
             transition={{
               duration: 3,
+              delay: 0.5,
             }}
           >
             <Image
@@ -80,6 +81,7 @@ export default function Home() {
               stiffness: 260,
               damping: 50,
               duration: 2,
+              delay: 0.5,
             }}
           >
             <Box className="shape"></Box>
@@ -89,6 +91,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{
               duration: 2,
+              delay: 0.5,
             }}
           >
             <Text
@@ -189,7 +192,7 @@ export default function Home() {
       >
         ©BluePopcorn Production
       </Text>
-      <Podium/>
+      <Podium position="absolute" left="0" bottom="0"/>
     </Flex>
   );
 }

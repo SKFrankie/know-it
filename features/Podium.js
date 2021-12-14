@@ -1,27 +1,28 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { Box, Text } from '@chakra-ui/react'
 
-const Podium =() => {
+const Podium =({...props}) => {
   const podium = [{position: 1, color: "#00AEE5"}, {position:0, color: "#01B84A"}, {position: 2, color: "#D90A0A"}]
   return (
-    <div
+    <Box
       style={{
         alignContent: 'flex-end',
         alignItems: 'flex-end',
-        borderBottom: '1px solid #e5e7eb',
         display: 'grid',
-        gap: '.5rem',
+        gap: '.2rem',
         gridAutoFlow: 'column dense',
         justifyContent: 'center',
         justifyItems: 'center',
         height: 250,
         marginTop: '2rem',
       }}
+        {...props}
     >
       {podium.map((step) => (
         <PodiumStep key={step.position} podium={podium} step={step} />
       ))}
-    </div>
+    </Box>
   )
 }
 
@@ -35,35 +36,35 @@ const PodiumStep = ({ podium, step }) => {
         placeContent: "center",
       }}
     >
-      <motion.div
-        style={{
-          alignSelf: "center",
-          marginBottom: ".25rem",
-        }}
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              delay: 1 + (offset + 2),
-              duration: 0.75,
-            },
-          },
-        }}
-      >
-        {/* <img
-          src={`https://i.pravatar.cc/64?u=${winner.id}`}
-          alt=""
+      {step.position === 0 && (
+        <motion.div
           style={{
-            borderRadius: 9999,
-            height: '2.75rem',
-            overflow: 'hidden',
-            width: '2.75rem',
+            alignSelf: "center",
           }}
-        /> */}
-      </motion.div>
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                delay: step.position + 2,
+                duration: 0.75,
+              },
+            },
+          }}
+        >
+          <img
+            src="/images/trophy.png"
+            alt=""
+            style={{
+              height: "1.75rem",
+              overflow: "hidden",
+              width: "1.75rem",
+            }}
+          />
+        </motion.div>
+      )}
       <motion.div
         style={{
           backgroundColor: step.color,
@@ -84,16 +85,20 @@ const PodiumStep = ({ podium, step }) => {
             height: 100 * (offset / podium.length),
             opacity: 1,
             transition: {
-              delay: 1,
+              delay: 2,
               duration: 2,
               ease: "backInOut",
             },
           },
         }}
       >
-        <span style={{ alignSelf: "flex-end", color: "white" }}>
+        <Text
+          fontSize="2xl"
+          fontWeight="bold"
+          style={{ alignSelf: "flex-end", color: "white" }}
+        >
           {step.position + 1}
-        </span>
+        </Text>
       </motion.div>
     </div>
   );
