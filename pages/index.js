@@ -4,6 +4,7 @@ import { Button } from "@chakra-ui/react";
 import { ScaleFade } from "@chakra-ui/transition";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import MotionBox from "../features/MotionBox";
 import Podium from "../features/Podium";
 import Star from "../features/Star";
 
@@ -48,15 +49,19 @@ export default function Home() {
         justifyContent="space-around"
         textAlign="center"
       >
-        <Box
+        <MotionBox
           position="absolute"
           top="0"
           left="0"
           w="150px"
           h="150px"
-          bg="#007EA7"
-          boxShadow="lg"
-        >
+          bg= "#007EA7"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition  = {{ delay: 1, duration: 1 }} 
+
+        ></MotionBox>
+        <Box position="absolute" top="0" left="0" w="150px" h="150px">
           <motion.div
             initial={{ x: 20, y: 100, scale: 0 }}
             animate={{ x: 0, y: 0, scale: 1 }}
@@ -73,7 +78,6 @@ export default function Home() {
             />
           </motion.div>
 
-          <Box className="shape shape-transparent"></Box>
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -121,8 +125,8 @@ export default function Home() {
             textAlign: "center",
             textAlign: "-webkit-center",
           }}
-          initial={{ scale: 0, rotate: 180 }}
-          animate={{ rotate: 0, scale: 1 }}
+            initial={{translateY: -100, opacity: 0}}
+            animate={{translateY: 0, opacity: 1}}
           transition={{
             type: "spring",
             stiffness: 260,
@@ -153,21 +157,26 @@ export default function Home() {
             <Box m="5" fontSize={{ base: "md", md: "4xl" }} fontWeight="bold">
               <Text>Test and improve your English!</Text>
             </Box>
-            <Star boxSize={{base: "50px", md: "150px"}} position="absolute" right={{base: "-15", md:"-50"}} top={{base: "-15", md:"-50"}} />
+            <Star
+              boxSize={{ base: "50px", md: "150px" }}
+              position="absolute"
+              right={{ base: "-15", md: "-50" }}
+              top={{ base: "-15", md: "-50" }}
+            />
           </Flex>
         </motion.div>
-      <Box position={{base: "static", md: "absolute"}} left="0" bottom="0">
-        <Podium px="4" />
-        <Button
-          borderBottomRadius={{ base: 10, md: 0 }}
-          borderTopLeftRadius={{ base: 10, md: 0 }}
-          borderTopRightRadius={10}
-          w="100%"
-          bg="red"
-        >
-          Coming Soon ...
-        </Button>
-      </Box>
+        <Box position={{ base: "static", md: "absolute" }} left="0" bottom="0">
+          <Podium px="4" />
+          <Button
+            borderBottomRadius={{ base: 10, md: 0 }}
+            borderTopLeftRadius={{ base: 10, md: 0 }}
+            borderTopRightRadius={10}
+            w="100%"
+            bg="red"
+          >
+            Coming Soon ...
+          </Button>
+        </Box>
       </Flex>
       <Text
         position="absolute"
