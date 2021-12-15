@@ -1,7 +1,6 @@
 import { Image } from "@chakra-ui/image";
-import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
+import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
-import { ScaleFade } from "@chakra-ui/transition";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import MotionBox from "../features/MotionBox";
@@ -10,14 +9,7 @@ import Star from "../features/Star";
 
 export default function Home() {
   return (
-    <Flex
-      bg="#00B9F5"
-      color="white"
-      minH="100vh"
-      p="5"
-      textAlign="center"
-      justify="center"
-    >
+    <Flex bg="#00B9F5" color="white" minH="100vh" p="5" textAlign="center" justify="center">
       <Head>
         <title>Know It!</title>
         <meta
@@ -26,11 +18,7 @@ export default function Home() {
         />
         <link rel="icon" href="/images/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
           href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"
           rel="stylesheet"
@@ -113,10 +101,7 @@ export default function Home() {
             </Text>
           </motion.div>
         </Box>
-        <Box
-          height={{ base: "150px", sm: "100px" }}
-          display={{ base: "flex", md: "none" }}
-        />
+        <Box height={{ base: "150px", sm: "100px" }} display={{ base: "flex", md: "none" }} />
         <motion.div
           style={{
             width: "100%",
@@ -170,7 +155,7 @@ export default function Home() {
             borderBottomRadius={{ base: 20, md: 0 }}
             borderTopLeftRadius={{ base: 20, md: 0 }}
             borderTopRightRadius={20}
-            w={{base: "90%", md:"100%"}}
+            w={{ base: "90%", md: "100%" }}
             p="30px"
             bg="red"
             fontSize="xl"
@@ -179,14 +164,7 @@ export default function Home() {
           </Button>
         </Box>
       </Flex>
-      <Text
-        position="absolute"
-        right="0"
-        bottom="0"
-        mt="5"
-        mr="2"
-        fontSize="sm"
-      >
+      <Text position="absolute" right="0" bottom="0" mt="5" mr="2" fontSize="sm">
         ©BluePopcorn Production
       </Text>
     </Flex>

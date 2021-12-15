@@ -1,7 +1,6 @@
-import { Box } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
+import { Box } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
-const MotionBox = motion(Box)
+const MotionBox = motion(Box);
 
-
-export default MotionBox
+export default MotionBox;

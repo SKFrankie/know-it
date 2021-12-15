@@ -1,33 +1,37 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Box, Text } from '@chakra-ui/react'
+import React from "react";
+import { motion } from "framer-motion";
+import { Box, Text } from "@chakra-ui/react";
 
-const Podium =({...props}) => {
-  const podium = [{position: 1, color: "#00AEE5", height: 2}, {position:0, color: "#01B84A", height: 4}, {position: 2, color: "#D90A0A", height: 1}]
+const Podium = ({ ...props }) => {
+  const podium = [
+    { position: 1, color: "#00AEE5", height: 2 },
+    { position: 0, color: "#01B84A", height: 4 },
+    { position: 2, color: "#D90A0A", height: 1 },
+  ];
   return (
     <Box
       style={{
-        alignContent: 'flex-end',
-        alignItems: 'flex-end',
-        display: 'grid',
-        gap: '.2rem',
-        gridAutoFlow: 'column dense',
-        justifyContent: 'center',
-        justifyItems: 'center',
+        alignContent: "flex-end",
+        alignItems: "flex-end",
+        display: "grid",
+        gap: ".2rem",
+        gridAutoFlow: "column dense",
+        justifyContent: "center",
+        justifyItems: "center",
         height: "110px",
-        marginTop: '2rem',
+        marginTop: "2rem",
       }}
-        {...props}
+      {...props}
     >
       {podium.map((step) => (
         <PodiumStep key={step.position} podium={podium} step={step} />
       ))}
     </Box>
-  )
-}
+  );
+};
 
 const PodiumStep = ({ podium, step }) => {
-  const offset = podium.length - step.position
+  const offset = podium.length - step.position;
   return (
     <div
       style={{
@@ -82,7 +86,7 @@ const PodiumStep = ({ podium, step }) => {
         variants={{
           hidden: { height: 0, opacity: 0 },
           visible: {
-            height: 30 + 15* step.height,
+            height: 30 + 15 * step.height,
             opacity: 1,
             transition: {
               delay: 2,
@@ -92,15 +96,11 @@ const PodiumStep = ({ podium, step }) => {
           },
         }}
       >
-        <Text
-          fontSize="3xl"
-          fontWeight="bold"
-          style={{ alignSelf: "center", color: "white" }}
-        >
+        <Text fontSize="3xl" fontWeight="bold" style={{ alignSelf: "center", color: "white" }}>
           {step.position + 1}
         </Text>
       </motion.div>
     </div>
   );
-}
-export default Podium
+};
+export default Podium;
