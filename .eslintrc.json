@@ -3,8 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "google", "prettier", "next/core-web-vitals"],
-  "parser": "@typescript-eslint/parser",
+  "extends": ["plugin:react/recommended", "prettier", "next/core-web-vitals"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -12,11 +11,12 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react"],
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off",
     "require-jsdoc": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": ["error"]
   }
 }
