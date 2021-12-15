@@ -19,7 +19,7 @@ const Star = ({boxSize="150px", ...props}) => {
           }}
         {...props}
       >
-        <Image boxSize={boxSize} src="/images/star.png" alt="star" />
+        <Image maxWidth={boxSize} src="/images/star.png" alt="star" />
       </motion.div>
     </Box>
   );
