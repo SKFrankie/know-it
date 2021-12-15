@@ -70,7 +70,7 @@ export default function Home() {
             }}
           >
             <Image
-              src="https://res.cloudinary.com/dki7jzqlx/image/upload/v1638786690/coming-soon-monster_ezdjxl.png"
+              src="/images/coming-soon-monster.png"
               alt="Coming Soon Monster"
               position="absolute"
               transform="rotate(-10deg)"
