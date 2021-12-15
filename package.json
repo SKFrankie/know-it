@@ -2,23 +2,29 @@
   "name": "know-it",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next lint && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.2",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
+    "eslint-config-prettier": "^8.3.0",
     "framer-motion": "^4.1.17",
     "next": "12.0.4",
     "next-pwa": "^5.4.4",
+    "prettier": "^2.5.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4"
+    "eslint-config-next": "12.0.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2"
   }
 }
