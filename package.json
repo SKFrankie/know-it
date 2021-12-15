@@ -1,13 +1,22 @@
 {
   "name": "know-it",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint",
+      "git add"
+    ]
+  },
   "scripts": {
     "dev": "next lint && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
-    "postinstall": "husky install"
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.2",
