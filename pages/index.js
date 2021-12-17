@@ -1,3 +1,5 @@
+import * as ga from "../lib/ga";
+
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
@@ -8,6 +10,11 @@ import Podium from "../features/Podium";
 import Star from "../features/Star";
 
 export default function Home() {
+  const comingSoonButton = () => {
+    ga.event({
+      action: "comming soon button",
+    });
+  };
   return (
     <Flex bg="#00B9F5" color="white" minH="100vh" p="5" textAlign="center" justify="center">
       <Head>
@@ -159,6 +166,7 @@ export default function Home() {
             p="30px"
             bg="red"
             fontSize="xl"
+            onClick={comingSoonButton}
           >
             Coming Soon ...
           </Button>
