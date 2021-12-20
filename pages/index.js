@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import MotionBox from "../features/MotionBox";
 import Podium from "../features/Podium";
-import Star from "../features/Star";
+// import Star from "../features/Star";
 
 export default function Home() {
   const comingSoonButton = () => {
@@ -16,7 +16,14 @@ export default function Home() {
     });
   };
   return (
-    <Flex bg="#00B9F5" color="white" minH="100vh" p="5" textAlign="center" justify="center">
+    <Flex
+      bg={{ base: "#0291E1", md: "#00B9F5" }}
+      color="white"
+      minH="100vh"
+      p="5"
+      textAlign="center"
+      justify="center"
+    >
       <Head>
         <title>Know It!</title>
         <meta
@@ -35,7 +42,6 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-
       <Flex
         placeSelf="center"
         direction="column"
@@ -65,7 +71,7 @@ export default function Home() {
             }}
           >
             <Image
-              src="/images/coming-soon-monster.png"
+              src="/images/gigil1.png"
               alt="Coming Soon Monster"
               position="absolute"
               transform="rotate(-10deg)"
@@ -148,12 +154,22 @@ export default function Home() {
             <Box m="5" fontSize={{ base: "md", md: "4xl" }} fontWeight="bold">
               <Text>Test and improve your English!</Text>
             </Box>
-            <Star
+            {/* <Star
               boxSize={{ base: "50px", md: "150px" }}
               position="absolute"
               right={{ base: "-15", md: "-50" }}
               top={{ base: "-15", md: "-50" }}
-            />
+            /> */}
+            <Box
+              display={{ base: "none", md: "block" }}
+              position="absolute"
+              bottom="-30"
+              right="-30"
+              w="150px"
+              h="150px"
+            >
+              <Image src="/images/gigil2.png" alt="gigil2" />
+            </Box>
           </Flex>
         </motion.div>
         <Box position={{ base: "static", md: "absolute" }} left="0" bottom="0">
@@ -163,7 +179,8 @@ export default function Home() {
             borderTopLeftRadius={{ base: 20, md: 0 }}
             borderTopRightRadius={20}
             w={{ base: "90%", md: "100%" }}
-            p="30px"
+            py="30px"
+            px="70px"
             bg="red"
             fontSize="xl"
             onClick={comingSoonButton}
