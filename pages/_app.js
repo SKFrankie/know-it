@@ -2,6 +2,8 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "../styles/globals.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { ApolloProvider } from "@apollo/client";
+import client from "../apollo-client";
 
 import * as ga from "../lib/ga";
 
@@ -28,9 +30,11 @@ function MyApp({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <ApolloProvider client={client}>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </ApolloProvider>
   );
 }
 export default MyApp;
