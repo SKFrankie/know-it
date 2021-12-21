@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMutation, useQuery, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
 import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
+import { GoogleSignup } from "./auth/GoogleAuth";
 
 const SIGN_UP = gql`
   mutation Signup($email: String!, $username: String!, $password: String!) {
@@ -97,6 +98,8 @@ export default function Signup() {
       </Formik>
 
       <p> {data?.currentUser?.username} ici</p>
+
+      <GoogleSignup />
     </>
   );
 }
