@@ -11,6 +11,7 @@ const SIGN_UP = gql`
     }
   }
 `;
+
 const CURRENT_USER = gql`
   query CurrentUser {
     currentUser {
