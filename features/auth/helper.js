@@ -1,6 +1,7 @@
+import { useRouter } from "next/router";
 const storeToken = (token) => {
   localStorage.setItem("token", token);
-  location.reload();
-}
+  router.push("/");
+};
 
-export {storeToken}
+export { storeToken };

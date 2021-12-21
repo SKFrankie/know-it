@@ -6,6 +6,7 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
 
 import * as ga from "../lib/ga";
+import { RouteGuard } from "../features/auth/RouteGuard";
 
 const theme = extendTheme({
   colors: {
@@ -31,9 +32,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <RouteGuard>
+        <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </RouteGuard>
     </ApolloProvider>
   );
 }
