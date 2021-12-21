@@ -1,12 +1,21 @@
 import React from "react";
-import GoogleLogin from "react-google-login";
+import ReactGoogleLogin from "react-google-login";
 import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Loading from "../Loading";
+import { storeToken } from "./helper";
 
 const GOOGLE_SIGN_UP = gql`
   mutation GoogleSignup($token: String!) {
     googleSignup(token: $token) {
+      token
+    }
+  }
+`;
+
+const GOOGLE_LOGIN = gql`
+  mutation GoogleLogin($token: String!) {
+    googleLogin(token: $token) {
       token
     }
   }
@@ -19,12 +28,24 @@ const GoogleSignup = () => {
   };
   const [googleSignup, { loading }] = useMutation(GOOGLE_SIGN_UP, {
     onCompleted(data) {
-      localStorage.setItem("token", data.googleSignup.token);
-      location.reload();
+      storeToken(data.googleSignup.token);
     },
     ...basicQueryResultSupport,
   });
   return <GoogleAuth text="Sign up with google" handleSuccess={handleSuccess} loading={loading} />;
+};
+const GoogleLogin = () => {
+  const handleSuccess = (response) => {
+    const token = response.tokenId;
+    googleLogin({ variables: { token } });
+  };
+  const [googleLogin, { loading }] = useMutation(GOOGLE_LOGIN, {
+    onCompleted(data) {
+      storeToken(data.googleLogin.token);
+    },
+    ...basicQueryResultSupport,
+  });
+  return <GoogleAuth text="Login with google" handleSuccess={handleSuccess} loading={loading} />;
 };
 
 const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false }) => {
@@ -33,7 +54,7 @@ const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false
   };
   return (
     <>
-      <GoogleLogin
+      <ReactGoogleLogin
         clientId={process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID}
         buttonText={text}
         onSuccess={handleSuccess}
@@ -45,5 +66,5 @@ const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false
   );
 };
 
-export { GoogleSignup };
+export { GoogleSignup, GoogleLogin };
 export default GoogleAuth;

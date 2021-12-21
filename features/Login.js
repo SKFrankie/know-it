@@ -3,11 +3,11 @@ import { useMutation, useQuery, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
 import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
-import { GoogleSignup } from "./auth/GoogleAuth";
+import { GoogleLogin } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
-const SIGN_UP = gql`
-  mutation Signup($email: String!, $username: String!, $password: String!) {
-    signup(mail: $email, username: $username, password: $password) {
+const LOGIN = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(mail: $email, password: $password) {
       token
     }
   }
@@ -21,7 +21,7 @@ const CURRENT_USER = gql`
   }
 `;
 
-export default function Signup() {
+export default function Login() {
   const { data } = useQuery(CURRENT_USER, {
     onCompleted(data) {
       console.log("current", data);
@@ -29,9 +29,9 @@ export default function Signup() {
     ...basicQueryResultSupport,
   });
 
-  const [signup, { loading, error }] = useMutation(SIGN_UP, {
+  const [login, { loading, error }] = useMutation(LOGIN, {
     onCompleted(data) {
-      storeToken(data.signup.token);
+      storeToken(data.login.token);
     },
     ...basicQueryResultSupport,
   });
@@ -47,13 +47,13 @@ export default function Signup() {
   return (
     <>
       <Formik
-        initialValues={{ email: "", username: "", password: "" }}
+        initialValues={{ email: "", password: "" }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             console.log(values);
             setSubmitting(false);
-            signup({ variables: values });
+            login({ variables: values });
           }, 1000);
         }}
       >
@@ -64,14 +64,6 @@ export default function Signup() {
                 <FormControl isInvalid={form.errors.email}>
                   <FormLabel htmlFor="email">Email address</FormLabel>
                   <Input {...field} id="email" type="email" placeholder="email" />
-                </FormControl>
-              )}
-            </Field>
-            <Field name="username">
-              {({ field, form }) => (
-                <FormControl isInvalid={form.errors.username}>
-                  <FormLabel htmlFor="username">Username</FormLabel>
-                  <Input {...field} id="username" placeholder="username" />
                 </FormControl>
               )}
             </Field>
@@ -98,7 +90,7 @@ export default function Signup() {
 
       <p> {data?.currentUser?.username} ici</p>
 
-      <GoogleSignup />
+      <GoogleLogin />
     </>
   );
 }
