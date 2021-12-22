@@ -5,6 +5,7 @@ import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
 import { GoogleLogin } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
+import { useRouter } from "next/router";
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
     login(mail: $email, password: $password) {
@@ -22,6 +23,7 @@ const CURRENT_USER = gql`
 `;
 
 export default function Login() {
+  const router = useRouter();
   const { data } = useQuery(CURRENT_USER, {
     onCompleted(data) {
       console.log("current", data);
@@ -31,7 +33,7 @@ export default function Login() {
 
   const [login, { loading, error }] = useMutation(LOGIN, {
     onCompleted(data) {
-      storeToken(data.login.token);
+      storeToken(data.login.token, router);
     },
     ...basicQueryResultSupport,
   });

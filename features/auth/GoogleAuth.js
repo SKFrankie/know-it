@@ -4,6 +4,7 @@ import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Loading from "../Loading";
 import { storeToken } from "./helper";
+import { useRouter } from "next/router";
 
 const GOOGLE_SIGN_UP = gql`
   mutation GoogleSignup($token: String!) {
@@ -22,26 +23,28 @@ const GOOGLE_LOGIN = gql`
 `;
 
 const GoogleSignup = () => {
+  const router = useRouter();
   const handleSuccess = (response) => {
     const token = response.tokenId;
     googleSignup({ variables: { token } });
   };
   const [googleSignup, { loading }] = useMutation(GOOGLE_SIGN_UP, {
     onCompleted(data) {
-      storeToken(data.googleSignup.token);
+      storeToken(data.googleSignup.token, router);
     },
     ...basicQueryResultSupport,
   });
   return <GoogleAuth text="Sign up with google" handleSuccess={handleSuccess} loading={loading} />;
 };
 const GoogleLogin = () => {
+  const router = useRouter();
   const handleSuccess = (response) => {
     const token = response.tokenId;
     googleLogin({ variables: { token } });
   };
   const [googleLogin, { loading }] = useMutation(GOOGLE_LOGIN, {
     onCompleted(data) {
-      storeToken(data.googleLogin.token);
+      storeToken(data.googleLogin.token, router);
     },
     ...basicQueryResultSupport,
   });
