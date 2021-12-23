@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
 
+import {UserWrapper} from "../context/user"
+
 import * as ga from "../lib/ga";
 import { RouteGuard } from "../features/auth/RouteGuard";
 
@@ -41,11 +43,13 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={client}>
+      <UserWrapper>
       <RouteGuard>
         <ChakraProvider theme={theme}>
           <Component {...pageProps} />
         </ChakraProvider>
       </RouteGuard>
+      </UserWrapper>
     </ApolloProvider>
   );
 }

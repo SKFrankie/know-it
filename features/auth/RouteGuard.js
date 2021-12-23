@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../Loading";
+import { useUserContext } from "../../context/user";
 
 const CURRENT_USER = gql`
   query CurrentUser {
@@ -15,10 +16,7 @@ const CURRENT_USER = gql`
 const RouteGuard = ({ children }) => {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    online: false,
-    loading: true,
-  });
+  const [currentUser, setCurrentUser] = useUserContext()
   const { loading } = useQuery(CURRENT_USER, {
     onCompleted(res) {
       const online = res.currentUser !== null;

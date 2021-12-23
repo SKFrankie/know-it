@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, useQuery, gql } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
 import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
@@ -14,22 +14,9 @@ const LOGIN = gql`
   }
 `;
 
-const CURRENT_USER = gql`
-  query CurrentUser {
-    currentUser {
-      username
-    }
-  }
-`;
 
 export default function Login() {
   const router = useRouter();
-  const { data } = useQuery(CURRENT_USER, {
-    onCompleted(data) {
-      console.log("current", data);
-    },
-    ...basicQueryResultSupport,
-  });
 
   const [login, { loading, error }] = useMutation(LOGIN, {
     onCompleted(data) {
@@ -89,9 +76,6 @@ export default function Login() {
           </form>
         )}
       </Formik>
-
-      <p> {data?.currentUser?.username} ici</p>
-
       <GoogleLogin />
     </>
   );
