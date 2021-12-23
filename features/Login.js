@@ -1,11 +1,16 @@
 import React from "react";
 import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
-import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { FormControl, Button, Text } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
 import { GoogleLogin } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
 import { useRouter } from "next/router";
+import Link from '../ui/Link';
+
+import Input from "../ui/Input";
+import { SubmitButton } from "../ui/Button";
+
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
     login(mail: $email, password: $password) {
@@ -47,35 +52,41 @@ export default function Login() {
         }}
       >
         {(props) => (
-          <form onSubmit={props.handleSubmit}>
+          <form onSubmit={props.handleSubmit} style={{ marginTop: "4rem" }}>
             <Field name="email">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.email}>
-                  <FormLabel htmlFor="email">Email address</FormLabel>
-                  <Input {...field} id="email" type="email" placeholder="email" />
+                  <Input
+                    {...field}
+                    id="email"
+                    type="email"
+                    placeholder="Email"
+                    first={true}
+                    required
+                  />
                 </FormControl>
               )}
             </Field>
             <Field name="password">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.password}>
-                  <FormLabel htmlFor="password">Password</FormLabel>
                   <Input
                     {...field}
                     id="password"
                     type="password"
-                    placeholder="password"
+                    placeholder="Password"
                     autoComplete="current-password"
+                    last={true}
+                    required
                   />
                 </FormControl>
               )}
             </Field>
-            <Button mt={4} colorScheme="teal" isLoading={props.isSubmitting} type="submit">
-              Submit
-            </Button>
+            <SubmitButton isLoading={props.isSubmitting}>Login</SubmitButton>
           </form>
         )}
       </Formik>
+      <Text>No account yet? <Link href="signup">Sign Up</Link></Text>
       <GoogleLogin />
     </>
   );

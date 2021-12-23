@@ -3,11 +3,11 @@ import React from 'react'
 
 const Title = () => {
   return (
-    <Flex direction="column" align="center" justify="center" w="100%" margin={5}>
+    <Flex direction="column" align="center" justify="center" margin={5}>
       <Text fontSize="6xl"  fontFamily="Ribeye">
         Know It!
       </Text>
-      <Text>
+      <Text fontSize="sm">
         a BluePopcorn Production
       </Text>
     </Flex>

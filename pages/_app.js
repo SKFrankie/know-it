@@ -15,14 +15,18 @@ const theme = extendTheme({
     primary: "red",
     red: "#DB0000",
     darkBlue: "#007EA7",
+    blueClear: {
+      500: "#00A5DB",
+      600: "#00BEDC",
+    },
   },
   styles: {
     global: {
       body: {
         color: "white",
-        bg:"darkBlue"
-      }
-    }
+        bg: "darkBlue",
+      },
+    },
   },
   fonts: {
     body: "system-ui, sans-serif",

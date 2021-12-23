@@ -5,6 +5,8 @@ import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Loading from "../Loading";
 import { storeToken } from "./helper";
 import { useRouter } from "next/router";
+import { Button } from "@chakra-ui/react";
+import Image from "next/image"
 
 const GOOGLE_SIGN_UP = gql`
   mutation GoogleSignup($token: String!) {
@@ -21,6 +23,10 @@ const GOOGLE_LOGIN = gql`
     }
   }
 `;
+
+const GoogleIcon = ({...props}) => (
+  <Image src="/images/icons/google.svg" alt="google" width="24px" height="24px" {...props}/>
+)
 
 const GoogleSignup = () => {
   const router = useRouter();
@@ -63,6 +69,11 @@ const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false
         onSuccess={handleSuccess}
         onFailure={handleFailure}
         cookiePolicy={"single_host_origin"}
+        render={(renderProps) => (
+          <Button leftIcon={<GoogleIcon/>} color="#DB4437" bg="white" borderRadius="10px" w="100%" my="4"  onClick={renderProps.onClick} disabled={renderProps.disabled} boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}>
+          Google
+          </Button>
+        )}
       />
       {loading && <Loading />}
     </>

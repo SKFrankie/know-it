@@ -41,7 +41,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <Box as="body">
+        <Box as="body" p="5%">
           <Main />
           <NextScript />
         </Box>
