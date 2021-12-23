@@ -10,6 +10,7 @@ import Input from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
 import { Error } from "../ui/Alert";
 import Link from "../ui/Link";
+import Form from "../ui/Form";
 
 const SIGN_UP = gql`
   mutation Signup($email: String!, $username: String!, $password: String!) {
@@ -62,7 +63,7 @@ export default function Signup() {
         }}
       >
         {({ errors, ...props }) => (
-          <form onSubmit={props.handleSubmit}>
+          <Form onSubmit={props.handleSubmit}>
             <Field name="email">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.email}>
@@ -136,7 +137,7 @@ export default function Signup() {
             </Text>
             <GoogleSignup disabled={errors.checkbox || !props.values.checkbox} />
             {errors.checkbox && <Error title={errors.checkbox} />}
-          </form>
+          </Form>
         )}
       </Formik>
     </>

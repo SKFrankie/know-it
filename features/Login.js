@@ -7,6 +7,7 @@ import { GoogleLogin } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
 import { useRouter } from "next/router";
 import Link from '../ui/Link';
+import Form from "../ui/Form";
 
 import Input from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
@@ -50,7 +51,7 @@ export default function Login() {
         }}
       >
         {(props) => (
-          <form onSubmit={props.handleSubmit} style={{ marginTop: "4rem" }}>
+          <Form onSubmit={props.handleSubmit} style={{ marginTop: "4rem" }}>
             <Field name="email">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.email}>
@@ -81,11 +82,13 @@ export default function Login() {
               )}
             </Field>
             <SubmitButton isLoading={props.isSubmitting}>Login</SubmitButton>
-          </form>
+            <Text align="center">
+              No account yet? <Link href="signup">Sign Up</Link>
+            </Text>
+            <GoogleLogin />
+          </Form>
         )}
       </Formik>
-      <Text align="center">No account yet? <Link href="signup">Sign Up</Link></Text>
-      <GoogleLogin />
     </>
   );
 }

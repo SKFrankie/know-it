@@ -70,7 +70,7 @@ const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false
         onFailure={handleFailure}
         cookiePolicy={"single_host_origin"}
         render={(renderProps) => (
-          <Button {...props} leftIcon={<GoogleIcon/>} color="#DB4437" bg="white" borderRadius="10px" w="100%" my="4"  onClick={renderProps.onClick} disabled={renderProps.disabled || disabled} boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}>
+          <Button {...props} leftIcon={<GoogleIcon/>} color="#DB4437" bg="white" borderRadius="10px" w="90%" placeSelf="center" my="4"  onClick={renderProps.onClick} disabled={renderProps.disabled || disabled} boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}>
           Google
           </Button>
         )}
