@@ -28,7 +28,7 @@ const GoogleIcon = ({...props}) => (
   <Image src="/images/icons/google.svg" alt="google" width="24px" height="24px" {...props}/>
 )
 
-const GoogleSignup = () => {
+const GoogleSignup = ({...props}) => {
   const router = useRouter();
   const handleSuccess = (response) => {
     const token = response.tokenId;
@@ -40,7 +40,7 @@ const GoogleSignup = () => {
     },
     ...basicQueryResultSupport,
   });
-  return <GoogleAuth text="Sign up with google" handleSuccess={handleSuccess} loading={loading} />;
+  return <GoogleAuth {...props} text="Sign up with google" handleSuccess={handleSuccess} loading={loading} />;
 };
 const GoogleLogin = () => {
   const router = useRouter();
@@ -57,7 +57,7 @@ const GoogleLogin = () => {
   return <GoogleAuth text="Login with google" handleSuccess={handleSuccess} loading={loading} />;
 };
 
-const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false }) => {
+const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false, disabled, ...props }) => {
   const handleFailure = (response) => {
     console.log(response.error);
   };
@@ -70,7 +70,7 @@ const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false
         onFailure={handleFailure}
         cookiePolicy={"single_host_origin"}
         render={(renderProps) => (
-          <Button leftIcon={<GoogleIcon/>} color="#DB4437" bg="white" borderRadius="10px" w="100%" my="4"  onClick={renderProps.onClick} disabled={renderProps.disabled} boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}>
+          <Button {...props} leftIcon={<GoogleIcon/>} color="#DB4437" bg="white" borderRadius="10px" w="100%" my="4"  onClick={renderProps.onClick} disabled={renderProps.disabled || disabled} boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}>
           Google
           </Button>
         )}

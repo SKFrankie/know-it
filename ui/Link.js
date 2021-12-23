@@ -5,7 +5,7 @@ import { Link as ChakraLink} from '@chakra-ui/react'
 const Link = ({children, href, ...props}) => {
   return (
     <NextLink href={href} passHref>
-      <ChakraLink {...props}>{children}</ChakraLink>
+      <ChakraLink fontWeight="bold" {...props}>{children}</ChakraLink>
     </NextLink>
   );
 }

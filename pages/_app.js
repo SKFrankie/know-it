@@ -12,8 +12,6 @@ import { RouteGuard } from "../features/auth/RouteGuard";
 
 const theme = extendTheme({
   colors: {
-    primary: "red",
-    red: "#DB0000",
     darkBlue: "#007EA7",
     blueClear: {
       500: "#00A5DB",

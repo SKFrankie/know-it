@@ -1,11 +1,16 @@
 import React from "react";
 import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
-import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { Checkbox, FormControl, Text } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
 import { GoogleSignup } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
 import { useRouter } from "next/router";
+import Input from "../ui/Input";
+import { SubmitButton } from "../ui/Button";
+import { Error } from "../ui/Alert";
+import Link from "../ui/Link";
+
 const SIGN_UP = gql`
   mutation Signup($email: String!, $username: String!, $password: String!) {
     signup(mail: $email, username: $username, password: $password) {
@@ -14,6 +19,18 @@ const SIGN_UP = gql`
   }
 `;
 
+const validatePassword = (password, confirm) => {
+  if (password !== confirm && confirm !== "") {
+    return "Passwords don't match";
+  }
+  return ""
+}
+
+const validateCheckbox = (value) => {
+  if (!value) {
+    return "You must accept the terms and conditions"
+  }
+}
 export default function Signup() {
   const router = useRouter();
 
@@ -35,55 +52,93 @@ export default function Signup() {
   return (
     <>
       <Formik
-        initialValues={{ email: "", username: "", password: "" }}
+        initialValues={{ email: "", username: "", password: "", confirm: "", checkbox: false }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            console.log(values);
             setSubmitting(false);
-            signup({ variables: values });
+            const { email, username, password } = values;
+            signup({ variables: { email, username, password } });
           }, 1000);
         }}
       >
-        {(props) => (
+        {({ errors, ...props }) => (
           <form onSubmit={props.handleSubmit}>
             <Field name="email">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.email}>
-                  <FormLabel htmlFor="email">Email address</FormLabel>
-                  <Input {...field} id="email" type="email" placeholder="email" />
+                  <Input first {...field} id="email" type="email" placeholder="email" required />
                 </FormControl>
               )}
             </Field>
             <Field name="username">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.username}>
-                  <FormLabel htmlFor="username">Username</FormLabel>
-                  <Input {...field} id="username" placeholder="username" />
+                  <Input
+                    {...field}
+                    id="username"
+                    placeholder="username"
+                    autoComplete="username"
+                    required
+                  />
                 </FormControl>
               )}
             </Field>
             <Field name="password">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.password}>
-                  <FormLabel htmlFor="password">Password</FormLabel>
                   <Input
                     {...field}
                     id="password"
                     type="password"
                     placeholder="password"
                     autoComplete="current-password"
+                    required
                   />
                 </FormControl>
               )}
             </Field>
-            <Button mt={4} colorScheme="teal" isLoading={props.isSubmitting} type="submit">
-              Submit
-            </Button>
+            <Field
+              name="confirm"
+              validate={(value) => validatePassword(props.values.password, value)}
+            >
+              {({ field, form }) => (
+                <FormControl isInvalid={form.errors.password}>
+                  <Input
+                    {...field}
+                    id="confirm"
+                    type="password"
+                    placeholder="confirm password"
+                    autoComplete="current-password"
+                    required
+                    last
+                  />
+                </FormControl>
+              )}
+            </Field>
+            {errors.confirm && <Error title={errors.confirm} />}
+            <Field name="checkbox" validate={validateCheckbox}>
+              {({ field }) => (
+                <FormControl my="2">
+                  <Checkbox {...field} color="white" required>
+                    I agree to the Terms of Service and Privacy Policy{" "}
+                  </Checkbox>
+                </FormControl>
+              )}
+            </Field>
+            <SubmitButton
+              disabled={props.isSubmitting || errors.confirm || errors.checkbox || !props.values.checkbox}
+              isLoading={props.isSubmitting}
+            >
+              Sign up
+            </SubmitButton>
+            <Text align="center">
+              Already registered? <Link href="login">Login</Link>
+            </Text>
+            <GoogleSignup disabled={errors.checkbox || !props.values.checkbox} />
+            {errors.checkbox && <Error title={errors.checkbox} />}
           </form>
         )}
       </Formik>
-      <GoogleSignup />
     </>
   );
 }

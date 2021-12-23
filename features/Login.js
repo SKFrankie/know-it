@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
-import { FormControl, Button, Text } from "@chakra-ui/react";
+import { FormControl, Text } from "@chakra-ui/react";
 import { Formik, Field } from "formik";
 import { GoogleLogin } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
@@ -44,8 +44,6 @@ export default function Login() {
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            console.log(values);
             setSubmitting(false);
             login({ variables: values });
           }, 1000);
@@ -86,7 +84,7 @@ export default function Login() {
           </form>
         )}
       </Formik>
-      <Text>No account yet? <Link href="signup">Sign Up</Link></Text>
+      <Text align="center">No account yet? <Link href="signup">Sign Up</Link></Text>
       <GoogleLogin />
     </>
   );
