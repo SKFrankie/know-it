@@ -12,9 +12,18 @@ const theme = extendTheme({
   colors: {
     primary: "red",
     red: "#DB0000",
+    darkBlue: "#007EA7",
+  },
+  styles: {
+    global: {
+      body: {
+        color: "white",
+        bg:"darkBlue"
+      }
+    }
   },
   fonts: {
-    body: "Maven Pro, system-ui, sans-serif",
+    body: "system-ui, sans-serif",
   },
 });
 

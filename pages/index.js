@@ -30,17 +30,6 @@ export default function Home() {
           name="description"
           content="A learning by gaming Progressive Web App to test and improve your English!"
         />
-        <link rel="icon" href="/images/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <Flex
         placeSelf="center"
