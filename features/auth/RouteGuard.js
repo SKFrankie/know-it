@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../Loading";
 import { useUserContext } from "../../context/user";
+import { redirect } from "./helper";
 
 const CURRENT_USER = gql`
   query CurrentUser {
@@ -16,7 +17,7 @@ const CURRENT_USER = gql`
 const RouteGuard = ({ children }) => {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
-  const [currentUser, setCurrentUser] = useUserContext()
+  const [currentUser, setCurrentUser] = useUserContext();
   const { loading } = useQuery(CURRENT_USER, {
     onCompleted(res) {
       const online = res.currentUser !== null;
@@ -37,11 +38,11 @@ const RouteGuard = ({ children }) => {
     const path = url.split("?")[0];
     if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path)) {
       setAuthorized(false);
-      router.push("/login");
+      redirect(router, "/login");
     } else {
       setAuthorized(true);
       if (currentUser.online && publicPaths.includes(path)) {
-        router.push("/");
+        redirect(router, "/");
       }
     }
   }
