@@ -4,9 +4,10 @@ import NextLink from 'next/link'
 import { Icon as Iconify } from '@iconify/react';
 import { SECTIONS, ADDITIONNAL_SECTIONS } from "../constants.js";
 import { useRouter } from "next/router";
+import { useUserContext } from "../context/user";
 
 const MobileHeader = () => {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <Flex
       boxShadow="0px -4px 4px rgba(255, 255, 255, 0.25)"
@@ -31,7 +32,8 @@ const MobileHeader = () => {
 }
 
 const IconLink = ({ item, router }) => {
-  return (
+  const [currentUser] = useUserContext()
+  return item.restricted && !currentUser.online ? null : (
     <NextLink href={item.path} passHref>
       <IconButton
         m={2}

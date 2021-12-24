@@ -1,6 +1,6 @@
 const SECTIONS = [
   { name: "Home", path: "/", icon: "fluent:home-16-filled" },
-  { name: "Shop", path: "/shop", restricted: true, icon: "entypo:shop" },
+  { name: "Shop", path: "/shop", icon: "entypo:shop" },
   {
     name: "Gigil Collection",
     path: "/collection",
