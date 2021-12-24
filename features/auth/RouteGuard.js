@@ -34,14 +34,14 @@ const RouteGuard = ({ children }) => {
 
   function authCheck(url) {
     // redirect to login page if accessing a private page and not logged in
-    const publicPaths = ["/login", "/signup"];
+    const publicPaths = ["/login", "/signup", "/"];
     const path = url.split("?")[0];
     if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path)) {
       setAuthorized(false);
       redirect(router, "/login");
     } else {
       setAuthorized(true);
-      if (currentUser.online && publicPaths.includes(path)) {
+      if (currentUser.online && ["/login", "/signup"].includes(path)) {
         redirect(router, "/");
       }
     }

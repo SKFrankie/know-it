@@ -8,4 +8,9 @@ const redirect = async (router, route) => {
   router.reload();
 };
 
-export { storeToken, redirect };
+const logout = (router) => {
+  localStorage.removeItem("token");
+ router.reload();
+}
+
+export { storeToken, redirect, logout };

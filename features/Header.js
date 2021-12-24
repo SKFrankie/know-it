@@ -1,12 +1,14 @@
 import React from 'react'
-import { Flex, Icon, IconButton } from "@chakra-ui/react";
+import { Flex, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList, Spacer, Text } from "@chakra-ui/react";
 import NextLink from 'next/link'
 import { Icon as Iconify } from '@iconify/react';
 import { NO_HEADER_ROUTES, SECTIONS, ADDITIONNAL_SECTIONS } from "../constants.js";
 import { useRouter } from "next/router";
 import { useUserContext } from "../context/user";
+import Link from '../ui/Link.js';
+import { logout } from './auth/helper.js';
 
-const MobileHeader = () => {
+const MobileNavbar = () => {
   const router = useRouter();
   return (
     !NO_HEADER_ROUTES.includes(router.pathname) && (
@@ -56,4 +58,69 @@ const IconLink = ({ item, router }) => {
   );
 }
 
-export {MobileHeader}
+const DesktopHeader = () => {
+  const [currentUser] = useUserContext()
+  const router = useRouter();
+  return (
+    !NO_HEADER_ROUTES.includes(router.pathname) && (
+      <Flex
+        bg="deepDarkBlue"
+        display={{ base: "none", md: "flex" }}
+        position="fixed"
+        top="0"
+        left="0"
+        justify="space-between"
+        width="100%"
+      >
+        <Flex direction="column" m={2} color="white">
+          <NextLink href="/">
+            <Text cursor="pointer" fontSize="3xl" fontWeight="bold">
+              Know It!
+            </Text>
+          </NextLink>
+          <Text fontSize="xs">a BluePopcorn Production</Text>
+        </Flex>
+        <Flex justify="space-around" align="center">
+          {SECTIONS.map((section) =>
+            section.restricted && !currentUser.online ? null : (
+              <Link
+                fontWeight="500"
+                color={router.pathname === section.path ? "white" : "blueClear.700"}
+                mx={4}
+                key={section.name}
+                href={section.path}
+              >
+                {section.name}
+              </Link>
+            )
+          )}
+        </Flex>
+        <Spacer />
+        {currentUser.online ? (
+          <Menu>
+            <MenuButton m={4}>Avatar</MenuButton>
+            <MenuList color="black">
+              {ADDITIONNAL_SECTIONS.map((section) => (
+                <NextLink key={section.name} href={section.path} passHref>
+                  <MenuItem>{section.name}</MenuItem>
+                </NextLink>
+              ))}
+              <MenuItem
+                onClick={() => {
+                  logout(router)
+                }}
+              >
+                Logout
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        ) : (
+          <Link alignSelf="center" fontWeight="normal" m={4} href="/login" fontSize="2xl">
+            Login
+          </Link>
+        )}
+      </Flex>
+    )
+  );}
+
+export {MobileNavbar, DesktopHeader}

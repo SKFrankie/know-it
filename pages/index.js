@@ -5,7 +5,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import MotionBox from "../features/MotionBox";
+// import MotionBox from "../features/MotionBox";
 import Podium from "../features/Podium";
 // import Star from "../features/Star";
 
@@ -39,7 +39,7 @@ export default function Home() {
         justifyContent="space-around"
         textAlign="center"
       >
-        <MotionBox
+        {/* <MotionBox
           position="absolute"
           top="0"
           left="0"
@@ -102,7 +102,7 @@ export default function Home() {
               Either you KNOW IT, or you don't
             </Text>
           </motion.div>
-        </Box>
+        </Box> */}
         <Box height={{ base: "150px", sm: "100px" }} display={{ base: "flex", md: "none" }} />
         <motion.div
           style={{

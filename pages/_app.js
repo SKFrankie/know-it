@@ -18,6 +18,7 @@ const theme = extendTheme({
     blueClear: {
       500: "#00A5DB",
       600: "#00BEDC",
+      700: "#00B9F5", //blueclear2
     },
   },
   styles: {
