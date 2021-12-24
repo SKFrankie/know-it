@@ -20,6 +20,7 @@ const theme = extendTheme({
       600: "#00BEDC",
       700: "#00B9F5", //blueclear2
     },
+    yellowStar: "#FFBE0B",
   },
   styles: {
     global: {

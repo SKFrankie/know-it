@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useUserContext } from "../context/user";
 import Link from '../ui/Link.js';
 import { logout } from './auth/helper.js';
+import { CoinCurrency, StarCurrency } from './Currency.js';
 
 const MobileNavbar = () => {
   const router = useRouter();
@@ -97,23 +98,27 @@ const DesktopHeader = () => {
         </Flex>
         <Spacer />
         {currentUser.online ? (
-          <Menu>
-            <MenuButton m={4}>Avatar</MenuButton>
-            <MenuList color="black">
-              {ADDITIONNAL_SECTIONS.map((section) => (
-                <NextLink key={section.name} href={section.path} passHref>
-                  <MenuItem>{section.name}</MenuItem>
-                </NextLink>
-              ))}
-              <MenuItem
-                onClick={() => {
-                  logout(router)
-                }}
-              >
-                Logout
-              </MenuItem>
-            </MenuList>
-          </Menu>
+          <Flex>
+            <StarCurrency />
+            <CoinCurrency />
+            <Menu>
+              <MenuButton m={4}>Avatar</MenuButton>
+              <MenuList color="black">
+                {ADDITIONNAL_SECTIONS.map((section) => (
+                  <NextLink key={section.name} href={section.path} passHref>
+                    <MenuItem>{section.name}</MenuItem>
+                  </NextLink>
+                ))}
+                <MenuItem
+                  onClick={() => {
+                    logout(router);
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
         ) : (
           <Link alignSelf="center" fontWeight="normal" m={4} href="/login" fontSize="2xl">
             Login
