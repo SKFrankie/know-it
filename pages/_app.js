@@ -9,10 +9,12 @@ import {UserWrapper} from "../context/user"
 
 import * as ga from "../lib/ga";
 import { RouteGuard } from "../features/auth/RouteGuard";
+import Layout from "../features/Layout";
 
 const theme = extendTheme({
   colors: {
     darkBlue: "#007EA7",
+    deepDarkBlue: "#00455B",
     blueClear: {
       500: "#00A5DB",
       600: "#00BEDC",
@@ -46,11 +48,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <ApolloProvider client={client}>
       <UserWrapper>
-      <RouteGuard>
-        <ChakraProvider theme={theme}>
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </RouteGuard>
+        <RouteGuard>
+          <ChakraProvider theme={theme}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ChakraProvider>
+        </RouteGuard>
       </UserWrapper>
     </ApolloProvider>
   );
