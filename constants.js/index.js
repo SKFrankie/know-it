@@ -14,4 +14,6 @@ const ADDITIONNAL_SECTIONS = [
   { name: "Settings", path: "/settings", icon: "ci:settings-filled" },
 ];
 
-export { SECTIONS, ADDITIONNAL_SECTIONS };
+const NO_HEADER_ROUTES = ["/login", "/signup"];
+
+export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES };
