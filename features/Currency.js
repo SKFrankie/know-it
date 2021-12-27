@@ -1,4 +1,5 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
+import { useUserContext } from "../context/user";
 
 const Currency = ({
   src = "/images/star.png",
@@ -18,10 +19,14 @@ const Currency = ({
 };
 
 const StarCurrency = ({ quantity = 0, ...props }) => {
+  const [currentUser] = useUserContext()
+  quantity = currentUser.online && !quantity ? currentUser.stars : quantity;
   return <Currency quantity={quantity} {...props} />;
 };
 
 const CoinCurrency = ({ quantity = 0, ...props }) => {
+  const [currentUser] = useUserContext()
+  quantity = currentUser.online && !quantity ? currentUser.coins : quantity;
   return (
     <Currency quantity={quantity} color="#06B402" src="/images/coin.png" alt="coin" {...props} />
   );

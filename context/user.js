@@ -4,9 +4,10 @@ const UserContext = createContext();
 
 export function UserWrapper({ children }) {
   const [user, setUser] = useState({online: false, loading: true})
+  const [refetch, setRefetch] = useState(() => null)
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
+    <UserContext.Provider value={[user, setUser, {refetch, setRefetch}]}>
       {children}
     </UserContext.Provider>
   );

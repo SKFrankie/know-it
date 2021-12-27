@@ -10,6 +10,8 @@ const CURRENT_USER = gql`
     currentUser {
       username
       mail
+      coins
+      stars
     }
   }
 `;
@@ -17,11 +19,12 @@ const CURRENT_USER = gql`
 const RouteGuard = ({ children }) => {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
-  const [currentUser, setCurrentUser] = useUserContext();
-  const { loading } = useQuery(CURRENT_USER, {
+  const [currentUser, setCurrentUser, {setRefetch}] = useUserContext();
+  const { loading, refetch } = useQuery(CURRENT_USER, {
     onCompleted(res) {
       const online = res.currentUser !== null;
       setCurrentUser({ online, loading: false, ...res.currentUser });
+      setRefetch(refetch)
     },
     onError(err) {
       setCurrentUser({ online: false, loading: false });
