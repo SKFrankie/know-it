@@ -4,6 +4,7 @@ import Head from "next/head";
 import GaButton from "../features/GaButton";
 import {GAMES_SECTIONS} from "../constants.js";
 import Title from "../ui/Title.js";
+import {KnowlympicsButton} from "../ui/Button";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
           </Flex>
         ))}
       </Flex>
+      <KnowlympicsButton/>
     </>
   );
 }

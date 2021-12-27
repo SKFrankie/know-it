@@ -26,6 +26,7 @@ const theme = extendTheme({
       700: "#00A5DB",
     },
     yellowStar: "#FFBE0B",
+    orange:"#F0940B",
   },
   styles: {
     global: {

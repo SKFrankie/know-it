@@ -52,7 +52,6 @@ const PodiumStep = ({ podium, step }) => {
             visible: {
               opacity: 1,
               transition: {
-                delay: step.position + 2,
                 duration: 0.75,
               },
             },
@@ -78,7 +77,7 @@ const PodiumStep = ({ podium, step }) => {
           marginBottom: -1,
           placeContent: "center",
           width: "4rem",
-          boxShadow: "inset 0px 6.59885px 6.59885px rgba(0, 0, 0, 0.25)",
+          boxShadow: "inset 0px 4.54962px 4.54962px rgba(0, 0, 0, 0.25)",
           borderRadius: "7.25209px 7.25209px 0px 0px",
         }}
         initial="hidden"
@@ -89,7 +88,6 @@ const PodiumStep = ({ podium, step }) => {
             height: 30 + 15 * step.height,
             opacity: 1,
             transition: {
-              delay: 2,
               duration: 2,
               ease: "backInOut",
             },
