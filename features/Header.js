@@ -8,6 +8,7 @@ import { useUserContext } from "../context/user";
 import Link from '../ui/Link.js';
 import { logout } from './auth/helper.js';
 import { CoinCurrency, StarCurrency } from './Currency.js';
+import Avatar from '../ui/Avatar.js';
 
 const MobileNavbar = () => {
   const router = useRouter();
@@ -102,7 +103,7 @@ const DesktopHeader = () => {
             <StarCurrency />
             <CoinCurrency />
             <Menu>
-              <MenuButton m={4}>Avatar</MenuButton>
+              <MenuButton m={4}><Avatar/></MenuButton>
               <MenuList color="black">
                 {ADDITIONNAL_SECTIONS.map((section) => (
                   <NextLink key={section.name} href={section.path} passHref>
@@ -128,4 +129,31 @@ const DesktopHeader = () => {
     )
   );}
 
-export {MobileNavbar, DesktopHeader}
+
+  const MobileHeader = () => {
+
+  const [currentUser] = useUserContext()
+  const router = useRouter();
+  return (
+    !NO_HEADER_ROUTES.includes(router.pathname) &&
+    currentUser.online && (
+      <Flex
+        bg="darkBlue"
+        display={{ base: "flex", md: "none" }}
+        position="fixed"
+        top="0"
+        left="0"
+        justify="space-around"
+        width="100%"
+        minHeight="8vh"
+        boxShadow="0px 4px 4px rgba(255, 255, 255, 0.25)"
+      >
+        <CoinCurrency />
+        <Avatar position="absolute" top="10px" />
+        <StarCurrency />
+      </Flex>
+    )
+  );
+  }
+
+export {MobileNavbar, DesktopHeader, MobileHeader}
