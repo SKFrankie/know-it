@@ -20,6 +20,11 @@ const theme = extendTheme({
       600: "#00BEDC",
       700: "#00B9F5", //blueclear2
     },
+    blueClear2: {
+      500: "#00B9F5", //blueclear2
+      600: "#00BEDC",
+      700: "#00A5DB",
+    },
     yellowStar: "#FFBE0B",
   },
   styles: {

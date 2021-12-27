@@ -148,6 +148,7 @@ const MobileHeader = () => {
         width="100%"
         minHeight="8vh"
         boxShadow="0px 4px 4px rgba(255, 255, 255, 0.25)"
+        zIndex="1"
       >
         <CoinCurrency />
         <MyAvatar position="absolute" top="10px" />

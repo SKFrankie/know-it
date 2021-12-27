@@ -16,4 +16,11 @@ const ADDITIONNAL_SECTIONS = [
 
 const NO_HEADER_ROUTES = ["/login", "/signup"];
 
-export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES };
+const GAMES_SECTIONS = [
+  { name: "Grammar Geek", path: "/grammar-geek", image: "/images/GrammarGeekMonster" },
+  {name: "Fab Vocab", path: "/fab-vocab", image: "/images/FabVocabMonster"},
+  {name: "Synonym Roll", path: "/synonym-roll", image: "/images/SynonymRollMonster"},
+  {name: "Antonym Hunt", path: "/antonym-hunt", image: "/images/AntonymHuntMonster"},
+]
+
+export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS };
