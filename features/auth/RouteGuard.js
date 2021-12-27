@@ -12,6 +12,9 @@ const CURRENT_USER = gql`
       mail
       coins
       stars
+      currentAvatar {
+        picture
+      }
     }
   }
 `;

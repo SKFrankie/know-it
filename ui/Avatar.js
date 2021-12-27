@@ -1,10 +1,21 @@
-import React from 'react'
-import { Avatar as ChakraAvatar } from '@chakra-ui/react'
+import React from "react";
+import { Avatar as ChakraAvatar } from "@chakra-ui/react";
+import { useUserContext } from "../context/user";
 
-const Avatar = ({...props}) => {
+const MyAvatar = ({ ...props }) => {
+  const [currentUser] = useUserContext();
+  const {
+    currentAvatar: { picture },
+  } = currentUser;
   return (
-    <ChakraAvatar size="lg" name='Dan Abrahmov' src='https://bit.ly/dan-abramov' {...props}/>
-  )
-}
+    <ChakraAvatar
+      size="lg"
+      name=""
+      bg="white"
+      src={picture ? picture : "https://bit.ly/dan-abramov"}
+      {...props}
+    />
+  );
+};
 
-export default Avatar
+export { MyAvatar };

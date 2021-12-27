@@ -8,7 +8,7 @@ import { useUserContext } from "../context/user";
 import Link from '../ui/Link.js';
 import { logout } from './auth/helper.js';
 import { CoinCurrency, StarCurrency } from './Currency.js';
-import Avatar from '../ui/Avatar.js';
+import { MyAvatar } from "../ui/Avatar.js";
 
 const MobileNavbar = () => {
   const router = useRouter();
@@ -35,10 +35,10 @@ const MobileNavbar = () => {
       </Flex>
     )
   );
-}
+};
 
 const IconLink = ({ item, router }) => {
-  const [currentUser] = useUserContext()
+  const [currentUser] = useUserContext();
   return item.restricted && !currentUser.online ? null : (
     <NextLink href={item.path} passHref>
       <IconButton
@@ -58,10 +58,10 @@ const IconLink = ({ item, router }) => {
       />
     </NextLink>
   );
-}
+};
 
 const DesktopHeader = () => {
-  const [currentUser] = useUserContext()
+  const [currentUser] = useUserContext();
   const router = useRouter();
   return (
     !NO_HEADER_ROUTES.includes(router.pathname) && (
@@ -103,7 +103,9 @@ const DesktopHeader = () => {
             <StarCurrency />
             <CoinCurrency />
             <Menu>
-              <MenuButton m={4}><Avatar/></MenuButton>
+              <MenuButton m={4}>
+                <MyAvatar />
+              </MenuButton>
               <MenuList color="black">
                 {ADDITIONNAL_SECTIONS.map((section) => (
                   <NextLink key={section.name} href={section.path} passHref>
@@ -127,12 +129,11 @@ const DesktopHeader = () => {
         )}
       </Flex>
     )
-  );}
+  );
+};
 
-
-  const MobileHeader = () => {
-
-  const [currentUser] = useUserContext()
+const MobileHeader = () => {
+  const [currentUser] = useUserContext();
   const router = useRouter();
   return (
     !NO_HEADER_ROUTES.includes(router.pathname) &&
@@ -149,11 +150,11 @@ const DesktopHeader = () => {
         boxShadow="0px 4px 4px rgba(255, 255, 255, 0.25)"
       >
         <CoinCurrency />
-        <Avatar position="absolute" top="10px" />
+        <MyAvatar position="absolute" top="10px" />
         <StarCurrency />
       </Flex>
     )
   );
-  }
+};
 
-export {MobileNavbar, DesktopHeader, MobileHeader}
+export { MobileNavbar, DesktopHeader, MobileHeader };
