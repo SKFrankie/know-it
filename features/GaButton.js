@@ -1,8 +1,12 @@
-import React from 'react'
+import React from "react";
 import Button from "../ui/Button";
+import { IconButton } from "@chakra-ui/react";
 import * as ga from "../lib/ga";
+import NextLink from "next/link";
 
-const GaButton = ({label="Button", children, onClick, ...props}) => {
+//this looks odd but it's to make sure href are working, it seems not to when using custom component
+
+const GaButton = ({ label = "Button", children, onClick, ...props }) => {
   const GaEvent = () => {
     ga.event({
       action: label,
@@ -13,7 +17,31 @@ const GaButton = ({label="Button", children, onClick, ...props}) => {
     <Button onClick={GaEvent} {...props}>
       {children}
     </Button>
-  )
-}
+  );
+};
+const GaIconButton = ({ label = "button", children, onClick, href, ...props }) => {
+  const GaEvent = () => {
+    ga.event({
+      action: label,
+    });
+    onClick && onClick();
+  };
 
-export default GaButton
+  if (href) {
+    return (
+      <NextLink href={href} passHref>
+        <IconButton onClick={GaEvent} {...props}>
+          {children}
+        </IconButton>
+      </NextLink>
+    );
+  } else {
+    return (
+      <IconButton onClick={GaEvent} {...props}>
+        {children}
+      </IconButton>
+    );
+  }
+};
+export { GaIconButton };
+export default GaButton;
