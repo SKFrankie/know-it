@@ -10,6 +10,7 @@ import GaButton, {GaIconButton} from "../features/GaButton";
 import { KnowlympicsButton } from "../ui/Button";
 
 import CalendarModal from "../features/modals/CalendarModal";
+import GiftIcon from "../ui/icons/GiftIcon";
 
 export default function Home() {
   const [currentUser] = useUserContext();
@@ -86,7 +87,8 @@ const GiftButton = ({...props}) => {
         colorScheme="blueClear"
         label="Calendar"
         onClick={() => onOpen()}
-        icon={<Icon boxSize={7} as={Iconify} icon="emojione:wrapped-gift" />}
+        icon={<GiftIcon boxSize={7} />}
+        zIndex={1}
         {...props}
       />
       <CalendarModal isOpen={isOpen} onClose={onClose} />
