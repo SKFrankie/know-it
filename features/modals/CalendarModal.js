@@ -1,16 +1,34 @@
 import React from 'react'
 import { Text, Flex, Image, Box} from "@chakra-ui/react";
 
+import { useQuery, gql } from "@apollo/client";
+
+import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
+import Loading from "../Loading";
+import Error from "../Error";
 import Modal from "../../ui/Modal";
 import Button from "../../ui/Button";
 import GiftIcon from "../../ui/icons/GiftIcon";
 import {REWARD_TYPES} from "../../constants.js";
 
+const GIFTS = gql`
+  query Gifts {
+    gifts {
+      giftId
+      reward
+      day
+      quantity
+    }
+  }
+`;
 const recoverGiftHeight ="15vh"
 
 const CalendarModal = ({isOpen=false, onClose, ...props}) => {
+  const {data, loading, error } = useQuery(GIFTS, {
+    ...basicQueryResultSupport,
+  });
   return (
-    <Modal isOpen={isOpen} onClose={onClose} {...props} >
+    <Modal isOpen={isOpen} onClose={onClose} {...props}>
       <Flex direction="column" textAlign="center" alignItems="center">
         <Flex alignItems="center">
           <GiftIcon boxSize="20" display={{ base: "none", md: "flex" }} />{" "}
@@ -20,20 +38,16 @@ const CalendarModal = ({isOpen=false, onClose, ...props}) => {
         </Flex>
         <GiftIcon boxSize="20" display={{ base: "flex", md: "none" }} />
         <RecoverGifts />
-        <Flex flexWrap="wrap" my={5}>
-          <Reward reward="COINS" quantity={10} received/>
-          <Reward reward="STARS" quantity={1} received />
-          <Reward reward="STAR_PERCENTAGE" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-          <Reward reward="COINS" quantity={10} />
-        </Flex>
-        <Box h={{base: "0", md: recoverGiftHeight}}/>
+        {loading && <Loading />}
+        {error && <Error />}
+        {data && (
+          <Flex flexWrap="wrap" my={5} mx={{base: 0, md: 6}} p={{base: 0, md: 2}}>
+            {data.gifts.map((gift) => (
+              <Reward key={gift.giftId} reward={gift.reward} quantity={gift.quantity} />
+            ))}
+          </Flex>
+        )}
+        <Box h={{ base: "0", md: recoverGiftHeight }} />
       </Flex>
     </Modal>
   );
@@ -85,7 +99,7 @@ const Reward = ({
       direction="column"
       {...props}
     >
-      <Image boxSize="30px" src={image} alt={name} />
+      <Image boxSize={{base:"30px", md:"55px"}} src={image} alt={name} />
       <Text mx={1} color={color} fontSize="md">
         x{quantity}
       </Text>
