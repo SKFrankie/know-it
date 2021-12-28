@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../Loading";
@@ -8,11 +8,12 @@ import { redirect } from "./helper";
 const CURRENT_USER = gql`
   query CurrentUser {
     currentUser {
+      userId
       username
       mail
       coins
       stars
-      daysInARow
+      daysInArow
       lastSeen
       currentAvatar {
         picture
