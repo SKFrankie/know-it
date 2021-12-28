@@ -1,4 +1,4 @@
-import {Icon, Button as ChakraButton, Flex, Image} from "@chakra-ui/react";
+import {Icon, Button as ChakraButton, Flex, Image, useDisclosure} from "@chakra-ui/react";
 import Head from "next/head";
 import { Icon as Iconify } from '@iconify/react';
 import NextLink from 'next/link'
@@ -8,6 +8,8 @@ import Title from "../ui/Title.js";
 import {GAMES_SECTIONS} from "../constants.js";
 import GaButton, {GaIconButton} from "../features/GaButton";
 import { KnowlympicsButton } from "../ui/Button";
+
+import CalendarModal from "../features/modals/CalendarModal";
 
 export default function Home() {
   const [currentUser] = useUserContext();
@@ -75,15 +77,20 @@ export default function Home() {
 
 
 const GiftButton = ({...props}) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
-    <GaIconButton
-      boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
-      colorScheme="blueClear"
-      label="Calendar"
-      href="/calendar"
-      icon={<Icon boxSize={7} as={Iconify} icon="emojione:wrapped-gift" />}
-      {...props}
-    />
+    <>
+      <GaIconButton
+        boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
+        colorScheme="blueClear"
+        label="Calendar"
+        onClick={() => onOpen()}
+        icon={<Icon boxSize={7} as={Iconify} icon="emojione:wrapped-gift" />}
+        {...props}
+      />
+      <CalendarModal isOpen={isOpen} onClose={onClose} />
+    </>
   );
 
 }
