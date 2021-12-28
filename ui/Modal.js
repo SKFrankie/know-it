@@ -10,7 +10,7 @@ const Modal = ({isOpen=false, onClose, children, ...props}) => {
       motionPreset="slideInBottom"
     >
       {/* <ModalOverlay /> */}
-      <ModalContent bg="deepDarkBlue" p="5" marginTop="0">
+      <ModalContent bg="deepDarkBlue" p="5" m="0" minH="100%">
         <ModalCloseButton />
         {children}
       </ModalContent>

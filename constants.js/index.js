@@ -23,4 +23,10 @@ const GAMES_SECTIONS = [
   {name: "Antonym Hunt", path: "/antonym-hunt", image: "/images/AntonymHuntMonster.png"},
 ]
 
-export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS };
+const REWARD_TYPES = {
+  "COINS": {image: "/images/coin.png", name: "Coins"},
+  "STARS": {image: "/images/stars.png", name: "Stars"},
+  "STAR_PERCENTAGE": {image: "/images/star_percentage.png", name: "Star Percentage"},
+}
+
+export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS, REWARD_TYPES };
