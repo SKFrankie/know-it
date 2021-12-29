@@ -124,7 +124,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
         {loading && <Loading />}
         {error && <Error />}
         {data && (
-          <Flex flexWrap="wrap" my={5} mx={{ base: 0, md: 6 }} p={{ base: 0, md: 2 }}>
+          <Flex flexWrap="wrap" my={5} mx={{ base: 0, md: 6 }} p={{ base: 0, md: 2 }} justify="center">
             {data.gifts.map((gift) => (
               <Reward
                 key={gift.giftId}
@@ -240,7 +240,7 @@ const Reward = ({
       {...props}
     >
       <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
-      <Text mx={1} color={color} fontSize="md">
+      <Text mx={1} color={color} fontSize={{base: "sm", md:"md"}}>
         x{quantity}
       </Text>
     </Flex>
