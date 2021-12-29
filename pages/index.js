@@ -91,7 +91,7 @@ const GiftButton = ({...props}) => {
         zIndex={1}
         {...props}
       />
-      <CalendarModal isOpen={isOpen} onClose={onClose} />
+      <CalendarModal isCalendarOpen={isOpen} onCalendarClose={onClose} />
     </>
   );
 

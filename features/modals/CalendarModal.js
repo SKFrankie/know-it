@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Text, Flex, Image, Box } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Text, Flex, Image, Box, useDisclosure } from "@chakra-ui/react";
 
 import { useQuery, useMutation, gql } from "@apollo/client";
 
@@ -7,7 +7,7 @@ import { useUserContext } from "../../context/user";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Loading from "../Loading";
 import Error from "../Error";
-import Modal from "../../ui/Modal";
+import Modal, { PopUp } from "../../ui/Modal";
 import Button from "../../ui/Button";
 import GiftIcon from "../../ui/icons/GiftIcon";
 import { REWARD_TYPES } from "../../constants.js";
@@ -32,9 +32,26 @@ const UPDATE_LAST_SEEN = gql`
   }
 `;
 
+const REWARD_USER = gql`
+  mutation RewardUser($coins: Int, $stars: Int, $starPercentage: Int) {
+    updateCurrentUser(coins: $coins, stars: $stars, starPercentage: $starPercentage) {
+      coins
+      stars
+      starPercentage
+    }
+  }
+`;
+
 const recoverGiftHeight = "15vh";
 
-const CalendarModal = ({ isOpen = false, onClose, ...props }) => {
+const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) => {
+  const [todayGift, setTodayGift] = useState(null);
+
+  const giveGift = () => {
+    onOpen();
+  };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { data, loading, error } = useQuery(GIFTS, {
     ...basicQueryResultSupport,
   });
@@ -48,29 +65,52 @@ const CalendarModal = ({ isOpen = false, onClose, ...props }) => {
 
   useEffect(() => {
     // Check if it's a new day and user deserves his gift!
+    if (!data) {
+      return;
+    }
+
     if (!currentUser.lastSeen || !currentUser.daysInArow) {
-      UpdateLastSeen({ variables: { daysInArow: 1 } });
-      // give Gift!
+      // first time
+      UpdateLastSeen({ variables: { daysInArow: 1 } }).then(() => {
+        giveGift();
+      });
       return;
     }
-    const lastSeenDate = new Date(currentUser.lastSeen).getDate();
-    const today = new Date().getDate();
-    console.log("today", today);
-    console.log("last", lastSeenDate);
-    const daysInArow = today > lastSeenDate ? currentUser.daysInArow + 1 : null;
+    const lastSeenDate = new Date(currentUser.lastSeen);
+    const today = new Date();
+    if (
+      today.getMonth() !== lastSeenDate.getMonth() ||
+      today.getYear() !== lastSeenDate.getYear()
+    ) {
+      // New month!
+      UpdateLastSeen({ variables: { daysInArow: 1 } }).then(() => {
+        giveGift();
+      });
+      return;
+    }
+    const daysInArow = today.getDate() > lastSeenDate.getDate() ? currentUser.daysInArow + 1 : null;
     if (daysInArow) {
-      UpdateLastSeen({ variables: { daysInArow } });
-      // give Gift!
+      // New day!
+      UpdateLastSeen({ variables: { daysInArow } }).then(() => {
+        giveGift();
+      });
       return;
     }
+    // same day, no gifts
     UpdateLastSeen();
-  }, []);
+  }, [data]);
+
   useEffect(() => {
-    console.log("current", currentUser);
-  }, [currentUser]);
+    if (currentUser.daysInArow > data?.gifts.length) {
+      // no more gift for this user this month
+      return;
+    }
+    const tmpGift = data?.gifts.find((gift) => gift.day === currentUser.daysInArow);
+    setTodayGift(tmpGift);
+  }, [data, currentUser.daysInArow]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} {...props}>
+    <Modal isOpen={isCalendarOpen} onClose={onCalendarClose} {...props}>
       <Flex direction="column" textAlign="center" alignItems="center">
         <Flex alignItems="center">
           <GiftIcon boxSize="20" display={{ base: "none", md: "flex" }} />{" "}
@@ -96,8 +136,51 @@ const CalendarModal = ({ isOpen = false, onClose, ...props }) => {
           </Flex>
         )}
         <Box h={{ base: "0", md: recoverGiftHeight }} />
+        <GiftPopUp gift={todayGift} isOpen={isOpen} onClose={onClose} />
       </Flex>
     </Modal>
+  );
+};
+
+const GiftPopUp = ({
+  isOpen,
+  onClose,
+  gift = { reward: "STAR_PERCENTAGE", quantity: 0 },
+  ...props
+}) => {
+  const [currentUser, setCurrentUser] = useUserContext();
+  const [RewardUser] = useMutation(REWARD_USER, {
+    onCompleted(data) {
+      setCurrentUser({ ...currentUser, ...data.updateCurrentUser });
+    },
+    ...basicQueryResultSupport,
+  });
+  const giveGift = () => {
+    const { label } = REWARD_TYPES[gift?.reward || "COINS"];
+    const values = {[label]: currentUser[label] + gift?.quantity || 0};
+    RewardUser({ variables:  values  })
+  };
+
+  useEffect(() => {
+    if (isOpen && gift?.quantity) {
+      giveGift();
+    }
+  }, [gift, isOpen])
+  return (
+    <PopUp isOpen={isOpen} onClose={onClose} {...props}>
+      <Flex
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
+        p={{ base: 5, md: 10 }}
+      >
+        <Text fontSize="xl" fontWeight="bold">
+          You've earned a gift!
+        </Text>
+        <Reward reward={gift.reward} quantity={gift.quantity} w="fit-content" received />
+      </Flex>
+    </PopUp>
   );
 };
 
@@ -128,7 +211,7 @@ const RecoverGifts = ({ ...props }) => {
 };
 
 const Reward = ({
-  reward = "COINS",
+  reward = "STARS",
   quantity = 0,
   color = "#06B402",
   received = false,

@@ -13,6 +13,7 @@ const CURRENT_USER = gql`
       mail
       coins
       stars
+      starPercentage
       daysInArow
       lastSeen
       currentAvatar {
