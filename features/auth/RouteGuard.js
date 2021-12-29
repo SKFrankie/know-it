@@ -1,4 +1,4 @@
- import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import Loading from "../Loading";
@@ -16,6 +16,7 @@ const CURRENT_USER = gql`
       starPercentage
       daysInArow
       lastSeen
+      createdAt
       currentAvatar {
         picture
       }

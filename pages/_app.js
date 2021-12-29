@@ -25,8 +25,13 @@ const theme = extendTheme({
       600: "#00BEDC",
       700: "#00A5DB",
     },
+    yellowStarScheme: {
+      500: "#FFBE0B",
+      600: "#97B92F",
+      700: "#37A45D",
+    },
     yellowStar: "#FFBE0B",
-    orange:"#F0940B",
+    orange: "#F0940B",
   },
   styles: {
     global: {
