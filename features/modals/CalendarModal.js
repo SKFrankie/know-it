@@ -102,7 +102,8 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
 
   useEffect(() => {
     if (currentUser.daysInArow > data?.gifts.length) {
-      // no more gift for this user this month
+      //no more gift this month for this user
+      setTodayGift(null)
       return;
     }
     const tmpGift = data?.gifts.find((gift) => gift.day === currentUser.daysInArow);
@@ -175,10 +176,18 @@ const GiftPopUp = ({
         textAlign="center"
         p={{ base: 5, md: 10 }}
       >
-        <Text fontSize="xl" fontWeight="bold">
-          You've earned a gift!
-        </Text>
-        <Reward reward={gift.reward} quantity={gift.quantity} w="fit-content" received />
+        {gift ? (
+          <>
+            <Text fontSize="xl" fontWeight="bold">
+              You've earned a gift!
+            </Text>
+            <Reward reward={gift.reward} quantity={gift.quantity} w="fit-content" received />
+          </>
+        ) : (
+          <Text fontSize="xl" fontWeight="bold">
+            You got everything, congrats! Wait till next month to get your gift!
+          </Text>
+        )}
       </Flex>
     </PopUp>
   );
