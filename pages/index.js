@@ -26,7 +26,7 @@ export default function Home() {
       <Title display={{ base: "none", md: "flex" }} />
       {currentUser.online ? (
         <>
-          <GiftButton position="fixed" top={{base:"70vh", md: "15vh"}} right="2%"/>
+          <GiftButton position="fixed" top={{base:"70vh", md: "25vh"}} right="2%"/>
         </>
       ) : (
         <>
@@ -86,8 +86,9 @@ const GiftButton = ({...props}) => {
         boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
         colorScheme="blueClear"
         label="Calendar"
+        boxSize={{base: 10, md: 12}}
         onClick={() => onOpen()}
-        icon={<GiftIcon boxSize={7} />}
+        icon={<GiftIcon boxSize={{base: 7, md: 12}} />}
         zIndex={1}
         {...props}
       />
