@@ -1,7 +1,7 @@
 import { Flex, Text, Image } from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import dateToString from "../helpers/dateToString";
-import { CoinCurrency, StarCurrency, StarPercentage } from '../features/Currency.js';
+import { CoinCurrency, StarCurrency, StarPercentage } from "../features/Currency.js";
 
 const profile = () => {
   const [currentUser] = useUserContext();
@@ -12,12 +12,20 @@ const profile = () => {
           picture={currentUser.currentAvatar?.picture}
           display={{ base: "none", md: "block" }}
         />
-        <Flex minW={{base: "auto", md:"50%"}} direction="column" alignItems={{base: "center", md:"initial"}} justify="space-around" m={4} >
+        <Flex
+          minW={{ base: "auto", md: "50%" }}
+          direction="column"
+          alignItems={{ base: "center", md: "initial" }}
+          justify="space-around"
+          m={4}
+        >
           <AvatarPicture
             picture={currentUser.currentAvatar?.picture}
             display={{ base: "block", md: "none" }}
           />
-          <Text fontSize="3xl" fontWeight="bold">{currentUser.username}</Text>
+          <Text fontSize="3xl" fontWeight="bold">
+            {currentUser.username}
+          </Text>
           <Text fontSize="xs">Member since {dateToString(currentUser.createdAt)}</Text>
           <Flex my={4}>
             <CoinCurrency /> <StarCurrency />
@@ -44,7 +52,7 @@ const AvatarPicture = ({ picture, ...props }) => {
       {...props}
     />
   );
-}
+};
 
 const ProfileFlex = ({ children, ...props }) => {
   return (

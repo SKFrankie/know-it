@@ -1,11 +1,11 @@
 const dateToString = (d) => {
-  if (!d) return ''
+  if (!d) return "";
 
-  const date = new Date(d)
+  const date = new Date(d);
   const stringDate = `${date.getDate().toString().padStart(2, "0")} ${date
-    .toLocaleString('default', { month: 'long' })
+    .toLocaleString("default", { month: "long" })
     .toString()} ${date.getFullYear().toString().padStart(2, "0")}`;
-  return stringDate
-}
+  return stringDate;
+};
 
-export default dateToString
+export default dateToString;

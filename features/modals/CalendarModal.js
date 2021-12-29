@@ -103,7 +103,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
   useEffect(() => {
     if (currentUser.daysInArow > data?.gifts.length) {
       //no more gift this month for this user
-      setTodayGift(null)
+      setTodayGift(null);
       return;
     }
     const tmpGift = data?.gifts.find((gift) => gift.day === currentUser.daysInArow);
@@ -124,7 +124,13 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
         {loading && <Loading />}
         {error && <Error />}
         {data && (
-          <Flex flexWrap="wrap" my={5} mx={{ base: 0, md: 6 }} p={{ base: 0, md: 2 }} justify="center">
+          <Flex
+            flexWrap="wrap"
+            my={5}
+            mx={{ base: 0, md: 6 }}
+            p={{ base: 0, md: 2 }}
+            justify="center"
+          >
             {data.gifts.map((gift) => (
               <Reward
                 key={gift.giftId}
@@ -158,15 +164,15 @@ const GiftPopUp = ({
   });
   const giveGift = () => {
     const { label } = REWARD_TYPES[gift?.reward || "COINS"];
-    const values = {[label]: currentUser[label] + gift?.quantity || 0};
-    RewardUser({ variables:  values  })
+    const values = { [label]: currentUser[label] + gift?.quantity || 0 };
+    RewardUser({ variables: values });
   };
 
   useEffect(() => {
     if (isOpen && gift?.quantity) {
       giveGift();
     }
-  }, [gift, isOpen])
+  }, [gift, isOpen]);
   return (
     <PopUp isOpen={isOpen} onClose={onClose} {...props}>
       <Flex
@@ -240,7 +246,7 @@ const Reward = ({
       {...props}
     >
       <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
-      <Text mx={1} color={color} fontSize={{base: "sm", md:"md"}}>
+      <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
         x{quantity}
       </Text>
     </Flex>

@@ -18,15 +18,19 @@ const NO_HEADER_ROUTES = ["/login", "/signup"];
 
 const GAMES_SECTIONS = [
   { name: "Grammar Geek", path: "/grammar-geek", image: "/images/GrammarGeekMonster.png" },
-  {name: "Fab Vocab", path: "/fab-vocab", image: "/images/FabVocabMonster.png"},
-  {name: "Synonym Roll", path: "/synonym-roll", image: "/images/SynonymRollMonster.png"},
-  {name: "Antonym Hunt", path: "/antonym-hunt", image: "/images/AntonymHuntMonster.png"},
-]
+  { name: "Fab Vocab", path: "/fab-vocab", image: "/images/FabVocabMonster.png" },
+  { name: "Synonym Roll", path: "/synonym-roll", image: "/images/SynonymRollMonster.png" },
+  { name: "Antonym Hunt", path: "/antonym-hunt", image: "/images/AntonymHuntMonster.png" },
+];
 
 const REWARD_TYPES = {
-  "COINS": {image: "/images/coin.png", name: "Coins", label: "coins"},
-  "STARS": {image: "/images/stars.png", name: "Stars", label:"stars"},
-  "STAR_PERCENTAGE": {image: "/images/star_percentage.png", name: "Star Percentage", label:"starPercentage"},
-}
+  COINS: { image: "/images/coin.png", name: "Coins", label: "coins" },
+  STARS: { image: "/images/stars.png", name: "Stars", label: "stars" },
+  STAR_PERCENTAGE: {
+    image: "/images/star_percentage.png",
+    name: "Star Percentage",
+    label: "starPercentage",
+  },
+};
 
 export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS, REWARD_TYPES };

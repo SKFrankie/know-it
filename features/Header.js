@@ -1,13 +1,23 @@
-import React from 'react'
-import { Flex, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList, Spacer, Text } from "@chakra-ui/react";
-import NextLink from 'next/link'
-import { Icon as Iconify } from '@iconify/react';
+import React from "react";
+import {
+  Flex,
+  Icon,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Spacer,
+  Text,
+} from "@chakra-ui/react";
+import NextLink from "next/link";
+import { Icon as Iconify } from "@iconify/react";
 import { NO_HEADER_ROUTES, SECTIONS, ADDITIONNAL_SECTIONS } from "../constants.js";
 import { useRouter } from "next/router";
 import { useUserContext } from "../context/user";
-import Link from '../ui/Link.js';
-import { logout } from './auth/helper.js';
-import { CoinCurrency, StarCurrency } from './Currency.js';
+import Link from "../ui/Link.js";
+import { logout } from "./auth/helper.js";
+import { CoinCurrency, StarCurrency } from "./Currency.js";
 import { MyAvatar } from "../ui/Avatar.js";
 
 const MobileNavbar = () => {

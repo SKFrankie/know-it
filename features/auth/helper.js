@@ -10,7 +10,7 @@ const redirect = async (router, route) => {
 
 const logout = (router) => {
   localStorage.removeItem("token");
- router.reload();
-}
+  router.reload();
+};
 
 export { storeToken, redirect, logout };

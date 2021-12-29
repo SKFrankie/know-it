@@ -6,9 +6,8 @@ import { Formik, Field } from "formik";
 import { GoogleLogin } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
 import { useRouter } from "next/router";
-import Link from '../ui/Link';
+import Link from "../ui/Link";
 import Form from "../ui/Form";
-
 
 import Input from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
@@ -20,7 +19,6 @@ const LOGIN = gql`
     }
   }
 `;
-
 
 export default function Login() {
   const router = useRouter();

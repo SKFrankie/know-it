@@ -1,7 +1,7 @@
-import { Flex } from '@chakra-ui/react'
-import React from 'react'
+import { Flex } from "@chakra-ui/react";
+import React from "react";
 
-const Form = ({children, ...props}) => {
+const Form = ({ children, ...props }) => {
   return (
     <form {...props}>
       <Flex justify="center">
@@ -11,6 +11,6 @@ const Form = ({children, ...props}) => {
       </Flex>
     </form>
   );
-}
+};
 
-export default Form
+export default Form;

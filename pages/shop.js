@@ -1,9 +1,5 @@
 const shop = () => {
-  return (
-    <div>
-     shop 
-    </div>
-  )
-}
+  return <div>shop</div>;
+};
 
-export default shop
+export default shop;

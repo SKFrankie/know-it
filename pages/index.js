@@ -1,12 +1,12 @@
-import {Icon, Button as ChakraButton, Flex, Image, useDisclosure} from "@chakra-ui/react";
+import { Icon, Button as ChakraButton, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import Head from "next/head";
-import { Icon as Iconify } from '@iconify/react';
-import NextLink from 'next/link'
+import { Icon as Iconify } from "@iconify/react";
+import NextLink from "next/link";
 
 import { useUserContext } from "../context/user";
 import Title from "../ui/Title.js";
-import {GAMES_SECTIONS} from "../constants.js";
-import GaButton, {GaIconButton} from "../features/GaButton";
+import { GAMES_SECTIONS } from "../constants.js";
+import GaButton, { GaIconButton } from "../features/GaButton";
 import { KnowlympicsButton } from "../ui/Button";
 
 import CalendarModal from "../features/modals/CalendarModal";
@@ -26,7 +26,7 @@ export default function Home() {
       <Title display={{ base: "none", md: "flex" }} />
       {currentUser.online ? (
         <>
-          <GiftButton position="fixed" top={{base:"70vh", md: "25vh"}} right="2%"/>
+          <GiftButton position="fixed" top={{ base: "70vh", md: "25vh" }} right="2%" />
         </>
       ) : (
         <>
@@ -76,9 +76,8 @@ export default function Home() {
   );
 }
 
-
-const GiftButton = ({...props}) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+const GiftButton = ({ ...props }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -86,14 +85,13 @@ const GiftButton = ({...props}) => {
         boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
         colorScheme="blueClear"
         label="Calendar"
-        boxSize={{base: 10, md: 12}}
+        boxSize={{ base: 10, md: 12 }}
         onClick={() => onOpen()}
-        icon={<GiftIcon boxSize={{base: 7, md: 12}} />}
+        icon={<GiftIcon boxSize={{ base: 7, md: 12 }} />}
         zIndex={1}
         {...props}
       />
       <CalendarModal isCalendarOpen={isOpen} onCalendarClose={onClose} />
     </>
   );
-
-}
+};

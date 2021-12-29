@@ -24,14 +24,14 @@ const validatePassword = (password, confirm) => {
   if (password !== confirm && confirm !== "") {
     return "Passwords don't match";
   }
-  return ""
-}
+  return "";
+};
 
 const validateCheckbox = (value) => {
   if (!value) {
-    return "You must accept the terms and conditions"
+    return "You must accept the terms and conditions";
   }
-}
+};
 export default function Signup() {
   const router = useRouter();
 
@@ -127,7 +127,9 @@ export default function Signup() {
               )}
             </Field>
             <SubmitButton
-              disabled={props.isSubmitting || errors.confirm || errors.checkbox || !props.values.checkbox}
+              disabled={
+                props.isSubmitting || errors.confirm || errors.checkbox || !props.values.checkbox
+              }
               isLoading={props.isSubmitting}
             >
               Sign up

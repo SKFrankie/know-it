@@ -6,7 +6,7 @@ import Loading from "../Loading";
 import { storeToken } from "./helper";
 import { useRouter } from "next/router";
 import { Button } from "@chakra-ui/react";
-import Image from "next/image"
+import Image from "next/image";
 
 const GOOGLE_SIGN_UP = gql`
   mutation GoogleSignup($token: String!) {
@@ -24,11 +24,11 @@ const GOOGLE_LOGIN = gql`
   }
 `;
 
-const GoogleIcon = ({...props}) => (
-  <Image src="/images/icons/google.svg" alt="google" width="24px" height="24px" {...props}/>
-)
+const GoogleIcon = ({ ...props }) => (
+  <Image src="/images/icons/google.svg" alt="google" width="24px" height="24px" {...props} />
+);
 
-const GoogleSignup = ({...props}) => {
+const GoogleSignup = ({ ...props }) => {
   const router = useRouter();
   const handleSuccess = (response) => {
     const token = response.tokenId;
@@ -40,7 +40,14 @@ const GoogleSignup = ({...props}) => {
     },
     ...basicQueryResultSupport,
   });
-  return <GoogleAuth {...props} text="Sign up with google" handleSuccess={handleSuccess} loading={loading} />;
+  return (
+    <GoogleAuth
+      {...props}
+      text="Sign up with google"
+      handleSuccess={handleSuccess}
+      loading={loading}
+    />
+  );
 };
 const GoogleLogin = () => {
   const router = useRouter();
@@ -57,7 +64,13 @@ const GoogleLogin = () => {
   return <GoogleAuth text="Login with google" handleSuccess={handleSuccess} loading={loading} />;
 };
 
-const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false, disabled, ...props }) => {
+const GoogleAuth = ({
+  text = "Login with google",
+  handleSuccess,
+  loading = false,
+  disabled,
+  ...props
+}) => {
   const handleFailure = (response) => {
     console.log(response.error);
   };
@@ -70,8 +83,20 @@ const GoogleAuth = ({ text = "Login with google", handleSuccess, loading = false
         onFailure={handleFailure}
         cookiePolicy={"single_host_origin"}
         render={(renderProps) => (
-          <Button {...props} leftIcon={<GoogleIcon/>} color="#DB4437" bg="white" borderRadius="10px" w="90%" placeSelf="center" my="4"  onClick={renderProps.onClick} disabled={renderProps.disabled || disabled} boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}>
-          Google
+          <Button
+            {...props}
+            leftIcon={<GoogleIcon />}
+            color="#DB4437"
+            bg="white"
+            borderRadius="10px"
+            w="90%"
+            placeSelf="center"
+            my="4"
+            onClick={renderProps.onClick}
+            disabled={renderProps.disabled || disabled}
+            boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+          >
+            Google
           </Button>
         )}
       />

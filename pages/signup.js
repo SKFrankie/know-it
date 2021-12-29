@@ -5,7 +5,7 @@ import Title from "../ui/Title";
 export default function SignupPage() {
   return (
     <ClientOnly>
-      <Title/>
+      <Title />
       <Signup />
     </ClientOnly>
   );

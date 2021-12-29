@@ -19,13 +19,13 @@ const Currency = ({
 };
 
 const StarCurrency = ({ quantity = 0, ...props }) => {
-  const [currentUser] = useUserContext()
+  const [currentUser] = useUserContext();
   quantity = currentUser.online && !quantity ? currentUser.stars : quantity;
   return <Currency quantity={quantity} {...props} />;
 };
 
 const CoinCurrency = ({ quantity = 0, ...props }) => {
-  const [currentUser] = useUserContext()
+  const [currentUser] = useUserContext();
   quantity = currentUser.online && !quantity ? currentUser.coins : quantity;
   return (
     <Currency quantity={quantity} color="#06B402" src="/images/coin.png" alt="coin" {...props} />
@@ -33,11 +33,20 @@ const CoinCurrency = ({ quantity = 0, ...props }) => {
 };
 
 const StarPercentage = ({ quantity = 0, ...props }) => {
-  const [currentUser] = useUserContext()
+  const [currentUser] = useUserContext();
   quantity = currentUser.online && !quantity ? currentUser.starPercentage : quantity;
   return (
-    <Flex w="100%" {...props} alignItems="center" placeContent={{base: "center", md:"initial"}}>
-      <Progress size="md" borderRadius={10} w="50%" bg="#FCBF4977" colorScheme="yellowStarScheme" value={quantity} max="100" hasStripe />
+    <Flex w="100%" {...props} alignItems="center" placeContent={{ base: "center", md: "initial" }}>
+      <Progress
+        size="md"
+        borderRadius={10}
+        w="50%"
+        bg="#FCBF4977"
+        colorScheme="yellowStarScheme"
+        value={quantity}
+        max="100"
+        hasStripe
+      />
       <Image boxSize="30px" src={"/images/star.png"} alt={"star"} />
     </Flex>
   );

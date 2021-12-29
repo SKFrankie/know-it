@@ -5,7 +5,7 @@ import Title from "../ui/Title";
 export default function LoginPage() {
   return (
     <ClientOnly>
-      <Title/>
+      <Title />
       <Login />
     </ClientOnly>
   );

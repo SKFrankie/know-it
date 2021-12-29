@@ -4,15 +4,13 @@ import { useUserContext } from "../context/user";
 
 const MyAvatar = ({ ...props }) => {
   const [currentUser] = useUserContext();
-  const {
-    currentAvatar,
-  } = currentUser;
+  const { currentAvatar } = currentUser;
   return (
     <ChakraAvatar
       size="lg"
       name=""
       bg="white"
-      src={currentAvatar?.picture ?  currentAvatar?.picture : "https://bit.ly/dan-abramov"}
+      src={currentAvatar?.picture ? currentAvatar?.picture : "https://bit.ly/dan-abramov"}
       {...props}
     />
   );

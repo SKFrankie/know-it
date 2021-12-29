@@ -1,7 +1,13 @@
-import React from 'react'
-import {Modal as ChakraModal, ModalOverlay, ModalContent, ModalCloseButton, ModalButton} from '@chakra-ui/react'
+import React from "react";
+import {
+  Modal as ChakraModal,
+  ModalOverlay,
+  ModalContent,
+  ModalCloseButton,
+  ModalButton,
+} from "@chakra-ui/react";
 
-const Modal = ({isOpen=false, onClose, children, ...props}) => {
+const Modal = ({ isOpen = false, onClose, children, ...props }) => {
   return (
     <ChakraModal
       isOpen={isOpen}
@@ -16,9 +22,9 @@ const Modal = ({isOpen=false, onClose, children, ...props}) => {
       </ModalContent>
     </ChakraModal>
   );
-}
+};
 
-const PopUp = ({isOpen=true, onClose, children, ...props}) => {
+const PopUp = ({ isOpen = true, onClose, children, ...props }) => {
   return (
     <ChakraModal
       isOpen={isOpen}
@@ -34,8 +40,8 @@ const PopUp = ({isOpen=true, onClose, children, ...props}) => {
       </ModalContent>
     </ChakraModal>
   );
-}
+};
 
-export {PopUp}
+export { PopUp };
 
-export default Modal
+export default Modal;

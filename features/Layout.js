@@ -1,8 +1,8 @@
-import { Box } from '@chakra-ui/react';
-import React from 'react'
-import { DesktopHeader, MobileNavbar, MobileHeader } from './Header';
+import { Box } from "@chakra-ui/react";
+import React from "react";
+import { DesktopHeader, MobileNavbar, MobileHeader } from "./Header";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
       <DesktopHeader />
@@ -11,6 +11,6 @@ const Layout = ({children}) => {
       {children} <Box h={{ base: "10vh", md: "0" }} /> <MobileNavbar />
     </>
   );
-}
+};
 
-export default Layout
+export default Layout;
