@@ -1,7 +1,11 @@
-import { Flex} from "@chakra-ui/react";
 import ShopContainer from "../../features/shop/ShopContainer";
+import AvatarCollections from "../../features/shop/AvatarCollections";
 const Coins = () => {
-  return <ShopContainer>shop</ShopContainer>;
+  return (
+    <ShopContainer>
+      <AvatarCollections />
+    </ShopContainer>
+  );
 };
 
 export default Coins;
