@@ -3,7 +3,7 @@ import { useUserContext } from "../context/user";
 import dateToString from "../helpers/dateToString";
 import { CoinCurrency, StarCurrency, StarPercentage } from "../features/Currency.js";
 
-const profile = () => {
+const Profile = () => {
   const [currentUser] = useUserContext();
   return (
     <Flex direction="column">
@@ -70,4 +70,4 @@ const ProfileFlex = ({ children, ...props }) => {
   );
 };
 
-export default profile;
+export default Profile;
