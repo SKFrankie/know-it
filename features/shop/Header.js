@@ -8,12 +8,13 @@ import { SHOP_SECTIONS } from "../../constants.js";
 const Header = () => {
   const router = useRouter();
   return (
-    <Flex>
+    <Flex w="100%" textAlign="center">
       {SHOP_SECTIONS.map((section) => (
         <Link
           fontWeight="500"
-          color={router.pathname === section.path ? "white" : "blueClear.700"}
-          mx={4}
+          w="50%"
+          color={router.pathname === section.path ? "blueClear.700" : "deepDarkBlue"}
+          borderBottom={router.pathname === section.path ? "2px solid" : "2px solid transparent"}
           key={section.name}
           href={section.path}
         >
