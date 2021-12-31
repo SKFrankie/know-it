@@ -30,6 +30,9 @@ const BUY_AVATAR = gql`
   mutation BuyAvatar($avatarId: ID!, $price: Int!) {
     buyAvatar(avatarId: $avatarId, price: $price) {
       coins
+      inventory {
+        avatarId
+      }
     }
   }
 `;
@@ -73,6 +76,7 @@ const Avatar = ({ avatar }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentUser, setCurrentUser] = useUserContext();
   const [canBuy, setCanBuy] = useState(false)
+  const [alreadyBought, setAlreadyBought] = useState(false)
   const [buyAvatar] = useMutation(BUY_AVATAR, {
     variables: { avatarId: avatar.avatarId, price: avatar.coinPrice },
     refetchQueries: [AVATAR_COLLECTIONS],
@@ -83,7 +87,10 @@ const Avatar = ({ avatar }) => {
   });
 
   useEffect(() => {
-    setCanBuy(currentUser.coins >= avatar.coinPrice);
+    const notInInventory =
+      currentUser.inventory.find((i) => i.avatarId === avatar.avatarId) === undefined;
+    setCanBuy(currentUser.coins >= avatar.coinPrice && notInInventory);
+    setAlreadyBought(!notInInventory);
   }, [currentUser.coins, avatar.coinPrice]);
 
 
@@ -97,19 +104,18 @@ const Avatar = ({ avatar }) => {
       onClick={open}
       p={1}
       borderRadius="4px"
-      bg="blueClear.500"
+      bg={alreadyBought ? "orange" : "blueClear.500"}
       mr={3}
       my={3}
       direction="column"
       justify="space-between"
       align="center"
       minW="fit-content"
-      cursor={canBuy ?"pointer" : "auto" }
-      filter={canBuy ? "none" : "grayScale(0.8)" }
-      zIndex={canBuy ? "0" : "-1"}
+      cursor={canBuy ? "pointer" : "auto"}
+      filter={!canBuy && !alreadyBought && "grayScale(0.8)"}
     >
       <AvatarImage picture={avatar.picture} />
-      <Text fontSize="xs">{avatar.coinPrice} coins</Text>
+      <Text fontSize="xs">{alreadyBought ? "Purchased" : `${avatar.coinPrice} coins`}</Text>
       <PopUp isOpen={isOpen} onClose={onClose}>
         <Flex
           p={5}
@@ -119,7 +125,13 @@ const Avatar = ({ avatar }) => {
           justify="space-around"
           alignItems="center"
         >
-          <Text m={2}>Do you want to buy this Gigil monster for <Box as="span" display="inline" fontWeight="bold">{avatar.coinPrice} coins</Box>?</Text>
+          <Text m={2}>
+            Do you want to buy this Gigil monster for{" "}
+            <Box as="span" display="inline" fontWeight="bold">
+              {avatar.coinPrice} coins
+            </Box>
+            ?
+          </Text>
           <AvatarImage picture={avatar.picture} />
           <Flex m={3} w="100%" alignItems="center" justify="center">
             <SuccessButton
@@ -144,7 +156,9 @@ const Avatar = ({ avatar }) => {
 
 const AvatarImage = ({ picture }) => {
   return (
-    <Image p={2} borderRadius="4px" bg="white"  src={picture} boxSize={{ base: "55px", md: "70px" }} />
+    <Flex  justify="center" p={2} borderRadius="4px" bg="white" boxSize={{ base: "55px", md: "70px" }} >
+    <Image src={picture}  maxH={{base: "40px", md: "60px"}}/>
+    </Flex>
   );
 }
 

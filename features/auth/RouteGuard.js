@@ -20,6 +20,10 @@ const CURRENT_USER = gql`
       currentAvatar {
         picture
       }
+      inventory {
+        avatarId
+        picture
+      }
     }
   }
 `;
