@@ -1,6 +1,11 @@
 const SECTIONS = [
   { name: "Home", path: "/", icon: "fluent:home-16-filled" },
-  { name: "Shop", path: "/shop", icon: "entypo:shop" },
+  {
+    name: "Shop",
+    path: "/shop/coins",
+    active: ["/shop/coins", "/shop/money"],
+    icon: "entypo:shop",
+  },
   {
     name: "Gigil Collection",
     path: "/collection",
@@ -12,6 +17,11 @@ const SECTIONS = [
 const ADDITIONNAL_SECTIONS = [
   { name: "Profile", path: "/profile", restricted: true, icon: "fluent:person-16-filled" },
   { name: "Settings", path: "/settings", icon: "ci:settings-filled" },
+];
+
+const SHOP_SECTIONS = [
+  { name: "Coins", path: "/shop/coins"},
+  { name: "Money", path: "/shop/money"},
 ];
 
 const NO_HEADER_ROUTES = ["/login", "/signup"];
@@ -33,4 +43,4 @@ const REWARD_TYPES = {
   },
 };
 
-export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS, REWARD_TYPES };
+export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS, REWARD_TYPES, SHOP_SECTIONS };

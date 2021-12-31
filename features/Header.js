@@ -20,6 +20,9 @@ import { logout } from "./auth/helper.js";
 import { CoinCurrency, StarCurrency } from "./Currency.js";
 import { MyAvatar } from "../ui/Avatar.js";
 
+const isActive = (router, item) => {
+  return router.pathname === item.path || item?.active?.includes(router.pathname);
+}
 const MobileNavbar = () => {
   const router = useRouter();
   return (
@@ -60,7 +63,7 @@ const IconLink = ({ item, router }) => {
         icon={
           <Icon
             boxSize={7}
-            color={router.pathname === item.path ? "white" : "deepDarkBlue"}
+            color={isActive(router, item) ? "white" : "deepDarkBlue"}
             as={Iconify}
             icon={item.icon}
           />
@@ -97,7 +100,7 @@ const DesktopHeader = () => {
             section.restricted && !currentUser.online ? null : (
               <Link
                 fontWeight="500"
-                color={router.pathname === section.path ? "white" : "blueClear.700"}
+                color={isActive(router, section) ? "white" : "blueClear.700"}
                 mx={4}
                 key={section.name}
                 href={section.path}
