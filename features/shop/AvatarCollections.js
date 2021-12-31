@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { Flex, Text, Image, Divider } from "@chakra-ui/react";
+import { Flex, Text, Image, useDisclosure } from "@chakra-ui/react";
 import Error from "../Error";
 import Loading from "../Loading";
+import { useUserContext } from "../../context/user";
+import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
+import { PopUp } from "../../ui/Modal";
+import { SuccessButton, CancelButton } from "../../ui/Button";
 
 const AVATAR_COLLECTIONS = gql`
   query AvatarCollections {
@@ -22,8 +26,16 @@ const AVATAR_COLLECTIONS = gql`
   }
 `;
 
+const BUY_AVATAR = gql`
+  mutation BuyAvatar($avatarId: ID!, $price: Int!) {
+    buyAvatar(avatarId: $avatarId, price: $price) {
+      coins
+    }
+  }
+`;
+
 const AvatarCollections = () => {
-  const { loading, error, data } = useQuery(AVATAR_COLLECTIONS);
+  const { loading, error, data } = useQuery(AVATAR_COLLECTIONS, {...basicQueryResultSupport});
   const now = new Date();
   if (loading) return <Loading />;
   if (error) return <Error />;
@@ -58,12 +70,66 @@ const AvatarCollection = ({ collection, now }) => {
 };
 
 const Avatar = ({ avatar }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentUser, setCurrentUser] = useUserContext();
+  const [buyAvatar] = useMutation(BUY_AVATAR, {
+    variables: { avatarId: avatar.avatarId, price: avatar.coinPrice },
+    refetchQueries: [AVATAR_COLLECTIONS],
+    onCompleted: (data) => {
+      setCurrentUser({ ...currentUser, ...data.buyAvatar });
+    },
+    ...basicQueryResultSupport,
+  });
   return (
-    <Flex  p={1} borderRadius="4px" bg="blueClear.500" mr={3} my={3} direction="column" justify="space-between" align="center" minW="fit-content">
-      <Image p={2} borderRadius="4px" bg="white" src={avatar.picture}  boxSize={{ base: "55px", md: "70px" }} />
+    <Flex
+      onClick={onOpen}
+      p={1}
+      borderRadius="4px"
+      bg="blueClear.500"
+      mr={3}
+      my={3}
+      direction="column"
+      justify="space-between"
+      align="center"
+      minW="fit-content"
+    >
+      <AvatarImage picture={avatar.picture} />
       <Text fontSize="xs">{avatar.coinPrice} coins</Text>
+      <PopUp isOpen={isOpen} onClose={onClose}>
+        <Flex
+          p={5}
+          direction="column"
+          textAlign="center"
+          justify="space-around"
+          alignItems="center"
+        >
+          <Text m={2}>Do you want to buy this Gigil monster for {avatar.coinPrice} coins?</Text>
+          <AvatarImage picture={avatar.picture} />
+          <Flex m={3} w="100%" alignItems="center" justify="center">
+            <SuccessButton
+              onClick={() => {
+                buyAvatar();
+                onClose();
+              }}
+              mx={2}
+              w="40%"
+            >
+              Purchase
+            </SuccessButton>
+            <CancelButton mx={2} onClick={onClose} w="40%">
+              Cancel
+            </CancelButton>
+          </Flex>
+        </Flex>
+      </PopUp>
     </Flex>
   );
 };
+
+const AvatarImage = ({ picture }) => {
+  return (
+    <Image p={2} borderRadius="4px" bg="white"  src={picture} boxSize={{ base: "55px", md: "70px" }} />
+  );
+}
 
 export default AvatarCollections;
