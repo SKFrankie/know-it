@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { Flex, Text, Image, useDisclosure } from "@chakra-ui/react";
+import { Flex, Text, Image, useDisclosure, Box } from "@chakra-ui/react";
 import Error from "../Error";
 import Loading from "../Loading";
 import { useUserContext } from "../../context/user";
@@ -72,6 +72,7 @@ const AvatarCollection = ({ collection, now }) => {
 const Avatar = ({ avatar }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentUser, setCurrentUser] = useUserContext();
+  const [canBuy, setCanBuy] = useState(false)
   const [buyAvatar] = useMutation(BUY_AVATAR, {
     variables: { avatarId: avatar.avatarId, price: avatar.coinPrice },
     refetchQueries: [AVATAR_COLLECTIONS],
@@ -80,9 +81,20 @@ const Avatar = ({ avatar }) => {
     },
     ...basicQueryResultSupport,
   });
+
+  useEffect(() => {
+    setCanBuy(currentUser.coins >= avatar.coinPrice);
+  }, [currentUser.coins, avatar.coinPrice]);
+
+
+  const open = () => {
+    if (canBuy) {
+    onOpen();
+    }
+  };
   return (
     <Flex
-      onClick={onOpen}
+      onClick={open}
       p={1}
       borderRadius="4px"
       bg="blueClear.500"
@@ -92,6 +104,9 @@ const Avatar = ({ avatar }) => {
       justify="space-between"
       align="center"
       minW="fit-content"
+      cursor={canBuy ?"pointer" : "auto" }
+      filter={canBuy ? "none" : "grayScale(0.8)" }
+      zIndex={canBuy ? "0" : "-1"}
     >
       <AvatarImage picture={avatar.picture} />
       <Text fontSize="xs">{avatar.coinPrice} coins</Text>
@@ -104,7 +119,7 @@ const Avatar = ({ avatar }) => {
           justify="space-around"
           alignItems="center"
         >
-          <Text m={2}>Do you want to buy this Gigil monster for <Text display="inline" fontWeight="bold">{avatar.coinPrice} coins</Text>?</Text>
+          <Text m={2}>Do you want to buy this Gigil monster for <Box as="span" display="inline" fontWeight="bold">{avatar.coinPrice} coins</Box>?</Text>
           <AvatarImage picture={avatar.picture} />
           <Flex m={3} w="100%" alignItems="center" justify="center">
             <SuccessButton
