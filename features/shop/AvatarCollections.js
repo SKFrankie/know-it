@@ -98,12 +98,13 @@ const Avatar = ({ avatar }) => {
       <PopUp isOpen={isOpen} onClose={onClose}>
         <Flex
           p={5}
+          m={2}
           direction="column"
           textAlign="center"
           justify="space-around"
           alignItems="center"
         >
-          <Text m={2}>Do you want to buy this Gigil monster for {avatar.coinPrice} coins?</Text>
+          <Text m={2}>Do you want to buy this Gigil monster for <Text display="inline" fontWeight="bold">{avatar.coinPrice} coins</Text>?</Text>
           <AvatarImage picture={avatar.picture} />
           <Flex m={3} w="100%" alignItems="center" justify="center">
             <SuccessButton
