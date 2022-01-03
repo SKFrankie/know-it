@@ -27,10 +27,10 @@ const SHOP_SECTIONS = [
 const NO_HEADER_ROUTES = ["/login", "/signup"];
 
 const GAMES_SECTIONS = [
-  { name: "Grammar Geek", path: "/grammar-geek", image: "/images/GrammarGeekMonster.png" },
-  { name: "Fab Vocab", path: "/fab-vocab", image: "/images/FabVocabMonster.png" },
-  { name: "Synonym Roll", path: "/synonym-roll", image: "/images/SynonymRollMonster.png" },
-  { name: "Antonym Hunt", path: "/antonym-hunt", image: "/images/AntonymHuntMonster.png" },
+  { name: "Grammar Geek", path: "/games/grammar-geek", image: "/images/GrammarGeekMonster.png" },
+  { name: "Fab Vocab", path: "/games/fab-vocab", image: "/images/FabVocabMonster.png" },
+  { name: "Synonym Roll", path: "/games/synonym-roll", image: "/images/SynonymRollMonster.png" },
+  { name: "Antonym Hunt", path: "/games/antonym-hunt", image: "/images/AntonymHuntMonster.png" },
 ];
 
 const REWARD_TYPES = {
