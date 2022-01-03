@@ -1,7 +1,7 @@
-import GameContainer from '../../features/games/GameContainer'
+import SynonymRollGame from '../../features/games/SynonymRollGame';
 
 const SynonymRoll = () => {
-  return <GameContainer></GameContainer>;
+  return <SynonymRollGame/>;
 }
 
 export default SynonymRoll

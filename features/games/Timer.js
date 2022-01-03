@@ -12,9 +12,10 @@ const Timer = ({timer}) => {
       borderRadius="100px"
       border="2px solid #00455B"
       bg="blueClear.500"
+      color="deepDarkBlue"
       m={2}
     >
-      <Text fontSize="xs">{timer}</Text>
+      <Text fontWeight="500" fontSize="xs">{timer}</Text>
     </Flex>
   );
 }
