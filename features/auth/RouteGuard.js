@@ -18,6 +18,7 @@ const CURRENT_USER = gql`
       lastSeen
       createdAt
       currentAvatar {
+        avatarId
         picture
       }
       inventory {

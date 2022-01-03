@@ -32,6 +32,7 @@ const BUY_AVATAR = gql`
       coins
       inventory {
         avatarId
+        picture
       }
     }
   }
