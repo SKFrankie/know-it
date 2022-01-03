@@ -1,5 +1,6 @@
 import React from 'react'
 import GameContainer from './GameContainer'
+import MatchingWords from './MatchingWords'
 import {GAME_TYPES} from '../../constants.js'
 import { Text, Image, Flex, Box } from "@chakra-ui/react";
 
@@ -14,6 +15,7 @@ const SynonymRollGame = () => {
         </Box>{" "}
         meaning
       </Text>
+      <MatchingWords />
     </GameContainer>
   );
 }
