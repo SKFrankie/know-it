@@ -20,18 +20,25 @@ const MatchingWords = ({
   const [wordsObject, setWordsObject] = useState(
     Object.assign(
       {},
-      ...Object.keys(matchingWords).map((word) => ({ [word]: { color: null } })),
-      ...Object.values(matchingWords).map((word) => ({ [word]: { color: null } }))
+      ...Object.keys(matchingWords).map((word) => ({ [word]: { color: null, active: false } })),
+      ...Object.values(matchingWords).map((word) => ({ [word]: { color: null, active: false } }))
     )
   );
   const [currentColor, setCurrentColor] = useState(0);
   const [word1, setWord1] = useState(null);
 
-  const onWord1Click = (setActive, word) => {
-    setActive(true);
+const onActive = (word) => {
+  const tmpObj = {};
+  for (const [key, value] of Object.entries(wordsObject)) {
+    tmpObj = { ...tmpObj, [key]: { ...value, active: false } };
+  }
+  setWordsObject({ ...tmpObj, [word]: { ...wordsObject[word], active: true } });
+}
+  const onWord1Click = (word) => {
+    onActive(word);
     setWord1(word);
   };
-  const onWord2Click = (setActive, word) => {
+  const onWord2Click = (word) => {
     if (word1) {
       if(matchingWords[word1] === word) {
         console.log("match!");
@@ -41,7 +48,6 @@ const MatchingWords = ({
         return
       }
       console.log("no match!");
-      setActive(false);
       // setCurrentColor((currentColor) => (currentColor + 1) % ColorArray.length);
     }
   };
@@ -59,16 +65,15 @@ const WordColumn = ({ words, color, onWordClick, wordsObject }) => {
   return (
     <Flex justify="center" align="center" direction={{ base: "column", md: "row" }}>
       {shuffleWords.map((word) => (
-        <Word finalColor={wordsObject[word]?.color} key={word} word={word} color={color} onWordClick={onWordClick} />
+        <Word active={wordsObject[word]?.active} finalColor={wordsObject[word]?.color} key={word} word={word} color={color} onWordClick={onWordClick} />
       ))}
     </Flex>
   );
 };
 
-const Word = ({ word, color="green", onWordClick, finalColor }) => {
-  const [active, setActive] = useState(false);
+const Word = ({ word, color="green", onWordClick, finalColor, active }) => {
   const handleClick = () => {
-    onWordClick(setActive, word);
+    onWordClick(word);
   };
 
   return (
@@ -79,6 +84,7 @@ const Word = ({ word, color="green", onWordClick, finalColor }) => {
         bg={finalColor ? finalColor : active ? color : "transparent"}
         fontWeight="bold"
         fontSize="md"
+        disabled={finalColor}
       >
         {word}
       </Button>
