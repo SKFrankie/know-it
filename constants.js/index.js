@@ -44,7 +44,7 @@ const REWARD_TYPES = {
 };
 
 const GAME_TYPES = {
-  SYNONYM_ROLL: { name: "SYNONYM_ROLL" },
+  SYNONYM_ROLL: { name: "SYNONYM_ROLL", label: "Synonym Roll", image:"/images/SynonymRollImage.png" },
   FAB_VOCAB: { name: "FAB_VOCAB" },
   ANTONYM_HUNT: { name: "ANTONYM_HUNT" },
   GRAMMAR_GEEK: { name: "GRAMMAR_GEEK" },
