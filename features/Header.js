@@ -199,4 +199,16 @@ const MobileGameHeader = ({ timer = 0 }) => {
   );
 };
 
-export { MobileNavbar, DesktopHeader, MobileHeader, MobileGameHeader };
+const DesktopGameHeader = ({ timer = 0 }) => {
+  const [currentUser] = useUserContext();
+  return (
+    currentUser.online && (
+      <Flex mx={3} position="absolute" left="0" w="30%" display={{ base: "none", md: "flex" }}>
+        <Timer timer={timer} mx={3}/>
+        <StarPercentage />
+      </Flex>
+    )
+  );
+};
+
+export { MobileNavbar, DesktopHeader, MobileHeader, MobileGameHeader, DesktopGameHeader };

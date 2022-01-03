@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Flex} from '@chakra-ui/react'
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { MobileGameHeader } from "../Header";
+import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 
 const GET_TIMER = gql`
@@ -24,10 +24,8 @@ const GameContainer = ({ game, children }) => {
 
   useEffect(() => {
     setTimer(data?.games[0]?.timer || 120);
-    console.log("timer", timer);
     timerInterval.current = setInterval(() => {
       setTimer((timer) => timer - 1);
-      console.log("timer2", timer);
     }, 1000);
     return () => clearInterval(timerInterval.current);
   }, [data]);
@@ -41,6 +39,7 @@ const GameContainer = ({ game, children }) => {
   return (
     <Flex>
       <MobileGameHeader timer={timer} />
+      <DesktopGameHeader timer={timer} />
       {children}
     </Flex>
   );
