@@ -154,12 +154,13 @@ const Avatar = ({ avatar }) => {
   );
 };
 
-const AvatarImage = ({ picture }) => {
+const AvatarImage = ({ picture, ...props }) => {
   return (
-    <Flex  justify="center" p={2} borderRadius="4px" bg="white" boxSize={{ base: "55px", md: "70px" }} >
+    <Flex  justify="center" p={2} borderRadius="4px" bg="white" boxSize={{ base: "55px", md: "70px" }} {...props} >
     <Image src={picture}  maxH={{base: "40px", md: "60px"}}/>
     </Flex>
   );
 }
 
+export { AvatarImage }
 export default AvatarCollections;
