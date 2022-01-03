@@ -17,8 +17,9 @@ import { useRouter } from "next/router";
 import { useUserContext } from "../context/user";
 import Link from "../ui/Link.js";
 import { logout } from "./auth/helper.js";
-import { CoinCurrency, StarCurrency } from "./Currency.js";
+import { CoinCurrency, StarCurrency, StarPercentage } from "./Currency.js";
 import { MyAvatar } from "../ui/Avatar.js";
+import Timer from "./games/Timer.js";
 
 const isActive = (router, item) => {
   return router.pathname === item.path || item?.active?.includes(router.pathname);
@@ -146,7 +147,7 @@ const DesktopHeader = () => {
   );
 };
 
-const MobileHeaderBox = ({children, currentUser, router}) => {
+const MobileHeaderBox = ({children, currentUser, router, ...props}) => {
   return (
     !NO_HEADER_ROUTES.includes(router.pathname) &&
     currentUser.online && (
@@ -161,6 +162,7 @@ const MobileHeaderBox = ({children, currentUser, router}) => {
         minHeight="8vh"
         boxShadow="0px 4px 4px rgba(255, 255, 255, 0.25)"
         zIndex="1"
+        {...props}
       >
       {children}
       </Flex>
@@ -189,10 +191,12 @@ const MobileGameHeader = ({ timer = 0 }) => {
   const router = useRouter();
   const HOME_SECTION = SECTIONS[0];
   return (
-    <MobileHeaderBox currentUser={currentUser} router={router}>
+    <MobileHeaderBox currentUser={currentUser} router={router} alignItems="center" px={1}>
+      <Timer timer={timer} />
+      <StarPercentage />
       <IconLink item={HOME_SECTION} key={HOME_SECTION.name} router={router} />
     </MobileHeaderBox>
   );
 };
 
-export { MobileNavbar, DesktopHeader, MobileHeader };
+export { MobileNavbar, DesktopHeader, MobileHeader, MobileGameHeader };
