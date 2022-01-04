@@ -20,7 +20,7 @@ const RANDOM_SYNONYMS = gql`
 const SynonymRollGame = () => {
   const game = GAME_TYPES.SYNONYM_ROLL;
   const [matchingWords, setMatchingWords] = useState({});
-  const { data, error, loading } = useQuery(RANDOM_SYNONYMS, {
+  const { data, error, loading, refetch } = useQuery(RANDOM_SYNONYMS, {
     onCompleted: (res) => {
       const { randomSynonyms } = res;
       const tmpSynonymObject = {};
@@ -44,7 +44,7 @@ const SynonymRollGame = () => {
         </Box>{" "}
         meaning
       </Text>
-      {Object.keys(matchingWords).length && <MatchingWords matchingWords={matchingWords} />}
+      {Object.keys(matchingWords).length && <MatchingWords matchingWords={matchingWords} onComplete={refetch}/>}
       {error && <Error />}
       {loading && <Loading />}
     </GameContainer>

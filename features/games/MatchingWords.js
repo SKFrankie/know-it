@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Flex, Text, Button } from "@chakra-ui/react";
 import shuffleArray from "../../helpers/shuffleArray";
 
-const MatchingWords = ({
-  matchingWords =null,
-}) => {
+const MatchingWords = ({ matchingWords = null, onComplete }) => {
   const ColorArray = [
     "#FF8C00",
     "#D40000",
@@ -36,55 +34,93 @@ const MatchingWords = ({
     }
   }, [matchingWords]);
 
-
-const onActive = (word) => {
-  const tmpObj = {};
-  for (const [key, value] of Object.entries(wordsObject)) {
-    tmpObj = { ...tmpObj, [key]: { ...value, active: false } };
-  }
-  setWordsObject({ ...tmpObj, [word]: { ...wordsObject[word], active: true } });
-}
+  const onActive = (word) => {
+    const tmpObj = {};
+    for (const [key, value] of Object.entries(wordsObject)) {
+      tmpObj = { ...tmpObj, [key]: { ...value, active: false } };
+    }
+    setWordsObject({ ...tmpObj, [word]: { ...wordsObject[word], active: true } });
+  };
   const onWord1Click = (word) => {
     onActive(word);
     setWord1(word);
   };
   const onWord2Click = (word) => {
     if (word1) {
-      if(matchingWords[word1] === word) {
+      console.log("matchingWords", matchingWords, word1, word);
+      if (matchingWords[word1] === word) {
         console.log("match!");
-        if (goodAnswers +1 === Object.keys(matchingWords).length) {
+        if (goodAnswers + 1 === Object.keys(matchingWords).length) {
           console.log("you win!");
+          handleComplete();
+          return;
         }
         setGoodAnswers(goodAnswers + 1);
         const color = ColorArray[currentColor];
         setWordsObject({ ...wordsObject, [word1]: { color }, [word]: { color } });
         setCurrentColor(currentColor + 1);
-        return
+        return;
       }
       console.log("no match!");
     }
   };
 
+  const handleComplete = () => {
+    setWordsObject({});
+    setCurrentColor(0);
+    setWord1(null);
+    setGoodAnswers(0);
+    onComplete();
+  };
+
   return (
     <Flex direction={{ base: "row", md: "column" }} justify="space-around" my={3}>
-      <WordColumn wordsObject={wordsObject} words={Object.keys(matchingWords)} color={ColorArray[currentColor]} onWordClick={onWord1Click} />
-      <WordColumn wordsObject={wordsObject} words={Object.values(matchingWords)} color={ColorArray[currentColor]} onWordClick={onWord2Click} />
+      <WordColumn
+        wordsObject={wordsObject}
+        matchingWords={matchingWords}
+        color={ColorArray[currentColor]}
+        onWordClick={onWord1Click}
+        variant="left"
+      />
+      <WordColumn
+        wordsObject={wordsObject}
+        matchingWords={matchingWords}
+        color={ColorArray[currentColor]}
+        onWordClick={onWord2Click}
+        variant="right"
+      />
     </Flex>
   );
 };
 
-const WordColumn = ({ words, color, onWordClick, wordsObject }) => {
-  const [shuffleWords, setShuffleWords] = useState(shuffleArray(words));
+const WordColumn = ({ matchingWords, color, onWordClick, wordsObject, variant="left" }) => {
+  const [shuffleWords, setShuffleWords] = useState([]);
+  useEffect(() => {
+    if(variant === "left") {
+      setShuffleWords(shuffleArray(Object.keys(matchingWords)));
+    }
+    else {
+      setShuffleWords(shuffleArray(Object.values(matchingWords)));
+    }
+  }, [matchingWords])
+  
   return (
     <Flex justify="center" align="center" direction={{ base: "column", md: "row" }}>
       {shuffleWords.map((word) => (
-        <Word active={wordsObject[word]?.active} finalColor={wordsObject[word]?.color} key={word} word={word} color={color} onWordClick={onWordClick} />
+        <Word
+          active={wordsObject[word]?.active}
+          finalColor={wordsObject[word]?.color}
+          key={word}
+          word={word}
+          color={color}
+          onWordClick={onWordClick}
+        />
       ))}
     </Flex>
   );
 };
 
-const Word = ({ word, color="green", onWordClick, finalColor, active }) => {
+const Word = ({ word, color = "green", onWordClick, finalColor, active }) => {
   const handleClick = () => {
     onWordClick(word);
   };
