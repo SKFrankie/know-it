@@ -3,6 +3,9 @@ import { Flex, Box, Image, Text } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
+import HourGlassIcon from "../../ui/icons/HourGlassIcon";
+import { CoinCurrencyNoUser } from "../Currency";
+import Button from "../../ui/Button";
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -37,19 +40,18 @@ const GameContainer = ({ game, children, onTimeOut = () => {} }) => {
       onTimeOut();
     }
   }, [timer]);
-  return (
+  return timer > 0 ? (
     <Box>
       <MobileGameHeader timer={timer} />
       <DesktopGameHeader timer={timer} />
       <Box h={{ base: "0vh", md: "5vh" }} />
-      {timer > 0 && (
-        <Flex direction="column">
-          <GameTitle game={game} />
-          {children}
-        </Flex>
-      )}
-      {timer <= 0 && <EndingScreen game={game} onRestart={onTimeOut} />}
+      <Flex direction="column">
+        <GameTitle game={game} />
+        {children}
+      </Flex>
     </Box>
+  ) : (
+    <EndingScreen/>
   );
 };
 
@@ -80,27 +82,46 @@ const GameImage = ({ game, ...props }) => {
   );
 };
 
-const EndingScreen = ({ game, onRestart = () => {} }) => {
+const EndingScreen = ({ onRestart = () => {}, points=0, starPercentage=0, coins=0 }) => {
+  const [randomGigil, setRandomGigil] = useState("AntonymHuntMonster.png");
+  const gigils =["AntonymHuntMonster.png", "FabVocabMonster.png", "coming-soon-monster.png", "SynonymRollMonster.png", "GrammarGeekMonster.png"];
+  useEffect(() => {
+    setRandomGigil(gigils[Math.floor(Math.random() * gigils.length)]);
+  }, [])
   return (
     <Flex direction="column" justifyContent="center" alignItems="center">
-
-      <Text fontSize="5xl" fontWeight="500">
-        {game.label}
-      </Text>
-      <GameImage game={game} />
-      <Box h={{ base: "10vh", md: "20vh" }} />
-      <Flex justifyContent="center" alignItems="center">
-        <Text fontSize="5xl" fontWeight="500">
-          You Win!
+      <Flex position={{base: "absolute", md: "initial"}} top="5" justifyContent="center" alignItems={{ base: "end", md: "center" }}>
+        <Text fontSize={{ base: "4xl", md: "70px" }} fontWeight="500">
+          Time's up!
         </Text>
+        <HourGlassIcon boxSize={{ base: "10", md: "20" }} />
       </Flex>
-      <Box h={{ base: "10vh", md: "20vh" }} />
-      <Flex justifyContent="center" alignItems="center">
-        <Button onClick={onRestart}>Play Again</Button>
-      </Flex>
+      <Image
+        src={`/images/${randomGigil}`}
+        alt={randomGigil}
+        w="fit-content"
+        maxH="150"
+      />
+    <Flex direction="column" justifyContent="center" alignItems="center" w={{base: "100%", md: "40%"}}>
+      {/* <Text>Watch this ad for 10% more coins</Text> */}
+      <PointDisplayer label="Points earned"><Text fontSize="md">{points}</Text></PointDisplayer>
+      <PointDisplayer label="Starbar"><Text color="yellowStar" fontSize="md">+{starPercentage}%</Text></PointDisplayer>
+      <PointDisplayer label="Coins won"><CoinCurrencyNoUser quantity={coins} fontSize="md"/></PointDisplayer>
+      <Button w="70%" bg="#A80909" href="/">Continue</Button>
+    </Flex>
     </Flex>
   );
 };
 
+const PointDisplayer = ({ label, children}) => {
+  return (
+    <Flex bg="deepDarkBlue" w="100%" borderRadius="15px" p={3} alignItems="space-between" placeContent="space-between" my={5}>
+      <Text fontSize="md">
+        {label}
+      </Text>
+        {children}
+    </Flex>
+  );
+}
 
 export default GameContainer;
