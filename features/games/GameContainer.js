@@ -33,7 +33,7 @@ const GameContainer = ({ game, children }) => {
   useEffect(() => {
     if(timer <= 0) {
       clearInterval(timerInterval.current);
-      console.log("the end!")
+      console.log("the end of time!")
     }
   }, [timer]);
   return (

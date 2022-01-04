@@ -3,7 +3,7 @@ import { Flex, Text, Button } from "@chakra-ui/react";
 import shuffleArray from "../../helpers/shuffleArray";
 
 const MatchingWords = ({
-  matchingWords = { word: "matching", word2: "matchingWord2", word3: "matchinWord3" },
+  matchingWords =null,
 }) => {
   const ColorArray = [
     "#FF8C00",
@@ -17,15 +17,25 @@ const MatchingWords = ({
     "#0000FF",
   ];
 
-  const [wordsObject, setWordsObject] = useState(
-    Object.assign(
-      {},
-      ...Object.keys(matchingWords).map((word) => ({ [word]: { color: null, active: false } })),
-      ...Object.values(matchingWords).map((word) => ({ [word]: { color: null, active: false } }))
-    )
-  );
+  const [wordsObject, setWordsObject] = useState({});
   const [currentColor, setCurrentColor] = useState(0);
   const [word1, setWord1] = useState(null);
+  const [goodAnswers, setGoodAnswers] = useState(0);
+
+  useEffect(() => {
+    if (matchingWords) {
+      setWordsObject(
+        Object.assign(
+          {},
+          ...Object.keys(matchingWords).map((word) => ({ [word]: { color: null, active: false } })),
+          ...Object.values(matchingWords).map((word) => ({
+            [word]: { color: null, active: false },
+          }))
+        )
+      );
+    }
+  }, [matchingWords]);
+
 
 const onActive = (word) => {
   const tmpObj = {};
@@ -42,13 +52,16 @@ const onActive = (word) => {
     if (word1) {
       if(matchingWords[word1] === word) {
         console.log("match!");
+        if (goodAnswers +1 === Object.keys(matchingWords).length) {
+          console.log("you win!");
+        }
+        setGoodAnswers(goodAnswers + 1);
         const color = ColorArray[currentColor];
         setWordsObject({ ...wordsObject, [word1]: { color }, [word]: { color } });
         setCurrentColor(currentColor + 1);
         return
       }
       console.log("no match!");
-      // setCurrentColor((currentColor) => (currentColor + 1) % ColorArray.length);
     }
   };
 

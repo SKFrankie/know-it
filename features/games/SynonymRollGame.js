@@ -1,11 +1,40 @@
-import React from 'react'
-import GameContainer from './GameContainer'
-import MatchingWords from './MatchingWords'
-import {GAME_TYPES} from '../../constants.js'
+import React, { useState, useEffect } from "react";
 import { Text, Image, Flex, Box } from "@chakra-ui/react";
+import { useQuery, useMutation, gql } from "@apollo/client";
+import GameContainer from "./GameContainer";
+import MatchingWords from "./MatchingWords";
+import { GAME_TYPES } from "../../constants.js";
+import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
+import shuffleArray from "../../helpers/shuffleArray";
+import Error from "../Error";
+import Loading from "../Loading";
+
+const RANDOM_SYNONYMS = gql`
+  query RandomSynonyms {
+    randomSynonyms(limit: 7) {
+      synonyms
+    }
+  }
+`;
 
 const SynonymRollGame = () => {
   const game = GAME_TYPES.SYNONYM_ROLL;
+  const [matchingWords, setMatchingWords] = useState({});
+  const { data, error, loading } = useQuery(RANDOM_SYNONYMS, {
+    onCompleted: (res) => {
+      const { randomSynonyms } = res;
+      const tmpSynonymObject = {};
+      randomSynonyms.forEach((synonymList) => {
+        if (synonymList.synonyms.length > 1) {
+          const shuffledSynonyms = shuffleArray(synonymList.synonyms.slice());
+          tmpSynonymObject[shuffledSynonyms[0]] = shuffledSynonyms[1];
+        }
+      });
+      setMatchingWords(tmpSynonymObject);
+    },
+    ...basicQueryResultSupport,
+  });
+
   return (
     <GameContainer game={game}>
       <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "md" }}>
@@ -15,9 +44,11 @@ const SynonymRollGame = () => {
         </Box>{" "}
         meaning
       </Text>
-      <MatchingWords />
+      {Object.keys(matchingWords).length && <MatchingWords matchingWords={matchingWords} />}
+      {error && <Error />}
+      {loading && <Loading />}
     </GameContainer>
   );
-}
+};
 
-export default SynonymRollGame
+export default SynonymRollGame;
