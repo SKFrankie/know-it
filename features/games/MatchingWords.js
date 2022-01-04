@@ -48,9 +48,8 @@ const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameSta
   };
   const onWord2Click = (word) => {
     if (word1) {
-      console.log("matchingWords", matchingWords, word1, word);
       if (matchingWords[word1] === word) {
-        console.log("match!", gameState);
+        // words matched
         const tmpGameState = {
           ...gameState,
           starPercentage: gameState.starPercentage + POINTS.SMALL,
@@ -58,7 +57,7 @@ const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameSta
           coins: gameState.coins + POINTS.SMALL,
         };
         if (goodAnswers + 1 === Object.keys(matchingWords).length) {
-          console.log("you win!");
+          // all completed
           tmpGameState = {
             ...tmpGameState,
             starPercentage: gameState.starPercentage + POINTS.SMALL,
@@ -77,7 +76,7 @@ const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameSta
         setGameState(tmpGameState);
         return;
       }
-      console.log("no match!");
+      // words did not match
     }
   };
 

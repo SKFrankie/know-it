@@ -18,6 +18,16 @@ const GET_TIMER = gql`
   }
 `;
 
+const UPDATE_USER = gql`
+  mutation UpdateUser($coins: Int, $stars: Int, $starPercentage: Int) {
+    updateCurrentUser(coins: $coins, stars: $stars, starPercentage: $starPercentage) {
+      coins
+      stars
+      starPercentage
+    }
+  }
+`;
+
 const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = () => {} }) => {
   const [currentUser, setCurrentUser] = useUserContext();
   const [initialUserStarPercentage, setInitialUserStarPercentage ]= useState(null);
@@ -25,11 +35,13 @@ const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = ()
     ...basicQueryResultSupport,
     variables: { gameName: game.name },
   });
+  const [UpdateUser] = useMutation(UPDATE_USER, {onCompleted(data) {
+    setCurrentUser({...currentUser, ...data.updateCurrentUser});
+  },...basicQueryResultSupport});
   const [timer, setTimer] = useState(data?.games[0]?.timer || 120);
   const timerInterval = React.useRef(null);
 
   useEffect(() => {
-    console.log("initial", initialUserStarPercentage);
     if(initialUserStarPercentage === null) {
       setInitialUserStarPercentage(currentUser?.starPercentage || null);
     }
@@ -46,16 +58,20 @@ const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = ()
   useEffect(() => {
     if (timer <= 0) {
       clearInterval(timerInterval.current);
-      console.log("the end of time!");
+      // end of time
+      UpdateUser({
+        variables: {
+          coins: currentUser.coins + gameState.coins,
+          stars: currentUser.stars + gameState.stars,
+          starPercentage: (initialUserStarPercentage + gameState.starPercentage) % 100,
+        },
+      });
       onTimeOut();
     }
   }, [timer]);
   useEffect(() => {
     // to see starbar grow in game
     const tmpStarPercentage = initialUserStarPercentage + gameState.starPercentage;
-    console.log("tmpStarPercentage", tmpStarPercentage);
-    console.log("tmpStarPercentage % 100", tmpStarPercentage % 100);
-    console.log("tmpStarPercentage / 100", parseInt(tmpStarPercentage / 100));
     setCurrentUser({
       ...currentUser,
       starPercentage: tmpStarPercentage % 100,
