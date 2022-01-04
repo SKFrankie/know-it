@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {Flex, Box, Image, Text} from '@chakra-ui/react'
+import React, { useState, useEffect } from "react";
+import { Flex, Box, Image, Text } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
@@ -14,7 +14,7 @@ const GET_TIMER = gql`
   }
 `;
 
-const GameContainer = ({ game, children }) => {
+const GameContainer = ({ game, children, onTimeOut = () => {} }) => {
   const { data } = useQuery(GET_TIMER, {
     ...basicQueryResultSupport,
     variables: { gameName: game.name },
@@ -31,9 +31,10 @@ const GameContainer = ({ game, children }) => {
   }, [data]);
 
   useEffect(() => {
-    if(timer <= 0) {
+    if (timer <= 0) {
       clearInterval(timerInterval.current);
-      console.log("the end of time!")
+      console.log("the end of time!");
+      onTimeOut();
     }
   }, [timer]);
   return (
@@ -41,10 +42,13 @@ const GameContainer = ({ game, children }) => {
       <MobileGameHeader timer={timer} />
       <DesktopGameHeader timer={timer} />
       <Box h={{ base: "0vh", md: "5vh" }} />
-      <Flex direction="column">
-        <GameTitle game={game} />
-        {children}
-      </Flex>
+      {timer > 0 && (
+        <Flex direction="column">
+          <GameTitle game={game} />
+          {children}
+        </Flex>
+      )}
+      {timer <= 0 && <EndingScreen game={game} onRestart={onTimeOut} />}
     </Box>
   );
 };
@@ -59,7 +63,7 @@ const GameTitle = ({ game }) => {
       <GameImage game={game} maxH={{ base: "60px", md: "80px" }} />
     </Flex>
   );
-}
+};
 
 const GameImage = ({ game, ...props }) => {
   return (
@@ -74,6 +78,29 @@ const GameImage = ({ game, ...props }) => {
       />
     )
   );
-  }
+};
+
+const EndingScreen = ({ game, onRestart = () => {} }) => {
+  return (
+    <Flex direction="column" justifyContent="center" alignItems="center">
+
+      <Text fontSize="5xl" fontWeight="500">
+        {game.label}
+      </Text>
+      <GameImage game={game} />
+      <Box h={{ base: "10vh", md: "20vh" }} />
+      <Flex justifyContent="center" alignItems="center">
+        <Text fontSize="5xl" fontWeight="500">
+          You Win!
+        </Text>
+      </Flex>
+      <Box h={{ base: "10vh", md: "20vh" }} />
+      <Flex justifyContent="center" alignItems="center">
+        <Button onClick={onRestart}>Play Again</Button>
+      </Flex>
+    </Flex>
+  );
+};
+
 
 export default GameContainer;
