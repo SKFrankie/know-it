@@ -100,7 +100,7 @@ const GameTitle = ({ game }) => {
       <Text fontSize={{ base: "lg", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
-      <GameImage game={game} maxH={{ base: "60px", md: "80px" }} />
+      <GameImage game={game} maxH={{ base: "50px", md: "60px" }} transform="scaleX(-1)"/>
     </Flex>
   );
 };
@@ -112,8 +112,9 @@ const GameImage = ({ game, ...props }) => {
         src={game.image}
         alt={game.label}
         w="fit-content"
-        maxH={{ base: "50px", md: "70px" }}
-        marginBottom={{ base: "-10px", md: "-30px" }}
+        maxH={{ base: "30px", md: "40px" }}
+        marginBottom={{ base: "0px", md: "-30px" }}
+        mx={2}
         {...props}
       />
     )
