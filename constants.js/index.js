@@ -44,11 +44,18 @@ const REWARD_TYPES = {
 };
 
 const GAME_TYPES = {
-  SYNONYM_ROLL: { name: "SYNONYM_ROLL", label: "Synonym Roll", image:"/images/SynonymRollImage.png" },
+  SYNONYM_ROLL: { name: "SYNONYM_ROLL", label: "Synonym Roll", image:"/images/SynonymRollImage.png"},
   FAB_VOCAB: { name: "FAB_VOCAB" },
   ANTONYM_HUNT: { name: "ANTONYM_HUNT" },
   GRAMMAR_GEEK: { name: "GRAMMAR_GEEK" },
   KNOWLYMPICS: { name: "KNOWLYMPICS" },
 };
 
-export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS, REWARD_TYPES, SHOP_SECTIONS, GAME_TYPES };
+const POINTS = {
+  SMALL: 5,
+  BIG: 10,
+  HUGE: 20,
+};
+
+
+export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS, REWARD_TYPES, SHOP_SECTIONS, GAME_TYPES, POINTS };

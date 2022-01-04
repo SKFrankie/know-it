@@ -51,6 +51,7 @@ const StarPercentage = ({ quantity = 0, ...props }) => {
         value={quantity}
         max="100"
         hasStripe
+        isAnimated
       />
       <Image boxSize="30px" src={"/images/star.png"} alt={"star"} />
     </Flex>

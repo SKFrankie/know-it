@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Button } from "@chakra-ui/react";
 import shuffleArray from "../../helpers/shuffleArray";
+import {POINTS} from "../../constants.js";
 
-const MatchingWords = ({ matchingWords = null, onComplete }) => {
+const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameState }) => {
   const ColorArray = [
     "#FF8C00",
     "#D40000",
@@ -49,9 +50,23 @@ const MatchingWords = ({ matchingWords = null, onComplete }) => {
     if (word1) {
       console.log("matchingWords", matchingWords, word1, word);
       if (matchingWords[word1] === word) {
-        console.log("match!");
+        console.log("match!", gameState);
+        const tmpGameState = {
+          ...gameState,
+          starPercentage: gameState.starPercentage + POINTS.SMALL,
+          points: gameState.points + POINTS.SMALL,
+          coins: gameState.coins + POINTS.SMALL,
+        };
         if (goodAnswers + 1 === Object.keys(matchingWords).length) {
           console.log("you win!");
+          tmpGameState = {
+            ...tmpGameState,
+            starPercentage: gameState.starPercentage + POINTS.SMALL,
+            coins: gameState.coins + POINTS.BIG,
+            points: gameState.points + POINTS.SMALL,
+          };
+          // game state is updated here too because there's a return
+          setGameState(tmpGameState);
           handleComplete();
           return;
         }
@@ -59,6 +74,7 @@ const MatchingWords = ({ matchingWords = null, onComplete }) => {
         const color = ColorArray[currentColor];
         setWordsObject({ ...wordsObject, [word1]: { color }, [word]: { color } });
         setCurrentColor(currentColor + 1);
+        setGameState(tmpGameState);
         return;
       }
       console.log("no match!");
@@ -93,17 +109,16 @@ const MatchingWords = ({ matchingWords = null, onComplete }) => {
   );
 };
 
-const WordColumn = ({ matchingWords, color, onWordClick, wordsObject, variant="left" }) => {
+const WordColumn = ({ matchingWords, color, onWordClick, wordsObject, variant = "left" }) => {
   const [shuffleWords, setShuffleWords] = useState([]);
   useEffect(() => {
-    if(variant === "left") {
+    if (variant === "left") {
       setShuffleWords(shuffleArray(Object.keys(matchingWords)));
-    }
-    else {
+    } else {
       setShuffleWords(shuffleArray(Object.values(matchingWords)));
     }
-  }, [matchingWords])
-  
+  }, [matchingWords]);
+
   return (
     <Flex justify="center" align="center" direction={{ base: "column", md: "row" }}>
       {shuffleWords.map((word) => (

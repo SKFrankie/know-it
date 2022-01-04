@@ -35,8 +35,10 @@ const SynonymRollGame = () => {
     ...basicQueryResultSupport,
   });
 
+  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
+
   return (
-    <GameContainer game={game}>
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
       <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "md" }}>
         Find the word with the{" "}
         <Box as="span" fontWeight="500">
@@ -44,7 +46,14 @@ const SynonymRollGame = () => {
         </Box>{" "}
         meaning
       </Text>
-      {Object.keys(matchingWords).length && <MatchingWords matchingWords={matchingWords} onComplete={refetch}/>}
+      {Object.keys(matchingWords).length && (
+        <MatchingWords
+          matchingWords={matchingWords}
+          onComplete={refetch}
+          setGameState={setGameState}
+          gameState={gameState}
+        />
+      )}
       {error && <Error />}
       {loading && <Loading />}
     </GameContainer>
