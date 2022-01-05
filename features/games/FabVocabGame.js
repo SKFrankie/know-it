@@ -6,7 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Error from "../Error";
 import Loading from "../Loading";
-import { GAME_TYPES } from "../../constants.js";
+import { GAME_TYPES, POINTS } from "../../constants.js";
 
 const RANDOM_FAB_VOCAB = gql`
   query RandomFabVocab {
@@ -90,12 +90,21 @@ const FabVocabGame = () => {
           />
           {/* GOOGLE AD */}
           <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
-          {wordTries === 0 && sentenceTries === 0 ? <NextButton display={{base: "flex", md: "none"}} /> : null}
+            {wordTries === 0 && sentenceTries === 0 ? (
+              <NextButton display={{ base: "flex", md: "none" }} />
+            ) : null}
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={400}>
               {wordTries} words left to find
             </Text>
-            <Words words={words} setWords={setWords} tries={wordTries} setTries={setWordTries} />
+            <Words
+              words={words}
+              setWords={setWords}
+              tries={wordTries}
+              setTries={setWordTries}
+              setGameState={setGameState}
+              gameState={gameState}
+            />
             <Divider />
             <Text my={2} fontWeight={400}>
               Which sentence best describes this picture?
@@ -107,8 +116,10 @@ const FabVocabGame = () => {
               tries={sentenceTries}
               setTries={setSentenceTries}
               numbered
+              setGameState={setGameState}
+              gameState={gameState}
             />
-          {wordTries === 0 && sentenceTries === 0 ? <NextButton /> : null}
+            {wordTries === 0 && sentenceTries === 0 ? <NextButton /> : null}
           </Flex>
         </Flex>
       )}
@@ -123,26 +134,45 @@ const NextButton = ({...props}) => {
   return <Button w="100%" my={3} {...props}>Next picture</Button>;
 };
 
-const Words = ({ words, setWords, tries, setTries, numbered = false, ...props }) => {
+const Words = ({
+  words,
+  setWords,
+  tries,
+  setTries,
+  numbered = false,
+  gameState,
+  setGameState,
+  ...props
+}) => {
   // we get as much tries as correct answers
+  const [perfect, setPerfect] = useState(true);
+
   const handleClick = (word) => {
-    console.log("word", tries);
+    console.log("word", tries, gameState);
+    const bonusPoints = tries === 1 && perfect ? POINTS.SMALL : 0; // if we have no wrong answers we get bonus points
     if (tries > 1) {
       setTries(tries - 1);
-    setWords({ ...words, [word]: { ...words[word], active: true, clicked: true } });
-      if (words[word].correct) {
-        // word correct
-      }
-      // word incorrect
+      setWords({ ...words, [word]: { ...words[word], active: true, clicked: true } });
+    } else {
+      setTries(0);
+      const tmpWordObject = words;
+      Object.keys(tmpWordObject).map(function (key) {
+        tmpWordObject[key].active = true;
+      });
+      setWords({ ...tmpWordObject, [word]: { ...words[word], active: true, clicked: true } });
+    }
+    if (words[word].correct) {
+      const tmpGameState = {
+        ...gameState,
+        starPercentage: gameState.starPercentage + POINTS.SMALL + bonusPoints,
+        points: gameState.points + POINTS.SMALL + bonusPoints,
+        coins: gameState.coins + POINTS.SMALL + bonusPoints,
+      };
+      setGameState(tmpGameState);
       return;
     }
-    // no more tries
-    setTries(0);
-    const tmpWordObject = words;
-    Object.keys(tmpWordObject).map(function (key) {
-      tmpWordObject[key].active = true;
-    });
-    setWords({ ...tmpWordObject, [word]: { ...words[word], active: true, clicked: true } });
+    // word incorrect
+    setPerfect(false);
   };
 
   const isActive = (word) => {
@@ -164,7 +194,11 @@ const Words = ({ words, setWords, tries, setTries, numbered = false, ...props })
           <Text
             color={isActive(word) ? (isCorrect(word) ? "#07E503" : "#A80909") : "white"}
             textDecoration={
-              !isClicked(word) && isActive(word) ? (isCorrect(word) ? "underline" : "line-through") : "none"
+              !isClicked(word) && isActive(word)
+                ? isCorrect(word)
+                  ? "underline"
+                  : "line-through"
+                : "none"
             }
             cursor={tries > 0 && !isActive(word) ? "pointer" : "default"}
             onClick={isActive(word) ? null : () => handleClick(word)}
