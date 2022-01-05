@@ -42,6 +42,13 @@ const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = ()
   const timerInterval = React.useRef(null);
 
   useEffect(() => {
+    // leaving game
+    return () => {
+      setCurrentUser({ ...currentUser, starPercentage: initialUserStarPercentage });
+    }
+  }, [initialUserStarPercentage]);
+
+  useEffect(() => {
     if(initialUserStarPercentage === null) {
       setInitialUserStarPercentage(currentUser?.starPercentage || null);
     }
@@ -77,7 +84,7 @@ const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = ()
       starPercentage: tmpStarPercentage % 100,
     });
     setGameState({ ...gameState, stars: parseInt(tmpStarPercentage / 100)});
-  }, [gameState.starPercentage]);
+  }, [initialUserStarPercentage, gameState.starPercentage]);
   return timer > 0 ? (
     <Box>
       <MobileGameHeader timer={timer} />
@@ -106,19 +113,17 @@ const GameTitle = ({ game }) => {
 };
 
 const GameImage = ({ game, ...props }) => {
-  return (
-    game.image && (
-      <Image
-        src={game.image}
-        alt={game.label}
-        w="fit-content"
-        maxH={{ base: "30px", md: "40px" }}
-        marginBottom={{ base: "0px", md: "-30px" }}
-        mx={2}
-        {...props}
-      />
-    )
-  );
+  return game.image ? (
+    <Image
+      src={game.image}
+      alt={game.label}
+      w="fit-content"
+      maxH={{ base: "30px", md: "40px" }}
+      marginBottom={{ base: "0px", md: "-30px" }}
+      mx={2}
+      {...props}
+    />
+  ) : null;
 };
 
 const EndingScreen = ({
