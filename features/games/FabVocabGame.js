@@ -22,25 +22,25 @@ const RANDOM_FAB_VOCAB = gql`
 const FabVocabGame = () => {
   const game = GAME_TYPES.FAB_VOCAB;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
-  const [sentences, setSentences] = useState([ {sentence: "sentence what happens swith a logn senntenceone", correct: false}, {sentence: "sentence two", correct: true}, {sentence: "sentence three", correct: false}]);
-  const [words, setWords] = useState([
-    {
-      word: "word one",
+  const [sentences, setSentences] = useState({
+    "sentence what happens swith a logn senntenceone": { correct: false },
+    "sentence two": { correct: true },
+    "sentence three": { correct: false },
+  });
+  const [words, setWords] = useState({
+    "word one": {
       correct: false,
     },
-    {
-      word: "word two",
+    "word two": {
       correct: true,
     },
-    {
-      word: "word three",
+    "word three": {
       correct: false,
     },
-    {
-      word: "word four",
-      correct: false,
+    "word four": {
+      correct: true,
     },
-  ]);
+  });
   const { data, error, loading, refetch } = useQuery(RANDOM_FAB_VOCAB, {
     onCompleted: (res) => {
       const { randomFabVocab } = res;
@@ -68,10 +68,10 @@ const FabVocabGame = () => {
         {/* GOOGLE AD */}
         <Flex fontSize="sm"  fontWeight={500} direction="column" alignItems="center">
           <Text fontWeight={400}>What do you see in the picture ?</Text>
-          <Words words={words} />
+          <Words words={words} setWords={setWords} />
           <Divider />
           <Text my={2} fontWeight={400}>Which sentence best describes this picture?</Text>
-          <Sentences sentences={sentences} />
+          <Words words={sentences} setWords={setSentences} direction="column" numbered />
         </Flex>
       </Flex>
       {error && <Error />}
@@ -80,27 +80,55 @@ const FabVocabGame = () => {
   );
 };
 
-const Words = ({ words }) => {
-  return (
-    <Flex my={3} flexWrap="wrap" justify="center" w="90%">
-      {words.map(({word}, index) => {
-        return (
-          <Text fontSize="md" m={3} key={word}>
-            {word}
-          </Text>
-        );
-      })}
-    </Flex>
+const Words = ({ words, setWords, numbered=false, ...props }) => {
+  // we get as much tries as correct answers
+  const [tries, setTries] = useState(
+    Object.keys(Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct)))
+      .length
   );
-};
 
-const Sentences = ({ sentences }) => {
+  const handleClick = (word) => {
+    console.log("word", tries);
+    if (tries > 1) {
+      setTries(tries - 1);
+    setWords({ ...words, [word]: { ...words[word], active: true } });
+    if (words[word].correct) {
+      // word correct
+    }
+    return;
+    }
+    // no more tries
+    setTries(0);
+    const tmpWordObject = words;
+    Object.keys(tmpWordObject).map(function (key) {
+      tmpWordObject[key].active = true;
+    });
+    setWords(tmpWordObject);
+  };
+
+  const isActive = (word) => {
+    return words[word].active;
+  }
+
+  const isCorrect = (word) => {
+    return words[word]?.correct;
+  }
+
   return (
-    <Flex my={3} direction="column" flexWrap="wrap" justify="center" w="90%">
-      {sentences.map(({sentence}, index) => {
+    <Flex my={3} flexWrap="wrap" justify="center" w="90%" {...props}>
+      {Object.keys(words).map((word, index) => {
         return (
-          <Text fontSize="sm" m={3} key={sentence}>
-            {index + 1}. {sentence}
+          <Text
+            color={isActive(word) ? (isCorrect(word) ? "#07E503" : "#A80909") : "white"}
+            textDecoration={isActive(word) ? (isCorrect(word)? "none" : "line-through") : "none"}
+            cursor={tries > 0 ? "pointer" : "default"}
+            onClick={() => handleClick(word)}
+            fontSize="md"
+            m={3}
+            key={word}
+          >
+            {numbered && `${index + 1}. `}
+            {word}
           </Text>
         );
       })}
