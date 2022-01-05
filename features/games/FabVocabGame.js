@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from "../../ui/Button";
 import { Image, Flex, Text, Divider} from "@chakra-ui/react";
 import GameContainer from "./GameContainer";
 import { useQuery, gql } from "@apollo/client";
@@ -89,6 +90,7 @@ const FabVocabGame = () => {
           />
           {/* GOOGLE AD */}
           <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
+          {wordTries === 0 && sentenceTries === 0 ? <NextButton display={{base: "flex", md: "none"}} /> : null}
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={400}>
               {wordTries} words left to find
@@ -106,6 +108,7 @@ const FabVocabGame = () => {
               setTries={setSentenceTries}
               numbered
             />
+          {wordTries === 0 && sentenceTries === 0 ? <NextButton /> : null}
           </Flex>
         </Flex>
       )}
@@ -113,6 +116,11 @@ const FabVocabGame = () => {
       {loading && <Loading />}
     </GameContainer>
   );
+};
+
+
+const NextButton = ({...props}) => {
+  return <Button w="100%" my={3} {...props}>Next picture</Button>;
 };
 
 const Words = ({ words, setWords, tries, setTries, numbered = false, ...props }) => {
