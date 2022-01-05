@@ -155,6 +155,7 @@ const GiftPopUp = ({
   gift = { reward: "STAR_PERCENTAGE", quantity: 0 },
   ...props
 }) => {
+  const [giftGiven, setGiftGiven] = useState(false);
   const [currentUser, setCurrentUser] = useUserContext();
   const [RewardUser] = useMutation(REWARD_USER, {
     onCompleted(data) {
@@ -163,13 +164,24 @@ const GiftPopUp = ({
     ...basicQueryResultSupport,
   });
   const giveGift = () => {
+    setGiftGiven(true);
     const { label } = REWARD_TYPES[gift?.reward || "COINS"];
+    if (gift?.reward === "STAR_PERCENTAGE" && currentUser?.starPercentage + gift?.quantity > 100) {
+      const tmpStarPercentage = currentUser?.starPercentage + gift?.quantity;
+      RewardUser({
+        variables: {
+          stars: currentUser.stars + parseInt(tmpStarPercentage / 100),
+          starPercentage: tmpStarPercentage % 100,
+        },
+      });
+      return;
+    }
     const values = { [label]: currentUser[label] + gift?.quantity || 0 };
     RewardUser({ variables: values });
   };
 
   useEffect(() => {
-    if (isOpen && gift?.quantity) {
+    if (isOpen && gift?.quantity && !giftGiven) {
       giveGift();
     }
   }, [gift, isOpen]);
