@@ -22,6 +22,8 @@ const RANDOM_FAB_VOCAB = gql`
 const FabVocabGame = () => {
   const game = GAME_TYPES.FAB_VOCAB;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  const [wordTries, setWordTries] = useState(null);
+  const [sentenceTries, setSentenceTries] = useState(null);
   const [sentences, setSentences] = useState({
     "sentence what happens swith a logn senntenceone": { correct: false },
     "sentence two": { correct: true },
@@ -41,6 +43,25 @@ const FabVocabGame = () => {
       correct: true,
     },
   });
+
+  useEffect(() => {
+    // get as much tries as correct answers
+    if (wordTries == null) {
+      setWordTries(
+        Object.keys(
+          Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct))
+        ).length
+      );
+    }
+    if (sentenceTries == null) {
+      setSentenceTries(
+        Object.keys(
+          Object.fromEntries(Object.entries(sentences).filter(([key, { correct }]) => correct))
+        ).length
+      );
+    }
+  }, [words, sentences])
+
   const { data, error, loading, refetch } = useQuery(RANDOM_FAB_VOCAB, {
     onCompleted: (res) => {
       const { randomFabVocab } = res;
@@ -68,10 +89,10 @@ const FabVocabGame = () => {
         {/* GOOGLE AD */}
         <Flex fontSize="sm"  fontWeight={500} direction="column" alignItems="center">
           <Text fontWeight={400}>What do you see in the picture ?</Text>
-          <Words words={words} setWords={setWords} />
+          <Words words={words} setWords={setWords} tries={wordTries} setTries={setWordTries} />
           <Divider />
           <Text my={2} fontWeight={400}>Which sentence best describes this picture?</Text>
-          <Words words={sentences} setWords={setSentences} direction="column" numbered />
+          <Words words={sentences} setWords={setSentences} direction="column" tries={sentenceTries} setTries={setSentenceTries} numbered />
         </Flex>
       </Flex>
       {error && <Error />}
@@ -80,13 +101,8 @@ const FabVocabGame = () => {
   );
 };
 
-const Words = ({ words, setWords, numbered=false, ...props }) => {
+const Words = ({ words, setWords,tries, setTries, numbered=false, ...props }) => {
   // we get as much tries as correct answers
-  const [tries, setTries] = useState(
-    Object.keys(Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct)))
-      .length
-  );
-
   const handleClick = (word) => {
     console.log("word", tries);
     if (tries > 1) {
@@ -121,8 +137,8 @@ const Words = ({ words, setWords, numbered=false, ...props }) => {
           <Text
             color={isActive(word) ? (isCorrect(word) ? "#07E503" : "#A80909") : "white"}
             textDecoration={isActive(word) ? (isCorrect(word)? "none" : "line-through") : "none"}
-            cursor={tries > 0 ? "pointer" : "default"}
-            onClick={() => handleClick(word)}
+            cursor={tries > 0 && !isActive(word) ? "pointer" : "default"}
+            onClick={isActive(word) ? null :() => handleClick(word)}
             fontSize="md"
             m={3}
             key={word}
