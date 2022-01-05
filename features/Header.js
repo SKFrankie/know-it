@@ -203,7 +203,7 @@ const DesktopGameHeader = ({ timer = 0 }) => {
   const [currentUser] = useUserContext();
   return (
     currentUser.online && (
-      <Flex mx={3} position="absolute" left="0" w="30%" display={{ base: "none", md: "flex" }}>
+      <Flex mx={3} position="fixed" left="0" w="30%" display={{ base: "none", md: "flex" }}>
         <Timer timer={timer} mx={3}/>
         <StarPercentage />
       </Flex>
