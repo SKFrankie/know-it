@@ -23,7 +23,11 @@ const RANDOM_FAB_VOCAB = gql`
 const FabVocabGame = () => {
   const game = GAME_TYPES.FAB_VOCAB;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [wordTries, setWordTries] = useState(null);
+  const [picture, setPicture] = useState(
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+  );
   const [sentenceTries, setSentenceTries] = useState(null);
   const [sentences, setSentences] = useState({
     "sentence what happens swith a logn senntenceone": { correct: false },
@@ -45,31 +49,67 @@ const FabVocabGame = () => {
     },
   });
 
-  useEffect(() => {
+
+  const handleTries = (words, sentences) => {
     // get as much tries as correct answers
-    if (wordTries == null) {
-      setWordTries(
-        Object.keys(
-          Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct))
-        ).length
-      );
+    setWordTries(
+      Object.keys(Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct)))
+        .length
+    );
+    setSentenceTries(
+      Object.keys(
+        Object.fromEntries(Object.entries(sentences).filter(([key, { correct }]) => correct))
+      ).length
+    );
+  }
+
+  const handleNewQuestion = (question) => {
+    setPicture(question.picture);
+    const tmpWords = {};
+    const tmpSentences = {};
+
+    // set words
+    question.correctWords.forEach((word) => {
+      tmpWords[word] = { correct: true };
+    });
+    question.wrongWords.forEach((word) => {
+      tmpWords[word] = { correct: false };
+    });
+
+    // set sentences
+    tmpSentences[question.correctSentence] = { correct: true };
+    question.wrongSentences.forEach((sentence) => {
+      tmpSentences[sentence] = { correct: false };
+    });
+
+    setWords(tmpWords);
+    setSentences(tmpSentences);
+    handleTries(tmpWords, tmpSentences);
+  };
+
+  const handleNextQuestion = () => {
+    if (currentQuestion + 1 < data.randomFabVocab.length) {
+      setCurrentQuestion(currentQuestion + 1);
+      handleNewQuestion(data.randomFabVocab[currentQuestion + 1]);
+    } else {
+      refetch();
     }
-    if (sentenceTries == null) {
-      setSentenceTries(
-        Object.keys(
-          Object.fromEntries(Object.entries(sentences).filter(([key, { correct }]) => correct))
-        ).length
-      );
-    }
-  }, [words, sentences])
+  };
 
   const { data, error, loading, refetch } = useQuery(RANDOM_FAB_VOCAB, {
     onCompleted: (res) => {
+      // loading new set of questions and setting first question
       const { randomFabVocab } = res;
-      console.log("res", res);
+      if (randomFabVocab.length === 0) {
+        return;
+      }
+      const tmpCurrent = randomFabVocab[0];
+      setCurrentQuestion(0);
+      handleNewQuestion(tmpCurrent);
     },
     ...basicQueryResultSupport,
   });
+
   return (
     <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
       {data && (
@@ -85,16 +125,16 @@ const FabVocabGame = () => {
             w={{ base: "fit-content", md: "100%" }}
             maxW={{ base: "100%", md: "50vh" }}
             h={{ base: "100%", md: "fit-content" }}
-            src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+            src={picture}
             my={2}
           />
           {/* GOOGLE AD */}
           <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
             {wordTries === 0 && sentenceTries === 0 ? (
-              <NextButton display={{ base: "flex", md: "none" }} />
+              <NextButton display={{ base: "flex", md: "none" }} onNext={handleNextQuestion} />
             ) : null}
             <Text fontWeight={400}>What do you see in the picture ?</Text>
-            <Text fontSize="xs" fontWeight={400}>
+            <Text fontSize="xs" fontWeight={500}>
               {wordTries} words left to find
             </Text>
             <Words
@@ -119,7 +159,7 @@ const FabVocabGame = () => {
               setGameState={setGameState}
               gameState={gameState}
             />
-            {wordTries === 0 && sentenceTries === 0 ? <NextButton /> : null}
+            {wordTries === 0 && sentenceTries === 0 ? <NextButton onNext={handleNextQuestion}  /> : null}
           </Flex>
         </Flex>
       )}
@@ -129,9 +169,12 @@ const FabVocabGame = () => {
   );
 };
 
-
-const NextButton = ({...props}) => {
-  return <Button w="100%" my={3} {...props}>Next picture</Button>;
+const NextButton = ({onNext, ...props }) => {
+  return (
+    <Button onClick={onNext} w="100%" my={3} {...props}>
+      Next picture
+    </Button>
+  );
 };
 
 const Words = ({
@@ -148,7 +191,6 @@ const Words = ({
   const [perfect, setPerfect] = useState(true);
 
   const handleClick = (word) => {
-    console.log("word", tries, gameState);
     const bonusPoints = tries === 1 && perfect ? POINTS.SMALL : 0; // if we have no wrong answers we get bonus points
     if (tries > 1) {
       setTries(tries - 1);
