@@ -7,6 +7,7 @@ import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Error from "../Error";
 import Loading from "../Loading";
 import { GAME_TYPES, POINTS } from "../../constants.js";
+import shuffleArray from "../../helpers/shuffleArray";
 
 const RANDOM_FAB_VOCAB = gql`
   query RandomFabVocab {
@@ -48,6 +49,8 @@ const FabVocabGame = () => {
       correct: true,
     },
   });
+  const [wordArray, setWordArray] = useState([]);
+  const [sentenceArray, setSentenceArray] = useState([]);
 
 
   const handleTries = (words, sentences) => {
@@ -85,6 +88,8 @@ const FabVocabGame = () => {
     setWords(tmpWords);
     setSentences(tmpSentences);
     handleTries(tmpWords, tmpSentences);
+    setWordArray(shuffleArray(Object.keys(tmpWords)));
+    setSentenceArray(shuffleArray(Object.keys(tmpSentences)));
   };
 
   const handleNextQuestion = () => {
@@ -144,6 +149,7 @@ const FabVocabGame = () => {
               setTries={setWordTries}
               setGameState={setGameState}
               gameState={gameState}
+              wordArray={wordArray}
             />
             <Divider />
             <Text my={2} fontWeight={400}>
@@ -158,6 +164,7 @@ const FabVocabGame = () => {
               numbered
               setGameState={setGameState}
               gameState={gameState}
+              wordArray={sentenceArray}
             />
             {wordTries === 0 && sentenceTries === 0 ? <NextButton onNext={handleNextQuestion}  /> : null}
           </Flex>
@@ -185,6 +192,7 @@ const Words = ({
   numbered = false,
   gameState,
   setGameState,
+  wordArray,
   ...props
 }) => {
   // we get as much tries as correct answers
@@ -203,7 +211,7 @@ const Words = ({
       });
       setWords({ ...tmpWordObject, [word]: { ...words[word], active: true, clicked: true } });
     }
-    if (words[word].correct) {
+    if (words[word]?.correct) {
       const tmpGameState = {
         ...gameState,
         starPercentage: gameState.starPercentage + POINTS.SMALL + bonusPoints,
@@ -218,7 +226,7 @@ const Words = ({
   };
 
   const isActive = (word) => {
-    return words[word].active;
+    return words[word]?.active;
   };
 
   const isCorrect = (word) => {
@@ -231,7 +239,7 @@ const Words = ({
 
   return (
     <Flex my={3} flexWrap="wrap" justify="center" w="90%" {...props}>
-      {Object.keys(words).map((word, index) => {
+      {wordArray.map((word, index) => {
         return (
           <Text
             color={isActive(word) ? (isCorrect(word) ? "#07E503" : "#A80909") : "white"}
