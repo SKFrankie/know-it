@@ -27,16 +27,24 @@ const ContainedSynonymRollGame = () => {
   );
 };
 
-const SynonymRollGame = ({gameState, setGameState, onNextGame=null}) => {
+const SynonymRollGame = ({ gameState, setGameState, onNextGame = null }) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_SYNONYMS, {
     onCompleted: (res) => {
       const { randomSynonyms } = res;
       const tmpSynonymObject = {};
+      const alreadyUsedWords = [];
       randomSynonyms.forEach((synonymList) => {
         if (synonymList.synonyms.length > 1) {
           const shuffledSynonyms = shuffleArray(synonymList.synonyms.slice());
-          tmpSynonymObject[shuffledSynonyms[0]] = shuffledSynonyms[1];
+          const [synonym1, synonym2] = shuffledSynonyms;
+          if (alreadyUsedWords.includes(synonym1) || alreadyUsedWords.includes(synonym2)) {
+            // dealing with doublons
+            return;
+          }
+          alreadyUsedWords.push(synonym1);
+          alreadyUsedWords.push(synonym2);
+          tmpSynonymObject[synonym1] = synonym2;
         }
       });
       setMatchingWords(tmpSynonymObject);
@@ -75,5 +83,5 @@ const SynonymRollGame = ({gameState, setGameState, onNextGame=null}) => {
   );
 };
 
-export {SynonymRollGame};
+export { SynonymRollGame };
 export default ContainedSynonymRollGame;

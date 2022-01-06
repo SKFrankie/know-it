@@ -29,14 +29,22 @@ const ContainedAntonymHuntGame = () => {
 };
 
 
-const AntonymHuntGame = ({gameState, setGameState}) => {
+const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null }) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_ANTONYM, {
     onCompleted: (res) => {
       const { randomAntonyms } = res;
       const tmpAntonymObject = {};
+      const alreadyUsedWords = [];
       randomAntonyms.forEach((antonymAssociation) => {
-          tmpAntonymObject[antonymAssociation.rightWord] = antonymAssociation.leftWord;
+        const { leftWord, rightWord } = antonymAssociation;
+        if (alreadyUsedWords.includes(rightWord) || alreadyUsedWords.includes(leftWord)) {
+          // dealing with doublons
+          return;
+        }
+        alreadyUsedWords.push(rightWord);
+        alreadyUsedWords.push(leftWord);
+        tmpAntonymObject[antonymAssociation.rightWord] = antonymAssociation.leftWord;
       });
       setMatchingWords(tmpAntonymObject);
     },
@@ -69,8 +77,8 @@ const AntonymHuntGame = ({gameState, setGameState}) => {
       )}
       {error && <Error />}
       {loading && <Loading />}
-      </>
+    </>
   );
 };
-export {AntonymHuntGame}
+export { AntonymHuntGame };
 export default ContainedAntonymHuntGame;
