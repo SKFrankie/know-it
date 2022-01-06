@@ -1,4 +1,4 @@
-import { Box, Button as ChakraButton } from "@chakra-ui/react";
+import { Box, Text, Button as ChakraButton } from "@chakra-ui/react";
 import NextLink from "next/link";
 import React from "react";
 import Podium from "../features/Podium";
@@ -63,7 +63,7 @@ const KnowlympicsButton = ({ children, disabled = true, ...props }) => {
   return (
     <Box textAlign="center" filter={disabled ? "grayscale(1)" : null}>
       <Podium px="4" />
-      <NextLink href="/knowlympics" passHref>
+      <NextLink href="/games/knowlympics" passHref>
         <ChakraButton
           borderRadius="10px"
           w={{ base: "100%", md: "30vw" }}
@@ -78,6 +78,7 @@ const KnowlympicsButton = ({ children, disabled = true, ...props }) => {
           Knowlympics
         </ChakraButton>
       </NextLink>
+      {disabled && <Text fontSize="xs">You need at least one star to play Knowlympics</Text>}
     </Box>
   );
 };

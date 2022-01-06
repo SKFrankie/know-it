@@ -71,7 +71,7 @@ export default function Home() {
           </Flex>
         ))}
       </Flex>
-      <KnowlympicsButton />
+      <KnowlympicsButton disabled={!currentUser.stars} />
     </>
   );
 }
