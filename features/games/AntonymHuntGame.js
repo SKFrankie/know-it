@@ -42,6 +42,13 @@ const AntonymHuntGame = ({gameState, setGameState}) => {
     },
     ...basicQueryResultSupport,
   });
+  const handleMatchingWordsComplete = () => {
+    if (onNextGame) {
+      onNextGame();
+      return;
+    }
+    refetch();
+  };
 
   return (
     <>
@@ -55,7 +62,7 @@ const AntonymHuntGame = ({gameState, setGameState}) => {
       {Object.keys(matchingWords).length && (
         <MatchingWords
           matchingWords={matchingWords}
-          onComplete={refetch}
+          onComplete={handleMatchingWordsComplete}
           setGameState={setGameState}
           gameState={gameState}
         />

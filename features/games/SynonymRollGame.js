@@ -17,8 +17,17 @@ const RANDOM_SYNONYMS = gql`
   }
 `;
 
-const SynonymRollGame = () => {
+const ContainedSynonymRollGame = () => {
   const game = GAME_TYPES.SYNONYM_ROLL;
+  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
+  return (
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+      <SynonymRollGame gameState={gameState} setGameState={setGameState} />
+    </GameContainer>
+  );
+};
+
+const SynonymRollGame = ({gameState, setGameState, onNextGame=null}) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_SYNONYMS, {
     onCompleted: (res) => {
@@ -35,10 +44,16 @@ const SynonymRollGame = () => {
     ...basicQueryResultSupport,
   });
 
-  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
+  const handleMatchingWordsComplete = () => {
+    if (onNextGame) {
+      onNextGame();
+      return;
+    }
+    refetch();
+  };
 
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+    <>
       <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "md" }}>
         Find the word with the{" "}
         <Box as="span" fontWeight="500">
@@ -49,15 +64,16 @@ const SynonymRollGame = () => {
       {Object.keys(matchingWords).length && (
         <MatchingWords
           matchingWords={matchingWords}
-          onComplete={refetch}
+          onComplete={handleMatchingWordsComplete}
           setGameState={setGameState}
           gameState={gameState}
         />
       )}
       {error && <Error />}
       {loading && <Loading />}
-    </GameContainer>
+    </>
   );
 };
 
-export default SynonymRollGame;
+export {SynonymRollGame};
+export default ContainedSynonymRollGame;
