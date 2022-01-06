@@ -18,8 +18,18 @@ const RANDOM_ANTONYM = gql`
   }
 `;
 
-const AntonymHuntGame = () => {
+const ContainedAntonymHuntGame = () => {
   const game = GAME_TYPES.ANTONYM_HUNT;
+  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
+  return (
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+      <AntonymHuntGame gameState={gameState} setGameState={setGameState} />
+    </GameContainer>
+  );
+};
+
+
+const AntonymHuntGame = ({gameState, setGameState}) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_ANTONYM, {
     onCompleted: (res) => {
@@ -33,14 +43,12 @@ const AntonymHuntGame = () => {
     ...basicQueryResultSupport,
   });
 
-  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
-
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+    <>
       <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "md" }}>
         Find the word with the{" "}
         <Box as="span" fontWeight="500">
-          same
+          opposite
         </Box>{" "}
         meaning
       </Text>
@@ -54,8 +62,8 @@ const AntonymHuntGame = () => {
       )}
       {error && <Error />}
       {loading && <Loading />}
-    </GameContainer>
+      </>
   );
 };
-
-export default AntonymHuntGame;
+export {AntonymHuntGame}
+export default ContainedAntonymHuntGame;
