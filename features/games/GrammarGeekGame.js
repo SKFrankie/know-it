@@ -8,6 +8,7 @@ import shuffleArray from "../../helpers/shuffleArray";
 import Error from "../Error";
 import Loading from "../Loading";
 import Button from "../../ui/Button";
+import InfoIcon from "../../ui/icons/InfoIcon";
 
 const RANDOM_GRAMMAR_GEEK = gql`
   query RandomGrammarGeek {
@@ -35,16 +36,25 @@ const GrammarGeekGame = () => {
   const [hint, setHint] = useState("Present Perfect");
   const [showHint, setShowHint] = useState(false);
 
+  const [answerArray, setAnswerArray] = useState([]);
+
   const { data, error, loading, refetch } = useQuery(RANDOM_GRAMMAR_GEEK, {
     onCompleted: (res) => {
+    setAnswerArray(shuffleArray(Object.keys(answers)));
     },
     ...basicQueryResultSupport,
   });
+
+  const handleAnswerClick = (isCorrect) => {
+    setShowHint(true)
+  }
+
+
   return (
     <GameContainer game={game} gameState={gameState} setGameState={setGameState} align="center">
       <Flex justify="center" align="center" flexDirection="column" m={2} w="100%">
         <Question question={question} />
-        <Answers answers={answers} setAnswers={setAnswers} />
+        <Answers answers={answers} setAnswers={setAnswers} answerArray={answerArray} onAnswerClick={handleAnswerClick} />
         <Hint hint={hint} showHint={showHint} />
       </Flex>
       {error && <Error />}
@@ -73,7 +83,7 @@ const Question = ({ question }) => {
   );
 };
 
-const Answers = ({ answers, setAnswers }) => {
+const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
   const isActive = (answer) => {
     return answers[answer]?.active;
   };
@@ -82,9 +92,26 @@ const Answers = ({ answers, setAnswers }) => {
     return answers[answer]?.correct;
   };
 
-  const isClicked = (answer) => {
-    return answers[answer]?.clicked;
+  const isDisabled = (answer) => {
+    return answers[answer]?.disabled;
   };
+
+  const handleClick = (answer) => {
+    console.log(answers)
+    const tmpAnswerObject = answers;
+    // on click we active the clicked answer, the right answer, and the other answers are disabled
+    tmpAnswerObject[answer].clicked = true;
+    tmpAnswerObject[answer].active = true;
+    Object.keys(tmpAnswerObject).map(function (key) {
+      if (tmpAnswerObject[key].correct) {
+        tmpAnswerObject[key].active = true;
+      }
+      tmpAnswerObject[key].disabled = true;
+    });
+    setAnswers({answers, ... tmpAnswerObject});
+    onAnswerClick(isCorrect(answer));
+  };
+
   return (
     <Flex
       justify="center"
@@ -95,19 +122,25 @@ const Answers = ({ answers, setAnswers }) => {
       flexWrap="wrap"
       alignContent="center"
     >
-      {Object.keys(answers).map((answer, index) => (
-        <Button
-          disabled={isActive(answer)}
-          bg={isActive ? "#88A8B3" : isCorrect(answer) ? "#04C417" : "red"}
-          key={answer}
-          answer={answer}
-      minW="fit-content"
-          w={{base: "100%", md: "20%"}}
-          m={4}
-        >
-          {answer}
-        </Button>
-      ))}
+      {answerArray.map((answer, index) => {
+        return (
+          <Button
+            disabled={isActive(answer) || isDisabled(answer)}
+            bg={isActive(answer) ? (isCorrect(answer) ? "#04C417" : "red") : "#88A8B3"}
+            _hover={{ bg: isActive(answer) ? (isCorrect(answer) ? "#04C417" : "red") : "#88A8D1" }}
+            key={answer}
+            answer={answer}
+            minW="fit-content"
+            w={{ base: "100%", md: "20%" }}
+            m={4}
+            onClick={() => {
+              handleClick(answer);
+            }}
+          >
+            {answer}
+          </Button>
+        );
+      })}
     </Flex>
   );
 };
@@ -125,13 +158,15 @@ const Hint = ({ hint, showHint }) => {
       w={{ base: "100%", md: "50%" }}
       color="#04C417"
       p={4}
+      display={showHint ? "flex" : "none"}
+      position="relative"
     >
+    <InfoIcon position="absolute" left="1" top="1" color="white" boxSize="5" />
       <Text m={6} fontSize="xl" fontWeight="bold">
         {hint}
       </Text>
     </Flex>
-  )
-}
-
+  );
+};
 
 export default GrammarGeekGame;
