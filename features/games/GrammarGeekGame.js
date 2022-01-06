@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Text, Image, Flex, Box } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import GameContainer from "./GameContainer";
-import { GAME_TYPES } from "../../constants.js";
+import GameContainer, {NextButton} from "./GameContainer";
+import { GAME_TYPES, POINTS } from "../../constants.js";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import shuffleArray from "../../helpers/shuffleArray";
 import Error from "../Error";
@@ -25,6 +25,7 @@ const RANDOM_GRAMMAR_GEEK = gql`
 const GrammarGeekGame = () => {
   const game = GAME_TYPES.GRAMMAR_GEEK;
 
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
   const [question, setQuestion] = useState("I am a very _ person");
   const [answers, setAnswers] = useState({
@@ -38,24 +39,80 @@ const GrammarGeekGame = () => {
 
   const [answerArray, setAnswerArray] = useState([]);
 
+
+  const handleAnswerClick = (isCorrect) => {
+    console.log("state", gameState)
+    if (isCorrect) {
+      setGameState((prevState) => ({
+        ...prevState,
+        starPercentage: gameState.starPercentage + POINTS.SMALL,
+        points: gameState.points + POINTS.SMALL,
+        coins: gameState.coins + POINTS.SMALL,
+      }));
+    }
+    setShowHint(true)
+  }
+
+  const handleNextQuestion = () => {
+    if (currentQuestion + 1 < data.randomGrammarGeek.length) {
+      setCurrentQuestion(currentQuestion + 1);
+      handleNewQuestion(data.randomGrammarGeek[currentQuestion + 1]);
+    } else {
+      refetch();
+    }
+  }
+
+  const handleNewQuestion = (question) => {
+    const tmpAnswers = {};
+
+    // set answers
+    question.wrongWords.forEach((word) => {
+      tmpAnswers[word] = { correct: false };
+    });
+    tmpAnswers[question.correctWord] = { correct: true };
+    setAnswers(tmpAnswers);
+
+    setQuestion(question.sentence);
+    setHint(question.hint);
+    setShowHint(false)
+
+    setAnswerArray(shuffleArray(Object.keys(tmpAnswers)));
+  };
+
   const { data, error, loading, refetch } = useQuery(RANDOM_GRAMMAR_GEEK, {
     onCompleted: (res) => {
-    setAnswerArray(shuffleArray(Object.keys(answers)));
+      const { randomGrammarGeek } = res;
+      if (randomGrammarGeek.length === 0) {
+        return;
+      }
+      setCurrentQuestion(0);
+      handleNewQuestion(randomGrammarGeek[0]);
     },
     ...basicQueryResultSupport,
   });
-
-  const handleAnswerClick = (isCorrect) => {
-    setShowHint(true)
-  }
 
 
   return (
     <GameContainer game={game} gameState={gameState} setGameState={setGameState} align="center">
       <Flex justify="center" align="center" flexDirection="column" m={2} w="100%">
+        {showHint && (
+          <NextButton
+            onNext={handleNextQuestion}
+            display={{ base: "flex", md: "none" }}
+            onNext={handleNextQuestion}
+          >
+            Next Question
+          </NextButton>
+        )}
         <Question question={question} />
-        <Answers answers={answers} setAnswers={setAnswers} answerArray={answerArray} onAnswerClick={handleAnswerClick} />
+        <Answers
+          answers={answers}
+          setAnswers={setAnswers}
+          answerArray={answerArray}
+          onAnswerClick={handleAnswerClick}
+        />
         <Hint hint={hint} showHint={showHint} />
+        {showHint && <NextButton w={{base: "100%", md: "50%"}} onNext={handleNextQuestion}>Next Question</NextButton>}
       </Flex>
       {error && <Error />}
       {loading && <Loading />}
@@ -97,7 +154,6 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
   };
 
   const handleClick = (answer) => {
-    console.log(answers)
     const tmpAnswerObject = answers;
     // on click we active the clicked answer, the right answer, and the other answers are disabled
     tmpAnswerObject[answer].clicked = true;
@@ -158,7 +214,7 @@ const Hint = ({ hint, showHint }) => {
       w={{ base: "100%", md: "50%" }}
       color="#04C417"
       p={4}
-      display={showHint ? "flex" : "none"}
+      display={showHint && hint ? "flex" : "none"}
       position="relative"
     >
     <InfoIcon position="absolute" left="1" top="1" color="white" boxSize="5" />
