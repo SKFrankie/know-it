@@ -25,7 +25,7 @@ const KnowlympicsGame = () => {
   }, [currentUser.stars]);
 
   const handleNextGame = () => {
-    if (currentGameIndex + 1 > games.length) {
+    if (currentGameIndex + 1 >= games.length) {
       setCurrentGameIndex(0);
     } else {
       setCurrentGameIndex((currentGameIndex) => currentGameIndex + 1);
