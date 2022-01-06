@@ -28,7 +28,7 @@ const UPDATE_USER = gql`
   }
 `;
 
-const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = () => {} }) => {
+const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = () => {}, ...props }) => {
   const [currentUser, setCurrentUser] = useUserContext();
   const [initialUserStarPercentage, setInitialUserStarPercentage ]= useState(null);
   const { data } = useQuery(GET_TIMER, {
@@ -90,7 +90,7 @@ const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = ()
       <MobileGameHeader timer={timer} />
       <DesktopGameHeader timer={timer} />
       <Box h={{ base: "0vh", md: "5vh" }} />
-      <Flex direction="column">
+      <Flex direction="column" {...props}>
         <GameTitle game={game} />
         {children}
       </Flex>
