@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../ui/Button";
 import { Image, Flex, Text, Divider} from "@chakra-ui/react";
-import GameContainer from "./GameContainer";
+import GameContainer, {NextButton} from "./GameContainer";
 import { useQuery, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Error from "../Error";
@@ -136,7 +136,9 @@ const FabVocabGame = () => {
           {/* GOOGLE AD */}
           <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
             {wordTries === 0 && sentenceTries === 0 ? (
-              <NextButton display={{ base: "flex", md: "none" }} onNext={handleNextQuestion} />
+              <NextButton display={{ base: "flex", md: "none" }} onNext={handleNextQuestion}>
+                Next Picture
+              </NextButton>
             ) : null}
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={500}>
@@ -166,7 +168,9 @@ const FabVocabGame = () => {
               gameState={gameState}
               wordArray={sentenceArray}
             />
-            {wordTries === 0 && sentenceTries === 0 ? <NextButton onNext={handleNextQuestion}  /> : null}
+            {wordTries === 0 && sentenceTries === 0 ? (
+              <NextButton onNext={handleNextQuestion}>Next Picture</NextButton>
+            ) : null}
           </Flex>
         </Flex>
       )}
@@ -176,13 +180,6 @@ const FabVocabGame = () => {
   );
 };
 
-const NextButton = ({onNext, ...props }) => {
-  return (
-    <Button onClick={onNext} w="100%" my={3} {...props}>
-      Next picture
-    </Button>
-  );
-};
 
 const Words = ({
   words,
