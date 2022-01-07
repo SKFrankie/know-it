@@ -21,9 +21,17 @@ const RANDOM_FAB_VOCAB = gql`
   }
 `;
 
-const FabVocabGame = () => {
+const ContainedFabVocabGame = () => {
   const game = GAME_TYPES.FAB_VOCAB;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  return (
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+      <FabVocabGame gameState={gameState} setGameState={setGameState} />
+    </GameContainer>
+  );
+};
+
+const FabVocabGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [wordTries, setWordTries] = useState(null);
   const [picture, setPicture] = useState(
@@ -52,7 +60,6 @@ const FabVocabGame = () => {
   const [wordArray, setWordArray] = useState([]);
   const [sentenceArray, setSentenceArray] = useState([]);
 
-
   const handleTries = (words, sentences) => {
     // get as much tries as correct answers
     setWordTries(
@@ -64,7 +71,7 @@ const FabVocabGame = () => {
         Object.fromEntries(Object.entries(sentences).filter(([key, { correct }]) => correct))
       ).length
     );
-  }
+  };
 
   const handleNewQuestion = (question) => {
     setPicture(question.picture);
@@ -93,6 +100,10 @@ const FabVocabGame = () => {
   };
 
   const handleNextQuestion = () => {
+    if (onNextGame) {
+      onNextGame();
+      return;
+    }
     if (currentQuestion + 1 < data.randomFabVocab.length) {
       setCurrentQuestion(currentQuestion + 1);
       handleNewQuestion(data.randomFabVocab[currentQuestion + 1]);
@@ -116,7 +127,7 @@ const FabVocabGame = () => {
   });
 
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+    <>
       {data && (
         <Flex
           direction={{ base: "column", md: "row" }}
@@ -137,7 +148,7 @@ const FabVocabGame = () => {
           <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
             {wordTries === 0 && sentenceTries === 0 ? (
               <NextButton display={{ base: "flex", md: "none" }} onNext={handleNextQuestion}>
-                Next Picture
+                {knowlympics ? "Next" : "Next Picture"}
               </NextButton>
             ) : null}
             <Text fontWeight={400}>What do you see in the picture ?</Text>
@@ -169,17 +180,18 @@ const FabVocabGame = () => {
               wordArray={sentenceArray}
             />
             {wordTries === 0 && sentenceTries === 0 ? (
-              <NextButton onNext={handleNextQuestion}>Next Picture</NextButton>
+              <NextButton onNext={handleNextQuestion}>
+                {knowlympics ? "Next" : "Next Picture"}
+              </NextButton>
             ) : null}
           </Flex>
         </Flex>
       )}
       {error && <Error />}
       {loading && <Loading />}
-    </GameContainer>
+    </>
   );
 };
-
 
 const Words = ({
   words,
@@ -262,4 +274,5 @@ const Words = ({
   );
 };
 
-export default FabVocabGame;
+export { FabVocabGame };
+export default ContainedFabVocabGame;
