@@ -22,11 +22,19 @@ const RANDOM_GRAMMAR_GEEK = gql`
   }
 `;
 
-const GrammarGeekGame = () => {
+const ContainedGrammarGeekGame = () => {
   const game = GAME_TYPES.GRAMMAR_GEEK;
+  const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  return (
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+      <GrammarGeekGame gameState={gameState} setGameState={setGameState} />
+    </GameContainer>
+  );
+};
 
+
+const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = null}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
   const [question, setQuestion] = useState("I am a very _ person");
   const [answers, setAnswers] = useState({
     "thing long word like": { correct: false, active: false },
@@ -54,6 +62,10 @@ const GrammarGeekGame = () => {
   }
 
   const handleNextQuestion = () => {
+    if (onNextGame) {
+      onNextGame();
+      return;
+    }
     if (currentQuestion + 1 < data.randomGrammarGeek.length) {
       setCurrentQuestion(currentQuestion + 1);
       handleNewQuestion(data.randomGrammarGeek[currentQuestion + 1]);
@@ -93,7 +105,7 @@ const GrammarGeekGame = () => {
 
 
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState} align="center">
+    <>
       <Flex justify="center" align="center" flexDirection="column" m={2} w="100%">
         {showHint && (
           <NextButton
@@ -101,7 +113,7 @@ const GrammarGeekGame = () => {
             display={{ base: "flex", md: "none" }}
             onNext={handleNextQuestion}
           >
-            Next Question
+            {knowlympics ? "Next" : "Next Question"}
           </NextButton>
         )}
         <Question question={question} />
@@ -112,11 +124,11 @@ const GrammarGeekGame = () => {
           onAnswerClick={handleAnswerClick}
         />
         <Hint hint={hint} showHint={showHint} />
-        {showHint && <NextButton w={{base: "100%", md: "50%"}} onNext={handleNextQuestion}>Next Question</NextButton>}
+        {showHint && <NextButton w={{base: "100%", md: "50%"}} onNext={handleNextQuestion}>{knowlympics ? "Next" : "Next Question"}</NextButton>}
       </Flex>
       {error && <Error />}
       {loading && <Loading />}
-    </GameContainer>
+    </>
   );
 };
 
@@ -225,4 +237,5 @@ const Hint = ({ hint, showHint }) => {
   );
 };
 
-export default GrammarGeekGame;
+export {GrammarGeekGame};
+export default ContainedGrammarGeekGame;

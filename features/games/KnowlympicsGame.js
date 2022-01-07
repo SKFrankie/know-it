@@ -8,10 +8,11 @@ import {useUserContext} from "../../context/user";
 import {AntonymHuntGame} from "./AntonymHuntGame";
 import {SynonymRollGame} from "./SynonymRollGame";
 import {FabVocabGame} from "./FabVocabGame";
+import {GrammarGeekGame} from "./GrammarGeekGame";
 
 const KnowlympicsGame = () => {
   const game = GAME_TYPES.KNOWLYMPICS;
-  const games = [GAME_TYPES.SYNONYM_ROLL, GAME_TYPES.FAB_VOCAB, GAME_TYPES.ANTONYM_HUNT];
+  const games = [GAME_TYPES.SYNONYM_ROLL, GAME_TYPES.FAB_VOCAB, GAME_TYPES.ANTONYM_HUNT, GAME_TYPES.GRAMMAR_GEEK];
   const [currentUser] = useUserContext();
   const router = useRouter();
   // we initialize the game state to -1 so the user pays his one star at the end of the game
@@ -42,6 +43,8 @@ const KnowlympicsGame = () => {
         return <SynonymRollGame gameState={gameState} setGameState={setGameState} knowlympics onNextGame={handleNextGame}  />;
       case GAME_TYPES.FAB_VOCAB:
         return <FabVocabGame gameState={gameState} setGameState={setGameState} knowlympics onNextGame={handleNextGame}  />;
+      case GAME_TYPES.GRAMMAR_GEEK:
+        return <GrammarGeekGame gameState={gameState} setGameState={setGameState} knowlympics onNextGame={handleNextGame}  />;
       default:
         return null;
     }
