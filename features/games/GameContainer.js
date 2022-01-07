@@ -130,6 +130,7 @@ const EndingScreen = ({
   onRestart = () => {},
   gameState = { points: 0, starPercentage: 0, coins: 0 },
 }) => {
+  const [currentUser] = useUserContext();
   const { coins, points, starPercentage } = gameState;
   const [randomGigil, setRandomGigil] = useState("AntonymHuntMonster.png");
   const gigils = [
@@ -163,17 +164,21 @@ const EndingScreen = ({
         w={{ base: "100%", md: "40%" }}
       >
         {/* <Text>Watch this ad for 10% more coins</Text> */}
-        <PointDisplayer label="Points earned">
+        <PointDisplayer label="Points">
           <Text fontSize="md">{points}</Text>
         </PointDisplayer>
-        <PointDisplayer label="Starbar">
-          <Text color="yellowStar" fontSize="md">
-            +{starPercentage}%
-          </Text>
-        </PointDisplayer>
-        <PointDisplayer label="Coins won">
-          <CoinCurrencyNoUser quantity={coins} fontSize="md" />
-        </PointDisplayer>
+        {currentUser.online ? (
+          <>
+            <PointDisplayer label="Starbar">
+              <Text color="yellowStar" fontSize="md">
+                +{starPercentage}%
+              </Text>
+            </PointDisplayer>
+            <PointDisplayer label="Coins won">
+              <CoinCurrencyNoUser quantity={coins} fontSize="md" />
+            </PointDisplayer>
+          </>
+        ) : null}
         <Button w="70%" bg="#A80909" href="/">
           Continue
         </Button>

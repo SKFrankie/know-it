@@ -4,6 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import Loading from "../Loading";
 import { useUserContext } from "../../context/user";
 import { redirect } from "./helper";
+import { GAMES_SECTIONS } from "../../constants";
 
 const CURRENT_USER = gql`
   query CurrentUser {
@@ -50,7 +51,9 @@ const RouteGuard = ({ children }) => {
 
   function authCheck(url) {
     // redirect to login page if accessing a private page and not logged in
-    const publicPaths = ["/login", "/signup", "/"];
+    let publicGames = GAMES_SECTIONS.slice(0)
+    publicGames = publicGames.map(section => section.path);
+    const publicPaths = ["/login", "/signup", "/", ...publicGames];
     const path = url.split("?")[0];
     if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path)) {
       setAuthorized(false);

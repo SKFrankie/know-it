@@ -193,7 +193,7 @@ const MobileGameHeader = ({ timer = 0 }) => {
   return (
     <MobileHeaderBox currentUser={currentUser} router={router} alignItems="center" px={1}>
       <Timer timer={timer} />
-      <StarPercentage />
+      {currentUser.online ? <StarPercentage /> : null}
       <IconLink item={HOME_SECTION} key={HOME_SECTION.name} router={router} />
     </MobileHeaderBox>
   );
@@ -202,12 +202,10 @@ const MobileGameHeader = ({ timer = 0 }) => {
 const DesktopGameHeader = ({ timer = 0 }) => {
   const [currentUser] = useUserContext();
   return (
-    currentUser.online && (
-      <Flex mx={3} position="fixed" left="0" w="30%" display={{ base: "none", md: "flex" }}>
-        <Timer timer={timer} mx={3}/>
-        <StarPercentage />
-      </Flex>
-    )
+    <Flex mx={3} position="fixed" left="0" w="30%" display={{ base: "none", md: "flex" }}>
+      <Timer timer={timer} mx={3} />
+      {currentUser.online ? <StarPercentage /> : null}
+    </Flex>
   );
 };
 
