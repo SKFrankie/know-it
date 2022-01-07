@@ -28,26 +28,7 @@ export default function Home() {
         <>
           <GiftButton position="fixed" top={{ base: "70vh", md: "25vh" }} right="2%" />
         </>
-      ) : (
-        <>
-          <NextLink href="/login" passHref>
-            <ChakraButton
-              m={2}
-              boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
-              colorScheme="red"
-              aria-label="login"
-              size="lg"
-              rightIcon={<Icon boxSize={7} color="white" as={Iconify} icon="fe:login" />}
-              position="absolute"
-              right="0"
-              top="0"
-              display={{ base: "flex", md: "none" }}
-            >
-              Login
-            </ChakraButton>
-          </NextLink>
-        </>
-      )}
+      ) : null}
       <Flex flexWrap="wrap" w="100%" textAlign="center" justify="center">
         {GAMES_SECTIONS.map((game) => (
           <Flex

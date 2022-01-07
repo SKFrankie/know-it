@@ -20,6 +20,7 @@ import { logout } from "./auth/helper.js";
 import { CoinCurrency, StarCurrency, StarPercentage } from "./Currency.js";
 import { MyAvatar } from "../ui/Avatar.js";
 import Timer from "./games/Timer.js";
+import LoginButton from "./auth/LoginButton"
 
 const isActive = (router, item) => {
   return router.pathname === item.path || item?.active?.includes(router.pathname);
@@ -88,6 +89,7 @@ const DesktopHeader = () => {
         left="0"
         justify="space-between"
         width="100%"
+        zIndex="2"
       >
         <Flex direction="column" m={2} color="white">
           <NextLink href="/">
@@ -150,7 +152,7 @@ const DesktopHeader = () => {
 const MobileHeaderBox = ({children, currentUser, router, ...props}) => {
   return (
     !NO_HEADER_ROUTES.includes(router.pathname) &&
-    currentUser.online && (
+    (currentUser.online ? (
       <Flex
         bg="darkBlue"
         display={{ base: "flex", md: "none" }}
@@ -161,12 +163,14 @@ const MobileHeaderBox = ({children, currentUser, router, ...props}) => {
         width="100%"
         minHeight="8vh"
         boxShadow="0px 4px 4px rgba(255, 255, 255, 0.25)"
-        zIndex="1"
+        zIndex="2"
         {...props}
       >
-      {children}
+        {children}
       </Flex>
-    )
+    ) : (
+      <LoginButton />
+    ))
   );
 };
 

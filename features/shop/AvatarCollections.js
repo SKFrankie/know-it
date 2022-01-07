@@ -88,10 +88,12 @@ const Avatar = ({ avatar }) => {
   });
 
   useEffect(() => {
-    const notInInventory =
-      currentUser.inventory.find((i) => i.avatarId === avatar.avatarId) === undefined;
-    setCanBuy(currentUser.coins >= avatar.coinPrice && notInInventory);
-    setAlreadyBought(!notInInventory);
+    if (currentUser?.inventory){
+      const notInInventory =
+        currentUser.inventory.find((i) => i.avatarId === avatar.avatarId) === undefined;
+      setCanBuy(currentUser.coins >= avatar.coinPrice && notInInventory);
+      setAlreadyBought(!notInInventory);
+    }
   }, [currentUser.coins, avatar.coinPrice]);
 
 
