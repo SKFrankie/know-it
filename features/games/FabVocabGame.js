@@ -6,7 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Error from "../Error";
 import Loading from "../Loading";
-import { GAME_TYPES, POINTS } from "../../constants.js";
+import { GAME_TYPES, POINTS } from "../../constants";
 import shuffleArray from "../../helpers/shuffleArray";
 
 const RANDOM_FAB_VOCAB = gql`

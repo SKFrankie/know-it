@@ -5,7 +5,7 @@ import NextLink from "next/link";
 
 import { useUserContext } from "../context/user";
 import Title from "../ui/Title.js";
-import { GAMES_SECTIONS } from "../constants.js";
+import { GAMES_SECTIONS } from "../constants";
 import GaButton, { GaIconButton } from "../features/GaButton";
 import { KnowlympicsButton } from "../ui/Button";
 

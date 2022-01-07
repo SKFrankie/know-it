@@ -10,7 +10,7 @@ import Error from "../Error";
 import Modal, { PopUp } from "../../ui/Modal";
 import Button from "../../ui/Button";
 import GiftIcon from "../../ui/icons/GiftIcon";
-import { REWARD_TYPES } from "../../constants.js";
+import { REWARD_TYPES } from "../../constants";
 
 const GIFTS = gql`
   query Gifts {

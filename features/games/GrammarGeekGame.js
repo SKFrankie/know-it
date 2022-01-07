@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, Image, Flex, Box } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import GameContainer, {NextButton} from "./GameContainer";
-import { GAME_TYPES, POINTS } from "../../constants.js";
+import { GAME_TYPES, POINTS } from "../../constants";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import shuffleArray from "../../helpers/shuffleArray";
 import Error from "../Error";

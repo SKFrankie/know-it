@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Button, Box } from "@chakra-ui/react";
 import shuffleArray from "../../helpers/shuffleArray";
-import {POINTS} from "../../constants.js";
+import {POINTS} from "../../constants";
 
 const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameState }) => {
   const ColorArray = [

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GameContainer from "./GameContainer";
-import { GAME_TYPES } from "../../constants.js";
+import { GAME_TYPES } from "../../constants";
 import {redirect} from "../auth/helper";
 import {useRouter} from "next/router";
 import {useUserContext} from "../../context/user";

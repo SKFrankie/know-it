@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { Icon as Iconify } from "@iconify/react";
-import { NO_HEADER_ROUTES, SECTIONS, ADDITIONNAL_SECTIONS } from "../constants.js";
+import { NO_HEADER_ROUTES, SECTIONS, ADDITIONNAL_SECTIONS } from "../constants";
 import { useRouter } from "next/router";
 import { useUserContext } from "../context/user";
 import Link from "../ui/Link.js";

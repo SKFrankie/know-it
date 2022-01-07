@@ -3,7 +3,7 @@ import { Text, Image, Flex, Box } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import GameContainer from "./GameContainer";
 import MatchingWords from "./MatchingWords";
-import { GAME_TYPES } from "../../constants.js";
+import { GAME_TYPES } from "../../constants";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import shuffleArray from "../../helpers/shuffleArray";
 import Error from "../Error";
