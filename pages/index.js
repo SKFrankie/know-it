@@ -32,7 +32,7 @@ export default function Home() {
           <Flex
             direction="column"
             key={game.name}
-            m="4"
+            m="2vh"
             width={{ base: "80%", md: "40%" }}
             textAlign="center"
             alignItems={{base: game.align || "center", md: "center"}}
