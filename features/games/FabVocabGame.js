@@ -24,14 +24,15 @@ const RANDOM_FAB_VOCAB = gql`
 const ContainedFabVocabGame = () => {
   const game = GAME_TYPES.FAB_VOCAB;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  const [stopTimer, setStopTimer] = useState(false);
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
-      <FabVocabGame gameState={gameState} setGameState={setGameState} />
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState} stopTimer={stopTimer}>
+      <FabVocabGame gameState={gameState} setGameState={setGameState} setStopTimer={setStopTimer} />
     </GameContainer>
   );
 };
 
-const FabVocabGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false }) => {
+const FabVocabGame = ({ gameState, setGameState,setStopTimer, onNextGame = null, knowlympics = false }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [wordTries, setWordTries] = useState(null);
   const [picture, setPicture] = useState(
@@ -59,6 +60,13 @@ const FabVocabGame = ({ gameState, setGameState, onNextGame = null, knowlympics 
   });
   const [wordArray, setWordArray] = useState([]);
   const [sentenceArray, setSentenceArray] = useState([]);
+
+  useEffect(() => {
+    // stop timer when no more tries left
+    if (wordTries === 0 && sentenceTries === 0) {
+      setStopTimer(true);
+    }
+  }, [wordTries, sentenceTries]);
 
   const handleTries = (words, sentences) => {
     // get as much tries as correct answers
@@ -100,6 +108,7 @@ const FabVocabGame = ({ gameState, setGameState, onNextGame = null, knowlympics 
   };
 
   const handleNextQuestion = () => {
+    setStopTimer(false);
     if (onNextGame) {
       onNextGame();
       return;
