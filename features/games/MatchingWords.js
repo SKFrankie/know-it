@@ -119,8 +119,7 @@ const MatchingWords = ({
   };
 
   return (
-    <Flex direction={{ base: "row", md: "column" }} justify="space-around" my={3}>
-      <Box h="10vh" display={{ base: "none", md: "block" }} />
+    <Flex direction={{ base: "row", md: "column" }} justify="space-around" my={3} mt={{base: "5vh", md:"15vh"}}>
       <WordColumn
         wordsObject={wordsObject}
         matchingWords={matchingWords}
