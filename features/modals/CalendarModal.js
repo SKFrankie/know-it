@@ -137,7 +137,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
                 reward={gift.reward}
                 quantity={gift.quantity}
                 received={gift.day <= (currentUser?.daysInArow || 0)}
-                id={gift.day}
+                day={gift.day}
               />
             ))}
           </Flex>
@@ -242,10 +242,13 @@ const Reward = ({
   quantity = 0,
   color = "#06B402",
   received = false,
+  day = 0,
   ...props
 }) => {
   const { image, name } = REWARD_TYPES[reward];
   return (
+    <Flex direction="column" alignItems="center" justify="center">
+    <Text fontWeight="bold" fontSize={{ base: "sm", md: "md" }}>Day {day}</Text>
     <Flex
       py={2}
       px={4}
@@ -261,6 +264,7 @@ const Reward = ({
       <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
         x{quantity}
       </Text>
+    </Flex>
     </Flex>
   );
 };
