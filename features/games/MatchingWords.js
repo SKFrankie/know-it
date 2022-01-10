@@ -174,7 +174,7 @@ const Word = ({ word, color = "green", onWordClick, finalColor, active }) => {
       <Button
         onClick={handleClick}
         border="1px solid"
-        _hover={{ background: finalColor ? finalColor : color }}
+        _hover={{ background: finalColor ? finalColor : active ? color : "transparent" }}
         bg={finalColor ? finalColor : active ? color : "transparent"}
         fontWeight="bold"
         fontSize="md"
