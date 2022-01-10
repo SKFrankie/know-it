@@ -35,7 +35,7 @@ export default function Home() {
             m="4"
             width={{ base: "80%", md: "40%" }}
             textAlign="center"
-            alignItems="center"
+            alignItems={{base: game.align || "center", md: "center"}}
           >
             <Image
               src={game.image}
