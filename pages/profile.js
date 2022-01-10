@@ -28,7 +28,8 @@ const Profile = () => {
           </Text>
           <Text fontSize="xs">Member since {dateToString(currentUser.createdAt)}</Text>
           <Flex my={4}>
-            <CoinCurrency /> <StarCurrency />
+            <StarCurrency />
+            <CoinCurrency />
           </Flex>
           <StarPercentage />
         </Flex>
@@ -57,7 +58,7 @@ const AvatarPicture = ({ picture, ...props }) => {
 const ProfileFlex = ({ children, ...props }) => {
   return (
     <Flex
-      borderRadius="15px"
+      borderRadius="10px"
       boxShadow="0px 4px 4px rgba(0, 185, 245, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
       p={3}
       my={4}
