@@ -7,7 +7,7 @@ const Title = ({ ...props }) => {
       <Text fontSize={{ base: "5xl", md: "100px", lg: "150px" }} fontFamily="Ribeye">
         Know It!
       </Text>
-      <Text fontSize="sm">a BluePopcorn Production</Text>
+      <Text fontSize="sm" color="deepDarkBlue">a BluePopcorn Production</Text>
     </Flex>
   );
 };
