@@ -47,7 +47,6 @@ const GrammarGeekGame = ({ gameState, setGameState, knowlympics, onNextGame = nu
   const [answerArray, setAnswerArray] = useState([]);
 
   const handleAnswerClick = (isCorrect) => {
-    console.log("state", gameState);
     if (isCorrect) {
       setGameState((prevState) => ({
         ...prevState,

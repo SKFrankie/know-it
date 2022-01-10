@@ -26,7 +26,6 @@ const KnowlympicsGame = () => {
   useEffect(() => {
     if (!currentUser.stars === 0) {
       // redirect to home page if user has no stars to play the game
-      console.log("user", currentUser);
       redirect(router, "/");
     }
   }, [currentUser.stars]);

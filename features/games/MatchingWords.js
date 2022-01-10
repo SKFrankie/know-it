@@ -23,6 +23,7 @@ const MatchingWords = ({
   const [wordsObject, setWordsObject] = useState({});
   const [currentColor, setCurrentColor] = useState(0);
   const [word1, setWord1] = useState(null);
+  const [word2, setWord2] = useState(null);
   const [goodAnswers, setGoodAnswers] = useState(0);
 
   useEffect(() => {
@@ -46,13 +47,20 @@ const MatchingWords = ({
     }
     setWordsObject({ ...tmpObj, [word]: { ...wordsObject[word], active: true } });
   };
-  const onWord1Click = (word) => {
-    onActive(word);
-    setWord1(word);
+
+  const resetWords = (obj) => {
+    setWord1(null);
+    setWord2(null);
+    const tmpObj = {};
+    for (const [key, value] of Object.entries(obj || wordsObject)) {
+      tmpObj = { ...tmpObj, [key]: { ...value, active: false } };
+    }
+    setWordsObject({ ...tmpObj });
   };
-  const onWord2Click = (word) => {
-    if (word1) {
-      if (matchingWords[word1] === word) {
+
+  const wordsMatch = (word1, word2) => {
+    if (word1 && word2) {
+      if (matchingWords[word1] === word2) {
         // words matched
         const tmpGameState = {
           ...gameState,
@@ -75,19 +83,37 @@ const MatchingWords = ({
         }
         setGoodAnswers(goodAnswers + 1);
         const color = colorArray[currentColor];
-        setWordsObject({ ...wordsObject, [word1]: { color }, [word]: { color } });
+        const tmpObj = { ...wordsObject, [word1]: { color }, [word2]: { color } };
+        setWordsObject(tmpObj);
         setCurrentColor(currentColor + 1);
         setGameState(tmpGameState);
+        resetWords(tmpObj);
         return;
       }
       // words did not match
+      resetWords();
     }
+  };
+
+  const onWord1Click = (word) => {
+    if (!word2) {
+      onActive(word);
+    }
+    setWord1(word);
+    wordsMatch(word, word2);
+  };
+  const onWord2Click = (word) => {
+    if (!word1) {
+      onActive(word);
+    }
+    setWord2(word);
+    wordsMatch(word1, word);
   };
 
   const handleComplete = () => {
     setWordsObject({});
     setCurrentColor(0);
-    setWord1(null);
+    resetWords();
     setGoodAnswers(0);
     onComplete();
   };
