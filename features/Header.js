@@ -121,7 +121,7 @@ const DesktopHeader = () => {
             <CoinCurrency />
             <Menu>
               <MenuButton mx={4}>
-                <MyAvatar />
+                <MyAvatar size="md" />
               </MenuButton>
               <MenuList color="black">
                 {ADDITIONNAL_SECTIONS.map((section) => (
