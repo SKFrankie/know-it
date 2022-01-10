@@ -148,7 +148,7 @@ const FabVocabGame = ({ gameState, setGameState, onNextGame = null, knowlympics 
           <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={500}>
-              {wordTries} words left to find
+              {wordTries} tries left
             </Text>
             <Words
               words={words}
