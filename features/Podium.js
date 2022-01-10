@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Image } from "@chakra-ui/react";
 
 const Podium = ({ ...props }) => {
   const podium = [
@@ -57,9 +57,21 @@ const PodiumStep = ({ podium, step }) => {
             },
           }}
         >
-          <img
+          <Image
+            display={{ base: "none", md: "block" }}
+            src="/images/gigil2.png"
+            alt="trophy"
+            mb="-10px"
+            style={{
+              height: "auto",
+              overflow: "hidden",
+              width: "3.75rem",
+            }}
+          />
+          <Image
+            display={{ base: "block", md: "none" }}
             src="/images/trophy.png"
-            alt=""
+            alt="trophy"
             style={{
               height: "1.75rem",
               overflow: "hidden",
