@@ -174,6 +174,7 @@ const Word = ({ word, color = "green", onWordClick, finalColor, active }) => {
     <Flex justify="center" align="center" direction="column" m={2}>
       <Button
         onClick={handleClick}
+        border="1px solid"
         _hover={{ background: finalColor ? finalColor : color }}
         bg={finalColor ? finalColor : active ? color : "transparent"}
         fontWeight="bold"
