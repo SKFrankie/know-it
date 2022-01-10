@@ -68,7 +68,7 @@ const GiftButton = ({ ...props }) => {
         label="Calendar"
         boxSize={{ base: 10, md: 12 }}
         onClick={() => onOpen()}
-        icon={<GiftIcon boxSize={{ base: 7, md: 12 }} />}
+        icon={<GiftIcon boxSize={{ base: 7, md: 8}} />}
         zIndex={1}
         {...props}
       />
