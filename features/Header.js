@@ -120,7 +120,7 @@ const DesktopHeader = () => {
             <StarCurrency />
             <CoinCurrency />
             <Menu>
-              <MenuButton m={4}>
+              <MenuButton mx={4}>
                 <MyAvatar />
               </MenuButton>
               <MenuList color="black">
