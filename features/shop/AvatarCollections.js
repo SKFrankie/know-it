@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { Flex, Text, Image, useDisclosure, Box } from "@chakra-ui/react";
+import { Flex, Text, Image, useDisclosure, Box, Divider } from "@chakra-ui/react";
 import Error from "../Error";
 import Loading from "../Loading";
 import { useUserContext } from "../../context/user";
@@ -75,6 +75,7 @@ const AvatarCollection = ({ collection, now }) => {
           <Avatar key={avatar.avatarId} avatar={avatar} />
         ))}
       </Flex>
+      <Divider w="90%" alignSelf="center" borderBottomWidth="2px" borderColor="blueClear2.500"/>
     </Flex>
   );
 };
