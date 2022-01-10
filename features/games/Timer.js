@@ -20,7 +20,7 @@ const Timer = ({ maxTime, timer, ...props }) => {
       m={2}
       {...props}
     >
-      <CircularProgressLabel>{timer}</CircularProgressLabel>
+      <CircularProgressLabel>{parseInt(timer)}</CircularProgressLabel>
     </CircularProgress>
   );
 };

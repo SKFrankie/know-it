@@ -39,6 +39,11 @@ const GameContainer = ({
 }) => {
   const [currentUser, setCurrentUser] = useUserContext();
   const [initialUserStarPercentage, setInitialUserStarPercentage] = useState(null);
+  const [timer, setTimer] = useState(data?.games[0]?.timer || 120);
+
+  const timerInterval = React.useRef(null);
+  const container = React.useRef(null);
+
   const { data } = useQuery(GET_TIMER, {
     ...basicQueryResultSupport,
     variables: { gameName: game.name },
@@ -49,10 +54,9 @@ const GameContainer = ({
     },
     ...basicQueryResultSupport,
   });
-  const [timer, setTimer] = useState(data?.games[0]?.timer || 120);
-  const timerInterval = React.useRef(null);
+
   const tick = () => {
-    setTimer((timer) => timer - 1);
+    setTimer((timer) => timer - 0.1);
   };
 
   useEffect(() => {
@@ -75,11 +79,15 @@ const GameContainer = ({
   useEffect(() => {
     // start And pause timer
     if (stopTimer) {
+      // stop timer and scroll to bottom (for small screens)
+      if (container.current) {
+        container.current.scrollIntoView({ behavior: "smooth" });
+      }
       clearInterval(timerInterval.current);
     } else {
       timerInterval.current = setInterval(() => {
         tick();
-      }, 1000);
+      }, 100);
     }
     return () => {
       clearInterval(timerInterval.current);
@@ -110,7 +118,7 @@ const GameContainer = ({
     setGameState({ ...gameState, stars: parseInt(tmpStarPercentage / 100) });
   }, [initialUserStarPercentage, gameState.starPercentage]);
   return timer > 0 ? (
-    <Box>
+    <Box ref={container}>
       <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <Box h={{ base: "0vh", md: "5vh" }} />
