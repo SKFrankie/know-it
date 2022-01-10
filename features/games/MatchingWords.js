@@ -112,9 +112,9 @@ const MatchingWords = ({
 
   const handleComplete = () => {
     setWordsObject({});
-    setCurrentColor(0);
     resetWords();
     setGoodAnswers(0);
+    setCurrentColor(0);
     onComplete();
   };
 
