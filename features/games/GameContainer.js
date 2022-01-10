@@ -35,6 +35,7 @@ const GameContainer = ({
   children,
   onTimeOut = () => {},
   stopTimer = false,
+  knowlympics=false,
   ...props
 }) => {
   const [currentUser, setCurrentUser] = useUserContext();
@@ -123,12 +124,17 @@ const GameContainer = ({
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <Box h={{ base: "0vh", md: "5vh" }} />
       <Flex direction="column" {...props}>
+        {knowlympics && (
+          <Text m={3} fontSize="md" fontWeight="md">
+            Points : {gameState.points}
+          </Text>
+        )}
         <GameTitle game={game} />
         {children}
       </Flex>
     </Box>
   ) : (
-    <EndingScreen gameState={gameState} />
+    <EndingScreen knowlympics={knowlympics} gameState={gameState} />
   );
 };
 
@@ -161,6 +167,7 @@ const GameImage = ({ game, ...props }) => {
 const EndingScreen = ({
   onRestart = () => {},
   gameState = { points: 0, starPercentage: 0, coins: 0 },
+  knowlympics=false,
 }) => {
   const [currentUser] = useUserContext();
   const { coins, points, starPercentage } = gameState;
@@ -196,16 +203,20 @@ const EndingScreen = ({
         w={{ base: "100%", md: "40%" }}
       >
         {/* <Text>Watch this ad for 10% more coins</Text> */}
-        <PointDisplayer label="Points">
-          <Text fontSize="md">{points}</Text>
-        </PointDisplayer>
+        {knowlympics && (
+          <PointDisplayer label="Points">
+            <Text fontSize="md">{points}</Text>
+          </PointDisplayer>
+        )}
         {currentUser.online ? (
           <>
-            <PointDisplayer label="Starbar">
-              <Text color="yellowStar" fontSize="md">
-                +{starPercentage}%
-              </Text>
-            </PointDisplayer>
+            {!knowlympics && (
+              <PointDisplayer label="Starbar">
+                <Text color="yellowStar" fontSize="md">
+                  +{starPercentage}%
+                </Text>
+              </PointDisplayer>
+            )}
             <PointDisplayer label="Coins won">
               <CoinCurrencyNoUser quantity={coins} fontSize="md" />
             </PointDisplayer>
