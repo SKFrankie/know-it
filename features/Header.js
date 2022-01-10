@@ -93,7 +93,7 @@ const DesktopHeader = () => {
       >
         <Flex direction="column" m={2} color="white">
           <NextLink href="/">
-            <Text cursor="pointer" fontSize="3xl" fontWeight="bold">
+            <Text cursor="pointer" fontSize="2xl" fontWeight="bold">
               Know It!
             </Text>
           </NextLink>
