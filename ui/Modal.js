@@ -12,11 +12,11 @@ const Modal = ({ isOpen = false, onClose, children, ...props }) => {
     <ChakraModal
       isOpen={isOpen}
       onClose={onClose}
-      size={{ base: "full", md: "lg" }}
       motionPreset="slideInBottom"
       {...props}
     >
-      <ModalContent bg="deepDarkBlue" p="5" m="0" minH="100%">
+      <ModalOverlay />
+      <ModalContent alignSelf={{base: "initial", md:"center"}} isCentered bg="deepDarkBlue" p="5" m="0" minH={{base: "100%", md:"50%"}} minW={{base: "100%", md: "80%"}}>
         <ModalCloseButton />
         {children}
       </ModalContent>
