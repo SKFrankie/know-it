@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text, Button, Box } from "@chakra-ui/react";
+import { Flex, Text, Button, Box, useToast } from "@chakra-ui/react";
 import shuffleArray from "../../helpers/shuffleArray";
 import { POINTS } from "../../constants";
 
@@ -25,6 +25,8 @@ const MatchingWords = ({
   const [word1, setWord1] = useState(null);
   const [word2, setWord2] = useState(null);
   const [goodAnswers, setGoodAnswers] = useState(0);
+
+  const toast = useToast();
 
   useEffect(() => {
     if (matchingWords) {
@@ -91,6 +93,11 @@ const MatchingWords = ({
         return;
       }
       // words did not match
+      toast({
+        title: "Words don't match",
+        status: "error",
+        duration: 1000,
+      });
       resetWords();
     }
   };
@@ -119,7 +126,12 @@ const MatchingWords = ({
   };
 
   return (
-    <Flex direction={{ base: "row", md: "column" }} justify="space-around" my={3} mt={{base: "5vh", md:"15vh"}}>
+    <Flex
+      direction={{ base: "row", md: "column" }}
+      justify="space-around"
+      my={3}
+      mt={{ base: "5vh", md: "15vh" }}
+    >
       <WordColumn
         wordsObject={wordsObject}
         matchingWords={matchingWords}
