@@ -23,6 +23,7 @@ const KnowlympicsGame = () => {
   // we initialize the game state to -1 so the user pays his one star at the end of the game
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: -1 });
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
+  const [stopTimer, setStopTimer] = useState(false);
   useEffect(() => {
     if (!currentUser.stars === 0) {
       // redirect to home page if user has no stars to play the game
@@ -66,6 +67,7 @@ const KnowlympicsGame = () => {
             setGameState={setGameState}
             knowlympics
             onNextGame={handleNextGame}
+            setStopTimer={setStopTimer}
           />
         );
       case GAME_TYPES.GRAMMAR_GEEK:
@@ -75,6 +77,7 @@ const KnowlympicsGame = () => {
             setGameState={setGameState}
             knowlympics
             onNextGame={handleNextGame}
+            setStopTimer={setStopTimer}
           />
         );
       default:
@@ -83,7 +86,7 @@ const KnowlympicsGame = () => {
   };
 
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState} stopTimer={stopTimer}>
       {renderCurrentGame()}
     </GameContainer>
   );
