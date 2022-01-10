@@ -146,7 +146,7 @@ const Question = ({ question }) => {
       m={4}
       w={{ base: "100%", md: "50%" }}
     >
-      <Text m={4} fontSize="xl">
+      <Text textAlign="center" m={4} fontSize={{base: "2xl", md:"3xl"}}>
         {question}
       </Text>
     </Flex>
@@ -224,7 +224,7 @@ const Hint = ({ hint, showHint }) => {
       boxSizing="border-box"
       borderRadius="5px"
       m={4}
-      w={{ base: "100%", md: "50%" }}
+      w={{ base: "70%", md: "40%" }}
       color="#04C417"
       p={4}
       display={showHint && hint ? "flex" : "none"}
