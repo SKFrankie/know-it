@@ -104,15 +104,6 @@ const GrammarGeekGame = ({ gameState, setGameState, knowlympics, onNextGame = nu
   return (
     <>
       <Flex justify="center" align="center" flexDirection="column" m={2} w="100%">
-        {showHint && (
-          <NextButton
-            onNext={handleNextQuestion}
-            display={{ base: "flex", md: "none" }}
-            onNext={handleNextQuestion}
-          >
-            {knowlympics ? "Next" : "Next Question"}
-          </NextButton>
-        )}
         <Question question={question} />
         <Answers
           answers={answers}
@@ -122,8 +113,8 @@ const GrammarGeekGame = ({ gameState, setGameState, knowlympics, onNextGame = nu
         />
         <Hint hint={hint} showHint={showHint} />
         {showHint && (
-          <NextButton w={{ base: "100%", md: "50%" }} onNext={handleNextQuestion}>
-            {knowlympics ? "Next" : "Next Question"}
+          <NextButton w={{ base: "100%", md: "40%" }} onNext={handleNextQuestion}>
+            Continue
           </NextButton>
         )}
       </Flex>

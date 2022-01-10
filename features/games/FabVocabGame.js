@@ -146,11 +146,6 @@ const FabVocabGame = ({ gameState, setGameState, onNextGame = null, knowlympics 
           />
           {/* GOOGLE AD */}
           <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
-            {wordTries === 0 && sentenceTries === 0 ? (
-              <NextButton display={{ base: "flex", md: "none" }} onNext={handleNextQuestion}>
-                {knowlympics ? "Next" : "Next Picture"}
-              </NextButton>
-            ) : null}
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={500}>
               {wordTries} words left to find
@@ -181,7 +176,7 @@ const FabVocabGame = ({ gameState, setGameState, onNextGame = null, knowlympics 
             />
             {wordTries === 0 && sentenceTries === 0 ? (
               <NextButton onNext={handleNextQuestion}>
-                {knowlympics ? "Next" : "Next Picture"}
+                Continue
               </NextButton>
             ) : null}
           </Flex>

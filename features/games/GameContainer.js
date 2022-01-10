@@ -216,7 +216,7 @@ const PointDisplayer = ({ label, children }) => {
 
 const NextButton = ({ onNext, children, ...props }) => {
   return (
-    <Button onClick={onNext} w="100%" my={3} {...props}>
+    <Button bg="#A80909" onClick={onNext} w="100%" my={3} {...props}>
       {children}
     </Button>
   );
