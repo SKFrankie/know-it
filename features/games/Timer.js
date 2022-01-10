@@ -2,9 +2,6 @@ import React from "react";
 import { Flex, Text, CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 
 const Timer = ({ maxTime, timer, ...props }) => {
-  console.log("timer", timer);
-  console.log("maxTime", maxTime);
-  console.log("calcul", (timer / maxTime) * 100);
   return (
     <CircularProgress
       value={(timer / maxTime) * 100}

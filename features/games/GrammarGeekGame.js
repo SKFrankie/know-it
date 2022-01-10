@@ -25,14 +25,15 @@ const RANDOM_GRAMMAR_GEEK = gql`
 const ContainedGrammarGeekGame = () => {
   const game = GAME_TYPES.GRAMMAR_GEEK;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  const [stopTimer, setStopTimer] = useState(false);
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
-      <GrammarGeekGame gameState={gameState} setGameState={setGameState} />
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState} stopTimer={stopTimer}>
+      <GrammarGeekGame gameState={gameState} setGameState={setGameState} setStopTimer={setStopTimer} />
     </GameContainer>
   );
 };
 
-const GrammarGeekGame = ({ gameState, setGameState, knowlympics, onNextGame = null }) => {
+const GrammarGeekGame = ({ gameState, setGameState, knowlympics, setStopTimer, onNextGame = null }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [question, setQuestion] = useState("I am a very _ person");
   const [answers, setAnswers] = useState({
@@ -56,9 +57,11 @@ const GrammarGeekGame = ({ gameState, setGameState, knowlympics, onNextGame = nu
       }));
     }
     setShowHint(true);
+    setStopTimer(true);
   };
 
   const handleNextQuestion = () => {
+    setStopTimer(false);
     if (onNextGame) {
       onNextGame();
       return;

@@ -34,6 +34,7 @@ const GameContainer = ({
   setGameState,
   children,
   onTimeOut = () => {},
+  stopTimer = false,
   ...props
 }) => {
   const [currentUser, setCurrentUser] = useUserContext();
@@ -50,6 +51,9 @@ const GameContainer = ({
   });
   const [timer, setTimer] = useState(data?.games[0]?.timer || 120);
   const timerInterval = React.useRef(null);
+  const tick = () => {
+    setTimer((timer) => timer - 1);
+  };
 
   useEffect(() => {
     // leaving game
@@ -66,11 +70,21 @@ const GameContainer = ({
 
   useEffect(() => {
     setTimer(data?.games[0]?.timer || 120);
-    timerInterval.current = setInterval(() => {
-      setTimer((timer) => timer - 1);
-    }, 1000);
-    return () => clearInterval(timerInterval.current);
   }, [data]);
+
+  useEffect(() => {
+    // start And pause timer
+    if (stopTimer) {
+      clearInterval(timerInterval.current);
+    } else {
+      timerInterval.current = setInterval(() => {
+        tick();
+      }, 1000);
+    }
+    return () => {
+      clearInterval(timerInterval.current);
+    };
+  }, [stopTimer]);
 
   useEffect(() => {
     if (timer <= 0) {
