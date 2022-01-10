@@ -1,25 +1,30 @@
 import React from "react";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
 
-const Timer = ({ timer, ...props }) => {
+const Timer = ({ maxTime, timer, ...props }) => {
+  console.log("timer", timer);
+  console.log("maxTime", maxTime);
+  console.log("calcul", (timer / maxTime) * 100);
   return (
-    <Flex
+    <CircularProgress
+      value={(timer / maxTime) * 100}
+      size="50px"
+      color="blueClear.500"
       justify="center"
       alignItems="center"
       minW="50px"
       w="fit-content"
       h="50px"
-      borderRadius="100px"
-      border="2px solid #00455B"
-      bg="blueClear.500"
+      trackColor="transparent"
       color="deepDarkBlue"
+      bg="blueClear.500"
+      borderRadius="50%"
+      thickness="15px"
       m={2}
       {...props}
     >
-      <Text fontWeight="500" fontSize="xs">
-        {timer}
-      </Text>
-    </Flex>
+      <CircularProgressLabel>{timer}</CircularProgressLabel>
+    </CircularProgress>
   );
 };
 

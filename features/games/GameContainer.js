@@ -97,8 +97,8 @@ const GameContainer = ({
   }, [initialUserStarPercentage, gameState.starPercentage]);
   return timer > 0 ? (
     <Box>
-      <MobileGameHeader timer={timer} />
-      <DesktopGameHeader timer={timer} />
+      <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
+      <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <Box h={{ base: "0vh", md: "5vh" }} />
       <Flex direction="column" {...props}>
         <GameTitle game={game} />

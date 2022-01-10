@@ -189,24 +189,24 @@ const MobileHeader = () => {
   );
 };
 
-const MobileGameHeader = ({ timer = 0 }) => {
+const MobileGameHeader = ({maxTime=100, timer = 0 }) => {
   const [currentUser] = useUserContext();
   const router = useRouter();
   const HOME_SECTION = SECTIONS[0];
   return (
     <MobileHeaderBox currentUser={currentUser} router={router} alignItems="center" px={1}>
-      <Timer timer={timer} />
+      <Timer maxTime={maxTime} timer={timer} />
       {currentUser.online ? <StarPercentage /> : null}
       <IconLink item={HOME_SECTION} key={HOME_SECTION.name} router={router} />
     </MobileHeaderBox>
   );
 };
 
-const DesktopGameHeader = ({ timer = 0 }) => {
+const DesktopGameHeader = ({ maxTime=100, timer = 0 }) => {
   const [currentUser] = useUserContext();
   return (
     <Flex mx={3} position="fixed" left="0" w="30%" display={{ base: "none", md: "flex" }}>
-      <Timer timer={timer} mx={3} />
+      <Timer maxTime={maxTime} timer={timer} mx={3} />
       {currentUser.online ? <StarPercentage /> : null}
     </Flex>
   );
