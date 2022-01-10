@@ -27,7 +27,7 @@ const ContainedSynonymRollGame = () => {
   );
 };
 
-const SynonymRollGame = ({ gameState, setGameState, onNextGame = null }) => {
+const SynonymRollGame = ({ gameState, setGameState, onNextGame = null, knowlympics=false }) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_SYNONYMS, {
     onCompleted: (res) => {
@@ -75,6 +75,7 @@ const SynonymRollGame = ({ gameState, setGameState, onNextGame = null }) => {
           onComplete={handleMatchingWordsComplete}
           setGameState={setGameState}
           gameState={gameState}
+          knowlympics={knowlympics}
         />
       )}
       {error && <Error />}

@@ -167,6 +167,7 @@ const FabVocabGame = ({ gameState, setGameState,setStopTimer, onNextGame = null,
               setGameState={setGameState}
               gameState={gameState}
               wordArray={wordArray}
+              knowlympics={knowlympics}
             />
             <Divider />
             <Text my={2} fontWeight={400}>
@@ -182,6 +183,7 @@ const FabVocabGame = ({ gameState, setGameState,setStopTimer, onNextGame = null,
               setGameState={setGameState}
               gameState={gameState}
               wordArray={sentenceArray}
+              knowlympics={knowlympics}
             />
             {wordTries === 0 && sentenceTries === 0 ? (
               <NextButton onNext={handleNextQuestion}>
@@ -206,6 +208,7 @@ const Words = ({
   gameState,
   setGameState,
   wordArray,
+  knowlympics=false,
   ...props
 }) => {
   // we get as much tries as correct answers
@@ -227,8 +230,8 @@ const Words = ({
     if (words[word]?.correct) {
       const tmpGameState = {
         ...gameState,
-        starPercentage: gameState.starPercentage + POINTS.SMALL + bonusPoints,
-        points: gameState.points + POINTS.SMALL + bonusPoints,
+        starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.SMALL + bonusPoints,
+        points: knowlympics ? gameState.points + POINTS.SMALL + bonusPoints : 0,
         coins: gameState.coins + POINTS.SMALL + bonusPoints,
       };
       setGameState(tmpGameState);

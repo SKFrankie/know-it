@@ -19,6 +19,7 @@ const MatchingWords = ({
     "#FF00FF",
     "#0000FF",
   ],
+  knowlympics = false,
 }) => {
   const [wordsObject, setWordsObject] = useState({});
   const [currentColor, setCurrentColor] = useState(0);
@@ -66,17 +67,17 @@ const MatchingWords = ({
         // words matched
         const tmpGameState = {
           ...gameState,
-          starPercentage: gameState.starPercentage + POINTS.SMALL,
-          points: gameState.points + POINTS.SMALL,
+          starPercentage: knowlympics ? 0 :gameState.starPercentage + POINTS.SMALL,
+          points: knowlympics ? gameState.points + POINTS.SMALL : 0,
           coins: gameState.coins + POINTS.SMALL,
         };
         if (goodAnswers + 1 === Object.keys(matchingWords).length) {
           // all completed
           tmpGameState = {
             ...tmpGameState,
-            starPercentage: gameState.starPercentage + POINTS.SMALL,
-            coins: gameState.coins + POINTS.BIG,
-            points: gameState.points + POINTS.SMALL,
+            starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.SMALL,
+            points: knowlympics ? gameState.points + POINTS.SMALL : 0,
+            coins: gameState.coins + POINTS.SMALL,
           };
           // game state is updated here too because there's a return
           setGameState(tmpGameState);
