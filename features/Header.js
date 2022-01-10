@@ -123,9 +123,9 @@ const DesktopHeader = () => {
               <MenuButton mx={4}>
                 <MyAvatar size="md" />
               </MenuButton>
-              <MenuList color="black">
+              <MenuList color="darkBlue" bg="deepDarkBlue">
                 {ADDITIONNAL_SECTIONS.map((section) => (
-                  <NextLink key={section.name} href={section.path} passHref>
+                  <NextLink key={section.name} href={section.path}passHref>
                     <MenuItem>{section.name}</MenuItem>
                   </NextLink>
                 ))}
