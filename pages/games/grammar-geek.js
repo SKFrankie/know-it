@@ -1,7 +1,7 @@
-import GrammarGeekGame from '../../features/games/GrammarGeekGame';
+import GrammarGeekGame from "../../features/games/GrammarGeekGame";
 
 const GrammarGeek = () => {
-  return <GrammarGeekGame/>;
-}
+  return <GrammarGeekGame />;
+};
 
-export default GrammarGeek
+export default GrammarGeek;

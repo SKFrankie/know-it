@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../ui/Button";
-import { Image, Flex, Text, Divider} from "@chakra-ui/react";
-import GameContainer, {NextButton} from "./GameContainer";
+import { Image, Flex, Text, Divider } from "@chakra-ui/react";
+import GameContainer, { NextButton } from "./GameContainer";
 import { useQuery, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Error from "../Error";

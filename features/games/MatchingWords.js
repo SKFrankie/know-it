@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Button, Box } from "@chakra-ui/react";
 import shuffleArray from "../../helpers/shuffleArray";
-import {POINTS} from "../../constants";
+import { POINTS } from "../../constants";
 
 const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameState }) => {
   const ColorArray = [
@@ -90,7 +90,7 @@ const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameSta
 
   return (
     <Flex direction={{ base: "row", md: "column" }} justify="space-around" my={3}>
-      <Box h="10vh" display={{base: "none", md: "block"}}/>
+      <Box h="10vh" display={{ base: "none", md: "block" }} />
       <WordColumn
         wordsObject={wordsObject}
         matchingWords={matchingWords}

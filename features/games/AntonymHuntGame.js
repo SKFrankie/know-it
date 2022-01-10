@@ -20,14 +20,13 @@ const RANDOM_ANTONYM = gql`
 
 const ContainedAntonymHuntGame = () => {
   const game = GAME_TYPES.ANTONYM_HUNT;
-  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
+  const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
   return (
     <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
       <AntonymHuntGame gameState={gameState} setGameState={setGameState} />
     </GameContainer>
   );
 };
-
 
 const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null }) => {
   const [matchingWords, setMatchingWords] = useState({});

@@ -1,7 +1,7 @@
-import React from 'react'
-import {Flex, Text} from '@chakra-ui/react'
+import React from "react";
+import { Flex, Text } from "@chakra-ui/react";
 
-const Timer = ({timer, ...props}) => {
+const Timer = ({ timer, ...props }) => {
   return (
     <Flex
       justify="center"
@@ -16,9 +16,11 @@ const Timer = ({timer, ...props}) => {
       m={2}
       {...props}
     >
-      <Text fontWeight="500" fontSize="xs">{timer}</Text>
+      <Text fontWeight="500" fontSize="xs">
+        {timer}
+      </Text>
     </Flex>
   );
-}
+};
 
-export default Timer
+export default Timer;

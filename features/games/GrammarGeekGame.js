@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, Image, Flex, Box } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import GameContainer, {NextButton} from "./GameContainer";
+import GameContainer, { NextButton } from "./GameContainer";
 import { GAME_TYPES, POINTS } from "../../constants";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import shuffleArray from "../../helpers/shuffleArray";
@@ -32,8 +32,7 @@ const ContainedGrammarGeekGame = () => {
   );
 };
 
-
-const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = null}) => {
+const GrammarGeekGame = ({ gameState, setGameState, knowlympics, onNextGame = null }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [question, setQuestion] = useState("I am a very _ person");
   const [answers, setAnswers] = useState({
@@ -47,9 +46,8 @@ const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = nul
 
   const [answerArray, setAnswerArray] = useState([]);
 
-
   const handleAnswerClick = (isCorrect) => {
-    console.log("state", gameState)
+    console.log("state", gameState);
     if (isCorrect) {
       setGameState((prevState) => ({
         ...prevState,
@@ -58,8 +56,8 @@ const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = nul
         coins: gameState.coins + POINTS.SMALL,
       }));
     }
-    setShowHint(true)
-  }
+    setShowHint(true);
+  };
 
   const handleNextQuestion = () => {
     if (onNextGame) {
@@ -72,7 +70,7 @@ const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = nul
     } else {
       refetch();
     }
-  }
+  };
 
   const handleNewQuestion = (question) => {
     const tmpAnswers = {};
@@ -86,7 +84,7 @@ const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = nul
 
     setQuestion(question.sentence);
     setHint(question.hint);
-    setShowHint(false)
+    setShowHint(false);
 
     setAnswerArray(shuffleArray(Object.keys(tmpAnswers)));
   };
@@ -102,7 +100,6 @@ const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = nul
     },
     ...basicQueryResultSupport,
   });
-
 
   return (
     <>
@@ -124,7 +121,11 @@ const GrammarGeekGame = ({gameState, setGameState, knowlympics, onNextGame = nul
           onAnswerClick={handleAnswerClick}
         />
         <Hint hint={hint} showHint={showHint} />
-        {showHint && <NextButton w={{base: "100%", md: "50%"}} onNext={handleNextQuestion}>{knowlympics ? "Next" : "Next Question"}</NextButton>}
+        {showHint && (
+          <NextButton w={{ base: "100%", md: "50%" }} onNext={handleNextQuestion}>
+            {knowlympics ? "Next" : "Next Question"}
+          </NextButton>
+        )}
       </Flex>
       {error && <Error />}
       {loading && <Loading />}
@@ -176,7 +177,7 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
       }
       tmpAnswerObject[key].disabled = true;
     });
-    setAnswers({answers, ... tmpAnswerObject});
+    setAnswers({ answers, ...tmpAnswerObject });
     onAnswerClick(isCorrect(answer));
   };
 
@@ -229,7 +230,7 @@ const Hint = ({ hint, showHint }) => {
       display={showHint && hint ? "flex" : "none"}
       position="relative"
     >
-    <InfoIcon position="absolute" left="1" top="1" color="white" boxSize="5" />
+      <InfoIcon position="absolute" left="1" top="1" color="white" boxSize="5" />
       <Text m={6} fontSize="xl" fontWeight="bold">
         {hint}
       </Text>
@@ -237,5 +238,5 @@ const Hint = ({ hint, showHint }) => {
   );
 };
 
-export {GrammarGeekGame};
+export { GrammarGeekGame };
 export default ContainedGrammarGeekGame;

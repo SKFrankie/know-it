@@ -83,21 +83,20 @@ const KnowlympicsButton = ({ children, disabled = true, ...props }) => {
   );
 };
 
-
 const SuccessButton = ({ children, ...props }) => {
   return (
     <Button {...props} colorScheme="green" fontSize="md" height="fit-content" p={1}>
-    {children}
+      {children}
     </Button>
-    )
-}
+  );
+};
 const CancelButton = ({ children, ...props }) => {
   return (
     <Button {...props} colorScheme="red" fontSize="md" height="fit-content" p={1}>
-    {children}
+      {children}
     </Button>
-    )
-}
+  );
+};
 
 export default Button;
 export { SubmitButton, KnowlympicsButton, SuccessButton, CancelButton };

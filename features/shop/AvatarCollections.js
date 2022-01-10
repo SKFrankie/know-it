@@ -39,7 +39,7 @@ const BUY_AVATAR = gql`
 `;
 
 const AvatarCollections = () => {
-  const { loading, error, data } = useQuery(AVATAR_COLLECTIONS, {...basicQueryResultSupport});
+  const { loading, error, data } = useQuery(AVATAR_COLLECTIONS, { ...basicQueryResultSupport });
   const now = new Date();
   if (loading) return <Loading />;
   if (error) return <Error />;
@@ -63,8 +63,14 @@ const AvatarCollection = ({ collection, now }) => {
   }, []);
   return (
     <Flex my={2} display={display ? "flex" : "none"} direction="column">
-      <Text fontSize="2xl" fontWeight="bold">{collection.name}</Text>
-      <Flex flexWrap={{base: "nowrap", md: "wrap"}} overflow={{base: "scroll", md: "initial"}} w="100%">
+      <Text fontSize="2xl" fontWeight="bold">
+        {collection.name}
+      </Text>
+      <Flex
+        flexWrap={{ base: "nowrap", md: "wrap" }}
+        overflow={{ base: "scroll", md: "initial" }}
+        w="100%"
+      >
         {collection.avatars.map((avatar) => (
           <Avatar key={avatar.avatarId} avatar={avatar} />
         ))}
@@ -76,8 +82,8 @@ const AvatarCollection = ({ collection, now }) => {
 const Avatar = ({ avatar }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentUser, setCurrentUser] = useUserContext();
-  const [canBuy, setCanBuy] = useState(false)
-  const [alreadyBought, setAlreadyBought] = useState(false)
+  const [canBuy, setCanBuy] = useState(false);
+  const [alreadyBought, setAlreadyBought] = useState(false);
   const [buyAvatar] = useMutation(BUY_AVATAR, {
     variables: { avatarId: avatar.avatarId, price: avatar.coinPrice },
     refetchQueries: [AVATAR_COLLECTIONS],
@@ -88,7 +94,7 @@ const Avatar = ({ avatar }) => {
   });
 
   useEffect(() => {
-    if (currentUser?.inventory){
+    if (currentUser?.inventory) {
       const notInInventory =
         currentUser.inventory.find((i) => i.avatarId === avatar.avatarId) === undefined;
       setCanBuy(currentUser.coins >= avatar.coinPrice && notInInventory);
@@ -96,10 +102,9 @@ const Avatar = ({ avatar }) => {
     }
   }, [currentUser.coins, avatar.coinPrice]);
 
-
   const open = () => {
     if (canBuy) {
-    onOpen();
+      onOpen();
     }
   };
   return (
@@ -159,11 +164,18 @@ const Avatar = ({ avatar }) => {
 
 const AvatarImage = ({ picture, ...props }) => {
   return (
-    <Flex  justify="center" p={2} borderRadius="4px" bg="white" boxSize={{ base: "55px", md: "70px" }} {...props} >
-    <Image src={picture}  maxH={{base: "40px", md: "60px"}}/>
+    <Flex
+      justify="center"
+      p={2}
+      borderRadius="4px"
+      bg="white"
+      boxSize={{ base: "55px", md: "70px" }}
+      {...props}
+    >
+      <Image src={picture} maxH={{ base: "40px", md: "60px" }} />
     </Flex>
   );
-}
+};
 
-export { AvatarImage }
+export { AvatarImage };
 export default AvatarCollections;

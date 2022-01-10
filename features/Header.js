@@ -20,11 +20,11 @@ import { logout } from "./auth/helper.js";
 import { CoinCurrency, StarCurrency, StarPercentage } from "./Currency.js";
 import { MyAvatar } from "../ui/Avatar.js";
 import Timer from "./games/Timer.js";
-import LoginButton from "./auth/LoginButton"
+import LoginButton from "./auth/LoginButton";
 
 const isActive = (router, item) => {
   return router.pathname === item.path || item?.active?.includes(router.pathname);
-}
+};
 const MobileNavbar = () => {
   const router = useRouter();
   const isGame = router.pathname.includes("/games");
@@ -33,7 +33,7 @@ const MobileNavbar = () => {
       <Flex
         boxShadow="0px -4px 4px rgba(255, 255, 255, 0.25)"
         bg="darkBlue"
-        display={isGame ? "none" :{ base: "flex", md: "none" }}
+        display={isGame ? "none" : { base: "flex", md: "none" }}
         position="fixed"
         bottom="0"
         left="0"
@@ -149,7 +149,7 @@ const DesktopHeader = () => {
   );
 };
 
-const MobileHeaderBox = ({children, currentUser, router, ...props}) => {
+const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
   return (
     !NO_HEADER_ROUTES.includes(router.pathname) &&
     (currentUser.online ? (
@@ -173,7 +173,6 @@ const MobileHeaderBox = ({children, currentUser, router, ...props}) => {
     ))
   );
 };
-
 
 const MobileHeader = () => {
   const [currentUser] = useUserContext();

@@ -1,7 +1,7 @@
-import AntonymHuntGame from '../../features/games/AntonymHuntGame';
+import AntonymHuntGame from "../../features/games/AntonymHuntGame";
 
 const AntonymHunt = () => {
-  return <AntonymHuntGame/>;
-}
+  return <AntonymHuntGame />;
+};
 
-export default AntonymHunt
+export default AntonymHunt;

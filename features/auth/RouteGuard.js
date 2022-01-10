@@ -51,9 +51,18 @@ const RouteGuard = ({ children }) => {
 
   function authCheck(url) {
     // redirect to login page if accessing a private page and not logged in
-    let publicGames = GAMES_SECTIONS.slice(0)
-    publicGames = publicGames.map(section => section.path);
-    const publicPaths = ["/login", "/signup", "/", "/shop/coins", "/shop/money", "/about", "/settings", ...publicGames];
+    let publicGames = GAMES_SECTIONS.slice(0);
+    publicGames = publicGames.map((section) => section.path);
+    const publicPaths = [
+      "/login",
+      "/signup",
+      "/",
+      "/shop/coins",
+      "/shop/money",
+      "/about",
+      "/settings",
+      ...publicGames,
+    ];
     const path = url.split("?")[0];
     if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path)) {
       setAuthorized(false);

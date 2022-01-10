@@ -1,5 +1,5 @@
-import React from 'react'
-import {Icon, Button as ChakraButton } from "@chakra-ui/react";
+import React from "react";
+import { Icon, Button as ChakraButton } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { Icon as Iconify } from "@iconify/react";
 
@@ -22,6 +22,6 @@ const LoginButton = () => {
       </ChakraButton>
     </NextLink>
   );
-}
+};
 
-export default LoginButton
+export default LoginButton;

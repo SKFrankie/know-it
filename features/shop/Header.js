@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import { useRouter } from "next/router";
-import {Flex} from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import Link from "../../ui/Link.js";
 import { SHOP_SECTIONS } from "../../constants";
@@ -23,6 +23,6 @@ const Header = () => {
       ))}
     </Flex>
   );
-}
+};
 
-export default Header
+export default Header;

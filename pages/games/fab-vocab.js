@@ -1,7 +1,7 @@
-import FabVocabGame from '../../features/games/FabVocabGame';
+import FabVocabGame from "../../features/games/FabVocabGame";
 
 const FabVocab = () => {
-  return <FabVocabGame/>;
-}
+  return <FabVocabGame />;
+};
 
-export default FabVocab
+export default FabVocab;

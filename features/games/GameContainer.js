@@ -28,16 +28,26 @@ const UPDATE_USER = gql`
   }
 `;
 
-const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = () => {}, ...props }) => {
+const GameContainer = ({
+  game,
+  gameState,
+  setGameState,
+  children,
+  onTimeOut = () => {},
+  ...props
+}) => {
   const [currentUser, setCurrentUser] = useUserContext();
-  const [initialUserStarPercentage, setInitialUserStarPercentage ]= useState(null);
+  const [initialUserStarPercentage, setInitialUserStarPercentage] = useState(null);
   const { data } = useQuery(GET_TIMER, {
     ...basicQueryResultSupport,
     variables: { gameName: game.name },
   });
-  const [UpdateUser] = useMutation(UPDATE_USER, {onCompleted(data) {
-    setCurrentUser({...currentUser, ...data.updateCurrentUser});
-  },...basicQueryResultSupport});
+  const [UpdateUser] = useMutation(UPDATE_USER, {
+    onCompleted(data) {
+      setCurrentUser({ ...currentUser, ...data.updateCurrentUser });
+    },
+    ...basicQueryResultSupport,
+  });
   const [timer, setTimer] = useState(data?.games[0]?.timer || 120);
   const timerInterval = React.useRef(null);
 
@@ -45,11 +55,11 @@ const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = ()
     // leaving game
     return () => {
       setCurrentUser({ ...currentUser, starPercentage: initialUserStarPercentage });
-    }
+    };
   }, [initialUserStarPercentage]);
 
   useEffect(() => {
-    if(initialUserStarPercentage === null) {
+    if (initialUserStarPercentage === null) {
       setInitialUserStarPercentage(currentUser?.starPercentage || null);
     }
   }, [currentUser]);
@@ -83,7 +93,7 @@ const GameContainer = ({ game, gameState, setGameState, children, onTimeOut = ()
       ...currentUser,
       starPercentage: tmpStarPercentage % 100,
     });
-    setGameState({ ...gameState, stars: parseInt(tmpStarPercentage / 100)});
+    setGameState({ ...gameState, stars: parseInt(tmpStarPercentage / 100) });
   }, [initialUserStarPercentage, gameState.starPercentage]);
   return timer > 0 ? (
     <Box>
@@ -107,7 +117,7 @@ const GameTitle = ({ game }) => {
       <Text fontSize={{ base: "lg", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
-      <GameImage game={game} maxH={{ base: "50px", md: "60px" }} transform="scaleX(-1)"/>
+      <GameImage game={game} maxH={{ base: "50px", md: "60px" }} transform="scaleX(-1)" />
     </Flex>
   );
 };
@@ -204,7 +214,7 @@ const PointDisplayer = ({ label, children }) => {
   );
 };
 
-const NextButton = ({onNext, children, ...props }) => {
+const NextButton = ({ onNext, children, ...props }) => {
   return (
     <Button onClick={onNext} w="100%" my={3} {...props}>
       {children}

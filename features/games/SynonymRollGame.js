@@ -19,7 +19,7 @@ const RANDOM_SYNONYMS = gql`
 
 const ContainedSynonymRollGame = () => {
   const game = GAME_TYPES.SYNONYM_ROLL;
-  const [gameState, setGameState] = useState({points:0, starPercentage:0, coins:0, stars:0});
+  const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
   return (
     <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
       <SynonymRollGame gameState={gameState} setGameState={setGameState} />

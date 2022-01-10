@@ -20,8 +20,8 @@ const ADDITIONNAL_SECTIONS = [
 ];
 
 const SHOP_SECTIONS = [
-  { name: "Coins", path: "/shop/coins"},
-  { name: "Money", path: "/shop/money"},
+  { name: "Coins", path: "/shop/coins" },
+  { name: "Money", path: "/shop/money" },
 ];
 
 const NO_HEADER_ROUTES = ["/login", "/signup"];
@@ -44,9 +44,17 @@ const REWARD_TYPES = {
 };
 
 const GAME_TYPES = {
-  SYNONYM_ROLL: { name: "SYNONYM_ROLL", label: "Synonym Roll", image:"/images/SynonymRollImage.png"},
-  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab"},
-  ANTONYM_HUNT: { name: "ANTONYM_HUNT", label: "Antonym Hunt", image:"/images/AntonymHuntImage.png"},
+  SYNONYM_ROLL: {
+    name: "SYNONYM_ROLL",
+    label: "Synonym Roll",
+    image: "/images/SynonymRollImage.png",
+  },
+  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab" },
+  ANTONYM_HUNT: {
+    name: "ANTONYM_HUNT",
+    label: "Antonym Hunt",
+    image: "/images/AntonymHuntImage.png",
+  },
   GRAMMAR_GEEK: { name: "GRAMMAR_GEEK", label: "Grammar Geek" },
   KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics" },
 };
@@ -57,5 +65,13 @@ const POINTS = {
   HUGE: 20,
 };
 
-
-export { SECTIONS, ADDITIONNAL_SECTIONS, NO_HEADER_ROUTES, GAMES_SECTIONS, REWARD_TYPES, SHOP_SECTIONS, GAME_TYPES, POINTS };
+export {
+  SECTIONS,
+  ADDITIONNAL_SECTIONS,
+  NO_HEADER_ROUTES,
+  GAMES_SECTIONS,
+  REWARD_TYPES,
+  SHOP_SECTIONS,
+  GAME_TYPES,
+  POINTS,
+};

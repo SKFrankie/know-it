@@ -1,7 +1,7 @@
-import KnowlympicsGame from '../../features/games/KnowlympicsGame';
+import KnowlympicsGame from "../../features/games/KnowlympicsGame";
 
 const Knowlympics = () => {
-  return <KnowlympicsGame/>;
-}
+  return <KnowlympicsGame />;
+};
 
 export default Knowlympics;

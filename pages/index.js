@@ -1,7 +1,5 @@
-import { Icon, Button as ChakraButton, Flex, Image, useDisclosure } from "@chakra-ui/react";
+import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import Head from "next/head";
-import { Icon as Iconify } from "@iconify/react";
-import NextLink from "next/link";
 
 import { useUserContext } from "../context/user";
 import Title from "../ui/Title.js";
@@ -68,7 +66,7 @@ const GiftButton = ({ ...props }) => {
         label="Calendar"
         boxSize={{ base: 10, md: 12 }}
         onClick={() => onOpen()}
-        icon={<GiftIcon boxSize={{ base: 7, md: 8}} />}
+        icon={<GiftIcon boxSize={{ base: 7, md: 8 }} />}
         zIndex={1}
         {...props}
       />
