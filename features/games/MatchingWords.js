@@ -3,8 +3,12 @@ import { Flex, Text, Button, Box } from "@chakra-ui/react";
 import shuffleArray from "../../helpers/shuffleArray";
 import { POINTS } from "../../constants";
 
-const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameState }) => {
-  const ColorArray = [
+const MatchingWords = ({
+  matchingWords = null,
+  onComplete,
+  gameState,
+  setGameState,
+  colorArray = [
     "#FF8C00",
     "#D40000",
     "#FFD700",
@@ -14,8 +18,8 @@ const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameSta
     "#BD00FF",
     "#FF00FF",
     "#0000FF",
-  ];
-
+  ],
+}) => {
   const [wordsObject, setWordsObject] = useState({});
   const [currentColor, setCurrentColor] = useState(0);
   const [word1, setWord1] = useState(null);
@@ -70,7 +74,7 @@ const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameSta
           return;
         }
         setGoodAnswers(goodAnswers + 1);
-        const color = ColorArray[currentColor];
+        const color = colorArray[currentColor];
         setWordsObject({ ...wordsObject, [word1]: { color }, [word]: { color } });
         setCurrentColor(currentColor + 1);
         setGameState(tmpGameState);
@@ -94,14 +98,14 @@ const MatchingWords = ({ matchingWords = null, onComplete, gameState, setGameSta
       <WordColumn
         wordsObject={wordsObject}
         matchingWords={matchingWords}
-        color={ColorArray[currentColor]}
+        color={colorArray[currentColor]}
         onWordClick={onWord1Click}
         variant="left"
       />
       <WordColumn
         wordsObject={wordsObject}
         matchingWords={matchingWords}
-        color={ColorArray[currentColor]}
+        color={colorArray[currentColor]}
         onWordClick={onWord2Click}
         variant="right"
       />

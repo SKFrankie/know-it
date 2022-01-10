@@ -72,6 +72,17 @@ const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null }) => {
           onComplete={handleMatchingWordsComplete}
           setGameState={setGameState}
           gameState={gameState}
+          colorArray={[
+            "#930000",
+            "#925003",
+            "#F0940B",
+            "#6D00B0",
+            "#06B402",
+            "#00A5DB",
+            "#00398E",
+            "#00B4B4",
+            "#0F0FA4",
+          ]}
         />
       )}
       {error && <Error />}
