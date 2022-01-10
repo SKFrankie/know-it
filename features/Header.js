@@ -182,7 +182,7 @@ const MobileHeader = () => {
     !isGame && (
       <MobileHeaderBox currentUser={currentUser} router={router}>
         <CoinCurrency />
-        <MyAvatar position="absolute" top="10px" />
+        <MyAvatar position="absolute" top="20px" />
         <StarCurrency />
       </MobileHeaderBox>
     )
