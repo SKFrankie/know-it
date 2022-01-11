@@ -7,6 +7,7 @@ import HourGlassIcon from "../../ui/icons/HourGlassIcon";
 import { CoinCurrencyNoUser } from "../Currency";
 import Button from "../../ui/Button";
 import { useUserContext } from "../../context/user";
+import {isCurrentWeek} from "./helpers";
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -28,6 +29,15 @@ const UPDATE_USER = gql`
   }
 `;
 
+const UPDATE_POINTS = gql`
+  mutation UpdatePoints($points: Int) {
+    updatePoints(points: $points) {
+      points
+      lastRankingDate
+    }
+  }
+`;
+
 const GameContainer = ({
   game,
   gameState,
@@ -35,10 +45,10 @@ const GameContainer = ({
   children,
   onTimeOut = () => {},
   stopTimer = false,
-  knowlympics=false,
+  knowlympics = false,
   ...props
 }) => {
-  const [currentUser, setCurrentUser] = useUserContext();
+  const [currentUser, setCurrentUser, { refetch }] = useUserContext();
   const [initialUserStarPercentage, setInitialUserStarPercentage] = useState(null);
   const [timer, setTimer] = useState(data?.games[0]?.timer || 120);
 
@@ -51,8 +61,14 @@ const GameContainer = ({
   });
   const [UpdateUser] = useMutation(UPDATE_USER, {
     onCompleted(data) {
-      setCurrentUser({ ...currentUser, ...data.updateCurrentUser });
+      if (refetch) {
+        refetch();
+      }
     },
+    ...basicQueryResultSupport,
+  });
+  const [UpdatePoints] = useMutation(UPDATE_POINTS, {
+    onCompleted(data) {},
     ...basicQueryResultSupport,
   });
 
@@ -99,12 +115,30 @@ const GameContainer = ({
     if (timer <= 0) {
       clearInterval(timerInterval.current);
       // end of time
+      const variables = {};
+      if (gameState.points > 0) {
+        let points = 0;
+        if (
+          !currentUser?.lastRankingDate ||
+          !isCurrentWeek(new Date(currentUser?.lastRankingDate))
+        ) {
+          // not current week start points from 0
+          points = gameState.points;
+        } else {
+          // current week, continue to add points
+          points = currentUser?.points + gameState.points;
+        }
+        variables = { points, lastRankingDate: new Date(), ...variables };
+        UpdatePoints({ variables });
+      }
+
+      variables = {
+        coins: currentUser.coins + gameState.coins,
+        stars: currentUser.stars + gameState.stars,
+        starPercentage: (initialUserStarPercentage + gameState.starPercentage) % 100,
+      };
       UpdateUser({
-        variables: {
-          coins: currentUser.coins + gameState.coins,
-          stars: currentUser.stars + gameState.stars,
-          starPercentage: (initialUserStarPercentage + gameState.starPercentage) % 100,
-        },
+        variables,
       });
       onTimeOut();
     }
@@ -167,7 +201,7 @@ const GameImage = ({ game, ...props }) => {
 const EndingScreen = ({
   onRestart = () => {},
   gameState = { points: 0, starPercentage: 0, coins: 0 },
-  knowlympics=false,
+  knowlympics = false,
 }) => {
   const [currentUser] = useUserContext();
   const { coins, points, starPercentage } = gameState;
