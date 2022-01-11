@@ -10,7 +10,10 @@ import { SuccessButton, CancelButton } from "../../ui/Button";
 
 const AVATAR_COLLECTIONS = gql`
   query AvatarCollections {
-    avatarCollections(options: { sort: { createdAt: DESC } }) {
+    avatarCollections(
+      options: { sort: { createdAt: DESC } }
+      where: { name_NOT_CONTAINS: "MONSTARS" }
+    ) {
       avatarCollectionId
       name
       createdAt

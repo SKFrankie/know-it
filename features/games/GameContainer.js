@@ -24,7 +24,7 @@ const GET_TOP_RANKING_AND_REWARDS = gql`
     rankingUsers(limit: 3) {
       userId
     }
-    avatarCollections {
+    avatarCollections(where: { name_CONTAINS: "MONSTARS" }) {
       avatarCollectionId
       avatars {
         picture
