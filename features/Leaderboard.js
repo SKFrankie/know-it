@@ -7,14 +7,15 @@ import { useUserContext } from "../context/user";
 import Loading from "./Loading";
 import Error from "./Error";
 
-    // rankingUsers {
+// testing data
+    // rankingUsers : users {
     //   userId
     //   points
     //   username
     // }
 const RANKING_USERS = gql`
   query RankingUsers {
-    rankingUsers : users {
+    rankingUsers {
       userId
       points
       username
