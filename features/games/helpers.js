@@ -1,3 +1,4 @@
+import dateToString from "../../helpers/dateToString";
 //  function to check if date is in current week
 const isCurrentWeek = (date) => {
   const today = new Date();
@@ -6,4 +7,20 @@ const isCurrentWeek = (date) => {
   return date >= start && date <= end;
 };
 
-export { isCurrentWeek };
+const getFirstDayOfLastWeek = () => {
+  const today = new Date()
+  const day = today.getDay()
+  const diff = today.getDate() - day + (day === 0 ? -6 : 1) - 7
+  const date = new Date(today.setDate(diff))
+  return dateToString(date)
+}
+
+const getLastDayOfLastWeek = () => {
+  const today = new Date()
+  const day = today.getDay()
+  const diff = today.getDate() - day + (day === 0 ? -6 : 1) - 7
+  const date = new Date(today.setDate(diff + 6))
+  return dateToString(date)
+}
+
+export { isCurrentWeek, getFirstDayOfLastWeek, getLastDayOfLastWeek };
