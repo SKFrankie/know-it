@@ -33,6 +33,7 @@ const RANKING_USERS = gql`
 // ];
 
 const Leaderboard = () => {
+  const [currentUser] = useUserContext();
   const [users, setUsers] = useState([]);
   const { data, loading, error } = useQuery(RANKING_USERS, {
     onCompleted: (data) => {
@@ -47,7 +48,7 @@ const Leaderboard = () => {
       setUsers(data.rankingUsers);
       return;
     }
-    const filteredUsers = users.filter((user) =>
+    const filteredUsers = data?.rankingUsers.filter((user) =>
       user.username.toLowerCase().includes(value.toLowerCase())
     );
     setUsers(filteredUsers);
@@ -58,8 +59,41 @@ const Leaderboard = () => {
       return true;
     }
     return false;
-  }
+  };
 
+  const isInTopThree = (index) => {
+    if (users.length < 3 || index < 3) {
+      return true;
+    }
+    return false;
+  };
+
+  const isInBasicRanking = (user, index) => {
+    if (index >= 3) {
+      if (
+        data.rankingUsers.length >= index + 2 &&
+        data.rankingUsers[index + 1].userId === currentUser.userId
+      ) {
+        return true;
+      }
+      if (user.userId === currentUser.userId) {
+        return true;
+      }
+      if (index - 1 >= 0 && data.rankingUsers[index - 1].userId === currentUser.userId) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const isTruncatable = (index) => {
+    if (index === 3) {
+      return true }
+    if (index - 2  >=0 && data.rankingUsers[index - 2].userId === currentUser.userId) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <Flex
@@ -80,7 +114,32 @@ const Leaderboard = () => {
         <Flex direction="column" justify="center" align="center" w="100%" mt={2}>
           <Searchbar onChange={handleSearch} />
           {(data?.rankingUsers || []).map((user, index) => {
-            return <Row display={displayUser(user)} user={user} key={user.userId} index={index} length={users.length} />;
+            if (isInTopThree(index)) {
+              return (
+                <Row
+                  display={displayUser(user)}
+                  user={user}
+                  key={user.userId}
+                  index={index}
+                  length={users.length}
+                />
+              );
+            }
+            if (isInBasicRanking(user, index)) {
+              return (
+                <Row
+                  display={displayUser(user)}
+                  user={user}
+                  key={user.userId}
+                  index={index}
+                  length={users.length}
+                />
+              );
+            }
+            if (isTruncatable(index)) {
+              return <Text key={user.userId} fontSize="xs">...</Text>;
+            }
+            return null;
           })}
         </Flex>
       )}
