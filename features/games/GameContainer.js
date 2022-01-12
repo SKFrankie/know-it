@@ -77,6 +77,7 @@ const GameContainer = ({
     onCompleted(data) {
       if (refetch) {
         refetch();
+        setCurrentUser(...data.updateCurrentUser, ...currentUser);
       }
     },
     ...basicQueryResultSupport,
@@ -146,9 +147,11 @@ const GameContainer = ({
         UpdatePoints({ variables });
       }
 
+      const stars = knowlympics ? -1 : gameState.stars ;
+
       variables = {
         coins: currentUser.coins + gameState.coins,
-        stars: currentUser.stars + gameState.stars,
+        stars: currentUser.stars + stars,
         starPercentage: (initialUserStarPercentage + gameState.starPercentage) % 100,
       };
       UpdateUser({

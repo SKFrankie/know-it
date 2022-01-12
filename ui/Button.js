@@ -54,16 +54,16 @@ const ButtonDesign = ({ children, ...props }) => {
   );
 };
 
-const KnowlympicsButton = ({ children, disabled = true, ...props }) => {
+const KnowlympicsButton = ({ children, href="/games/knowlympics", text="Knowlympics", disabled = true, ...props }) => {
   const GaEvent = () => {
     ga.event({
       action: "Knowlympics",
     });
   };
   return (
-    <Box textAlign="center" filter={disabled ? "grayscale(1)" : null}>
+    <Box textAlign="center" filter={disabled ? "grayscale(1)" : null} {...props}>
       <Podium px="4" />
-      <NextLink href="/games/knowlympics" passHref>
+      <NextLink href={href} passHref>
         <ChakraButton
           borderRadius="10px"
           w={{ base: "100%", md: "30vw" }}
@@ -75,10 +75,10 @@ const KnowlympicsButton = ({ children, disabled = true, ...props }) => {
           disabled={disabled}
           onClick={GaEvent}
         >
-          Knowlympics
+          {text}
         </ChakraButton>
       </NextLink>
-      {disabled && <Text fontSize="xs">You need at least one star to play Knowlympics</Text>}
+      {disabled && <Text fontSize="xs">You need to be logged in and at least one star to play Knowlympics</Text>}
     </Box>
   );
 };

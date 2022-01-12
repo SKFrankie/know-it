@@ -21,7 +21,7 @@ const KnowlympicsGame = () => {
   const [currentUser] = useUserContext();
   const router = useRouter();
   // we initialize the game state to -1 so the user pays his one star at the end of the game
-  const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: -1 });
+  const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [stopTimer, setStopTimer] = useState(false);
   useEffect(() => {
