@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Flex, Image, useDisclosure } from "@chakra-ui/react";
 import Head from "next/head";
 
@@ -9,9 +10,18 @@ import { KnowlympicsButton } from "../ui/Button";
 
 import CalendarModal from "../features/modals/CalendarModal";
 import GiftIcon from "../ui/icons/GiftIcon";
+import RewardPopup from "../features/modals/RewardPopup";
 
 export default function Home() {
   const [currentUser] = useUserContext();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    if(currentUser.rankingGift) {
+      onOpen();
+    }
+  }, [currentUser.rankingGift]);
+
   return (
     <>
       <Head>
@@ -35,7 +45,7 @@ export default function Home() {
             m="2vh"
             width={{ base: "80%", md: "40%" }}
             textAlign="center"
-            alignItems={{base: game.align || "center", md: "center"}}
+            alignItems={{ base: game.align || "center", md: "center" }}
           >
             <Image
               src={game.image}
@@ -51,6 +61,7 @@ export default function Home() {
         ))}
       </Flex>
       <KnowlympicsButton disabled={!currentUser.stars} />
+      <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
     </>
   );
 }

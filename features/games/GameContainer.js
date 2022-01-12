@@ -304,6 +304,7 @@ const EndingScreen = ({
   );
 };
 
+
 const PointDisplayer = ({ label, children }) => {
   return (
     <Flex
