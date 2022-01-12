@@ -220,7 +220,6 @@ const EndingScreen = ({
   const [currentUser, , { refetch }] = useUserContext();
   const { coins, points, starPercentage } = gameState;
   const [randomGigil, setRandomGigil] = useState("AntonymHuntMonster.png");
-  const [giveGift, setGiveGift] = useState(false);
   const gigils = [
     "AntonymHuntMonster.png",
     "FabVocabMonster.png",
@@ -229,30 +228,6 @@ const EndingScreen = ({
     "GrammarGeekMonster.png",
   ];
 
-  const deservesGift = (rankedUsers) => {
-    // users has more than 100 points, he's in the top 3 and he did not get a ranking gift yet this week
-    if (currentUser?.points >= 100) {
-      if (
-        rankedUsers.some(
-          (user) =>
-            user.userId === currentUser.userId && !isCurrentWeek(new Date(user.lastRankingGiftDate))
-        )
-      ) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  const { data } = useQuery(GET_TOP_RANKING_AND_REWARDS, {
-    onCompleted(data) {
-      const { rankingUsers } = data;
-      if (deservesGift(rankingUsers)) {
-        setGiveGift(true);
-      }
-    },
-    ...basicQueryResultSupport,
-  });
   useEffect(() => {
     setRandomGigil(gigils[Math.floor(Math.random() * gigils.length)]);
   }, []);
