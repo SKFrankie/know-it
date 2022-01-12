@@ -15,6 +15,7 @@ const CURRENT_USER = gql`
       points
       lastRankingDate
       lastRankingGiftDate
+      rankingGift
       currentAvatar {
         avatarId
         picture
