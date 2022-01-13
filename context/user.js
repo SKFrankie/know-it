@@ -2,6 +2,8 @@ import { createContext, useContext, useState } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { isCurrentWeek } from "../features/games/helpers";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
+
+// rankingUsers must be used only here to get last week ranking
 const CURRENT_USER_AND_TOP_3 = gql`
   query CurrentUser {
     currentUser {

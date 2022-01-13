@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Flex, Text, Switch, useDisclosure} from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import Button from "../ui/Button";

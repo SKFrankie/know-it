@@ -1,36 +1,23 @@
 import React, { useState } from "react";
 import { Flex, Text, Input } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
-import { getFirstDayOfLastWeek, getLastDayOfLastWeek } from "./games/helpers";
+import { getFirstDayOfWeek, getLastDayOfWeek } from "./games/helpers";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
 import { useUserContext } from "../context/user";
 import Loading from "./Loading";
 import Error from "./Error";
 
-// testing data
-// rankingUsers : users {
-//   userId
-//   points
-//   username
-// }
+// different query to get current week rank
 const RANKING_USERS = gql`
+
   query RankingUsers {
-    rankingUsers {
+    rankingUsers : currentRankingUsers {
       userId
       points
       username
     }
   }
 `;
-
-// const dataUsers = [
-//   { userId: 1, username: "mark", points: 500 },
-//   { userId: 2, username: "jane", points: 300 },
-//   { userId: 3, username: "john", points: 200 },
-//   { userId: 4, username: "joe", points: 100 },
-//   { userId: 5, username: "jim", points: 50 },
-//   { userId: 6, username: "jeff", points: 10 },
-// ];
 
 const Leaderboard = () => {
   const [currentUser] = useUserContext();
@@ -109,7 +96,7 @@ const Leaderboard = () => {
       <Text>Weekly Ranking</Text>
       <Text>~</Text>
       <Text fontSize="xs">
-        {getFirstDayOfLastWeek()} - {getLastDayOfLastWeek()}
+        {getFirstDayOfWeek()} - {getLastDayOfWeek()}
       </Text>
       {data && (
         <Flex direction="column" justify="center" align="center" w="100%" mt={2}>
