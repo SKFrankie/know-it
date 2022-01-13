@@ -1,12 +1,32 @@
 import { useState } from "react";
-import { Flex, Text, Switch } from "@chakra-ui/react";
+import { Flex, Text, Switch, useDisclosure} from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import Button from "../ui/Button";
+import AccountSettingPopup from "../features/modals/AccountSettingPopup";
+import { logout } from "../features/auth/helper.js";
+import { useRouter } from "next/router";
 
 const Settings = () => {
+  const router = useRouter();
+  const [{online}] = useUserContext();
   return (
     <Flex direction="column">
-      <GeneralSettings /> <AccountSettings />
+      <GeneralSettings />
+      {online && (
+        <>
+          <AccountSettings />
+          <Button
+            onClick={() => {
+              logout(router);
+            }}
+            mt={5}
+            display={{ base: "block", md: "none" }}
+            bg="#A80909"
+          >
+            Logout
+          </Button>{" "}
+        </>
+      )}
     </Flex>
   );
 };
@@ -32,6 +52,27 @@ const GeneralSettings = () => {
   );
 };
 
+const AccountSettings = () => {
+  const [{tpo}] = useUserContext();
+  return (
+    <SettingBlock title="Account Settings">
+      <AccountSettingButton first last={tpo} label="username" type="text">
+        Username
+      </AccountSettingButton>
+      {!tpo && (
+        <>
+          <AccountSettingButton label="mail" type="email">
+            Email
+          </AccountSettingButton>
+          <AccountSettingButton last label="password" type="password">
+            Password
+          </AccountSettingButton>{" "}
+        </>
+      )}
+    </SettingBlock>
+  );
+};
+
 const SoundSetting = () => {
   const isDisabled = JSON.parse(localStorage.getItem("disableSound"));
   const handleChange = (e) => {
@@ -47,9 +88,6 @@ const SoundSetting = () => {
   );
 };
 
-const AccountSettings = () => {
-  return <SettingBlock title="Account Settings"></SettingBlock>;
-};
 
 const SettingBlock = ({ children, title, ...props }) => {
   return (
@@ -74,6 +112,19 @@ const SettingTitle = ({ children, ...props }) => {
   );
 };
 
+const AccountSettingButton = ({ label, type, children, ...props }) => {
+  
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <SettingButton onClick={onOpen} {...props}>
+        {children}
+      </SettingButton>{" "}
+      <AccountSettingPopup type={type} label={label} isOpen={isOpen} onClose={onClose} />{" "}
+    </>
+  );
+}
+
 const SettingButton = ({ onClick, first = false, last = false, children, ...props }) => {
   const radius = "10px";
   return (
@@ -90,11 +141,13 @@ const SettingButton = ({ onClick, first = false, last = false, children, ...prop
       padding="10px"
       fontSize="md"
       fontWeight="normal"
+      onClick={onClick}
       {...props}
     >
       {children}
     </Button>
   );
 };
+
 
 export default Settings;

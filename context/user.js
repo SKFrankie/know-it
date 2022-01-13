@@ -17,6 +17,7 @@ const CURRENT_USER_AND_TOP_3 = gql`
       points
       lastRankingDate
       rankingGift
+      tpo
       currentAvatar {
         avatarId
         picture
