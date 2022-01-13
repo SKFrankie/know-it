@@ -8,6 +8,7 @@ import { storeToken } from "./auth/helper";
 import { useRouter } from "next/router";
 import Link from "../ui/Link";
 import Form from "../ui/Form";
+import { Error } from "../ui/Alert";
 
 import Input from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
@@ -34,10 +35,6 @@ export default function Login() {
     return <p>Loading...</p>;
   }
 
-  if (error) {
-    console.error(error);
-    return null;
-  }
   return (
     <>
       <Formik
@@ -85,6 +82,7 @@ export default function Login() {
               No account yet? <Link href="signup">Sign Up</Link>
             </Text>
             <GoogleLogin />
+            {error && <Error title="Something went wrong" />}
           </Form>
         )}
       </Formik>

@@ -46,10 +46,6 @@ export default function Signup() {
     return <p>Loading...</p>;
   }
 
-  if (error) {
-    console.error(error);
-    return null;
-  }
   return (
     <>
       <Formik
@@ -139,6 +135,7 @@ export default function Signup() {
             </Text>
             <GoogleSignup disabled={errors.checkbox || !props.values.checkbox} />
             {errors.checkbox && <Error title={errors.checkbox} />}
+            {error && <Error title="Something went wrong" />}
           </Form>
         )}
       </Formik>
