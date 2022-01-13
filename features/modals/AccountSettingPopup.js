@@ -16,23 +16,64 @@ const UPDATE_USER = gql`
   }
 `;
 
+const CHANGE_USER_PASSWORD = gql`
+  mutation ChangePassword($newPassword: String!) {
+    changePassword(newPassword: $newPassword)
+  }
+`;
+
 const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
   const [currentUser, setCurrentUser, { refetch }] = useUserContext();
-  const [value, setValue] = React.useState(currentUser?.[label]);
+  const [value, setValue] = React.useState(currentUser?.[label] || '');
+  const [confirm, setConfirm] = React.useState('');
 
   const toast = useToast();
+
+  const [changePassword] = useMutation(CHANGE_USER_PASSWORD, {
+    variables: { newPassword: value },
+    onCompleted: () => {
+      toast({
+        title: "Password updated",
+        description: "Your password has been updated",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      onClose();
+    },
+    onError: (error) => {
+      const description = "An error occured while trying to update your password";
+      toast({
+        title: "Error",
+        description,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    },
+  });
+
+
 
   const [updateUser] = useMutation(UPDATE_USER, {
     variables: { [label]: value },
     onCompleted: (data) => {
       if (value !== currentUser?.[label]) {
+      toast({
+        title: "Sucess",
+        description: "your account has been updated",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
         setCurrentUser({ ...currentUser, [label]: data?.[label] });
         refetch();
       }
       onClose();
     },
     onError: (error) => {
-      const description = label === "mail" ? "This email might already have an account" : "Something went wrong";
+      const description =
+        label === "mail" ? "This email might already have an account" : "Something went wrong";
       toast({
         title: "Error",
         description,
@@ -46,6 +87,18 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (type === "password") {
+      if (value !== confirm) {
+
+        toast({
+          title: "Error",
+          description: "The passwords do not match",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        return;
+      }
+      changePassword();
       return;
     }
     updateUser();
@@ -61,8 +114,8 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
           <form onSubmit={handleSubmit}>
             {type === "password" ? (
               <>
-                <Input m={3} mb={0} w="90%" first type={type} placeholder={label} required />
-                <Input m={3} mt={0} w="90%" last type={type} placeholder="confirm" required />
+                <Input m={3} mb={0} w="90%" first type={type} placeholder="New password" onChange={(e)=>setValue(e.target.value)} required />
+                <Input m={3} mt={0} w="90%" last type={type} placeholder="Confirm new password" onChange={(e)=> setConfirm(e.target.value)} required />
               </>
             ) : (
               <Input
