@@ -63,7 +63,7 @@ export function UserWrapper({ children }) {
       const [first, second, third] = res.rankingUsers;
       // then the last time users had a ranked gift
       const lastRankingGiftDate = new Date(res.lastRankingGiftDate);
-      if(!isCurrentWeek(lastRankingGiftDate)) {
+      if (!isCurrentWeek(lastRankingGiftDate)) {
         // if it was not this week, the first user to log this week triggers the gifting process
         SetUsersGifts({
           variables: { first: first?.userId, second: second?.userId, third: third?.userId },

@@ -86,7 +86,13 @@ const KnowlympicsGame = () => {
   };
 
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState} stopTimer={stopTimer} knowlympics>
+    <GameContainer
+      game={game}
+      gameState={gameState}
+      setGameState={setGameState}
+      stopTimer={stopTimer}
+      knowlympics
+    >
       {renderCurrentGame()}
     </GameContainer>
   );

@@ -28,7 +28,7 @@ const ContainedAntonymHuntGame = () => {
   );
 };
 
-const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympics=false }) => {
+const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false }) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_ANTONYM, {
     onCompleted: (res) => {

@@ -248,23 +248,25 @@ const Reward = ({
   const { image, name } = REWARD_TYPES[reward];
   return (
     <Flex direction="column" alignItems="center" justify="center">
-    <Text fontWeight="bold" fontSize={{ base: "sm", md: "md" }}>Day {day}</Text>
-    <Flex
-      py={2}
-      px={4}
-      borderRadius={4}
-      bg={received ? "orange" : "darkBlue"}
-      color={color}
-      alignItems="center"
-      m={2}
-      direction="column"
-      {...props}
-    >
-      <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
-      <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
-        x{quantity}
+      <Text fontWeight="bold" fontSize={{ base: "sm", md: "md" }}>
+        Day {day}
       </Text>
-    </Flex>
+      <Flex
+        py={2}
+        px={4}
+        borderRadius={4}
+        bg={received ? "orange" : "darkBlue"}
+        color={color}
+        alignItems="center"
+        m={2}
+        direction="column"
+        {...props}
+      >
+        <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
+        <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
+          x{quantity}
+        </Text>
+      </Flex>
     </Flex>
   );
 };

@@ -26,13 +26,24 @@ const ContainedFabVocabGame = () => {
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
   const [stopTimer, setStopTimer] = useState(false);
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState} stopTimer={stopTimer}>
+    <GameContainer
+      game={game}
+      gameState={gameState}
+      setGameState={setGameState}
+      stopTimer={stopTimer}
+    >
       <FabVocabGame gameState={gameState} setGameState={setGameState} setStopTimer={setStopTimer} />
     </GameContainer>
   );
 };
 
-const FabVocabGame = ({ gameState, setGameState,setStopTimer, onNextGame = null, knowlympics = false }) => {
+const FabVocabGame = ({
+  gameState,
+  setGameState,
+  setStopTimer,
+  onNextGame = null,
+  knowlympics = false,
+}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [wordTries, setWordTries] = useState(null);
   const [picture, setPicture] = useState(
@@ -186,9 +197,7 @@ const FabVocabGame = ({ gameState, setGameState,setStopTimer, onNextGame = null,
               knowlympics={knowlympics}
             />
             {wordTries === 0 && sentenceTries === 0 ? (
-              <NextButton onNext={handleNextQuestion}>
-                Continue
-              </NextButton>
+              <NextButton onNext={handleNextQuestion}>Continue</NextButton>
             ) : null}
           </Flex>
         </Flex>
@@ -208,7 +217,7 @@ const Words = ({
   gameState,
   setGameState,
   wordArray,
-  knowlympics=false,
+  knowlympics = false,
   ...props
 }) => {
   // we get as much tries as correct answers

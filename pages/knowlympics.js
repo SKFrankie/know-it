@@ -3,7 +3,7 @@ import { KnowlympicsButton } from "../ui/Button";
 import { useUserContext } from "../context/user";
 import Leaderboard from "../features/Leaderboard";
 
-const knowlympics = () => {
+const Knowlympics = () => {
   const [currentUser] = useUserContext();
   return (
     <Flex direction="column" justify="center" align="center">
@@ -18,5 +18,4 @@ const knowlympics = () => {
   );
 };
 
-
-export default knowlympics;
+export default Knowlympics;

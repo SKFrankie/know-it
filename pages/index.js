@@ -17,10 +17,10 @@ export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    if(currentUser.rankingGift) {
+    if (currentUser.rankingGift) {
       onOpen();
     }
-  }, [currentUser.rankingGift]);
+  }, [currentUser.rankingGift, onOpen]);
 
   return (
     <>

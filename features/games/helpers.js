@@ -8,19 +8,19 @@ const isCurrentWeek = (date) => {
 };
 
 const getFirstDayOfLastWeek = () => {
-  const today = new Date()
-  const day = today.getDay()
-  const diff = today.getDate() - day + (day === 0 ? -6 : 1) - 7
-  const date = new Date(today.setDate(diff))
-  return dateToString(date)
-}
+  const today = new Date();
+  const day = today.getDay();
+  const diff = today.getDate() - day + (day === 0 ? -6 : 1) - 7;
+  const date = new Date(today.setDate(diff));
+  return dateToString(date);
+};
 
 const getLastDayOfLastWeek = () => {
-  const today = new Date()
-  const day = today.getDay()
-  const diff = today.getDate() - day + (day === 0 ? -6 : 1) - 7
-  const date = new Date(today.setDate(diff + 6))
-  return dateToString(date)
-}
+  const today = new Date();
+  const day = today.getDay();
+  const diff = today.getDate() - day + (day === 0 ? -6 : 1) - 7;
+  const date = new Date(today.setDate(diff + 6));
+  return dateToString(date);
+};
 
 export { isCurrentWeek, getFirstDayOfLastWeek, getLastDayOfLastWeek };

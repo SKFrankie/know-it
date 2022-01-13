@@ -8,7 +8,7 @@ import { GAMES_SECTIONS } from "../../constants";
 const RouteGuard = ({ children }) => {
   const router = useRouter();
   const [authorized, setAuthorized] = useState(false);
-  const [currentUser, setCurrentUser, {loading}] = useUserContext();
+  const [currentUser, setCurrentUser, { loading }] = useUserContext();
 
   useEffect(() => {
     authCheck(router.asPath);

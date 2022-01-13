@@ -8,11 +8,11 @@ import Loading from "./Loading";
 import Error from "./Error";
 
 // testing data
-    // rankingUsers : users {
-    //   userId
-    //   points
-    //   username
-    // }
+// rankingUsers : users {
+//   userId
+//   points
+//   username
+// }
 const RANKING_USERS = gql`
   query RankingUsers {
     rankingUsers {
@@ -22,7 +22,6 @@ const RANKING_USERS = gql`
     }
   }
 `;
-
 
 // const dataUsers = [
 //   { userId: 1, username: "mark", points: 500 },
@@ -89,8 +88,9 @@ const Leaderboard = () => {
 
   const isTruncatable = (index) => {
     if (index === 3) {
-      return true }
-    if (index - 2  >=0 && data.rankingUsers[index - 2].userId === currentUser.userId) {
+      return true;
+    }
+    if (index - 2 >= 0 && data.rankingUsers[index - 2].userId === currentUser.userId) {
       return true;
     }
     return false;
@@ -138,7 +138,11 @@ const Leaderboard = () => {
               );
             }
             if (isTruncatable(index)) {
-              return <Text key={user.userId} fontSize="xs">...</Text>;
+              return (
+                <Text key={user.userId} fontSize="xs">
+                  ...
+                </Text>
+              );
             }
             return null;
           })}

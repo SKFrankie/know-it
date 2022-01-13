@@ -67,7 +67,7 @@ const MatchingWords = ({
         // words matched
         const tmpGameState = {
           ...gameState,
-          starPercentage: knowlympics ? 0 :gameState.starPercentage + POINTS.SMALL,
+          starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.SMALL,
           points: knowlympics ? gameState.points + POINTS.SMALL : 0,
           coins: gameState.coins + POINTS.SMALL,
         };

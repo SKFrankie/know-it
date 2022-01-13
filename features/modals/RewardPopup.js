@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { useUserContext } from "../../context/user";
-import {AvatarImage }from "../shop/AvatarCollections"
+import { AvatarImage } from "../shop/AvatarCollections";
 import Modal from "../../ui/Modal";
-import {Flex, Text } from "@chakra-ui/react";
-import {basicQueryResultSupport} from "../../helpers/apollo-helpers";
+import { Flex, Text } from "@chakra-ui/react";
+import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Loading from "../Loading";
 import Error from "../Error";
 import Button from "../../ui/Button";
@@ -16,7 +16,7 @@ const COLLECTION_DATA = `
         avatarId
         picture
       }
-`
+`;
 
 const GET_RANKING_REWARDS = gql`
   query GetRankingRewards {
@@ -68,16 +68,16 @@ const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
   });
 
   const rewardText = () => {
-      let text;
+    let text;
     switch (rankingGift) {
       case 1:
-        text= "the top";
+        text = "the top";
         break;
       case 2:
-        text= "the second place";
+        text = "the second place";
         break;
       case 3:
-        text= "the third place";
+        text = "the third place";
         break;
       default:
         return "No gifts for you this time!";
@@ -86,7 +86,7 @@ const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}  {...props}>
+    <Modal isOpen={isOpen} onClose={onClose} {...props}>
       <Flex
         direction="column"
         alignItems="center"
@@ -112,29 +112,29 @@ const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
 };
 
 const Monstar = ({ avatar, onClose }) => {
-  const [currentUser, setCurrentUser , {refetch}] = useUserContext();
+  const [currentUser, setCurrentUser, { refetch }] = useUserContext();
   const [canGet, setCanGet] = useState(false);
   useEffect(() => {
-      const notInInventory =
-        currentUser.inventory.find((i) => i.avatarId === avatar.avatarId) === undefined;
-        setCanGet(notInInventory);
-  }, [currentUser.inventory, avatar.avatarId])
+    const notInInventory =
+      currentUser.inventory.find((i) => i.avatarId === avatar.avatarId) === undefined;
+    setCanGet(notInInventory);
+  }, [currentUser.inventory, avatar.avatarId]);
 
-const [getAvatarGift] = useMutation(GET_AVATAR_GIFT, {
-  onCompleted: (data) => {
-    setCanGet(false);
-    setCanGet(false);
-    refetch();
-    onClose();
-  },
-  ...basicQueryResultSupport,
-});
+  const [getAvatarGift] = useMutation(GET_AVATAR_GIFT, {
+    onCompleted: (data) => {
+      setCanGet(false);
+      setCanGet(false);
+      refetch();
+      onClose();
+    },
+    ...basicQueryResultSupport,
+  });
 
-const handleClick = () => {
-  if (canGet) {
-    getAvatarGift({ variables: { avatarId: avatar.avatarId } });
-  }
-};
+  const handleClick = () => {
+    if (canGet) {
+      getAvatarGift({ variables: { avatarId: avatar.avatarId } });
+    }
+  };
 
   return (
     <Flex

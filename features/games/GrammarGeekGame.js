@@ -27,13 +27,28 @@ const ContainedGrammarGeekGame = () => {
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
   const [stopTimer, setStopTimer] = useState(false);
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState} stopTimer={stopTimer}>
-      <GrammarGeekGame gameState={gameState} setGameState={setGameState} setStopTimer={setStopTimer} />
+    <GameContainer
+      game={game}
+      gameState={gameState}
+      setGameState={setGameState}
+      stopTimer={stopTimer}
+    >
+      <GrammarGeekGame
+        gameState={gameState}
+        setGameState={setGameState}
+        setStopTimer={setStopTimer}
+      />
     </GameContainer>
   );
 };
 
-const GrammarGeekGame = ({ gameState, setGameState, knowlympics, setStopTimer, onNextGame = null }) => {
+const GrammarGeekGame = ({
+  gameState,
+  setGameState,
+  knowlympics,
+  setStopTimer,
+  onNextGame = null,
+}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [question, setQuestion] = useState("I am a very _ person");
   const [answers, setAnswers] = useState({
@@ -139,7 +154,7 @@ const Question = ({ question }) => {
       m={4}
       w={{ base: "100%", md: "50%" }}
     >
-      <Text textAlign="center" m={4} fontSize={{base: "2xl", md:"3xl"}}>
+      <Text textAlign="center" m={4} fontSize={{ base: "2xl", md: "3xl" }}>
         {question}
       </Text>
     </Flex>

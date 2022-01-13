@@ -78,7 +78,7 @@ const AvatarCollection = ({ collection, now }) => {
           <Avatar key={avatar.avatarId} avatar={avatar} />
         ))}
       </Flex>
-      <Divider w="90%" alignSelf="center" borderBottomWidth="2px" borderColor="blueClear2.500"/>
+      <Divider w="90%" alignSelf="center" borderBottomWidth="2px" borderColor="blueClear2.500" />
     </Flex>
   );
 };

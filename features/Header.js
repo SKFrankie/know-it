@@ -125,7 +125,7 @@ const DesktopHeader = () => {
               </MenuButton>
               <MenuList color="darkBlue" bg="deepDarkBlue">
                 {ADDITIONNAL_SECTIONS.map((section) => (
-                  <NextLink key={section.name} href={section.path}passHref>
+                  <NextLink key={section.name} href={section.path} passHref>
                     <MenuItem>{section.name}</MenuItem>
                   </NextLink>
                 ))}
@@ -189,7 +189,7 @@ const MobileHeader = () => {
   );
 };
 
-const MobileGameHeader = ({maxTime=100, timer = 0 }) => {
+const MobileGameHeader = ({ maxTime = 100, timer = 0 }) => {
   const [currentUser] = useUserContext();
   const router = useRouter();
   const HOME_SECTION = SECTIONS[0];
@@ -202,7 +202,7 @@ const MobileGameHeader = ({maxTime=100, timer = 0 }) => {
   );
 };
 
-const DesktopGameHeader = ({ maxTime=100, timer = 0 }) => {
+const DesktopGameHeader = ({ maxTime = 100, timer = 0 }) => {
   const [currentUser] = useUserContext();
   return (
     <Flex mx={3} position="fixed" left="0" w="30%" display={{ base: "none", md: "flex" }}>

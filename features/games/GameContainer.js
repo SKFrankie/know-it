@@ -7,7 +7,7 @@ import HourGlassIcon from "../../ui/icons/HourGlassIcon";
 import { CoinCurrencyNoUser } from "../Currency";
 import Button from "../../ui/Button";
 import { useUserContext } from "../../context/user";
-import {isCurrentWeek} from "./helpers";
+import { isCurrentWeek } from "./helpers";
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -147,7 +147,7 @@ const GameContainer = ({
         UpdatePoints({ variables });
       }
 
-      const stars = knowlympics ? -1 : gameState.stars ;
+      const stars = knowlympics ? -1 : gameState.stars;
 
       variables = {
         coins: currentUser.coins + gameState.coins,
@@ -281,7 +281,6 @@ const EndingScreen = ({
     </Flex>
   );
 };
-
 
 const PointDisplayer = ({ label, children }) => {
   return (
