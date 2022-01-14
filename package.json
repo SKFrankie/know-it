@@ -23,6 +23,8 @@
     "@chakra-ui/react": "^1.7.2",
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
+    "@stripe/stripe-js": "^1.22.0",
+    "axios": "^0.24.0",
     "eslint-config-prettier": "^8.3.0",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
@@ -32,7 +34,8 @@
     "prettier": "^2.5.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-google-login": "^5.2.2"
+    "react-google-login": "^5.2.2",
+    "stripe": "^8.197.0"
   },
   "devDependencies": {
     "@iconify/react": "^3.1.0",

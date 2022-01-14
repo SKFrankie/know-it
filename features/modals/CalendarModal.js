@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, Flex, Image, Box, useDisclosure } from "@chakra-ui/react";
 
 import { useQuery, useMutation, gql } from "@apollo/client";
+import { createCheckOutSessionForPremium } from "../../helpers/stripe";
 
 import { useUserContext } from "../../context/user";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
@@ -230,7 +231,7 @@ const RecoverGifts = ({ ...props }) => {
       <Text fontSize={{ base: "md", md: "lg" }}>
         Recover your lost gifts and double the gifts you received!
       </Text>
-      <Button w={{ base: "80%", md: "40%" }} m={3}>
+      <Button onClick={createCheckOutSessionForPremium} w={{ base: "80%", md: "40%" }} m={3}>
         3,99€
       </Button>
     </Flex>
