@@ -213,6 +213,7 @@ const GiftPopUp = ({
 };
 
 const RecoverGifts = ({ ...props }) => {
+  const [stripeLoading, setStripeLoading] = useState(false);
   return (
     <Flex
       maxH={{ base: "auto", md: recoverGiftHeight }}
@@ -231,7 +232,7 @@ const RecoverGifts = ({ ...props }) => {
       <Text fontSize={{ base: "md", md: "lg" }}>
         Recover your lost gifts and double the gifts you received!
       </Text>
-      <Button onClick={createCheckOutSessionForPremium} w={{ base: "80%", md: "40%" }} m={3}>
+      <Button isLoading={stripeLoading} onClick={() => {createCheckOutSessionForPremium(setStripeLoading)}} w={{ base: "80%", md: "40%" }} m={3}>
         3,99€
       </Button>
     </Flex>

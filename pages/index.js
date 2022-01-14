@@ -11,6 +11,7 @@ import { KnowlympicsButton } from "../ui/Button";
 import CalendarModal from "../features/modals/CalendarModal";
 import GiftIcon from "../ui/icons/GiftIcon";
 import RewardPopup from "../features/modals/RewardPopup";
+import StripeComponent from "../features/stripe/StripeComponent";
 
 export default function Home() {
   const [currentUser] = useUserContext();
@@ -62,6 +63,7 @@ export default function Home() {
       </Flex>
       <KnowlympicsButton href="/knowlympics" disabled={!currentUser.online} />
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
+      <StripeComponent/>
     </>
   );
 }

@@ -1,6 +1,9 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 async function CreateStripeSession(req, res) {
+  if (req.method !== "POST") {
+    res.status(405).end();
+  }
   const { item } = req.body;
 
   const redirectURL = process.env.NEXT_PUBLIC_CLIENT_URL;
@@ -22,14 +25,18 @@ async function CreateStripeSession(req, res) {
     payment_method_types: ["card"],
     line_items: [transformedItem],
     mode: "payment",
-    success_url: redirectURL + "?status=success",
+    success_url: redirectURL + `?status=success&item=${item.name}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: redirectURL + "?status=cancel",
     metadata: {
       images: item.image,
     },
   });
 
+  console.log("session", session);
+
+
   res.json({ id: session.id });
 }
+
 
 export default CreateStripeSession;
