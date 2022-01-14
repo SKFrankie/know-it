@@ -2,11 +2,12 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 async function CreateStripeSession(req, res) {
   if (req.method !== "POST") {
-    res.status(405).end();
+       res.setHeader("Allow", "POST");
+    res.status(405).json({ message: 'Method not allowed' });
   }
   const { item } = req.body;
 
-  const redirectURL = process.env.NEXT_PUBLIC_CLIENT_URL;
+  const redirectURL = req.headers.origin;
 
   const transformedItem = {
     price_data: {
