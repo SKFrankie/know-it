@@ -5,6 +5,7 @@ const stripePromise = loadStripe(publishableKey);
 
 const createCheckOutSession = async ( item, setLoading = (foo) => {}) => {
   setLoading(true);
+  item.quantity = 1;
   const stripe = await stripePromise;
   const checkoutSession = await axios.post("/api/create-stripe-session", {
     item: item,

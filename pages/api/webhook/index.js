@@ -40,6 +40,7 @@ export default async function handler(req, res) {
     const session_id = event.data.object.id;
     console.log("session_id?", session_id);
     const { name, token } = event.data.object?.metadata;
+    console.log("name", name)
     const payment_intent = event.data.object?.payment_intent;
     switch (event.type) {
       case "checkout.session.completed":

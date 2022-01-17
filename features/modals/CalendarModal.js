@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, Flex, Image, Box, useDisclosure } from "@chakra-ui/react";
 
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { createCheckOutSessionForPremium } from "../../helpers/stripe";
+import createCheckOutSession  from "../../helpers/stripe";
 
 import { useUserContext } from "../../context/user";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
@@ -11,7 +11,7 @@ import Error from "../Error";
 import Modal, { PopUp } from "../../ui/Modal";
 import Button from "../../ui/Button";
 import GiftIcon from "../../ui/icons/GiftIcon";
-import { REWARD_TYPES } from "../../constants";
+import { REWARD_TYPES, PURCHASE_TYPES, PURCHASES } from "../../constants";
 
 const GIFTS = gql`
   query Gifts {
@@ -214,6 +214,7 @@ const GiftPopUp = ({
 
 const RecoverGifts = ({ ...props }) => {
   const [stripeLoading, setStripeLoading] = useState(false);
+  const item = PURCHASES[PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS];
   return (
     <Flex
       maxH={{ base: "auto", md: recoverGiftHeight }}
@@ -232,8 +233,15 @@ const RecoverGifts = ({ ...props }) => {
       <Text fontSize={{ base: "md", md: "lg" }}>
         Recover your lost gifts and double the gifts you received!
       </Text>
-      <Button isLoading={stripeLoading} onClick={() => {createCheckOutSessionForPremium(setStripeLoading)}} w={{ base: "80%", md: "40%" }} m={3}>
-        3,99€
+      <Button
+        isLoading={stripeLoading}
+        onClick={() => {
+          createCheckOutSession(item, setStripeLoading);
+        }}
+        w={{ base: "80%", md: "40%" }}
+        m={3}
+      >
+        {parseFloat(item.price)}€
       </Button>
     </Flex>
   );

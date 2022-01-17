@@ -26,7 +26,7 @@ async function CreateStripeSession(req, res) {
     payment_method_types: ["card"],
     line_items: [transformedItem],
     mode: "payment",
-    success_url: redirectURL + `?status=success&item=${item.name}&session_id={CHECKOUT_SESSION_ID}`,
+    success_url: redirectURL + `?status=success&item=${item.label}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: redirectURL + "?status=cancel",
     metadata: {
       images: item.image,
