@@ -2,8 +2,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 async function CreateStripeSession(req, res) {
   if (req.method !== "POST") {
-       res.setHeader("Allow", "POST");
-    res.status(405).json({ message: 'Method not allowed' });
+    res.setHeader("Allow", "POST");
+    res.status(405).json({ message: "Method not allowed" });
   }
   const { item } = req.body;
 
@@ -30,14 +30,13 @@ async function CreateStripeSession(req, res) {
     cancel_url: redirectURL + "?status=cancel",
     metadata: {
       images: item.image,
+      name: item.name,
     },
   });
 
   console.log("session", session);
 
-
   res.json({ id: session.id });
 }
-
 
 export default CreateStripeSession;

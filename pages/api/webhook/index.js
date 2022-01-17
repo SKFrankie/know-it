@@ -28,10 +28,18 @@ export default async function handler(req, res) {
     }
     // Successfully constructed event
     console.log("✅ Success:", event.id);
+    const session_id = event.data.object.id;
+    console.log("session_id?", session_id);
+    const name = event.data.object?.metadata?.name;
 
     switch (event.type) {
       case "checkout.session.completed":
         console.log(`💰  Payment received!`);
+        console.log(`💰 name`, name);
+        const { line_items } = await stripe.checkout.sessions.retrieve(session_id, {
+          expand: ["line_items"],
+        });
+
         break;
       case "payment_intent.succeeded":
         console.log("PaymentIntent was successful!");
