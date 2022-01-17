@@ -19,21 +19,23 @@ const createCheckOutSession = async ( item, setLoading = (foo) => {}) => {
   setLoading(false);
 };
 
-const createCheckOutSessionForPremium = async (setLoading = (foo) => {}) => {
+const createCheckOutSessionForPremium = async (
+  setLoading = (foo) => {},
+  itemInfo = { name: "Test", price: "0.50" }
+) => {
   const item = {
-    name: "Premium",
+    ...itemInfo,
     quantity: 1,
-    price: process.env.NEXT_PUBLIC_PREMIUM_PRICE,
-    image: "https://i.imgur.com/2YqQ7Xb.png",
   };
+  console.log("item", item)
   createCheckOutSession(item, setLoading);
 };
 
 const getCustomer = async (setCustomer, id) => {
   const stripe = await stripePromise;
-  console.log("get", id)
+  console.log("get", id);
   const customer = await axios.get(`/api/get-stripe-customer?session_id=${id}`);
-  console.log("vsomter", customer)
+  console.log("vsomter", customer);
   setCustomer(customer);
 };
 

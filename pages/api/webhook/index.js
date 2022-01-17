@@ -40,22 +40,27 @@ export default async function handler(req, res) {
     const session_id = event.data.object.id;
     console.log("session_id?", session_id);
     const { name, token } = event.data.object?.metadata;
-    getSSRClient(token).then((client) => {
-      console.log("client", client);
-      client
-        .mutate({ mutation: GET_PREMIUM, variables: { years: 1 } })
-        .then((data) => {
-          console.log("data of curent suser", data);
-        })
-        .catch((err) => {
-          console.log("error of current user", err);
-        });
-    });
+    const payment_intent = event.data.object?.payment_intent;
     switch (event.type) {
       case "checkout.session.completed":
-        console.log(`💰  Payment received!`);
-        console.log(`💰 name`, name);
-        console.log("token", token);
+      // payment has been done
+        getSSRClient(token)
+          .then((client) => {
+            return client.mutate({ mutation: GET_PREMIUM, variables: { years: 2 } });
+          })
+          .then((data) => {
+            // customer gets his item
+            console.log("data of curent suser", data);
+          })
+          .catch((err) => {
+            console.log("error of current user", err);
+            // something went wrong, we refund the customer
+            stripe.refunds.create({
+              payment_intent,
+            }).then((refund) => {
+              console.log("refund", refund, payment_intent);
+            });
+          });
         break;
       case "payment_intent.succeeded":
         console.log("PaymentIntent was successful!");
