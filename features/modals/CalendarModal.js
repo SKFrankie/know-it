@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, Flex, Image, Box, useDisclosure } from "@chakra-ui/react";
 
 import { useQuery, useMutation, gql } from "@apollo/client";
-import createCheckOutSession  from "../../helpers/stripe";
+import createCheckOutSession from "../../helpers/stripe";
 
 import { useUserContext } from "../../context/user";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
@@ -46,14 +46,13 @@ const REWARD_USER = gql`
 const recoverGiftHeight = "15vh";
 
 const computeTotalGifts = (gifts) => {
-  const total = { "coins": 0, "stars": 0, "starPercentage": 0 };
+  const total = { coins: 0, stars: 0, starPercentage: 0 };
   gifts.forEach((gift) => {
-  const label = REWARD_TYPES[gift.reward].label
+    const label = REWARD_TYPES[gift.reward].label;
     total[label] = total[label] + gift.quantity;
   });
   return total;
 };
-
 
 const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) => {
   const [todayGift, setTodayGift] = useState(null);
@@ -226,15 +225,29 @@ const GiftPopUp = ({
   );
 };
 
-const RecoverGifts = ({totalGifts, ...props }) => {
+const RecoverGifts = ({ totalGifts, ...props }) => {
+  const [currentUser] = useUserContext();
+  const [item, setItem] = useState(null);
+  useEffect(() => {
+    const tmpItem = {
+      ...PURCHASES[PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS],
+      description: `(${Object.keys(totalGifts)
+        .map((key) => `${totalGifts[key]} ${key}`)
+        .join(", ")})`,
+    };
+    const tmpStarPercentage = currentUser?.starPercentage + totalGifts.starPercentage;
+    const reward = {
+      stars: currentUser.stars + totalGifts?.stars + parseInt(tmpStarPercentage / 100),
+      starPercentage: tmpStarPercentage % 100,
+      coins: currentUser.coins + totalGifts.coins,
+    };
+    tmpItem.reward = reward;
+    console.log(tmpItem);
+    setItem(tmpItem);
+  }, []);
+
+
   const [stripeLoading, setStripeLoading] = useState(false);
-  const item = {
-    ...PURCHASES[PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS],
-    rewards : totalGifts,
-    description: `(${Object.keys(totalGifts)
-      .map((key) => `${totalGifts[key]} ${key}`)
-      .join(", ")})`,
-  };
   return (
     <Flex
       maxH={{ base: "auto", md: recoverGiftHeight }}
@@ -254,14 +267,14 @@ const RecoverGifts = ({totalGifts, ...props }) => {
         Recover your lost gifts and double the gifts you received!
       </Text>
       <Button
-        isLoading={stripeLoading}
+        isLoading={stripeLoading || !item}
         onClick={() => {
           createCheckOutSession(item, setStripeLoading);
         }}
         w={{ base: "80%", md: "40%" }}
         m={3}
       >
-        {parseFloat(item.price)}€
+        {parseFloat(item?.price || 0)}€
       </Button>
     </Flex>
   );
