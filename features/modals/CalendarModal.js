@@ -45,8 +45,19 @@ const REWARD_USER = gql`
 
 const recoverGiftHeight = "15vh";
 
+const computeTotalGifts = (gifts) => {
+  const total = { "coins": 0, "stars": 0, "starPercentage": 0 };
+  gifts.forEach((gift) => {
+  const label = REWARD_TYPES[gift.reward].label
+    total[label] = total[label] + gift.quantity;
+  });
+  return total;
+};
+
+
 const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) => {
   const [todayGift, setTodayGift] = useState(null);
+  const [totalGifts, setTotalGifts] = useState(null);
 
   const giveGift = () => {
     onOpen();
@@ -54,6 +65,9 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data, loading, error } = useQuery(GIFTS, {
+    onCompleted(data) {
+      setTotalGifts(computeTotalGifts(data.gifts));
+    },
     ...basicQueryResultSupport,
   });
   const [UpdateLastSeen] = useMutation(UPDATE_LAST_SEEN, {
@@ -121,7 +135,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
           </Text>
         </Flex>
         <GiftIcon boxSize="20" display={{ base: "flex", md: "none" }} />
-        <RecoverGifts />
+        <RecoverGifts totalGifts={totalGifts} />
         {loading && <Loading />}
         {error && <Error />}
         {data && (
@@ -212,9 +226,15 @@ const GiftPopUp = ({
   );
 };
 
-const RecoverGifts = ({ ...props }) => {
+const RecoverGifts = ({totalGifts, ...props }) => {
   const [stripeLoading, setStripeLoading] = useState(false);
-  const item = PURCHASES[PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS];
+  const item = {
+    ...PURCHASES[PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS],
+    rewards : totalGifts,
+    description: `(${Object.keys(totalGifts)
+      .map((key) => `${totalGifts[key]} ${key}`)
+      .join(", ")})`,
+  };
   return (
     <Flex
       maxH={{ base: "auto", md: recoverGiftHeight }}
