@@ -5,7 +5,7 @@ async function CreateStripeSession(req, res) {
     res.setHeader("Allow", "POST");
     res.status(405).json({ message: "Method not allowed" });
   }
-  const { item } = req.body;
+  const { item, token } = req.body;
 
   const redirectURL = req.headers.origin;
 
@@ -31,6 +31,7 @@ async function CreateStripeSession(req, res) {
     metadata: {
       images: item.image,
       name: item.name,
+      token: token,
     },
   });
 

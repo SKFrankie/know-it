@@ -1,5 +1,14 @@
 import Stripe from "stripe";
 import { buffer } from "micro";
+import { gql } from "@apollo/client";
+import {getSSRClient} from "../../../apollo-client";
+
+const GET_PREMIUM = gql`
+  mutation getPremium($years: Int, $months: Int, $days: Int, $hours: Int) {
+    getPremium(years: $years, months: $months, days: $days, hours: $hours)
+  }
+`;
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -30,16 +39,23 @@ export default async function handler(req, res) {
     console.log("✅ Success:", event.id);
     const session_id = event.data.object.id;
     console.log("session_id?", session_id);
-    const name = event.data.object?.metadata?.name;
-
+    const { name, token } = event.data.object?.metadata;
+    getSSRClient(token).then((client) => {
+      console.log("client", client);
+      client
+        .mutate({ mutation: GET_PREMIUM, variables: { years: 1 } })
+        .then((data) => {
+          console.log("data of curent suser", data);
+        })
+        .catch((err) => {
+          console.log("error of current user", err);
+        });
+    });
     switch (event.type) {
       case "checkout.session.completed":
         console.log(`💰  Payment received!`);
         console.log(`💰 name`, name);
-        const { line_items } = await stripe.checkout.sessions.retrieve(session_id, {
-          expand: ["line_items"],
-        });
-
+        console.log("token", token);
         break;
       case "payment_intent.succeeded":
         console.log("PaymentIntent was successful!");

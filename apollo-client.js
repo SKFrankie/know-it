@@ -6,7 +6,10 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("token");
+  let token;
+  if (typeof window !== "undefined") {
+    token = localStorage.getItem("token");
+  }
   return {
     headers: {
       ...headers,
@@ -21,4 +24,28 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const getSSRClient =  async (SSRtoken) => {
+  const SSRauthLink = setContext((_, { headers }) => {
+    let token;
+    if (typeof window !== "undefined") {
+      token = localStorage.getItem("token");
+    } else {
+      token = SSRtoken;
+    }
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    };
+  });
+  const SSRclient = new ApolloClient({
+    link: SSRauthLink.concat(httpLink),
+    uri: process.env.NEXT_PUBLIC_APOLLO_SERVER_URI,
+    cache: new InMemoryCache(),
+  });
+  return SSRclient;
+};
+
+export { getSSRClient };
 export default client;

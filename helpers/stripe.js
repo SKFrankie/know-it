@@ -8,6 +8,7 @@ const createCheckOutSession = async ( item, setLoading = (foo) => {}) => {
   const stripe = await stripePromise;
   const checkoutSession = await axios.post("/api/create-stripe-session", {
     item: item,
+    token: localStorage.getItem("token"),
   });
   const result = await stripe.redirectToCheckout({
     sessionId: checkoutSession.data.id,
