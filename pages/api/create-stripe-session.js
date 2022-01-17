@@ -31,7 +31,11 @@ async function CreateStripeSession(req, res) {
     metadata: {
       images: item.image,
       name: item.name,
+      label: item.label,
       token: token,
+      coins: item?.reward?.coins || 0,
+      stars: item?.reward?.stars || 0,
+      starPercentage: item?.reward?.starPercentage || 0,
     },
   });
 

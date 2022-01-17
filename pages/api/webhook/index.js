@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { buffer } from "micro";
 import { gql } from "@apollo/client";
 import {getSSRClient} from "../../../apollo-client";
+import { PURCHASE_TYPES, PURCHASES } from "../../../constants";
 
 const GET_PREMIUM = gql`
   mutation getPremium($years: Int, $months: Int, $days: Int, $hours: Int) {
@@ -9,8 +10,57 @@ const GET_PREMIUM = gql`
   }
 `;
 
+const REWARD_USER = gql`
+  mutation RewardUser($coins: Int, $stars: Int, $starPercentage: Int) {
+    updateCurrentUser(coins: $coins, stars: $stars, starPercentage: $starPercentage) {
+      coins
+      stars
+      starPercentage
+    }
+  }
+`;
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+const getPurchase = async (item, token, payment_intent) => {
+  let variables = {};
+  let QUERY = GET_PREMIUM;
+  switch (item.label) {
+    case PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS:
+      variables = {
+        coins: parseInt(item?.coins) || undefined,
+        stars: parseInt(item?.stars) || undefined,
+        starPercentage: parseInt(item?.starPercentage) || undefined,
+      };
+      QUERY = REWARD_USER;
+      break;
+
+    default:
+      break;
+  }
+  getSSRClient(token)
+    .then((client) => {
+      console.log("variables", variables);
+      console.log("QUERY", QUERY);
+      return client.mutate({ mutation: QUERY, variables });
+    })
+    .then((data) => {
+      // customer gets his item
+      console.log("data of curent suser", data);
+    })
+    .catch((err) => {
+      console.log("error of current user", err);
+      // something went wrong, we refund the customer
+      stripe.refunds
+        .create({
+          payment_intent,
+        })
+        .then((refund) => {
+          console.log("refund", refund, payment_intent);
+        });
+    });
+};
 
 export const config = {
   api: {
@@ -39,29 +89,13 @@ export default async function handler(req, res) {
     console.log("✅ Success:", event.id);
     const session_id = event.data.object.id;
     console.log("session_id?", session_id);
-    const { name, token } = event.data.object?.metadata;
-    console.log("name", name)
+    const { name, token, label, coins, stars, starPercentage } = event.data.object?.metadata;
+    const item = { name, label, coins, stars, starPercentage };
     const payment_intent = event.data.object?.payment_intent;
     switch (event.type) {
       case "checkout.session.completed":
-      // payment has been done
-        getSSRClient(token)
-          .then((client) => {
-            return client.mutate({ mutation: GET_PREMIUM, variables: { years: 2 } });
-          })
-          .then((data) => {
-            // customer gets his item
-            console.log("data of curent suser", data);
-          })
-          .catch((err) => {
-            console.log("error of current user", err);
-            // something went wrong, we refund the customer
-            stripe.refunds.create({
-              payment_intent,
-            }).then((refund) => {
-              console.log("refund", refund, payment_intent);
-            });
-          });
+        // payment has been done
+        getPurchase(item,token, payment_intent);
         break;
       case "payment_intent.succeeded":
         console.log("PaymentIntent was successful!");
