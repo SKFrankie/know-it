@@ -5,8 +5,11 @@ import { getSSRClient } from "../../../apollo-client";
 import { PURCHASE_TYPES } from "../../../constants";
 
 const GET_PREMIUM = gql`
-  mutation getPremium($years: Int, $months: Int, $days: Int, $hours: Int) {
+  mutation GetPremium($years: Int, $months: Int, $days: Int, $hours: Int, $coins: Int) {
     getPremium(years: $years, months: $months, days: $days, hours: $hours)
+    updateCurrentUser(coins: $coins) {
+      coins
+    }
   }
 `;
 
@@ -23,21 +26,22 @@ const REWARD_USER = gql`
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const getPurchase = async (item, token, payment_intent) => {
-  let variables = {};
-  let QUERY = GET_PREMIUM;
-  switch (item.label) {
-    case PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS:
-      variables = {
-        coins: parseInt(item?.coins) || undefined,
-        stars: parseInt(item?.stars) || undefined,
-        starPercentage: parseInt(item?.starPercentage) || undefined,
-      };
-      QUERY = REWARD_USER;
-      break;
+  let variables = {
+    coins: parseInt(item?.coins) || undefined,
+    stars: parseInt(item?.stars) || undefined,
+    starPercentage: parseInt(item?.starPercentage) || undefined,
+  };
+  let QUERY = REWARD_USER;
+  // const PREMIUM_PURCHASES = [PURCHASE_TYPES.]
+  // if (item.label)
+  // switch (item.label) {
+  //   case PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS:
+  //     QUERY = REWARD_USER;
+  //     break;
 
-    default:
-      break;
-  }
+  //   default:
+  //     break;
+  // }
   getSSRClient(token)
     .then((client) => {
       return client.mutate({ mutation: QUERY, variables });

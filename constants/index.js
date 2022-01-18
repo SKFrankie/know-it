@@ -141,18 +141,24 @@ const PURCHASES = {
     name: "5 Stars",
     description: getStarsDescription(5),
     price: "0.50",
+    quantity: 5,
+    type: "stars"
   },
   [PURCHASE_TYPES.STARS_10]: {
     label: PURCHASE_TYPES.STARS_10,
     name: "10 Stars",
     description: getStarsDescription(10),
     price: "0.80",
+    quantity: 10,
+    type: "stars"
   },
   [PURCHASE_TYPES.STARS_15]: {
     label: PURCHASE_TYPES.STARS_15,
     name: "15 Stars",
     description: getStarsDescription(15),
     price: "1.10",
+    quantity: 15,
+    type: "stars"
   },
 
   // coins
@@ -162,24 +168,32 @@ const PURCHASES = {
     name: "250 Coins",
     description: getCoinsDescription(250),
     price: "0.50",
+    quantity: 250,
+    type: "coins"
   },
   [PURCHASE_TYPES.COINS_500]: {
     label: PURCHASE_TYPES.COINS_500,
     name: "500 Coins",
     description: getCoinsDescription(500),
     price: "0.80",
+    quantity: 500,
+    type: "coins"
   },
   [PURCHASE_TYPES.COINS_750]: {
     label: PURCHASE_TYPES.COINS_750,
     name: "750 Coins",
     description: getCoinsDescription(750),
     price: "1.10",
+    quantity: 750,
+    type: "coins"
   },
   [PURCHASE_TYPES.COINS_1000]: {
     label: PURCHASE_TYPES.COINS_1000,
     name: "1000 Coins",
     description: getCoinsDescription(1000),
     price: "1.50",
+    quantity: 1000,
+    type: "coins"
   },
 
   // double gifts
