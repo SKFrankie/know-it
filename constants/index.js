@@ -121,18 +121,27 @@ const PURCHASES = {
     name: "Premium : 12 Hours package",
     description: getPremiumDescription("12 hours", "50"),
     price: "0.50",
+    quantity: 12,
+    type: "hours",
+    bonusCoins: 50,
   },
   [PURCHASE_TYPES.MONTH_1_PREMIUM]: {
     label: PURCHASE_TYPES.MONTH_1_PREMIUM,
     name: "Premium : 1 Month package",
     description: getPremiumDescription("1 month", "350"),
     price: "1.99",
+    quantity: 1,
+    type: "months",
+    bonusCoins: 350,
   },
   [PURCHASE_TYPES.YEAR_1_PREMIUM]: {
     label: PURCHASE_TYPES.YEAR_1_PREMIUM,
     name: "Premium : 1 Year package",
     description: getPremiumDescription("1 year", "1000"),
     price: "6.99",
+    quantity: 1,
+    type: "years",
+    bonusCoins: 1000,
   },
 
   // stars
