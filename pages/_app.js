@@ -42,7 +42,7 @@ const theme = extendTheme({
     },
   },
   fonts: {
-    body: "system-ui, sans-serif",
+    body: "Maven Pro, system-ui, sans-serif",
   },
 });
 
