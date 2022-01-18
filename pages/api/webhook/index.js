@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { buffer } from "micro";
 import { gql } from "@apollo/client";
 import {getSSRClient} from "../../../apollo-client";
-import { PURCHASE_TYPES, PURCHASES } from "../../../constants";
+import { PURCHASE_TYPES } from "../../../constants";
 
 const GET_PREMIUM = gql`
   mutation getPremium($years: Int, $months: Int, $days: Int, $hours: Int) {
