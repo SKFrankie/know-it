@@ -6,30 +6,36 @@ import PremiumButtons from "../../features/shop/PremiumButtons";
 import {PURCHASE_TYPES} from "../../constants";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
+import { useUserContext } from "../../context/user";
+import {isPremium} from "../../helpers/premium";
 
 const Money = () => {
+  const [currentUser, setCurrentUser] = useUserContext();
+
   const sellingStars = [PURCHASE_TYPES.STARS_5, PURCHASE_TYPES.STARS_10, PURCHASE_TYPES.STARS_15];
   const sellingCoins = [PURCHASE_TYPES.COINS_250, PURCHASE_TYPES.COINS_500, PURCHASE_TYPES.COINS_750, PURCHASE_TYPES.COINS_1000];
   const [stripeLoading, setStripeLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <ShopContainer>
-      <Flex
-        direction="column"
-        m={3}
-        bg="deepDarkBlue"
-        p={1}
-        borderRadius={10}
-        textAlign="center"
-        align="center"
-      >
-        <PremiumDescription
-          onOpen={onOpen}
-          stripeLoading={stripeLoading}
-          setStripeLoading={setStripeLoading}
-          displayButtons={{ base: "none", md: "flex" }}
-        />
-      </Flex>
+      {isPremium(currentUser) ? null : (
+        <Flex
+          direction="column"
+          m={3}
+          bg="deepDarkBlue"
+          p={1}
+          borderRadius={10}
+          textAlign="center"
+          align="center"
+        >
+          <PremiumDescription
+            onOpen={onOpen}
+            stripeLoading={stripeLoading}
+            setStripeLoading={setStripeLoading}
+            displayButtons={{ base: "none", md: "flex" }}
+          />
+        </Flex>
+      )}
       <MoneyItems
         stripeLoading={stripeLoading}
         setStripeLoading={setStripeLoading}
@@ -83,4 +89,5 @@ const PremiumDescription = ({ onOpen, stripeLoading, setStripeLoading, displayBu
   );
 };
 
+export {PremiumDescription};
 export default Money;

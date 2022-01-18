@@ -1,10 +1,15 @@
-import { Flex, Text, Image } from "@chakra-ui/react";
+import {useState} from "react";
+import { Flex, Text, Image, useDisclosure } from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import dateToString from "../helpers/dateToString";
 import { CoinCurrency, StarCurrency, StarPercentage } from "../features/Currency.js";
+import {isPremium} from "../helpers/premium";
+import {PremiumDescription} from "./shop/money";
 
 const Profile = () => {
   const [currentUser] = useUserContext();
+  const [stripeLoading, setStripeLoading] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex direction="column">
       <ProfileFlex direction="row">
@@ -38,7 +43,18 @@ const Profile = () => {
         <Text fontSize="2xl">Ranking</Text>
       </ProfileFlex>
       <ProfileFlex>
-        <Text fontSize="2xl">Premium Plan / Get Premium</Text>
+        {isPremium(currentUser) ? (
+          <>
+            <Text fontSize="2xl">Premium Plan</Text>
+            <Text>Premium until: {dateToString(currentUser.premiumEndingDate)} </Text>
+          </>
+        ) : 
+          <PremiumDescription
+            stripeLoading={stripeLoading}
+            setStripeLoading={setStripeLoading}
+            displayButtons={{ base: "flex", md: "flex" }}
+          />
+        }
       </ProfileFlex>
     </Flex>
   );
