@@ -28,7 +28,7 @@ async function CreateStripeSession(req, res) {
     mode: "payment",
     success_url:
       redirectURL +
-      `?status=success&item=${item.name}&description=${item.description}&session_id={CHECKOUT_SESSION_ID}`,
+      `?status=success&item=${encodeURI(item.name)}&description=${encodeURI(item.description)}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: redirectURL + "?status=cancel",
     metadata: {
       images: item.image,
@@ -38,6 +38,10 @@ async function CreateStripeSession(req, res) {
       coins: item?.reward?.coins || 0,
       stars: item?.reward?.stars || 0,
       starPercentage: item?.reward?.starPercentage || 0,
+      years: item?.years || 0,
+      months: item?.months || 0,
+      hours: item?.hours || 0,
+      premium: item?.premium,
     },
   });
 

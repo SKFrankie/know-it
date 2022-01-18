@@ -11,15 +11,29 @@ const Money = () => {
   const [stripeLoading, setStripeLoading] = useState(false);
   return (
     <ShopContainer>
-      <Flex direction="column" m={3} bg="deepDarkBlue" p={1} borderRadius={10} textAlign="center" align="center">
+      <Flex
+        direction="column"
+        m={3}
+        bg="deepDarkBlue"
+        p={1}
+        borderRadius={10}
+        textAlign="center"
+        align="center"
+      >
         <Text mb={2} fontSize="2xl" fontWeight="bold">
           Premium Plans
         </Text>
         <Text mb={2} fontSize="md" fontWeight="md">
           Get 10% more coins and enjoy playing without any ads!
         </Text>
-        <Button mb={2} w="90%" display={{base: "flex", md: "none"}}>See More</Button>
-        <PremiumButtons display={{base: "none", md: "flex"}} />
+        <Button mb={2} w="90%" display={{ base: "flex", md: "none" }}>
+          See More
+        </Button>
+        <PremiumButtons
+          stripeLoading={stripeLoading}
+          setStripeLoading={setStripeLoading}
+          display={{ base: "none", md: "flex" }}
+        />
       </Flex>
       <MoneyItems
         stripeLoading={stripeLoading}

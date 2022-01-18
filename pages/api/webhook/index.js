@@ -2,7 +2,6 @@ import Stripe from "stripe";
 import { buffer } from "micro";
 import { gql } from "@apollo/client";
 import { getSSRClient } from "../../../apollo-client";
-import { PURCHASE_TYPES } from "../../../constants";
 
 const GET_PREMIUM = gql`
   mutation GetPremium($years: Int, $months: Int, $days: Int, $hours: Int, $coins: Int) {
@@ -32,16 +31,16 @@ const getPurchase = async (item, token, payment_intent) => {
     starPercentage: parseInt(item?.starPercentage) || undefined,
   };
   let QUERY = REWARD_USER;
-  // const PREMIUM_PURCHASES = [PURCHASE_TYPES.]
-  // if (item.label)
-  // switch (item.label) {
-  //   case PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS:
-  //     QUERY = REWARD_USER;
-  //     break;
+  if (item?.premium) {
+    variables = {
+      years: parseInt(item?.years) || undefined,
+      months: parseInt(item?.months) || undefined,
+      hours: parseInt(item?.hours) || undefined,
+      ...variables,
+    };
+    QUERY = GET_PREMIUM;
+  }
 
-  //   default:
-  //     break;
-  // }
   getSSRClient(token)
     .then((client) => {
       return client.mutate({ mutation: QUERY, variables });
@@ -86,14 +85,13 @@ export default async function handler(req, res) {
       return;
     }
     // Successfully constructed event
-    const session_id = event.data.object.id;
-    const { name, token, label, coins, stars, starPercentage } = event.data.object?.metadata;
-    const item = { name, label, coins, stars, starPercentage };
+    // const session_id = event.data.object.id;
+    const item = event.data.object?.metadata
     const payment_intent = event.data.object?.payment_intent;
     switch (event.type) {
       case "checkout.session.completed":
         // payment has been done
-        getPurchase(item, token, payment_intent);
+        getPurchase(item, item.token, payment_intent);
         break;
       // case "payment_intent.succeeded":
       //   console.log("PaymentIntent was successful!");

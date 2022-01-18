@@ -124,6 +124,7 @@ const PURCHASES = {
     quantity: 12,
     type: "hours",
     bonusCoins: 50,
+    premium: true,
   },
   [PURCHASE_TYPES.MONTH_1_PREMIUM]: {
     label: PURCHASE_TYPES.MONTH_1_PREMIUM,
@@ -133,6 +134,7 @@ const PURCHASES = {
     quantity: 1,
     type: "months",
     bonusCoins: 350,
+    premium: true,
   },
   [PURCHASE_TYPES.YEAR_1_PREMIUM]: {
     label: PURCHASE_TYPES.YEAR_1_PREMIUM,
@@ -142,6 +144,7 @@ const PURCHASES = {
     quantity: 1,
     type: "years",
     bonusCoins: 1000,
+    premium: true,
   },
 
   // stars
