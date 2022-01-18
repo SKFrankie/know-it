@@ -1,4 +1,4 @@
-import { Flex, Text, Switch, useDisclosure} from "@chakra-ui/react";
+import { Flex, Text, Switch, useDisclosure } from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import Button from "../ui/Button";
 import AccountSettingPopup from "../features/modals/AccountSettingPopup";
@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const Settings = () => {
   const router = useRouter();
-  const [{online}] = useUserContext();
+  const [{ online }] = useUserContext();
   return (
     <Flex direction="column">
       <GeneralSettings />
@@ -52,7 +52,7 @@ const GeneralSettings = () => {
 };
 
 const AccountSettings = () => {
-  const [{tpo}] = useUserContext();
+  const [{ tpo }] = useUserContext();
   return (
     <SettingBlock title="Account Settings">
       <AccountSettingButton first last={tpo} label="username" type="text">
@@ -76,7 +76,7 @@ const SoundSetting = () => {
   const isDisabled = JSON.parse(localStorage.getItem("disableSound"));
   const handleChange = (e) => {
     const checked = e.target.checked;
-    localStorage.setItem('disableSound', !checked);
+    localStorage.setItem("disableSound", !checked);
   };
 
   return (
@@ -86,7 +86,6 @@ const SoundSetting = () => {
     </>
   );
 };
-
 
 const SettingBlock = ({ children, title, ...props }) => {
   return (
@@ -112,7 +111,6 @@ const SettingTitle = ({ children, ...props }) => {
 };
 
 const AccountSettingButton = ({ label, type, children, ...props }) => {
-  
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -122,7 +120,7 @@ const AccountSettingButton = ({ label, type, children, ...props }) => {
       <AccountSettingPopup type={type} label={label} isOpen={isOpen} onClose={onClose} />{" "}
     </>
   );
-}
+};
 
 const SettingButton = ({ onClick, first = false, last = false, children, ...props }) => {
   const radius = "10px";
@@ -147,6 +145,5 @@ const SettingButton = ({ onClick, first = false, last = false, children, ...prop
     </Button>
   );
 };
-
 
 export default Settings;

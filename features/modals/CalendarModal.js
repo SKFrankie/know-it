@@ -246,7 +246,6 @@ const RecoverGifts = ({ totalGifts, ...props }) => {
     setItem(tmpItem);
   }, []);
 
-
   const [stripeLoading, setStripeLoading] = useState(false);
   return (
     <Flex

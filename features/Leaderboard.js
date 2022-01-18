@@ -9,9 +9,8 @@ import Error from "./Error";
 
 // different query to get current week rank
 const RANKING_USERS = gql`
-
   query RankingUsers {
-    rankingUsers : currentRankingUsers {
+    rankingUsers: currentRankingUsers {
       userId
       points
       username

@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { buffer } from "micro";
 import { gql } from "@apollo/client";
-import {getSSRClient} from "../../../apollo-client";
+import { getSSRClient } from "../../../apollo-client";
 import { PURCHASE_TYPES } from "../../../constants";
 
 const GET_PREMIUM = gql`
@@ -19,7 +19,6 @@ const REWARD_USER = gql`
     }
   }
 `;
-
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -41,24 +40,21 @@ const getPurchase = async (item, token, payment_intent) => {
   }
   getSSRClient(token)
     .then((client) => {
-      console.log("variables", variables);
-      console.log("QUERY", QUERY);
       return client.mutate({ mutation: QUERY, variables });
     })
-    .then((data) => {
-      // customer gets his item
-      console.log("data of curent suser", data);
-    })
+    // .then((data) => {
+    //   // customer gets his item
+    //   console.log("data of curent suser", data);
+    // })
     .catch((err) => {
       console.log("error of current user", err);
       // something went wrong, we refund the customer
-      stripe.refunds
-        .create({
-          payment_intent,
-        })
-        .then((refund) => {
-          console.log("refund", refund, payment_intent);
-        });
+      stripe.refunds.create({
+        payment_intent,
+      });
+      // .then((refund) => {
+      //   console.log("refund", refund, payment_intent);
+      // });
     });
 };
 
@@ -86,23 +82,21 @@ export default async function handler(req, res) {
       return;
     }
     // Successfully constructed event
-    console.log("✅ Success:", event.id);
     const session_id = event.data.object.id;
-    console.log("session_id?", session_id);
     const { name, token, label, coins, stars, starPercentage } = event.data.object?.metadata;
     const item = { name, label, coins, stars, starPercentage };
     const payment_intent = event.data.object?.payment_intent;
     switch (event.type) {
       case "checkout.session.completed":
         // payment has been done
-        getPurchase(item,token, payment_intent);
+        getPurchase(item, token, payment_intent);
         break;
-      case "payment_intent.succeeded":
-        console.log("PaymentIntent was successful!");
-        break;
-      case "payment_method.attached":
-        console.log("PaymentMethod was attached to a Customer!");
-        break;
+      // case "payment_intent.succeeded":
+      //   console.log("PaymentIntent was successful!");
+      //   break;
+      // case "payment_method.attached":
+      //   console.log("PaymentMethod was attached to a Customer!");
+      //   break;
       // ... handle other event types
       default:
         console.log(`Unhandled event type ${event.type}`);

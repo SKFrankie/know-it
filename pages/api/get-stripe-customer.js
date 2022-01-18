@@ -2,7 +2,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const getCustomer = async (req, res) => {
   const id = req.query.session_id;
-  console.log("ici ?", id);
   let customer = null;
   try {
     if (!id.startsWith("cs_")) {
@@ -13,7 +12,6 @@ const getCustomer = async (req, res) => {
   } catch (error) {
     console.log("error", error);
   }
-  console.log("customer", customer);
   res.json({ customer: customer });
 };
 

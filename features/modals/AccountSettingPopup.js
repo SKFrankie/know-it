@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import { useUserContext } from "../../context/user";
 import { Flex, Text, useToast } from "@chakra-ui/react";
-import {PopUp} from "../../ui/Modal";
+import { PopUp } from "../../ui/Modal";
 import Input from "../../ui/Input";
-import {SubmitButton} from "../../ui/Button";
+import { SubmitButton } from "../../ui/Button";
 import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 
@@ -24,8 +24,8 @@ const CHANGE_USER_PASSWORD = gql`
 
 const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
   const [currentUser, setCurrentUser, { refetch }] = useUserContext();
-  const [value, setValue] = React.useState(currentUser?.[label] || '');
-  const [confirm, setConfirm] = React.useState('');
+  const [value, setValue] = React.useState(currentUser?.[label] || "");
+  const [confirm, setConfirm] = React.useState("");
 
   const toast = useToast();
 
@@ -53,19 +53,17 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
     },
   });
 
-
-
   const [updateUser] = useMutation(UPDATE_USER, {
     variables: { [label]: value },
     onCompleted: (data) => {
       if (value !== currentUser?.[label]) {
-      toast({
-        title: "Sucess",
-        description: "your account has been updated",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
+        toast({
+          title: "Sucess",
+          description: "your account has been updated",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
         setCurrentUser({ ...currentUser, [label]: data?.[label] });
         refetch();
       }
@@ -88,7 +86,6 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
     e.preventDefault();
     if (type === "password") {
       if (value !== confirm) {
-
         toast({
           title: "Error",
           description: "The passwords do not match",
@@ -114,8 +111,26 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
           <form onSubmit={handleSubmit}>
             {type === "password" ? (
               <>
-                <Input m={3} mb={0} w="90%" first type={type} placeholder="New password" onChange={(e)=>setValue(e.target.value)} required />
-                <Input m={3} mt={0} w="90%" last type={type} placeholder="Confirm new password" onChange={(e)=> setConfirm(e.target.value)} required />
+                <Input
+                  m={3}
+                  mb={0}
+                  w="90%"
+                  first
+                  type={type}
+                  placeholder="New password"
+                  onChange={(e) => setValue(e.target.value)}
+                  required
+                />
+                <Input
+                  m={3}
+                  mt={0}
+                  w="90%"
+                  last
+                  type={type}
+                  placeholder="Confirm new password"
+                  onChange={(e) => setConfirm(e.target.value)}
+                  required
+                />
               </>
             ) : (
               <Input

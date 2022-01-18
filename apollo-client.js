@@ -24,7 +24,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const getSSRClient =  async (SSRtoken) => {
+const getSSRClient = async (SSRtoken) => {
   const SSRauthLink = setContext((_, { headers }) => {
     let token;
     if (typeof window !== "undefined") {

@@ -100,97 +100,96 @@ const PURCHASE_TYPES = {
   COINS_1000: "COINS_1000",
 
   RECOVER_DOUBLE_GIFTS: "RECOVER_DOUBLE_GIFTS",
-}
+};
 
-const getPremiumDescription= (time, bonusCoins) => {
+const getPremiumDescription = (time, bonusCoins) => {
   return `Get 10% more coins and enjoy playing without any ads for ${time}. You also get ${bonusCoins} coins as a gift.`;
-}
+};
 
 const getStarsDescription = (stars) => {
   return `Get ${stars} stars`;
-}
+};
 
 const getCoinsDescription = (coins) => {
   return `Get ${coins} coins`;
-}
+};
 
 const PURCHASES = {
-  
   // premium
-    [PURCHASE_TYPES.HOURS_12_PREMIUM]: {
-      label : PURCHASE_TYPES.HOURS_12_PREMIUM,
-      name: "Premium : 12 Hours package",
-      description : getPremiumDescription("12 hours", "50"),
-      price: "0.50",
-    },
-    [PURCHASE_TYPES.MONTH_1_PREMIUM]: {
-      label : PURCHASE_TYPES.MONTH_1_PREMIUM,
-      name: "Premium : 1 Month package",
-      description : getPremiumDescription("1 month", "350"),
-      price: "1.99",
-    },
-    [PURCHASE_TYPES.YEAR_1_PREMIUM]: {
-      label : PURCHASE_TYPES.YEAR_1_PREMIUM,
-      name: "Premium : 1 Year package",
-      description : getPremiumDescription("1 year", "1000"),
-      price: "6.99",
-    },
+  [PURCHASE_TYPES.HOURS_12_PREMIUM]: {
+    label: PURCHASE_TYPES.HOURS_12_PREMIUM,
+    name: "Premium : 12 Hours package",
+    description: getPremiumDescription("12 hours", "50"),
+    price: "0.50",
+  },
+  [PURCHASE_TYPES.MONTH_1_PREMIUM]: {
+    label: PURCHASE_TYPES.MONTH_1_PREMIUM,
+    name: "Premium : 1 Month package",
+    description: getPremiumDescription("1 month", "350"),
+    price: "1.99",
+  },
+  [PURCHASE_TYPES.YEAR_1_PREMIUM]: {
+    label: PURCHASE_TYPES.YEAR_1_PREMIUM,
+    name: "Premium : 1 Year package",
+    description: getPremiumDescription("1 year", "1000"),
+    price: "6.99",
+  },
 
-    // stars
-    [PURCHASE_TYPES.STARS_5]: {
-      label : PURCHASE_TYPES.STARS_5,
-      name: "5 Stars",
-      description: getStarsDescription(5),
-      price: "0.50",
-    },
-    [PURCHASE_TYPES.STARS_10]: {
-      label : PURCHASE_TYPES.STARS_10,
-      name: "10 Stars",
-      description: getStarsDescription(10),
-      price: "0.80",
-    },
-    [PURCHASE_TYPES.STARS_15]: {
-      label : PURCHASE_TYPES.STARS_15,
-      name: "15 Stars",
-      description: getStarsDescription(15),
-      price: "1.10",
-    },
+  // stars
+  [PURCHASE_TYPES.STARS_5]: {
+    label: PURCHASE_TYPES.STARS_5,
+    name: "5 Stars",
+    description: getStarsDescription(5),
+    price: "0.50",
+  },
+  [PURCHASE_TYPES.STARS_10]: {
+    label: PURCHASE_TYPES.STARS_10,
+    name: "10 Stars",
+    description: getStarsDescription(10),
+    price: "0.80",
+  },
+  [PURCHASE_TYPES.STARS_15]: {
+    label: PURCHASE_TYPES.STARS_15,
+    name: "15 Stars",
+    description: getStarsDescription(15),
+    price: "1.10",
+  },
 
-    // coins
+  // coins
 
-    [PURCHASE_TYPES.COINS_250]: {
-      label : PURCHASE_TYPES.COINS_250,
-      name: "250 Coins",
-      description: getCoinsDescription(250),
-      price: "0.50",
-    },
-    [PURCHASE_TYPES.COINS_500]: {
-      label : PURCHASE_TYPES.COINS_500,
-      name: "500 Coins",
-      description: getCoinsDescription(500),
-      price: "0.80",
-    },
-    [PURCHASE_TYPES.COINS_750]: {
-      label : PURCHASE_TYPES.COINS_750,
-      name: "750 Coins",
-      description: getCoinsDescription(750),
-      price: "1.10",
-    },
-    [PURCHASE_TYPES.COINS_1000]: {
-      label : PURCHASE_TYPES.COINS_1000,
-      name: "1000 Coins",
-      description: getCoinsDescription(1000),
-      price: "1.50",
-    },
+  [PURCHASE_TYPES.COINS_250]: {
+    label: PURCHASE_TYPES.COINS_250,
+    name: "250 Coins",
+    description: getCoinsDescription(250),
+    price: "0.50",
+  },
+  [PURCHASE_TYPES.COINS_500]: {
+    label: PURCHASE_TYPES.COINS_500,
+    name: "500 Coins",
+    description: getCoinsDescription(500),
+    price: "0.80",
+  },
+  [PURCHASE_TYPES.COINS_750]: {
+    label: PURCHASE_TYPES.COINS_750,
+    name: "750 Coins",
+    description: getCoinsDescription(750),
+    price: "1.10",
+  },
+  [PURCHASE_TYPES.COINS_1000]: {
+    label: PURCHASE_TYPES.COINS_1000,
+    name: "1000 Coins",
+    description: getCoinsDescription(1000),
+    price: "1.50",
+  },
 
-    // double gifts
-    [PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS]: {
-      label : PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS,
-      name: "Recover lost gifts and double your gifts",
-      description: "Recover all lost gifts and double gifts you already got",
-      price: "3.99",
-    },
-  }
+  // double gifts
+  [PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS]: {
+    label: PURCHASE_TYPES.RECOVER_DOUBLE_GIFTS,
+    name: "Recover lost gifts and double your gifts",
+    description: "Recover all lost gifts and double gifts you already got",
+    price: "3.99",
+  },
+};
 
 export {
   SECTIONS,

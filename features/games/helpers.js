@@ -23,7 +23,6 @@ const getLastDayOfLastWeek = () => {
   return dateToString(date);
 };
 
-
 const getFirstDayOfWeek = () => {
   const today = new Date();
   const day = today.getDay();
@@ -35,8 +34,14 @@ const getFirstDayOfWeek = () => {
 const getLastDayOfWeek = () => {
   const today = new Date();
   const day = today.getDay();
-  const diff = today.getDate() - day + (day === 0 ? -6 : 1)
+  const diff = today.getDate() - day + (day === 0 ? -6 : 1);
   const date = new Date(today.setDate(diff + 6));
   return dateToString(date);
 };
-export { isCurrentWeek, getFirstDayOfLastWeek, getLastDayOfLastWeek, getFirstDayOfWeek, getLastDayOfWeek };
+export {
+  isCurrentWeek,
+  getFirstDayOfLastWeek,
+  getLastDayOfLastWeek,
+  getFirstDayOfWeek,
+  getLastDayOfWeek,
+};

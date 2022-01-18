@@ -63,7 +63,7 @@ export default function Home() {
       </Flex>
       <KnowlympicsButton href="/knowlympics" disabled={!currentUser.online} />
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
-      <StripeComponent/>
+      <StripeComponent />
     </>
   );
 }

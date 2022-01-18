@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
-import {getCustomer} from '../../helpers/stripe';
-import {PopUp} from "../../ui/Modal"
-import {Flex, Text, useDisclosure} from "@chakra-ui/react"
+import React, { useEffect, useState } from "react";
+import { getCustomer } from "../../helpers/stripe";
+import { PopUp } from "../../ui/Modal";
+import { Flex, Text, useDisclosure } from "@chakra-ui/react";
 
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 const StripeComponent = () => {
   const router = useRouter();
   const { status, session_id, item, description } = router.query;
@@ -33,15 +33,21 @@ const StripeComponent = () => {
       >
         {status && status === "success" && customer && (
           <>
-          <Text m={2} fontSize="xl" fontWeight="bold">Successfully purchased!</Text>
-          <Text m={2} fontSize="md" >{item}</Text>
-          <Text fontSize="sm" >{description}</Text>
+            <Text m={2} fontSize="xl" fontWeight="bold">
+              Successfully purchased!
+            </Text>
+            <Text m={2} fontSize="md">
+              {item}
+            </Text>
+            <Text fontSize="sm">{description}</Text>
           </>
         )}
         {status && status === "cancel" && (
           <>
-          <Text m={2} fontSize="xl" fontWeight="bold">Something went wrong</Text>
-          <Text fontSize="sm" >The purchased has been canceled</Text>
+            <Text m={2} fontSize="xl" fontWeight="bold">
+              Something went wrong
+            </Text>
+            <Text fontSize="sm">The purchased has been canceled</Text>
           </>
         )}
       </Flex>
