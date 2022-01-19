@@ -242,7 +242,6 @@ const RecoverGifts = ({ totalGifts, ...props }) => {
       coins: currentUser.coins + totalGifts.coins,
     };
     tmpItem.reward = reward;
-    console.log(tmpItem);
     setItem(tmpItem);
   }, []);
 
