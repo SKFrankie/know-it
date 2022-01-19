@@ -5,13 +5,14 @@ import dateToString from "../helpers/dateToString";
 import { CoinCurrency, StarCurrency, StarPercentage } from "../features/Currency.js";
 import {isPremium} from "../helpers/premium";
 import {PremiumDescription} from "./shop/money";
+import Ranking from "../features/profile/Ranking";
 
 const Profile = () => {
   const [currentUser] = useUserContext();
   const [stripeLoading, setStripeLoading] = useState(false);
   return (
     <Flex direction="column">
-      <ProfileFlex direction="row">
+      <ProfileFlex direction="row" justify="center">
         <AvatarPicture
           picture={currentUser.currentAvatar?.picture}
           display={{ base: "none", md: "block" }}
@@ -38,23 +39,31 @@ const Profile = () => {
           <StarPercentage />
         </Flex>
       </ProfileFlex>
-      <ProfileFlex>
-        <Text fontSize="2xl">Ranking</Text>
-      </ProfileFlex>
-      <ProfileFlex>
-        {isPremium(currentUser) ? (
-          <>
-            <Text fontSize="2xl">Premium Plan</Text>
-            <Text>Premium until: {dateToString(currentUser.premiumEndingDate)} </Text>
-          </>
-        ) : 
-          <PremiumDescription
-            stripeLoading={stripeLoading}
-            setStripeLoading={setStripeLoading}
-            displayButtons={{ base: "flex", md: "flex" }}
-          />
-        }
-      </ProfileFlex>
+      <Flex direction={{ base: "column", md: "row" }} justify="space-between">
+        <ProfileFlex mr={{ base: 0, md: 2 }}>
+          <Text fontSize="2xl">Ranking</Text>
+          <Ranking />
+        </ProfileFlex>
+        <ProfileFlex ml={{ base: 0, md: 2 }}>
+          {isPremium(currentUser) ? (
+            <>
+              <Text fontSize="2xl">Premium Plan</Text>
+              <Text fontSize={{base: "md", md: "3xl"}} p={{base: "auto", md: "5"}} textAlign={{base: "auto", md: "center"}}>
+                Premium until{" "}
+                <Text as="span" color="#F0940B">
+                  {dateToString(currentUser.premiumEndingDate)}
+                </Text>
+              </Text>
+            </>
+          ) : (
+            <PremiumDescription
+              stripeLoading={stripeLoading}
+              setStripeLoading={setStripeLoading}
+              displayButtons={{ base: "flex", md: "flex" }}
+            />
+          )}
+        </ProfileFlex>
+      </Flex>
     </Flex>
   );
 };
@@ -79,6 +88,7 @@ const ProfileFlex = ({ children, ...props }) => {
       my={4}
       bg="deepDarkBlue"
       direction="column"
+      w="100%"
       {...props}
     >
       {children}
