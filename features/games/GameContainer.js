@@ -3,6 +3,7 @@ import { Flex, Box, Image, Text } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
+import {isPremium} from "../../helpers/premium";
 import HourGlassIcon from "../../ui/icons/HourGlassIcon";
 import { CoinCurrencyNoUser } from "../Currency";
 import Button from "../../ui/Button";
@@ -77,7 +78,7 @@ const GameContainer = ({
     onCompleted(data) {
       if (refetch) {
         refetch();
-        setCurrentUser(...data.updateCurrentUser, ...currentUser);
+        setCurrentUser({...data.updateCurrentUser, ...currentUser});
       }
     },
     ...basicQueryResultSupport,
@@ -148,6 +149,10 @@ const GameContainer = ({
       }
 
       const stars = knowlympics ? -1 : gameState.stars;
+      if (isPremium(currentUser)) {
+        // premium user : we add 10% coins
+        gameState.coins = Math.floor(gameState.coins * 1.1);
+      }
 
       variables = {
         coins: currentUser.coins + gameState.coins,
