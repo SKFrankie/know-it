@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { Flex, Text, Image, useDisclosure } from "@chakra-ui/react";
+import { Flex, Text, Image } from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import dateToString from "../helpers/dateToString";
 import { CoinCurrency, StarCurrency, StarPercentage } from "../features/Currency.js";
@@ -9,7 +9,6 @@ import {PremiumDescription} from "./shop/money";
 const Profile = () => {
   const [currentUser] = useUserContext();
   const [stripeLoading, setStripeLoading] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex direction="column">
       <ProfileFlex direction="row">

@@ -10,7 +10,7 @@ import { useUserContext } from "../../context/user";
 import {isPremium} from "../../helpers/premium";
 
 const Money = () => {
-  const [currentUser, setCurrentUser] = useUserContext();
+  const [currentUser] = useUserContext();
 
   const sellingStars = [PURCHASE_TYPES.STARS_5, PURCHASE_TYPES.STARS_10, PURCHASE_TYPES.STARS_15];
   const sellingCoins = [PURCHASE_TYPES.COINS_250, PURCHASE_TYPES.COINS_500, PURCHASE_TYPES.COINS_750, PURCHASE_TYPES.COINS_1000];
