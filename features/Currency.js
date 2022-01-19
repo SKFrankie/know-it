@@ -1,5 +1,7 @@
+import React, {useState, useEffect} from 'react';
 import { Flex, Image, Text, Progress } from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
+import StarComplete from "./animations/StarComplete";
 
 const Currency = ({
   src = "/images/star.png",
@@ -38,7 +40,18 @@ const CoinCurrencyNoUser = ({ quantity = 0, ...props }) => {
 };
 
 const StarPercentage = ({ quantity = 0, ...props }) => {
+  const [previousQuantity, setPreviousQuantity] = useState(quantity);
+  const [animateStar, setAnimateStar] = useState(false);
   const [currentUser] = useUserContext();
+  useEffect(() => {
+    const tmpQuantity = currentUser?.starPercentage;
+    if (tmpQuantity < previousQuantity) {
+      setAnimateStar(true);
+    } else {
+      setAnimateStar(false);
+    }
+    setPreviousQuantity(tmpQuantity);
+  }, [currentUser.starPercentage]);
   quantity = currentUser.online && !quantity ? currentUser.starPercentage : quantity;
   return (
     <Flex w="100%" {...props} alignItems="center" placeContent={{ base: "center", md: "initial" }}>
@@ -53,7 +66,7 @@ const StarPercentage = ({ quantity = 0, ...props }) => {
         hasStripe
         isAnimated
       />
-      <Image boxSize="30px" src={"/images/star.png"} alt={"star"} />
+      <StarComplete isActive={animateStar} />
     </Flex>
   );
 };
