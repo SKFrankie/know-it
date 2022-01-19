@@ -132,6 +132,10 @@ const GameContainer = ({
     if (timer <= 0) {
       clearInterval(timerInterval.current);
       // end of time
+      if (!currentUser?.online) {
+        // user is offline
+        return
+      }
       const variables = {};
       if (gameState.points > 0) {
         let points = 0;
@@ -230,11 +234,12 @@ const EndingScreen = ({
   const { coins, points, starPercentage } = gameState;
   const [randomGigil, setRandomGigil] = useState("AntonymHuntMonster.png");
   const gigils = [
-    "AntonymHuntMonster.png",
-    "FabVocabMonster.png",
-    "coming-soon-monster.png",
-    "SynonymRollMonster.png",
-    "GrammarGeekMonster.png",
+    // "AntonymHuntMonster.png",
+    // "FabVocabMonster.png",
+    // "coming-soon-monster.png",
+    // "SynonymRollMonster.png",
+    // "GrammarGeekMonster.png",
+    "TimesUpMonster.png",
   ];
 
   useEffect(() => {
