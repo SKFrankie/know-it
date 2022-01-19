@@ -8,6 +8,7 @@ import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Loading from "../Loading";
 import Error from "../Error";
 import Button from "../../ui/Button";
+import Confetti from "../animations/Confetti";
 
 const COLLECTION_DATA = `
       avatarCollectionId
@@ -107,6 +108,7 @@ const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
             ))}
         </Flex>
       </Flex>
+      <Confetti />
     </Modal>
   );
 };

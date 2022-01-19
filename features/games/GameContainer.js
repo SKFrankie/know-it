@@ -9,6 +9,7 @@ import { CoinCurrencyNoUser } from "../Currency";
 import Button from "../../ui/Button";
 import { useUserContext } from "../../context/user";
 import { isCurrentWeek } from "./helpers";
+import Confetti from "../animations/Confetti";
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -283,6 +284,7 @@ const EndingScreen = ({
           Continue
         </Button>
       </Flex>
+      <Confetti />
     </Flex>
   );
 };
