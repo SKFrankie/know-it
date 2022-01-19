@@ -58,7 +58,7 @@ const Ranking = () => {
             {getSuperscriptOrdinal(rank)}
           </Text>
         </Text>
-      ) : <Text>No rank yet</Text>}
+      ) : <Text>No rank yet this week</Text>}
     </>
   );
 };
