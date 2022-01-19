@@ -72,7 +72,7 @@ const AvatarPicture = ({ picture, ...props }) => {
   return (
     <Image
       boxSize={{ base: "50%", md: "20%" }}
-      src={picture ? picture : "https://bit.ly/dan-abramov"}
+      src={picture ? picture : "https://res.cloudinary.com/dvdqswi8x/image/upload/v1639908743/Avatar%20Picture/wprwgtldhxwx4t3ntdur.png"}
       alt="avatar"
       {...props}
     />

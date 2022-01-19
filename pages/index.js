@@ -11,6 +11,7 @@ import { KnowlympicsButton } from "../ui/Button";
 import CalendarModal from "../features/modals/CalendarModal";
 import GiftIcon from "../ui/icons/GiftIcon";
 import RewardPopup from "../features/modals/RewardPopup";
+import FirstGigil from "../features/modals/FirstGigil";
 import StripeComponent from "../features/stripe/StripeComponent";
 
 export default function Home() {
@@ -63,6 +64,7 @@ export default function Home() {
       </Flex>
       <KnowlympicsButton href="/knowlympics" disabled={!currentUser.online} />
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
+      <FirstGigil/>
       <StripeComponent />
     </>
   );
