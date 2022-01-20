@@ -1,8 +1,13 @@
 import React from "react";
-import { Text } from "@chakra-ui/react";
+import { Alert, AlertIcon } from "@chakra-ui/react";
 
 const Error = () => {
-  return <Text>Something went wrong, be sure you have a stable internet connection</Text>;
+  return (
+    <Alert status="error" color="black">
+      <AlertIcon />
+      Something went wrong, be sure you have a stable internet connection
+    </Alert>
+  );
 };
 
 export default Error;

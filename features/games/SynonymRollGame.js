@@ -69,7 +69,7 @@ const SynonymRollGame = ({ gameState, setGameState, onNextGame = null, knowlympi
         </Box>{" "}
         meaning
       </Text>
-      {Object.keys(matchingWords).length && (
+      {Object.keys(matchingWords).length ? (
         <MatchingWords
           matchingWords={matchingWords}
           onComplete={handleMatchingWordsComplete}
@@ -77,7 +77,7 @@ const SynonymRollGame = ({ gameState, setGameState, onNextGame = null, knowlympi
           gameState={gameState}
           knowlympics={knowlympics}
         />
-      )}
+      ) : null}
       {error && <Error />}
       {loading && <Loading />}
     </>

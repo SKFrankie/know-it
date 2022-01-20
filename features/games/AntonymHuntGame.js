@@ -66,7 +66,7 @@ const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympi
         </Box>{" "}
         meaning
       </Text>
-      {Object.keys(matchingWords).length && (
+      {Object.keys(matchingWords).length ? (
         <MatchingWords
           matchingWords={matchingWords}
           onComplete={handleMatchingWordsComplete}
@@ -85,7 +85,7 @@ const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympi
             "#0F0FA4",
           ]}
         />
-      )}
+      ) : null}
       {error && <Error />}
       {loading && <Loading />}
     </>
