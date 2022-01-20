@@ -205,7 +205,14 @@ const MobileGameHeader = ({ maxTime = 100, timer = 0 }) => {
 const DesktopGameHeader = ({ maxTime = 100, timer = 0 }) => {
   const [currentUser] = useUserContext();
   return (
-    <Flex mx={3} position="fixed" left="0" w="30%" display={{ base: "none", md: "flex" }}>
+    <Flex
+      mx={3}
+      position="fixed"
+      left="0"
+      w="30%"
+      top={{base: "0", md: "auto"}}
+      display={{ base: currentUser?.online ? "none" : "flex", md: "flex" }}
+    >
       <Timer maxTime={maxTime} timer={timer} mx={3} />
       {currentUser.online ? <StarPercentage /> : null}
     </Flex>
