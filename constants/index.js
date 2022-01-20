@@ -13,6 +13,7 @@ const SECTIONS = [
     icon: "emojione-monotone:alien-monster",
   },
   { name: "About", path: "/about/about-us", webOnly: true },
+  { name: "Settings", path: "/settings", icon: "ci:settings-filled" },
 ];
 const ADDITIONNAL_SECTIONS = [
   { name: "Profile", path: "/profile", restricted: true, icon: "fluent:person-16-filled" },

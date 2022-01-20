@@ -39,7 +39,8 @@
     "react-cookie-consent": "^7.2.1",
     "react-dom": "17.0.2",
     "react-google-login": "^5.2.2",
-    "stripe": "^8.197.0"
+    "stripe": "^8.197.0",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@iconify/react": "^3.1.0",
