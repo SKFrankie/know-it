@@ -31,12 +31,12 @@ const Profile = () => {
           <Text fontSize="3xl" fontWeight="bold">
             {currentUser.username}
           </Text>
-          <Text fontSize="xs">Member since {dateToString(currentUser.createdAt)}</Text>
           <Flex my={4}>
             <StarCurrency />
             <CoinCurrency />
           </Flex>
           <StarPercentage />
+          <Text fontSize="xs">Member since {dateToString(currentUser.createdAt)}</Text>
         </Flex>
       </ProfileFlex>
       <Flex direction={{ base: "column", md: "row" }} justify="space-between">

@@ -1,5 +1,5 @@
 import {useState} from "react"
-import {Flex, Text, useDisclosure} from "@chakra-ui/react";
+import {Flex, Text, useDisclosure, Divider} from "@chakra-ui/react";
 import ShopContainer from "../../features/shop/ShopContainer";
 import MoneyItems from "../../features/shop/MoneyItems";
 import PremiumButtons from "../../features/shop/PremiumButtons";
@@ -43,6 +43,7 @@ const Money = () => {
         image="/images/star.png"
         title="Stars"
       />
+      <Divider w="90%" alignSelf="center" borderBottomWidth="2px" borderColor="blueClear2.500" />
       <MoneyItems
         stripeLoading={stripeLoading}
         setStripeLoading={setStripeLoading}

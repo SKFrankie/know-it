@@ -87,12 +87,12 @@ const Leaderboard = () => {
       direction="column"
       bg="deepDarkBlue"
       textAlign="center"
-      p={1}
+      p={2}
       w={{ base: "90%", md: "80%" }}
       borderRadius={10}
       my={4}
     >
-      <Text>Weekly Ranking</Text>
+      <Text fontSize="lg">Weekly Ranking</Text>
       <Text>~</Text>
       <Text fontSize="xs">
         {getFirstDayOfWeek()} - {getLastDayOfWeek()}

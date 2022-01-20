@@ -165,7 +165,7 @@ const FabVocabGame = ({
             my={2}
           />
           {/* GOOGLE AD */}
-          <Flex fontSize="sm" fontWeight={500} direction="column" alignItems="center">
+          <Flex fontSize={{base: "sm", md: "md"}} fontWeight={500} direction="column" alignItems="center">
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={500}>
               {wordTries} tries left
