@@ -1,8 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Image} from "@chakra-ui/react";
 import MotionBox from "../MotionBox";
+import useSound from '../../hooks/useSound';
 
 const StarComplete = ({isActive=false}) => {
+const [play] = useSound('/sounds/win-star.mp3');
+useEffect(() => {
+  if (isActive) {
+    play();
+  }
+}, [isActive]);
+
   return (
     <MotionBox
       initial={{ scale: 1 }}
