@@ -79,7 +79,7 @@ export default function Login() {
             </Field>
             <SubmitButton isLoading={props.isSubmitting}>Login</SubmitButton>
             <Text align="center">
-              No account yet? <Link href="signup">Sign Up</Link>
+              No account yet? <Link href="/signup">Sign Up</Link>
             </Text>
             <GoogleLogin />
             {error && <Error title="Something went wrong" />}

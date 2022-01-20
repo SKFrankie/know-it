@@ -7,6 +7,7 @@ import {isPremium} from "../../helpers/premium";
 import HourGlassIcon from "../../ui/icons/HourGlassIcon";
 import { CoinCurrencyNoUser } from "../Currency";
 import Button from "../../ui/Button";
+import Link from "../../ui/Link";
 import { useUserContext } from "../../context/user";
 import { isCurrentWeek } from "./helpers";
 import Confetti from "../animations/Confetti";
@@ -284,7 +285,12 @@ const EndingScreen = ({
               <CoinCurrencyNoUser quantity={coins} fontSize="md" />
             </PointDisplayer>
           </>
-        ) : null}
+        ) : (
+          <Text m={3} fontSize="lg">
+            You are not logged in, if you want to get stars and coins at the end of a game you
+            need to <Link href="/login">Login</Link> or <Link href="/signup">Sign up</Link>
+          </Text>
+        )}
         <Button w="70%" bg="#A80909" href="/">
           Continue
         </Button>
