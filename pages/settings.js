@@ -55,8 +55,11 @@ const AccountSettings = () => {
   const [{ tpo }] = useUserContext();
   return (
     <SettingBlock title="Account Settings">
-      <AccountSettingButton first last={tpo} label="username" type="text">
+      <AccountSettingButton first label="username" type="text">
         Username
+      </AccountSettingButton>
+      <AccountSettingButton last={tpo} label="age" type="number">
+        Age
       </AccountSettingButton>
       {!tpo && (
         <>

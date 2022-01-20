@@ -8,10 +8,11 @@ import { useMutation, gql } from "@apollo/client";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 
 const UPDATE_USER = gql`
-  mutation UpdateUser($mail: String, $username: String) {
-    updateCurrentUser(mail: $mail, username: $username) {
+  mutation UpdateUser($mail: String, $username: String, $age: Int) {
+    updateCurrentUser(mail: $mail, username: $username, age: $age) {
       mail
       username
+      age
     }
   }
 `;
@@ -54,7 +55,6 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
   });
 
   const [updateUser] = useMutation(UPDATE_USER, {
-    variables: { [label]: value },
     onCompleted: (data) => {
       if (value !== currentUser?.[label]) {
         toast({
@@ -98,7 +98,16 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
       changePassword();
       return;
     }
-    updateUser();
+
+    let tmpValue = value
+
+    if (type === "number") {
+      tmpValue = parseInt(value)
+    }
+
+    updateUser({
+      variables: { [label]: tmpValue },
+    });
   };
 
   return (

@@ -9,6 +9,7 @@ const CURRENT_USER_AND_TOP_3 = gql`
     currentUser {
       userId
       username
+      age
       mail
       coins
       stars
