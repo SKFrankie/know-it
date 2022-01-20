@@ -35,6 +35,8 @@
     "prettier": "^2.5.1",
     "react": "17.0.2",
     "react-confetti": "^6.0.1",
+    "react-cookie": "^4.1.1",
+    "react-cookie-consent": "^7.2.1",
     "react-dom": "17.0.2",
     "react-google-login": "^5.2.2",
     "stripe": "^8.197.0"

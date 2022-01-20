@@ -15,10 +15,16 @@ class MyDocument extends Document {
               __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-            });
+            function getCookie(name) {
+              var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+              if (match) return match[2];
+            }
+            if (getCookie("CookieConsent") !== "false") {
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                page_path: window.location.pathname,
+              });
+            }
           `,
             }}
           />
