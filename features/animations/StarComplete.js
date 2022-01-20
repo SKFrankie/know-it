@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react'
-import { Image} from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Image } from "@chakra-ui/react";
 import MotionBox from "../MotionBox";
-import useSound from '../../hooks/useSound';
+import useSound from "../../hooks/useSound";
 
-const StarComplete = ({isActive=false}) => {
-const [play] = useSound('/sounds/win-star.mp3');
-useEffect(() => {
-  if (isActive) {
-    play();
-  }
-}, [isActive]);
+const StarComplete = ({ isActive = false }) => {
+  const [play] = useSound("/sounds/win-star.mp3");
+  useEffect(() => {
+    if (isActive) {
+      play();
+    }
+  }, [isActive]);
 
   return (
     <MotionBox
@@ -24,6 +24,6 @@ useEffect(() => {
       <Image boxSize="30px" src={"/images/star.png"} alt={"star"} />
     </MotionBox>
   );
-}
+};
 
-export default StarComplete
+export default StarComplete;

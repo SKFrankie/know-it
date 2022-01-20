@@ -11,6 +11,7 @@ import Link from "../../ui/Link";
 import { useUserContext } from "../../context/user";
 import { isCurrentWeek } from "./helpers";
 import Confetti from "../animations/Confetti";
+import useSound from '../../hooks/useSound';
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -234,6 +235,7 @@ const EndingScreen = ({
   const [currentUser, , { refetch }] = useUserContext();
   const { coins, points, starPercentage } = gameState;
   const [randomGigil, setRandomGigil] = useState("AntonymHuntMonster.png");
+  const [play] = useSound("/sounds/endgame.mp3");
   const gigils = [
     // "AntonymHuntMonster.png",
     // "FabVocabMonster.png",
@@ -246,6 +248,9 @@ const EndingScreen = ({
   useEffect(() => {
     setRandomGigil(gigils[Math.floor(Math.random() * gigils.length)]);
   }, []);
+  useEffect(() => {
+    play();
+  }, [play]);
   return (
     <Flex direction="column" justifyContent="center" alignItems="center">
       <Flex
@@ -287,8 +292,8 @@ const EndingScreen = ({
           </>
         ) : (
           <Text m={3} fontSize="lg">
-            You are not logged in, if you want to get stars and coins at the end of a game you
-            need to <Link href="/login">Login</Link> or <Link href="/signup">Sign up</Link>
+            You are not logged in, if you want to get stars and coins at the end of a game you need
+            to <Link href="/login">Login</Link> or <Link href="/signup">Sign up</Link>
           </Text>
         )}
         <Button w="70%" bg="#A80909" href="/">
