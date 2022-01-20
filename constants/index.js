@@ -12,7 +12,7 @@ const SECTIONS = [
     restricted: true,
     icon: "emojione-monotone:alien-monster",
   },
-  { name: "About", path: "/about", webOnly: true },
+  { name: "About", path: "/about/about-us", webOnly: true },
 ];
 const ADDITIONNAL_SECTIONS = [
   { name: "Profile", path: "/profile", restricted: true, icon: "fluent:person-16-filled" },
@@ -22,6 +22,13 @@ const ADDITIONNAL_SECTIONS = [
 const SHOP_SECTIONS = [
   { name: "Coins", path: "/shop/coins" },
   { name: "Money", path: "/shop/money" },
+];
+
+const ABOUT_SECTIONS = [
+  { name: "Privacy Policy", path: "/about/privacy-policy" },
+  { name: "Terms of Service", path: "/about/terms-of-service" },
+  { name: "Credits", path: "/about/credits" },
+  { name: "About Us", path: "/about/about-us" },
 ];
 
 const NO_HEADER_ROUTES = ["/login", "/signup"];
@@ -224,6 +231,7 @@ export {
   GAMES_SECTIONS,
   REWARD_TYPES,
   SHOP_SECTIONS,
+  ABOUT_SECTIONS,
   GAME_TYPES,
   POINTS,
   PURCHASE_TYPES,

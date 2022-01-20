@@ -24,7 +24,10 @@ const RouteGuard = ({ children }) => {
       "/",
       "/shop/coins",
       "/shop/money",
-      "/about",
+      "/about/privacy-policy",
+      "/about/terms-of-service",
+      "/about/credits",
+      "/about/about-us",
       "/settings",
       ...publicGames,
     ];
