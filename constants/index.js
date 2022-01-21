@@ -76,7 +76,7 @@ const GAME_TYPES = {
     name: "SYNONYM_ROLL",
     label: "Synonym Roll",
     image: "/images/SynonymRollImage.png",
-    right: "/images/SynonymRollImageRight.png",
+    right: "/images/SynonymRollImage.png",
   },
   FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab" },
   ANTONYM_HUNT: {

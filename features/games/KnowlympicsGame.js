@@ -87,7 +87,7 @@ const KnowlympicsGame = () => {
 
   return (
     <GameContainer
-      game={game}
+      game={games[currentGameIndex]}
       gameState={gameState}
       setGameState={setGameState}
       stopTimer={stopTimer}

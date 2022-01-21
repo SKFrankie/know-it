@@ -218,8 +218,8 @@ const GameImage = ({ game, right=false, ...props }) => {
     <Image
       src={right && game.right ? game.right : game.image}
       alt={game.label}
-      w="fit-content"
-      maxH={right && !game.right ? { base: "70px", md: "150px" } : { base: "50px", md: "120px" }}
+      h="fit-content"
+      w={right && !game.right ? { base: "70px", md: "120px" } : { base: "50px", md: "100px" }}
       marginBottom={{ base: "0px", md: "-30px" }}
       mx={2}
       transform={right && !game.right ? "scaleX(-1)" : "scaleX(1)"}
