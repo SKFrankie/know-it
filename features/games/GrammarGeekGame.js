@@ -50,14 +50,9 @@ const GrammarGeekGame = ({
   onNextGame = null,
 }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [question, setQuestion] = useState("I am a very _ person");
-  const [answers, setAnswers] = useState({
-    "thing long word like": { correct: false, active: false },
-    person: { correct: false, active: false },
-    good: { correct: true, active: false },
-    yes: { correct: false, active: false },
-  });
-  const [hint, setHint] = useState("Present Perfect");
+  const [question, setQuestion] = useState("");
+  const [answers, setAnswers] = useState({});
+  const [hint, setHint] = useState("");
   const [showHint, setShowHint] = useState(false);
 
   const [answerArray, setAnswerArray] = useState([]);

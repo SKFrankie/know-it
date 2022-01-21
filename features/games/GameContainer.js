@@ -205,23 +205,24 @@ const GameTitle = ({ game }) => {
   return (
     <Flex justifyContent="center" alignItems={{ base: "end", md: "center" }}>
       <GameImage game={game} />
-      <Text fontSize={{ base: "lg", md: "5xl" }} fontWeight="500">
+      <Text fontSize={{ base: "xl", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
-      <GameImage game={game} maxH={{ base: "50px", md: "60px" }} transform="scaleX(-1)" />
+      <GameImage right game={game}/>
     </Flex>
   );
 };
 
-const GameImage = ({ game, ...props }) => {
+const GameImage = ({ game, right=false, ...props }) => {
   return game.image ? (
     <Image
-      src={game.image}
+      src={right && game.right ? game.right : game.image}
       alt={game.label}
       w="fit-content"
-      maxH={{ base: "30px", md: "40px" }}
+      maxH={right && !game.right ? { base: "70px", md: "150px" } : { base: "50px", md: "120px" }}
       marginBottom={{ base: "0px", md: "-30px" }}
       mx={2}
+      transform={right && !game.right ? "scaleX(-1)" : "scaleX(1)"}
       {...props}
     />
   ) : null;
@@ -264,7 +265,7 @@ const EndingScreen = ({
         </Text>
         <HourGlassIcon boxSize={{ base: "10", md: "20" }} />
       </Flex>
-      <Image src={`/images/${randomGigil}`} alt={randomGigil} w="fit-content" maxH="150" />
+      <Image src={`/images/${randomGigil}`} alt={randomGigil} w="fit-content" maxH="200px" />
       <Flex
         direction="column"
         justifyContent="center"

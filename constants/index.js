@@ -76,14 +76,21 @@ const GAME_TYPES = {
     name: "SYNONYM_ROLL",
     label: "Synonym Roll",
     image: "/images/SynonymRollImage.png",
+    right: "/images/SynonymRollImageRight.png",
   },
   FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab" },
   ANTONYM_HUNT: {
     name: "ANTONYM_HUNT",
     label: "Antonym Hunt",
     image: "/images/AntonymHuntImage.png",
+    right: "/images/AntonymHuntImageRight.png",
   },
-  GRAMMAR_GEEK: { name: "GRAMMAR_GEEK", label: "Grammar Geek" },
+  GRAMMAR_GEEK: {
+    name: "GRAMMAR_GEEK",
+    label: "Grammar Geek",
+    image: "/images/GrammarGeekImage.png",
+    right: "/images/GrammarGeekImageRight.png",
+  },
   KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics" },
 };
 
