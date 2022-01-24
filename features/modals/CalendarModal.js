@@ -79,7 +79,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
 
   useEffect(() => {
     // Check if it's a new day and user deserves his gift!
-    if (!data) {
+    if (!data || !isCalendarOpen) {
       return;
     }
 
@@ -112,7 +112,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
     }
     // same day, no gifts
     UpdateLastSeen();
-  }, [data]);
+  }, [data, isCalendarOpen]);
 
   useEffect(() => {
     if (currentUser.daysInArow > data?.gifts.length) {
