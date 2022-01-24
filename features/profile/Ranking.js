@@ -16,12 +16,13 @@ const RANKING_USERS = gql`
   }
 `;
 
-const Ranking = () => {
+const Ranking = ({userId}) => {
   const [currentUser] = useUserContext();
   const [rank, setRank] = useState(null);
   const { data, loading, error } = useQuery(RANKING_USERS, {
     onCompleted: (data) => {
-      const tmpRank = data.rankingUsers.findIndex((user) => user.userId === currentUser.userId);
+      const userIdToCheck = userId || currentUser.userId;
+      const tmpRank = data.rankingUsers.findIndex((user) => user.userId === userIdToCheck);
       if (tmpRank >= 0) {
         setRank(tmpRank + 1);
       }

@@ -1,70 +1,118 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from "react";
+import { useLazyQuery, gql } from "@apollo/client";
 import { Flex, Text, Image } from "@chakra-ui/react";
 import { useUserContext } from "../../context/user";
 import dateToString from "../../helpers/dateToString";
+import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import { CoinCurrency, StarCurrency, StarPercentage } from "../Currency.js";
-import {isPremium} from "../../helpers/premium";
-import {PremiumDescription} from "../../pages/shop/money";
+import { isPremium } from "../../helpers/premium";
+import { PremiumDescription } from "../../pages/shop/money";
 import Ranking from "./Ranking";
+import Loading from "../Loading";
+
+const GET_USERS_FROM_ID = gql`
+  query Users($userId: ID!) {
+    users(where: { userId: $userId }) {
+      userId
+      points
+      username
+      createdAt
+      stars
+      coins
+      starPercentage
+      currentAvatar {
+        picture
+        collections {
+          name
+        }
+      }
+    }
+  }
+`;
 
 const Profile = ({ userId }) => {
   const [currentUser] = useUserContext();
   const [stripeLoading, setStripeLoading] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const [getUsers] = useLazyQuery(GET_USERS_FROM_ID, {
+    variables: { userId },
+    onCompleted: (data) => {
+      setUser(data.users[0]);
+    },
+    onError: (error) => {
+      console.log(error);
+      setUser(currentUser);
+    },
+  });
+  useEffect(() => {
+    if (userId) {
+      getUsers();
+    } else {
+      setUser(currentUser);
+    }
+  }, [userId, currentUser]);
+
   return (
     <Flex direction="column">
-      <ProfileFlex direction="row" justify="center">
-        <AvatarPicture avatar={currentUser?.currentAvatar} display={{ base: "none", md: "flex" }} />
-        <Flex
-          minW={{ base: "auto", md: "50%" }}
-          direction="column"
-          alignItems={{ base: "center", md: "initial" }}
-          justify="space-around"
-          m={4}
-        >
-          <AvatarPicture
-            avatar={currentUser?.currentAvatar}
-            display={{ base: "flex", md: "none" }}
-          />
-          <Text fontSize="3xl" fontWeight="bold">
-            {currentUser.username}
-          </Text>
-          <Flex my={4}>
-            <StarCurrency />
-            <CoinCurrency />
-          </Flex>
-          <StarPercentage />
-          <Text fontSize="xs">Member since {dateToString(currentUser.createdAt)}</Text>
-        </Flex>
-      </ProfileFlex>
-      <Flex direction={{ base: "column", md: "row" }} justify="space-between">
-        <ProfileFlex mr={{ base: 0, md: 2 }}>
-          <Text fontSize="2xl">Ranking</Text>
-          <Ranking />
-        </ProfileFlex>
-        <ProfileFlex ml={{ base: 0, md: 2 }}>
-          {isPremium(currentUser) ? (
-            <>
-              <Text fontSize="2xl">Premium Plan</Text>
-              <Text
-                fontSize={{ base: "md", md: "3xl" }}
-                p={{ base: "auto", md: "5" }}
-                textAlign={{ base: "auto", md: "center" }}
-              >
-                Premium until{" "}
-                <Text as="span" color="#F0940B">
-                  {dateToString(currentUser.premiumEndingDate)}
-                </Text>
+      {user ? (
+        <>
+          <ProfileFlex direction="row" justify="center">
+            <AvatarPicture avatar={user?.currentAvatar} display={{ base: "none", md: "flex" }} />
+            <Flex
+              minW={{ base: "auto", md: "50%" }}
+              direction="column"
+              alignItems={{ base: "center", md: "initial" }}
+              justify="space-around"
+              m={4}
+            >
+              <AvatarPicture avatar={user?.currentAvatar} display={{ base: "flex", md: "none" }} />
+              <Text fontSize="3xl" fontWeight="bold">
+                {user?.username}
               </Text>
-            </>
-          ) : (
-            <PremiumDescription
-              stripeLoading={stripeLoading}
-              setStripeLoading={setStripeLoading}
-              displayButtons={{ base: "flex", md: "flex" }}
-            />
-          )}
-        </ProfileFlex>
-      </Flex>
+              <Flex my={4}>
+                <StarCurrency quantity={userId ? user?.stars : null} />
+                <CoinCurrency quantity={userId ? user?.coins : null} />
+              </Flex>
+              <StarPercentage quantity={userId ? user?.starPercentage : null} />
+              <Text fontSize="xs">Member since {dateToString(user?.createdAt)}</Text>
+            </Flex>
+          </ProfileFlex>
+          <Flex direction={{ base: "column", md: "row" }} justify="space-between">
+            <ProfileFlex mr={{ base: 0, md: 2 }}>
+              <Text fontSize="2xl">Ranking</Text>
+              <Ranking userId={userId} />
+            </ProfileFlex>
+            {userId ? null : (
+              <ProfileFlex ml={{ base: 0, md: 2 }}>
+                {isPremium(user) ? (
+                  <>
+                    <Text fontSize="2xl">Premium Plan</Text>
+                    <Text
+                      fontSize={{ base: "md", md: "3xl" }}
+                      p={{ base: "auto", md: "5" }}
+                      textAlign={{ base: "auto", md: "center" }}
+                    >
+                      Premium until{" "}
+                      <Text as="span" color="#F0940B">
+                        {dateToString(user.premiumEndingDate)}
+                      </Text>
+                    </Text>
+                  </>
+                ) : (
+                  <PremiumDescription
+                    stripeLoading={stripeLoading}
+                    setStripeLoading={setStripeLoading}
+                    displayButtons={{ base: "flex", md: "flex" }}
+                  />
+                )}
+              </ProfileFlex>
+            )}
+          </Flex>{" "}
+        </>
+      ) : (
+        <Loading />
+      )}
     </Flex>
   );
 };
