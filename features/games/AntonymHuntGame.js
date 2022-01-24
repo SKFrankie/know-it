@@ -31,6 +31,7 @@ const ContainedAntonymHuntGame = () => {
 const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false }) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_ANTONYM, {
+    fetchPolicy: "no-cache",
     onCompleted: (res) => {
       const { randomAntonyms } = res;
       const tmpAntonymObject = {};

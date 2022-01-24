@@ -133,6 +133,7 @@ const FabVocabGame = ({
   };
 
   const { data, error, loading, refetch } = useQuery(RANDOM_FAB_VOCAB, {
+    fetchPolicy: "no-cache",
     onCompleted: (res) => {
       // loading new set of questions and setting first question
       const { randomFabVocab } = res;

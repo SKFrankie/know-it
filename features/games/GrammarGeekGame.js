@@ -102,6 +102,7 @@ const GrammarGeekGame = ({
   };
 
   const { data, error, loading, refetch } = useQuery(RANDOM_GRAMMAR_GEEK, {
+    fetchPolicy: "no-cache",
     onCompleted: (res) => {
       const { randomGrammarGeek } = res;
       if (randomGrammarGeek.length === 0) {
