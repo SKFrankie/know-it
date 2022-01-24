@@ -73,7 +73,7 @@ const Gigil = ({ avatar }) => {
           alignItems="center"
         >
           <Text m={2}>Select this Gigil as your new avatar?</Text>
-          <AvatarImage picture={avatar?.picture} />
+          <AvatarImage big picture={avatar?.picture} />
           <Flex m={3} w="100%" alignItems="center" justify="center">
             <SuccessButton
               onClick={() => {

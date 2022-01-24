@@ -144,7 +144,7 @@ const Avatar = ({ avatar }) => {
             </Box>
             ?
           </Text>
-          <AvatarImage picture={avatar.picture} />
+          <AvatarImage big picture={avatar.picture} />
           <Flex m={3} w="100%" alignItems="center" justify="center">
             <SuccessButton
               onClick={() => {
@@ -166,17 +166,21 @@ const Avatar = ({ avatar }) => {
   );
 };
 
-const AvatarImage = ({ picture, ...props }) => {
+const AvatarImage = ({ picture, big = false, ...props }) => {
   return (
     <Flex
       justify="center"
       p={2}
       borderRadius="4px"
       bg="white"
-      boxSize={{ base: "55px", md: "70px" }}
+      boxSize={big ? { base: "150px", md: "300px" } : { base: "55px", md: "70px" }}
       {...props}
     >
-      <Image src={picture} maxH={{ base: "40px", md: "60px" }} />
+      <Image
+        alignSelf="center"
+        src={picture}
+        maxH={big ? { base: "140px", md: "250px" } : { base: "40px", md: "60px" }}
+      />
     </Flex>
   );
 };
