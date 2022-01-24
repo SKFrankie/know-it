@@ -89,7 +89,7 @@ const GAME_TYPES = {
     name: "GRAMMAR_GEEK",
     label: "Grammar Geek",
     image: "/images/GrammarGeekImage.png",
-    right: "/images/GrammarGeekImageRight.png",
+    right: "/images/GrammarGeekImage.png",
   },
   KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics" },
 };
