@@ -117,7 +117,8 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
   useEffect(() => {
     if (currentUser.daysInArow > data?.gifts.length) {
       //no more gift this month for this user
-      setTodayGift(null);
+      // but he gets 5 coins anyway
+      setTodayGift({ reward: "COINS", quantity: 5 });
       return;
     }
     const tmpGift = data?.gifts.find((gift) => gift.day === currentUser.daysInArow);
@@ -289,9 +290,11 @@ const Reward = ({
   const { image, name } = REWARD_TYPES[reward];
   return (
     <Flex direction="column" alignItems="center" justify="center">
-      <Text fontWeight="bold" fontSize={{ base: "sm", md: "md" }}>
-        Day {day}
-      </Text>
+      {day ? (
+        <Text fontWeight="bold" fontSize={{ base: "sm", md: "md" }}>
+          Day {day}
+        </Text>
+      ) : null}
       <Flex
         py={2}
         px={4}
