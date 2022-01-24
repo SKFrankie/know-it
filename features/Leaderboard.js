@@ -6,6 +6,7 @@ import { basicQueryResultSupport } from "../helpers/apollo-helpers";
 import { useUserContext } from "../context/user";
 import Loading from "./Loading";
 import Error from "./Error";
+import NextLink from "next/link";
 
 // different query to get current week rank
 const RANKING_USERS = gql`
@@ -147,31 +148,35 @@ const Row = ({ display = true, user, index, length, ...props }) => {
   const [currentUser] = useUserContext();
   return (
     display && (
-      <Flex
-        my="0.5px"
-        borderTopRadius={index ? 0 : 6}
-        borderBottomRadius={index + 1 === length ? 6 : 0}
-        bg={user.userId === currentUser?.userId ? "orange" : "blueClear.500"}
-        textAlign="center"
-        w="100%"
-        key={user.userId}
-        direction="row"
-        justify="space-between"
-        p={1}
-        px={5}
-        fontSize={{ base: "sm", md: "md" }}
-        align="center"
-        {...props}
-      >
-        <AvatarImage user={user} />
-        <Text flex={1} textAlign="start">
-          {user.username}
-        </Text>
-        <Text flex={1}>{index + 1}</Text>
-        <Text flex={1} textAlign="end">
-          {user.points}
-        </Text>
-      </Flex>
+      <NextLink href={`/profile/${user.userId}`}>
+        <Flex
+          my="0.5px"
+          borderTopRadius={index ? 0 : 6}
+          borderBottomRadius={index + 1 === length ? 6 : 0}
+          bg={user.userId === currentUser?.userId ? "orange" : "blueClear.500"}
+          textAlign="center"
+          w="100%"
+          key={user.userId}
+          direction="row"
+          justify="space-between"
+          p={1}
+          px={5}
+          fontSize={{ base: "sm", md: "md" }}
+          align="center"
+          cursor="pointer"
+          _hover={{ opacity: 0.8 }}
+          {...props}
+        >
+          <AvatarImage user={user} />
+          <Text flex={1} textAlign="start">
+            {user.username}
+          </Text>
+          <Text flex={1}>{index + 1}</Text>
+          <Text flex={1} textAlign="end">
+            {user.points}
+          </Text>
+        </Flex>
+      </NextLink>
     )
   );
 };
