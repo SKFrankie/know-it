@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Text, Input } from "@chakra-ui/react";
+import { Flex, Text, Input, Image } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
 import { getFirstDayOfWeek, getLastDayOfWeek } from "./games/helpers";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
@@ -14,6 +14,9 @@ const RANKING_USERS = gql`
       userId
       points
       username
+      currentAvatar {
+        picture
+      }
     }
   }
 `;
@@ -157,8 +160,10 @@ const Row = ({ display = true, user, index, length, ...props }) => {
         p={1}
         px={5}
         fontSize={{ base: "sm", md: "md" }}
+        align="center"
         {...props}
       >
+        <AvatarImage user={user} />
         <Text flex={1} textAlign="start">
           {user.username}
         </Text>
@@ -170,6 +175,22 @@ const Row = ({ display = true, user, index, length, ...props }) => {
     )
   );
 };
+
+const AvatarImage = ({ user }) => {
+  return (
+    <Image
+      boxSize="40px"
+      mr={2}
+      borderRadius={5}
+      src={
+        user?.currentAvatar?.picture ||
+        "https://res.cloudinary.com/dvdqswi8x/image/upload/v1639908743/Avatar%20Picture/wprwgtldhxwx4t3ntdur.png"
+      }
+      alt="no gigil"
+    />
+  );
+};
+
 
 const Searchbar = ({ onChange }) => {
   return (
