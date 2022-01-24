@@ -6,6 +6,7 @@ import createCheckOutSession from "../../helpers/stripe";
 
 import { useUserContext } from "../../context/user";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
+import daysUntilNextMonth from "../../helpers/daysUntilNextMonth";
 import Loading from "../Loading";
 import Error from "../Error";
 import Modal, { PopUp } from "../../ui/Modal";
@@ -127,11 +128,12 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
 
   return (
     <Modal isOpen={isCalendarOpen} onClose={onCalendarClose} {...props}>
+        <Text ml="auto" fontSize="md" my={5}>Reset in {daysUntilNextMonth()} days</Text>
       <Flex direction="column" textAlign="center" alignItems="center">
         <Flex alignItems="center">
           <GiftIcon boxSize="20" display={{ base: "none", md: "flex" }} />{" "}
           <Text fontWeight="bold" fontSize={{ base: "4xl", md: "6xl" }}>
-            Daily Gift
+            Gift of the day
           </Text>
         </Flex>
         <GiftIcon boxSize="20" display={{ base: "flex", md: "none" }} />
@@ -157,6 +159,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
             ))}
           </Flex>
         )}
+        <Text fontSize="xs" my={5} color="green" fontWeight="bold">If you get all of the gifts you'll earn 5 coins each day this month</Text>
         <Box h={{ base: "0", md: recoverGiftHeight }} />
         <GiftPopUp gift={todayGift} isOpen={isOpen} onClose={onClose} />
       </Flex>
@@ -212,7 +215,7 @@ const GiftPopUp = ({
         {gift ? (
           <>
             <Text fontSize="xl" fontWeight="bold">
-              You've earned a gift!
+              Here's a gift for you!
             </Text>
             <Reward reward={gift.reward} quantity={gift.quantity} w="fit-content" received />
           </>
@@ -263,7 +266,7 @@ const RecoverGifts = ({ totalGifts, ...props }) => {
       {...props}
     >
       <Text fontSize={{ base: "md", md: "lg" }}>
-        Recover your lost gifts and double the gifts you received!
+        Purchase unclaimed gifts and double the ones you’ve received!
       </Text>
       <Button
         isLoading={stripeLoading || !item}
