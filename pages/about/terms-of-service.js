@@ -100,6 +100,9 @@ const TermsOfService = () => {
 
         <Text>Please read our Privacy Policy.</Text>
 
+        <ListItem m={2} fontSize="lg">Purchases</ListItem>
+        <Text>Purchased are made with the help of Stripe, please read their <a href="https://stripe.com/en-fr/legal">Services Agreement</a>.</Text>
+
         <ListItem m={2} fontSize="lg">Governing Law</ListItem>
       </OrderedList>
 
