@@ -127,6 +127,7 @@ const Avatar = ({ avatar }) => {
       filter={!canBuy && !alreadyBought && "grayScale(0.8)"}
     >
       <AvatarImage picture={avatar.picture} />
+      <Text fontSize="xs" fontWeight="bold">{avatar?.name}</Text>
       <Text fontSize="xs">{alreadyBought ? "Purchased" : `${avatar.coinPrice} coins`}</Text>
       <PopUp isOpen={isOpen} onClose={onClose}>
         <Flex
