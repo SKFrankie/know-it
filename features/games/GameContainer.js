@@ -12,6 +12,7 @@ import { useUserContext } from "../../context/user";
 import { isCurrentWeek } from "./helpers";
 import Confetti from "../animations/Confetti";
 import useSound from '../../hooks/useSound';
+import { GAME_TYPES } from "../../constants";
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -75,7 +76,7 @@ const GameContainer = ({
 
   const { data } = useQuery(GET_TIMER, {
     ...basicQueryResultSupport,
-    variables: { gameName: game.name },
+    variables: { gameName: knowlympics ? GAME_TYPES.KNOWLYMPICS.name : game.name },
   });
   const [UpdateUser] = useMutation(UPDATE_USER, {
     onCompleted(data) {

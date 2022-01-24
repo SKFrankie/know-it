@@ -11,7 +11,6 @@ import { FabVocabGame } from "./FabVocabGame";
 import { GrammarGeekGame } from "./GrammarGeekGame";
 
 const KnowlympicsGame = () => {
-  const game = GAME_TYPES.KNOWLYMPICS;
   const games = [
     GAME_TYPES.SYNONYM_ROLL,
     GAME_TYPES.FAB_VOCAB,
