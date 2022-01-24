@@ -14,8 +14,8 @@ const Profile = () => {
     <Flex direction="column">
       <ProfileFlex direction="row" justify="center">
         <AvatarPicture
-          picture={currentUser.currentAvatar?.picture}
-          display={{ base: "none", md: "block" }}
+        avatar = {currentUser?.currentAvatar}
+          display={{ base: "none", md: "flex" }}
         />
         <Flex
           minW={{ base: "auto", md: "50%" }}
@@ -25,8 +25,8 @@ const Profile = () => {
           m={4}
         >
           <AvatarPicture
-            picture={currentUser.currentAvatar?.picture}
-            display={{ base: "block", md: "none" }}
+        avatar = {currentUser?.currentAvatar}
+            display={{ base: "flex", md: "none" }}
           />
           <Text fontSize="3xl" fontWeight="bold">
             {currentUser.username}
@@ -68,14 +68,22 @@ const Profile = () => {
   );
 };
 
-const AvatarPicture = ({ picture, ...props }) => {
+const AvatarPicture = ({ avatar, ...props }) => {
   return (
-    <Image
-      boxSize={{ base: "50%", md: "20%" }}
-      src={picture ? picture : "https://res.cloudinary.com/dvdqswi8x/image/upload/v1639908743/Avatar%20Picture/wprwgtldhxwx4t3ntdur.png"}
-      alt="avatar"
-      {...props}
-    />
+    <Flex direction="column" minH="fit-content" {...props}>
+      <Image
+        boxSize={{ base: "40vh", md: "30vh" }}
+        src={
+          avatar?.picture
+            ? avatar?.picture
+            : "https://res.cloudinary.com/dvdqswi8x/image/upload/v1639908743/Avatar%20Picture/wprwgtldhxwx4t3ntdur.png"
+        }
+        alt="avatar"
+      />
+      {avatar?.collections?.length && !avatar?.collections[0].name.includes("MONSTARS") ? (
+        <Text fontSize="xs">{avatar?.collections[0].name}</Text>
+      ) : null}
+    </Flex>
   );
 };
 

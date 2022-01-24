@@ -25,6 +25,9 @@ const CURRENT_USER_AND_TOP_3 = gql`
       currentAvatar {
         avatarId
         picture
+        collections {
+          name
+        }
       }
       inventory {
         avatarId
