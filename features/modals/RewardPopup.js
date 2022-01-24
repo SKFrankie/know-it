@@ -102,10 +102,11 @@ const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
         {loading && <Loading />}
         {error && <Error />}
         <Flex flexWrap="wrap" justify="center">
-          {collection.length &&
-            collection.map((avatar) => (
-              <Monstar key={avatar.avatarId} avatar={avatar} onClose={onClose} />
-            ))}
+          {collection.length
+            ? collection.map((avatar) => (
+                <Monstar key={avatar.avatarId} avatar={avatar} onClose={onClose} />
+              ))
+            : null}
         </Flex>
       </Flex>
       <Confetti />

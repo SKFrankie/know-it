@@ -37,5 +37,11 @@ const getCustomer = async (setCustomer, id) => {
   setCustomer(customer);
 };
 
-export { createCheckOutSessionForPremium, getCustomer };
+const getCustomerWithId = async (id) => {
+  const stripe = await stripePromise;
+  const customer = await axios.get(`/api/get-stripe-customer?session_id=${id}`);
+  return customer;
+};
+
+export { createCheckOutSessionForPremium, getCustomer, getCustomerWithId };
 export default createCheckOutSession;

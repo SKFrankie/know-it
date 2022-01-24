@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getCustomer } from "../../helpers/stripe";
+import { getCustomerWithId } from "../../helpers/stripe";
 import { PopUp } from "../../ui/Modal";
 import { Flex, Text, useDisclosure } from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react'
 
 import { useRouter } from "next/router";
 const StripeComponent = () => {
@@ -9,6 +10,8 @@ const StripeComponent = () => {
   const { status, session_id, item, description } = router.query;
   const [customer, setCustomer] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+
 
   useEffect(() => {
     if (status) {
@@ -18,41 +21,30 @@ const StripeComponent = () => {
 
   useEffect(() => {
     if (status === "success") {
-      getCustomer(setCustomer, session_id);
+      getCustomerWithId(session_id).then((customer) => {
+        if (customer) {
+          toast({
+            title: "Successfully purchased!",
+            description: `${item} - ${description}`,
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+          return;
+        }
+      });
+    }
+    if (status=== "cancel")
+    {
+      toast({
+        title: "Purchase cancelled",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   }, [session_id]);
-  return status ? (
-    <PopUp isOpen={isOpen} onClose={onClose}>
-      <Flex
-        p={5}
-        m={2}
-        direction="column"
-        textAlign="center"
-        justify="space-around"
-        alignItems="center"
-      >
-        {status && status === "success" && customer && (
-          <>
-            <Text m={2} fontSize="xl" fontWeight="bold">
-              Successfully purchased!
-            </Text>
-            <Text m={2} fontSize="md">
-              {item}
-            </Text>
-            <Text fontSize="sm">{description}</Text>
-          </>
-        )}
-        {status && status === "cancel" && (
-          <>
-            <Text m={2} fontSize="xl" fontWeight="bold">
-              Something went wrong
-            </Text>
-            <Text fontSize="sm">The purchased has been canceled</Text>
-          </>
-        )}
-      </Flex>
-    </PopUp>
-  ) : null;
+  return null
 };
 
 export default StripeComponent;
