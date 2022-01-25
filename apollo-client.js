@@ -3,6 +3,9 @@ import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_APOLLO_SERVER_URI,
+  fetchOptions: {
+    mode: "cors",
+  },
 });
 
 const authLink = setContext((_, { headers }) => {
