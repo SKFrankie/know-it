@@ -3,10 +3,14 @@ import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_APOLLO_SERVER_URI,
-  fetchOptions: {
-    mode: "cors",
-  },
 });
+
+const customHeaders = {
+    key: "Access-Control-Allow-Origin",
+    "Content-Type": "application/json",
+    Accept: "*/*",
+    Origin: process.env.NEXT_PUBLIC_URL, //make sur it's always filled by you navigator
+}
 
 const authLink = setContext((_, { headers }) => {
   let token;
@@ -24,6 +28,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   uri: process.env.NEXT_PUBLIC_APOLLO_SERVER_URI,
+  headers: customHeaders,
   cache: new InMemoryCache(),
 });
 
@@ -45,6 +50,7 @@ const getSSRClient = async (SSRtoken) => {
   const SSRclient = new ApolloClient({
     link: SSRauthLink.concat(httpLink),
     uri: process.env.NEXT_PUBLIC_APOLLO_SERVER_URI,
+    headers: customHeaders,
     cache: new InMemoryCache(),
   });
   return SSRclient;
