@@ -294,7 +294,7 @@ const EndingScreen = ({
             </PointDisplayer>
           </>
         ) : (
-          <Text m={3} fontSize="lg">
+          <Text m={3} fontSize="lg" align="center">
             You are not logged in, if you want to get stars and coins at the end of a game you need
             to <Link href="/login">Login</Link> or <Link href="/signup">Sign up</Link>
           </Text>
