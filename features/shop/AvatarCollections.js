@@ -123,6 +123,7 @@ const Avatar = ({ avatar }) => {
       justify="space-between"
       align="center"
       minW="fit-content"
+      display="table"
       cursor={canBuy ? "pointer" : "auto"}
       filter={!canBuy && !alreadyBought && "grayScale(0.8)"}
     >

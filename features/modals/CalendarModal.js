@@ -217,7 +217,7 @@ const GiftPopUp = ({
             <Text fontSize="xl" fontWeight="bold">
               Here's a gift for you!
             </Text>
-            <Reward reward={gift.reward} quantity={gift.quantity} w="fit-content" received />
+            <Reward reward={gift.reward} quantity={gift.quantity} w="fit-content" dislpay="table" received />
           </>
         ) : (
           <Text fontSize="xl" fontWeight="bold">

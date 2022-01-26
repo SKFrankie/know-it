@@ -160,13 +160,20 @@ const FabVocabGame = ({
           <Image
             maxH={{ base: "50vh", md: "100%" }}
             w={{ base: "fit-content", md: "100%" }}
+            display="table"
             maxW={{ base: "100%", md: "50vh" }}
             h={{ base: "100%", md: "fit-content" }}
             src={picture}
             my={2}
+            loading="lazy"
           />
           {/* GOOGLE AD */}
-          <Flex fontSize={{base: "sm", md: "md"}} fontWeight={500} direction="column" alignItems="center">
+          <Flex
+            fontSize={{ base: "sm", md: "md" }}
+            fontWeight={500}
+            direction="column"
+            alignItems="center"
+          >
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={500}>
               {wordTries} tries left

@@ -220,6 +220,7 @@ const GameImage = ({ game, right=false, ...props }) => {
       src={right && game.right ? game.right : game.image}
       alt={game.label}
       h="fit-content"
+      display="table"
       w={right && !game.right ? { base: "70px", md: "120px" } : { base: "50px", md: "100px" }}
       marginBottom={{ base: "0px", md: "-30px" }}
       mx={2}

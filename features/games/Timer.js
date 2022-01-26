@@ -11,6 +11,7 @@ const Timer = ({ maxTime, timer, ...props }) => {
       alignItems="center"
       minW="50px"
       w="fit-content"
+      display="table"
       h="50px"
       trackColor="transparent"
       color="deepDarkBlue"

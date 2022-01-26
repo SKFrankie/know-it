@@ -53,6 +53,7 @@ export default function Home() {
               src={game.image}
               alt={game.name}
               w="fit-content"
+              display="table"
               maxH={{ base: "40px", md: "80px" }}
               marginBottom={{ base: "-10px", md: "-30px" }}
             />
@@ -64,7 +65,7 @@ export default function Home() {
       </Flex>
       <KnowlympicsButton href="/knowlympics" disabled={!currentUser.online} />
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
-      <FirstGigil/>
+      <FirstGigil />
       <StripeComponent />
     </>
   );

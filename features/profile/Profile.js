@@ -121,6 +121,7 @@ const AvatarPicture = ({ avatar, ...props }) => {
   return (
     <Flex direction="column" minH="fit-content" {...props}>
       <Image
+        display="table"
         boxSize={{ base: "40vh", md: "30vh" }}
         src={
           avatar?.picture
