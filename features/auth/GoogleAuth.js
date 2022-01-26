@@ -5,8 +5,7 @@ import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import Loading from "../Loading";
 import { storeToken } from "./helper";
 import { useRouter } from "next/router";
-import { Button } from "@chakra-ui/react";
-import Image from "next/image";
+import { Button, Image } from "@chakra-ui/react";
 
 const GOOGLE_SIGN_UP = gql`
   mutation GoogleSignup($token: String!) {
