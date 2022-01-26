@@ -130,7 +130,6 @@ const Avatar = ({ avatar }) => {
       textAlign="center"
     >
       <AvatarImage picture={avatar.picture} />
-      <Text fontSize="xs" fontWeight="bold">{avatar?.name}</Text>
       <Text fontSize="xs">{alreadyBought ? "Purchased" : `${avatar.coinPrice} coins`}</Text>
       <PopUp isOpen={isOpen} onClose={onClose}>
         <Flex
@@ -149,6 +148,9 @@ const Avatar = ({ avatar }) => {
             ?
           </Text>
           <AvatarImage big picture={avatar.picture} />
+          <Text fontSize="xs" fontWeight="bold">
+            {avatar?.name}
+          </Text>
           <Flex m={3} w="100%" alignItems="center" justify="center">
             <SuccessButton
               onClick={() => {
