@@ -2,7 +2,7 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 import Header from "./Header";
 
-const AboutContainer = ({children}) => {
+const AboutContainer = ({ children }) => {
   return (
     <Flex bg="white" color="deepDarkBlue" direction="column" my={2} p={3}>
       <Header />

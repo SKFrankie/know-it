@@ -210,7 +210,7 @@ const DesktopGameHeader = ({ maxTime = 100, timer = 0 }) => {
       position="fixed"
       left="0"
       w="30%"
-      top={{base: "0", md: "auto"}}
+      top={{ base: "0", md: "auto" }}
       display={{ base: currentUser?.online ? "none" : "flex", md: "flex" }}
     >
       <Timer maxTime={maxTime} timer={timer} mx={3} />

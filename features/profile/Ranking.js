@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import {Text} from '@chakra-ui/react'
+import { Text } from "@chakra-ui/react";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import { useUserContext } from "../../context/user";
 import Loading from "../Loading";
@@ -16,7 +16,7 @@ const RANKING_USERS = gql`
   }
 `;
 
-const Ranking = ({userId}) => {
+const Ranking = ({ userId }) => {
   const [currentUser] = useUserContext();
   const [rank, setRank] = useState(null);
   const { data, loading, error } = useQuery(RANKING_USERS, {
@@ -33,13 +33,13 @@ const Ranking = ({userId}) => {
   const getSuperscriptOrdinal = (n) => {
     switch (n) {
       case 1:
-        return 'st';
+        return "st";
       case 2:
-        return 'nd';
+        return "nd";
       case 3:
-        return 'rd';
+        return "rd";
       default:
-        return 'th';
+        return "th";
     }
   };
 
@@ -59,7 +59,9 @@ const Ranking = ({userId}) => {
             {getSuperscriptOrdinal(rank)}
           </Text>
         </Text>
-      ) : <Text>No rank yet this week</Text>}
+      ) : (
+        <Text>No rank yet this week</Text>
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import { Flex, Image, Text, Progress } from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import StarComplete from "./animations/StarComplete";

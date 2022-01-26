@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from "react";
 import { useUserContext } from "../../context/user";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { Flex, Text, useDisclosure } from "@chakra-ui/react";
@@ -52,10 +52,9 @@ const FirstGigil = () => {
     ...basicQueryResultSupport,
   });
 
-
   useEffect(() => {
     if (currentUser?.inventory?.length || !currentUser?.online) {
-      if(isOpen) {
+      if (isOpen) {
         onClose();
       }
       return;
@@ -81,7 +80,12 @@ const FirstGigil = () => {
         {freeAvatars.length ? (
           <Flex flexWrap="wrap" justify="center">
             {freeAvatars.map((avatar) => (
-              <FirstGigilImage setPreventReopen={setPreventReopen} avatar={avatar} onClose={onClose} key={avatar.avatarId} />
+              <FirstGigilImage
+                setPreventReopen={setPreventReopen}
+                avatar={avatar}
+                onClose={onClose}
+                key={avatar.avatarId}
+              />
             ))}
           </Flex>
         ) : (
@@ -94,22 +98,24 @@ const FirstGigil = () => {
 
 const FirstGigilImage = ({ avatar, onClose, setPreventReopen }) => {
   const [currentUser, setCurrentUser, { refetch }] = useUserContext();
-  const [changeCurrentAvatarAndAddToInventory, {loading}] = useMutation(CHANGE_AVATAR_AND_ADD_TO_INVETORY, {
-    onCompleted: (data) => {
-      if (refetch) {
-        refetch();
-        setPreventReopen(true);
-        onClose();
-      }
-      setCurrentUser({
-        currentAvatar: data.changeCurrentAvatar,
-        inventory: [data.addToInventory],
-        ...currentUser,
-      });
-    },
-    ...basicQueryResultSupport,
-  });
-
+  const [changeCurrentAvatarAndAddToInventory, { loading }] = useMutation(
+    CHANGE_AVATAR_AND_ADD_TO_INVETORY,
+    {
+      onCompleted: (data) => {
+        if (refetch) {
+          refetch();
+          setPreventReopen(true);
+          onClose();
+        }
+        setCurrentUser({
+          currentAvatar: data.changeCurrentAvatar,
+          inventory: [data.addToInventory],
+          ...currentUser,
+        });
+      },
+      ...basicQueryResultSupport,
+    }
+  );
 
   const handleClick = () => {
     if (!loading) {

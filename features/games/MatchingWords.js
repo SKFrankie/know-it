@@ -190,8 +190,8 @@ const Word = ({ word, color = "green", onWordClick, finalColor, active }) => {
         _hover={{ background: finalColor ? finalColor : active ? color : "transparent" }}
         bg={finalColor ? finalColor : active ? color : "transparent"}
         fontWeight="bold"
-        fontSize={{base:"md", md:"xl"}}
-        minW={{base: "30vw", md: "8vw"}}
+        fontSize={{ base: "md", md: "xl" }}
+        minW={{ base: "30vw", md: "8vw" }}
         disabled={finalColor}
       >
         {word}

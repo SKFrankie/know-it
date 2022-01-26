@@ -118,7 +118,16 @@ export default function Signup() {
               {({ field }) => (
                 <FormControl my="2">
                   <Checkbox {...field} color="white" required>
-                    <Text>I agree to the <Link target="_blank" href="/about/terms-of-service">Terms of Service</Link> and <Link target="_blank" href="/about/privacy-policy">Privacy Policy</Link></Text>
+                    <Text>
+                      I agree to the{" "}
+                      <Link target="_blank" href="/about/terms-of-service">
+                        Terms of Service
+                      </Link>{" "}
+                      and{" "}
+                      <Link target="_blank" href="/about/privacy-policy">
+                        Privacy Policy
+                      </Link>
+                    </Text>
                   </Checkbox>
                 </FormControl>
               )}

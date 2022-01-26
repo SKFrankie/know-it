@@ -128,7 +128,9 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
 
   return (
     <Modal isOpen={isCalendarOpen} onClose={onCalendarClose} {...props}>
-        <Text ml="auto" fontSize="md" my={5}>Reset in {daysUntilNextMonth()} days</Text>
+      <Text ml="auto" fontSize="md" my={5}>
+        Reset in {daysUntilNextMonth()} days
+      </Text>
       <Flex direction="column" textAlign="center" alignItems="center">
         <Flex alignItems="center">
           <GiftIcon boxSize="20" display={{ base: "none", md: "flex" }} />{" "}
@@ -159,7 +161,9 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
             ))}
           </Flex>
         )}
-        <Text fontSize="xs" my={5} color="green" fontWeight="bold">If you get all of the gifts you'll earn 5 coins each day this month</Text>
+        <Text fontSize="xs" my={5} color="green" fontWeight="bold">
+          If you get all of the gifts you'll earn 5 coins each day this month
+        </Text>
         <Box h={{ base: "0", md: recoverGiftHeight }} />
         <GiftPopUp gift={todayGift} isOpen={isOpen} onClose={onClose} />
       </Flex>
@@ -217,7 +221,13 @@ const GiftPopUp = ({
             <Text fontSize="xl" fontWeight="bold">
               Here's a gift for you!
             </Text>
-            <Reward reward={gift.reward} quantity={gift.quantity} w="auto" display="table" received />
+            <Reward
+              reward={gift.reward}
+              quantity={gift.quantity}
+              w="auto"
+              display="table"
+              received
+            />
           </>
         ) : (
           <Text fontSize="xl" fontWeight="bold">

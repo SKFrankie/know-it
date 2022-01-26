@@ -3,7 +3,7 @@ import { Flex, Box, Image, Text } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
-import {isPremium} from "../../helpers/premium";
+import { isPremium } from "../../helpers/premium";
 import HourGlassIcon from "../../ui/icons/HourGlassIcon";
 import { CoinCurrencyNoUser } from "../Currency";
 import Button from "../../ui/Button";
@@ -11,7 +11,7 @@ import Link from "../../ui/Link";
 import { useUserContext } from "../../context/user";
 import { isCurrentWeek } from "./helpers";
 import Confetti from "../animations/Confetti";
-import useSound from '../../hooks/useSound';
+import useSound from "../../hooks/useSound";
 import { GAME_TYPES } from "../../constants";
 
 const GET_TIMER = gql`
@@ -82,7 +82,7 @@ const GameContainer = ({
     onCompleted(data) {
       if (refetch) {
         refetch();
-        setCurrentUser({...data.updateCurrentUser, ...currentUser});
+        setCurrentUser({ ...data.updateCurrentUser, ...currentUser });
       }
     },
     ...basicQueryResultSupport,
@@ -137,7 +137,7 @@ const GameContainer = ({
       // end of time
       if (!currentUser?.online) {
         // user is offline
-        return
+        return;
       }
       const variables = {};
       if (gameState.points > 0) {
@@ -209,12 +209,12 @@ const GameTitle = ({ game }) => {
       <Text fontSize={{ base: "xl", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
-      <GameImage right game={game}/>
+      <GameImage right game={game} />
     </Flex>
   );
 };
 
-const GameImage = ({ game, right=false, ...props }) => {
+const GameImage = ({ game, right = false, ...props }) => {
   return game.image ? (
     <Image
       src={right && game.right ? game.right : game.image}

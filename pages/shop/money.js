@@ -1,13 +1,13 @@
-import {useState, useEffect} from "react"
-import {Flex, Text, useDisclosure, Divider} from "@chakra-ui/react";
+import { useState, useEffect } from "react";
+import { Flex, Text, useDisclosure, Divider } from "@chakra-ui/react";
 import ShopContainer from "../../features/shop/ShopContainer";
 import MoneyItems from "../../features/shop/MoneyItems";
 import PremiumButtons from "../../features/shop/PremiumButtons";
-import {PURCHASE_TYPES} from "../../constants";
+import { PURCHASE_TYPES } from "../../constants";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import { useUserContext } from "../../context/user";
-import {isPremium} from "../../helpers/premium";
+import { isPremium } from "../../helpers/premium";
 import { redirect } from "../../features/auth/helper";
 import { useRouter } from "next/router";
 
@@ -19,10 +19,15 @@ const Money = () => {
     if (currentUser.online === false) {
       redirect(router, "/login");
     }
-  }, [currentUser]);
+  }, [currentUser, router]);
 
   const sellingStars = [PURCHASE_TYPES.STARS_5, PURCHASE_TYPES.STARS_10, PURCHASE_TYPES.STARS_15];
-  const sellingCoins = [PURCHASE_TYPES.COINS_250, PURCHASE_TYPES.COINS_500, PURCHASE_TYPES.COINS_750, PURCHASE_TYPES.COINS_1000];
+  const sellingCoins = [
+    PURCHASE_TYPES.COINS_250,
+    PURCHASE_TYPES.COINS_500,
+    PURCHASE_TYPES.COINS_750,
+    PURCHASE_TYPES.COINS_1000,
+  ];
   const [stripeLoading, setStripeLoading] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -99,5 +104,5 @@ const PremiumDescription = ({ onOpen, stripeLoading, setStripeLoading, displayBu
   );
 };
 
-export {PremiumDescription};
+export { PremiumDescription };
 export default Money;

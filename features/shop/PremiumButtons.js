@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Flex, Text } from "@chakra-ui/react";
 import { useUserContext } from "../../context/user";
 import { PURCHASE_TYPES, PURCHASES } from "../../constants";
@@ -11,7 +11,7 @@ const PremiumButtons = ({ stripeLoading, setStripeLoading, ...props }) => {
     PURCHASE_TYPES.YEAR_1_PREMIUM,
   ];
   return (
-    <Flex direction={{base: "column", md: "row"}} justify="space-around" {...props}>
+    <Flex direction={{ base: "column", md: "row" }} justify="space-around" {...props}>
       {packages.map((item) => (
         <PremiumButton
           key={item}

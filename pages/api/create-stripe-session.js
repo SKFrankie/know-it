@@ -28,7 +28,9 @@ async function CreateStripeSession(req, res) {
     mode: "payment",
     success_url:
       redirectURL +
-      `?status=success&item=${encodeURI(item.name)}&description=${encodeURI(item.description)}&session_id={CHECKOUT_SESSION_ID}`,
+      `?status=success&item=${encodeURI(item.name)}&description=${encodeURI(
+        item.description
+      )}&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: redirectURL + "?status=cancel",
     metadata: {
       images: item.image,

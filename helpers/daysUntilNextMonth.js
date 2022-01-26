@@ -5,5 +5,4 @@ const daysUntilNextMonth = () => {
   return daysUntilNextMonth;
 };
 
-
 export default daysUntilNextMonth;

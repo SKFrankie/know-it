@@ -6,11 +6,11 @@ const httpLink = createHttpLink({
 });
 
 const customHeaders = {
-    key: "Access-Control-Allow-Origin",
-    "Content-Type": "application/json",
-    Accept: "*/*",
-    Origin: process.env.NEXT_PUBLIC_URL, //make sur it's always filled by you navigator
-}
+  key: "Access-Control-Allow-Origin",
+  "Content-Type": "application/json",
+  Accept: "*/*",
+  Origin: process.env.NEXT_PUBLIC_URL, //make sur it's always filled by you navigator
+};
 
 const authLink = setContext((_, { headers }) => {
   let token;

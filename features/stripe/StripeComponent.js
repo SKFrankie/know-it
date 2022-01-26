@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getCustomerWithId } from "../../helpers/stripe";
 import { PopUp } from "../../ui/Modal";
 import { Flex, Text, useDisclosure } from "@chakra-ui/react";
-import { useToast } from '@chakra-ui/react'
+import { useToast } from "@chakra-ui/react";
 
 import { useRouter } from "next/router";
 const StripeComponent = () => {
@@ -11,7 +11,6 @@ const StripeComponent = () => {
   const [customer, setCustomer] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
-
 
   useEffect(() => {
     if (status) {
@@ -34,8 +33,7 @@ const StripeComponent = () => {
         }
       });
     }
-    if (status=== "cancel")
-    {
+    if (status === "cancel") {
       toast({
         title: "Purchase cancelled",
         status: "error",
@@ -44,7 +42,7 @@ const StripeComponent = () => {
       });
     }
   }, [session_id]);
-  return null
+  return null;
 };
 
 export default StripeComponent;

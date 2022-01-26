@@ -1,11 +1,15 @@
 import AboutContainer from "../../features/about/AboutContainer";
-import {Text, UnorderedList, OrderedList, ListItem} from "@chakra-ui/react";
+import { Text, UnorderedList, OrderedList, ListItem } from "@chakra-ui/react";
 const TermsOfService = () => {
   return (
     <AboutContainer>
-      <Text m={2} fontSize="xl">Website Terms and Conditions of Use</Text>
+      <Text m={2} fontSize="xl">
+        Website Terms and Conditions of Use
+      </Text>
       <OrderedList>
-        <ListItem m={2} fontSize="lg">Terms</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Terms
+        </ListItem>
 
         <Text>
           By accessing this Website, accessible from https://www.know-it.bluepopcorn.fun, you are
@@ -15,7 +19,9 @@ const TermsOfService = () => {
           Website are protected by copyright and trade mark law.
         </Text>
 
-        <ListItem m={2} fontSize="lg">Use License</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Use License
+        </ListItem>
 
         <Text>
           Permission is granted to temporarily download one copy of the materials on BluePopcorn
@@ -48,7 +54,9 @@ const TermsOfService = () => {
           <a href="https://www.termsofservicegenerator.net">Terms Of Service Generator</a>.
         </Text>
 
-        <ListItem m={2} fontSize="lg">Disclaimer</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Disclaimer
+        </ListItem>
 
         <Text>
           All the materials on BluePopcorn Production’s Website are provided "as is". BluePopcorn
@@ -58,7 +66,9 @@ const TermsOfService = () => {
           otherwise relating to such materials or any sites linked to this Website.
         </Text>
 
-        <ListItem m={2} fontSize="lg">Limitations</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Limitations
+        </ListItem>
 
         <Text>
           BluePopcorn Production or its suppliers will not be hold accountable for any damages that
@@ -69,7 +79,9 @@ const TermsOfService = () => {
           incidental damages, these limitations may not apply to you.
         </Text>
 
-        <ListItem m={2} fontSize="lg">Revisions and Errata</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Revisions and Errata
+        </ListItem>
 
         <Text>
           The materials appearing on BluePopcorn Production’s Website may include technical,
@@ -79,7 +91,9 @@ const TermsOfService = () => {
           Production does not make any commitment to update the materials.
         </Text>
 
-        <ListItem m={2} fontSize="lg">Links</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Links
+        </ListItem>
 
         <Text>
           BluePopcorn Production has not reviewed all of the sites linked to its Website and is not
@@ -88,7 +102,9 @@ const TermsOfService = () => {
           at the user’s own risk.
         </Text>
 
-        <ListItem m={2} fontSize="lg">Site Terms of Use Modifications</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Site Terms of Use Modifications
+        </ListItem>
 
         <Text>
           BluePopcorn Production may revise these Terms of Use for its Website at any time without
@@ -96,14 +112,23 @@ const TermsOfService = () => {
           of these Terms and Conditions of Use.
         </Text>
 
-        <ListItem m={2} fontSize="lg">Your Privacy</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Your Privacy
+        </ListItem>
 
         <Text>Please read our Privacy Policy.</Text>
 
-        <ListItem m={2} fontSize="lg">Purchases</ListItem>
-        <Text>Purchased are made with the help of Stripe, please read their <a href="https://stripe.com/en-fr/legal">Services Agreement</a>.</Text>
+        <ListItem m={2} fontSize="lg">
+          Purchases
+        </ListItem>
+        <Text>
+          Purchased are made with the help of Stripe, please read their{" "}
+          <a href="https://stripe.com/en-fr/legal">Services Agreement</a>.
+        </Text>
 
-        <ListItem m={2} fontSize="lg">Governing Law</ListItem>
+        <ListItem m={2} fontSize="lg">
+          Governing Law
+        </ListItem>
       </OrderedList>
 
       <Text>

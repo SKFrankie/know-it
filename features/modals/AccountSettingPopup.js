@@ -99,10 +99,10 @@ const AccountSettingPopup = ({ label, type, isOpen, onClose }) => {
       return;
     }
 
-    let tmpValue = value
+    let tmpValue = value;
 
     if (type === "number") {
-      tmpValue = parseInt(value)
+      tmpValue = parseInt(value);
     }
 
     updateUser({

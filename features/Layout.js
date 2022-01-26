@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { DesktopHeader, MobileNavbar, MobileHeader } from "./Header";
-import CookieConsent from './CookieConsent';
+import CookieConsent from "./CookieConsent";
 
 const Layout = ({ children }) => {
   return (

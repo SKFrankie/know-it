@@ -10,7 +10,11 @@ const MyAvatar = ({ ...props }) => {
       size="lg"
       name=""
       bg="white"
-      src={currentAvatar?.picture ? currentAvatar?.picture : "https://res.cloudinary.com/dvdqswi8x/image/upload/v1639908743/Avatar%20Picture/wprwgtldhxwx4t3ntdur.png"}
+      src={
+        currentAvatar?.picture
+          ? currentAvatar?.picture
+          : "https://res.cloudinary.com/dvdqswi8x/image/upload/v1639908743/Avatar%20Picture/wprwgtldhxwx4t3ntdur.png"
+      }
       {...props}
     />
   );

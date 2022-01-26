@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import useSoundReact from 'use-sound';
+import React, { useState, useEffect } from "react";
+import useSoundReact from "use-sound";
 
 const useSound = (soundPath) => {
   const [sound, setSound] = useState([() => {}]);

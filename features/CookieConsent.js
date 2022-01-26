@@ -3,7 +3,6 @@ import ReactCookieConsent, { getCookieConsentValue, Cookies } from "react-cookie
 import { useUserContext } from "../context/user";
 import { useCookies } from "react-cookie";
 
-
 const CookieConsent = () => {
   const [cookies, setCookie] = useCookies(["CookieConsent"]);
   const [currentUser] = useUserContext();

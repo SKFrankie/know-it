@@ -19,7 +19,7 @@ const AVATAR_COLLECTIONS = gql`
       createdAt
       startDate
       endDate
-      avatars(where: {coinPrice_GT: 0}) {
+      avatars(where: { coinPrice_GT: 0 }) {
         avatarId
         name
         picture
