@@ -127,6 +127,7 @@ const Avatar = ({ avatar }) => {
       display="table"
       cursor={canBuy ? "pointer" : "auto"}
       filter={!canBuy && !alreadyBought && "grayScale(0.8)"}
+      textAlign="center"
     >
       <AvatarImage picture={avatar.picture} />
       <Text fontSize="xs" fontWeight="bold">{avatar?.name}</Text>
@@ -177,6 +178,7 @@ const AvatarImage = ({ picture, big = false, ...props }) => {
       borderRadius="4px"
       bg="white"
       boxSize={big ? { base: "150px", md: "300px" } : { base: "55px", md: "70px" }}
+      margin="auto"
       {...props}
     >
       <Image

@@ -23,7 +23,6 @@ const RouteGuard = ({ children }) => {
       "/signup",
       "/",
       "/shop/coins",
-      "/shop/money",
       "/about/privacy-policy",
       "/about/terms-of-service",
       "/about/credits",

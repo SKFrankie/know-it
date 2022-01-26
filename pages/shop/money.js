@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import {Flex, Text, useDisclosure, Divider} from "@chakra-ui/react";
 import ShopContainer from "../../features/shop/ShopContainer";
 import MoneyItems from "../../features/shop/MoneyItems";
@@ -8,9 +8,18 @@ import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import { useUserContext } from "../../context/user";
 import {isPremium} from "../../helpers/premium";
+import { redirect } from "../../features/auth/helper";
+import { useRouter } from "next/router";
 
 const Money = () => {
   const [currentUser] = useUserContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (currentUser.online === false) {
+      redirect(router, "/login");
+    }
+  }, [currentUser]);
 
   const sellingStars = [PURCHASE_TYPES.STARS_5, PURCHASE_TYPES.STARS_10, PURCHASE_TYPES.STARS_15];
   const sellingCoins = [PURCHASE_TYPES.COINS_250, PURCHASE_TYPES.COINS_500, PURCHASE_TYPES.COINS_750, PURCHASE_TYPES.COINS_1000];
