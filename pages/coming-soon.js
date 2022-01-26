@@ -125,7 +125,8 @@ export default function Home() {
             borderTopLeftRadius={25}
             borderBottomRightRadius={25}
             w={{ base: "90%", xl: "70%" }}
-            h={{ base: "fit-content", md: "60vh" }}
+            h={{ base: "auto", md: "60vh" }}
+            display="table"
             direction="column"
             justify="center"
             position="relative"

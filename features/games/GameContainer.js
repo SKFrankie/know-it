@@ -219,7 +219,7 @@ const GameImage = ({ game, right=false, ...props }) => {
     <Image
       src={right && game.right ? game.right : game.image}
       alt={game.label}
-      h="fit-content"
+      h="auto"
       display="table"
       w={right && !game.right ? { base: "70px", md: "120px" } : { base: "50px", md: "100px" }}
       marginBottom={{ base: "0px", md: "-30px" }}
@@ -267,7 +267,7 @@ const EndingScreen = ({
         </Text>
         <HourGlassIcon boxSize={{ base: "10", md: "20" }} />
       </Flex>
-      <Image src={`/images/${randomGigil}`} alt={randomGigil} w="fit-content" maxH="200px" />
+      <Image src={`/images/${randomGigil}`} alt={randomGigil} w="auto" maxH="200px" />
       <Flex
         direction="column"
         justifyContent="center"

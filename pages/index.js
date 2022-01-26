@@ -52,7 +52,7 @@ export default function Home() {
             <Image
               src={game.image}
               alt={game.name}
-              w="fit-content"
+              w="auto"
               display="table"
               maxH={{ base: "40px", md: "80px" }}
               marginBottom={{ base: "-10px", md: "-30px" }}

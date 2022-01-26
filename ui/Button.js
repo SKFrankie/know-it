@@ -95,14 +95,14 @@ const KnowlympicsButton = ({
 
 const SuccessButton = ({ children, ...props }) => {
   return (
-    <Button {...props} colorScheme="green" fontSize="md" display="table" height="fit-content" p={1}>
+    <Button {...props} colorScheme="green" fontSize="md" display="table" height="auto" p={1}>
       {children}
     </Button>
   );
 };
 const CancelButton = ({ children, ...props }) => {
   return (
-    <Button {...props} colorScheme="red" fontSize="md" dislpay="table" height="fit-content" p={1}>
+    <Button {...props} colorScheme="red" fontSize="md" display="table" height="auto" p={1}>
       {children}
     </Button>
   );

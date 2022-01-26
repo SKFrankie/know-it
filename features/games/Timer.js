@@ -10,7 +10,7 @@ const Timer = ({ maxTime, timer, ...props }) => {
       justify="center"
       alignItems="center"
       minW="50px"
-      w="fit-content"
+      w="auto"
       display="table"
       h="50px"
       trackColor="transparent"

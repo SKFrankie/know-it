@@ -159,10 +159,10 @@ const FabVocabGame = ({
         >
           <Image
             maxH={{ base: "50vh", md: "100%" }}
-            w={{ base: "fit-content", md: "100%" }}
+            w={{ base: "auto", md: "100%" }}
             display="table"
             maxW={{ base: "100%", md: "50vh" }}
-            h={{ base: "100%", md: "fit-content" }}
+            h={{ base: "100%", md: "auto" }}
             src={picture}
             my={2}
             loading="lazy"

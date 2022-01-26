@@ -203,7 +203,7 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
             _hover={{ bg: isActive(answer) ? (isCorrect(answer) ? "#04C417" : "red") : "#88A8D1" }}
             key={answer}
             answer={answer}
-            minW="fit-content"
+            w="auto"
             display="table"
             w={{ base: "100%", md: "20%" }}
             m={4}
