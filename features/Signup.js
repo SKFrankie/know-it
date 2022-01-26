@@ -75,6 +75,7 @@ export default function Signup() {
                     id="username"
                     placeholder="username"
                     autoComplete="username"
+                    maxLength="15"
                     required
                   />
                 </FormControl>
