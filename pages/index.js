@@ -36,7 +36,7 @@ export default function Home() {
       <Title display={{ base: "none", md: "flex" }} />
       {currentUser.online ? (
         <>
-          <GiftButton position="fixed" top={{ base: "70vh", md: "25vh" }} right="2%" />
+          <GiftButton position="fixed" top={{ base: "10vh", md: "25vh" }} right="2%" />
         </>
       ) : null}
       <Flex flexWrap="wrap" w="100%" textAlign="center" justify="center">
