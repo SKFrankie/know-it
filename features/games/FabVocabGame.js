@@ -46,6 +46,7 @@ const FabVocabGame = ({
 }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [wordTries, setWordTries] = useState(null);
+  const [totalCorrectWords, setTotalCorrectWords] = useState(0);
   const [picture, setPicture] = useState(
     "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
   );
@@ -81,10 +82,13 @@ const FabVocabGame = ({
 
   const handleTries = (words, sentences) => {
     // get as much tries as correct answers
+    const tmpTotalCorrectWords = Object.keys(
+      Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct))
+    ).length;
     setWordTries(
-      Object.keys(Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct)))
-        .length
+      tmpTotalCorrectWords
     );
+    setTotalCorrectWords(tmpTotalCorrectWords);
     setSentenceTries(
       Object.keys(
         Object.fromEntries(Object.entries(sentences).filter(([key, { correct }]) => correct))
@@ -177,7 +181,7 @@ const FabVocabGame = ({
           >
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={500}>
-              {wordTries} tries left
+              Find {totalCorrectWords} words
             </Text>
             <Words
               words={words}
