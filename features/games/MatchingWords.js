@@ -185,14 +185,14 @@ const Word = ({ word, color = "green", onWordClick, finalColor, active }) => {
   return (
     <Flex justify="center" align="center" direction="column" m={2}>
       <Button
-        onClick={handleClick}
+        onClick={finalColor ? null : handleClick}
+        cursor={finalColor ? "not-allowed" : "pointer"}
         border="1px solid"
         _hover={{ background: finalColor ? finalColor : active ? color : "transparent" }}
         bg={finalColor ? finalColor : active ? color : "transparent"}
         fontWeight="bold"
         fontSize={{ base: "md", md: "xl" }}
         minW={{ base: "30vw", md: "8vw" }}
-        disabled={finalColor}
       >
         {word}
       </Button>
