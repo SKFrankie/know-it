@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Box, Image, Text } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
+import { useRouter } from 'next/router'
 import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import { isPremium } from "../../helpers/premium";
@@ -71,6 +72,8 @@ const GameContainer = ({
   const [initialUserStarPercentage, setInitialUserStarPercentage] = useState(null);
   const [timer, setTimer] = useState(data?.games[0]?.timer || 120);
 
+  const router = useRouter();
+
   const timerInterval = React.useRef(null);
   const container = React.useRef(null);
 
@@ -93,15 +96,27 @@ const GameContainer = ({
   });
 
   const tick = () => {
-    setTimer((timer) => timer - 0.1);
+    setTimer((timer) => {
+      if (timer - 0.1 <= 0.1) {
+        return 0;
+      }
+      return timer - 0.1;
+    });
   };
 
   useEffect(() => {
     // leaving game
-    return () => {
-      setCurrentUser({ ...currentUser, starPercentage: initialUserStarPercentage });
+    const handleRouteChange = () => {
+      if (timer > 0) {
+        setCurrentUser({ ...currentUser, starPercentage: initialUserStarPercentage });
+      }
     };
-  }, [initialUserStarPercentage]);
+    router.events.on("routeChangeStart", handleRouteChange);
+      return () => {
+        router.events.off("routeChangeStart", handleRouteChange);
+      }
+  }, [initialUserStarPercentage, timer]);
+
 
   useEffect(() => {
     if (initialUserStarPercentage === null) {
