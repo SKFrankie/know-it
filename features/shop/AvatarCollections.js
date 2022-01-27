@@ -126,7 +126,7 @@ const Avatar = ({ avatar }) => {
       h="auto"
       display="table"
       cursor={canBuy ? "pointer" : "auto"}
-      filter={!canBuy && !alreadyBought && "grayScale(0.8)"}
+      filter={!canBuy && !alreadyBought && "grayScale(0.3)"}
       textAlign="center"
     >
       <AvatarImage picture={avatar.picture} />
