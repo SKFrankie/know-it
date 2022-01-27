@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Flex, Image, Text, Progress } from "@chakra-ui/react";
 import { useUserContext } from "../context/user";
 import StarComplete from "./animations/StarComplete";
-import NextLink from "next/link";
+import {LinkOverlay} from "../ui/Link";
 
 const Currency = ({
   src = "/images/star.png",
@@ -26,9 +26,9 @@ const StarCurrency = ({ quantity = 0, ...props }) => {
   const [currentUser] = useUserContext();
   quantity = currentUser.online && !quantity ? currentUser.stars : quantity;
   return (
-    <NextLink href="/knowlympics">
+    <LinkOverlay href="/knowlympics" alignSelf="center">
       <Currency cursor="pointer" quantity={quantity} {...props} />
-    </NextLink>
+    </LinkOverlay>
   );
 };
 
@@ -36,9 +36,9 @@ const CoinCurrency = ({ quantity = 0, ...props }) => {
   const [currentUser] = useUserContext();
   quantity = currentUser.online && !quantity ? currentUser.coins : quantity;
     return (
-      <NextLink href="/shop/coins">
+      <LinkOverlay href="/shop/coins" alignSelf="center">
         <CoinCurrencyNoUser cursor="pointer" quantity={quantity} {...props} />
-      </NextLink>
+      </LinkOverlay>
     );
 };
 
