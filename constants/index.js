@@ -62,7 +62,7 @@ const GAMES_SECTIONS = [
 
 const REWARD_TYPES = {
   COINS: { image: "/images/coin.png", name: "Coins", label: "coins" },
-  STARS: { image: "/images/stars.png", name: "Stars", label: "stars" },
+  STARS: { image: "/images/star.png", name: "Stars", label: "stars" },
   STAR_PERCENTAGE: {
     image: "/images/star_percentage.png",
     name: "Star Percentage",
