@@ -321,7 +321,7 @@ const Reward = ({
       >
         <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
         <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
-          x{quantity}
+          {quantity}{reward === "STAR_PERCENTAGE" ? "%" : ""}
         </Text>
       </Flex>
     </Flex>
