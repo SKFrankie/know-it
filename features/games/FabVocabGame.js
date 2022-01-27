@@ -165,7 +165,8 @@ const FabVocabGame = ({
             h={{ base: "100%", md: "auto" }}
             src={picture}
             my={2}
-            loading="lazy"
+            loading="eager"
+            fallbackSrc="/images/Fallback.png"
           />
           {/* GOOGLE AD */}
           <Flex
