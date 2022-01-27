@@ -16,7 +16,6 @@ const Modal = ({ isOpen = false, onClose, children, ...props }) => {
         isCentered
         bg="deepDarkBlue"
         p="5"
-        m="0"
         minH={{ base: "100%", md: "50%" }}
         minW={{ base: "100%", md: "80%" }}
       >
