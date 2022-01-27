@@ -32,7 +32,7 @@ const PopUp = ({ isOpen = true, onClose, children, ...props }) => {
     <ChakraModal
       isOpen={isOpen}
       onClose={onClose}
-      size="sm"
+      size="md"
       motionPreset="slideInBottom"
       {...props}
     >

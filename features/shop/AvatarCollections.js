@@ -179,14 +179,14 @@ const AvatarImage = ({ picture, big = false, ...props }) => {
       p={2}
       borderRadius="4px"
       bg="white"
-      boxSize={big ? { base: "150px", md: "300px" } : { base: "55px", md: "70px" }}
+      boxSize={big ? { base: "250px", md: "350px" } : { base: "100px", md: "120px" }}
       margin="auto"
       {...props}
     >
       <Image
         alignSelf="center"
         src={picture}
-        maxH={big ? { base: "140px", md: "250px" } : { base: "40px", md: "60px" }}
+        maxH={big ? { base: "200px", md: "300px" } : { base: "80px", md: "100px" }}
       />
     </Flex>
   );
