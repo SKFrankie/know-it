@@ -5,8 +5,7 @@ const Timer = ({ maxTime, timer, ...props }) => {
   return (
     <CircularProgress
       value={(timer / maxTime) * 100}
-      size="50px"
-      color="blueClear.500"
+      size="5rem"
       justify="center"
       alignItems="center"
       minW="50px"
@@ -15,7 +14,6 @@ const Timer = ({ maxTime, timer, ...props }) => {
       h="50px"
       trackColor="transparent"
       color="deepDarkBlue"
-      bg="blueClear.500"
       borderRadius="50%"
       thickness="15px"
       m={2}
