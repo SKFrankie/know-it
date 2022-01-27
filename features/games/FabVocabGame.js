@@ -166,7 +166,7 @@ const FabVocabGame = ({
             w={{ base: "auto", md: "100%" }}
             display="table"
             maxW={{ base: "100%", md: "50vh" }}
-            h={{ base: "100%", md: "auto" }}
+            h={{ base: "100%", md: "max-content" }}
             src={picture}
             my={2}
             loading="eager"
@@ -280,7 +280,16 @@ const Words = ({
       {wordArray.map((word, index) => {
         return (
           <Text
-            color={isActive(word) ? (isCorrect(word) ? "#07E503" : "#A80909") : "white"}
+            minW={{ base: "30vw", md: "8vw" }}
+            textAlign="center"
+            color="white"
+            border="1px solid"
+            backgroundColor={
+              isActive(word) ? (isCorrect(word) ? "#07E503" : "#A80909") : "transparent"
+            }
+            opacity={!isClicked(word) && isActive(word) ? 0.5 : 1}
+            borderRadius="md"
+            p={2}
             textDecoration={
               !isClicked(word) && isActive(word)
                 ? isCorrect(word)
