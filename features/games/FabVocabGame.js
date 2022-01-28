@@ -283,7 +283,7 @@ const Words = ({
             minW={{ base: "30vw", md: "8vw" }}
             textAlign="center"
             color="white"
-            border="1px solid"
+            border={!isActive(word) ? "1px solid" : "1px solid transparent"}
             backgroundColor={
               isActive(word) ? (isCorrect(word) ? "#07E503" : "#A80909") : "transparent"
             }
