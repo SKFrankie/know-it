@@ -255,12 +255,12 @@ const EndingScreen = ({
   const [randomGigil, setRandomGigil] = useState("AntonymHuntMonster.png");
   const [play] = useSound("/sounds/endgame.mp3");
   const gigils = [
-    // "AntonymHuntMonster.png",
-    // "FabVocabMonster.png",
-    // "coming-soon-monster.png",
-    // "SynonymRollMonster.png",
-    // "GrammarGeekMonster.png",
-    "TimesUpMonster.png",
+    "Amazing.png",
+    "Awesome.png",
+    "GoodJob.png",
+    "KeepItUp.png",
+    "VeryGood.png",
+    "WellDone.png",
   ];
 
   useEffect(() => {
@@ -282,7 +282,7 @@ const EndingScreen = ({
         </Text>
         <HourGlassIcon boxSize={{ base: "10", md: "20" }} />
       </Flex>
-      <Image src={`/images/${randomGigil}`} alt={randomGigil} w="auto" maxH="200px" />
+      <Image src={`/images/timesup/${randomGigil}`} alt={randomGigil} w="auto" maxH="200px" />
       <Flex
         direction="column"
         justifyContent="center"
