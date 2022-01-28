@@ -74,6 +74,7 @@ const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympi
           setGameState={setGameState}
           gameState={gameState}
           knowlympics={knowlympics}
+          icon="lucide:equal-not"
           colorArray={[
             "#930000",
             "#925003",

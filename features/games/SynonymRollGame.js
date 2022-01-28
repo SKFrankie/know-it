@@ -77,6 +77,7 @@ const SynonymRollGame = ({ gameState, setGameState, onNextGame = null, knowlympi
           setGameState={setGameState}
           gameState={gameState}
           knowlympics={knowlympics}
+          icon="lucide:equal"
         />
       ) : null}
       {error && <Error />}
