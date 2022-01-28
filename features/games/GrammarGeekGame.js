@@ -230,15 +230,15 @@ const Hint = ({ hint, showHint }) => {
       boxSizing="border-box"
       borderRadius="5px"
       m={4}
-      w={{ base: "70%", md: "40%" }}
+      w={{ base: "60%", md: "35%" }}
       color="#04C417"
-      p={4}
+      p={2}
       display={showHint && hint ? "flex" : "none"}
       position="relative"
     >
       <InfoIcon position="absolute" left="1" top="1" color="white" boxSize="5" />
       <Text m={6} fontSize="xl" fontWeight="bold">
-        {hint}
+        {hint?.toUpperCase()}
       </Text>
     </Flex>
   );
