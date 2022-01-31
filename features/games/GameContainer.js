@@ -201,7 +201,7 @@ const GameContainer = ({
     <Box ref={container}>
       <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
-      <Box h={{ base: "0vh", md: "5vh" }} />
+      <Box h={{ base: "0vh", md: "10vh" }} />
       <Flex direction="column" {...props}>
         {knowlympics && (
           <Text m={3} fontSize="md" fontWeight="md">
@@ -236,7 +236,7 @@ const GameImage = ({ game, right = false, ...props }) => {
       alt={game.label}
       h="auto"
       display="table"
-      w={right && !game.right ? { base: "70px", md: "120px" } : { base: "50px", md: "100px" }}
+      w={right ? { base: "30px", md: "80px" } : { base: "50px", md: "100px" }}
       marginBottom={{ base: "0px", md: "-30px" }}
       mx={2}
       transform={right && !game.right ? "scaleX(-1)" : "scaleX(1)"}
