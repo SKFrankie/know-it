@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Flex, Image, useDisclosure } from "@chakra-ui/react";
+import { Icon as Iconify } from "@iconify/react";
+import { Flex, Image, useDisclosure, Icon } from "@chakra-ui/react";
 import Head from "next/head";
 
 import { useUserContext } from "../context/user";
@@ -34,6 +35,19 @@ export default function Home() {
         />
       </Head>
       <Title display={{ base: "none", md: "flex" }} />
+      <GaIconButton
+        position="fixed"
+        top={{ base: "10vh", md: "25vh" }}
+        left="2%"
+        boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
+        colorScheme="red"
+        label="Survey"
+        boxSize={{ base: 10, md: 12 }}
+        target="_blank"
+        href="https://docs.google.com/forms/d/1IJaVWCyWANObkifxo3AxVydtAqLLX07xZ4lDwP1Ynps/edit"
+        icon={<Icon boxSize={7} as={Iconify} icon="flat-color-icons:survey" />}
+        zIndex={1}
+      />
       {currentUser.online ? (
         <>
           <GiftButton position="fixed" top={{ base: "10vh", md: "25vh" }} right="2%" />
