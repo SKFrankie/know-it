@@ -21,7 +21,7 @@ const ADDITIONNAL_SECTIONS = [
 
 const SHOP_SECTIONS = [
   { name: "Coins", path: "/shop/coins" },
-  { name: "Money", path: "/shop/money" },
+  { name: "Purchases", path: "/shop/money" },
 ];
 
 const ABOUT_SECTIONS = [
