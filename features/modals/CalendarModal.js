@@ -127,6 +127,16 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
     setTodayGift(tmpGift);
   }, [data, currentUser.daysInArow]);
 
+// random gift title
+  const [randomGiftTitle, setRandomGiftTitle] = useState("Gift of the day!");
+  const giftTitles = [
+    "Gift of the day!",
+    "Claim your gift of the day!",
+    "Here's a gift for you!",
+  ];
+  useEffect(() => {
+    setRandomGiftTitle(giftTitles[Math.floor(Math.random() * giftTitles.length)]);
+  }, []);
   return (
     <Modal isOpen={isCalendarOpen} onClose={onCalendarClose} {...props}>
       <Text ml="auto" fontSize="md" my={5}>
@@ -136,7 +146,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
         <Flex alignItems="center">
           <GiftIcon boxSize="20" display={{ base: "none", md: "flex" }} />{" "}
           <Text fontWeight="bold" fontSize={{ base: "4xl", md: "6xl" }}>
-            Gift of the day
+            {randomGiftTitle}
           </Text>
         </Flex>
         <GiftIcon boxSize="20" display={{ base: "flex", md: "none" }} />
