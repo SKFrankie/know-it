@@ -13,6 +13,7 @@ import Modal, { PopUp } from "../../ui/Modal";
 import Button from "../../ui/Button";
 import GiftIcon from "../../ui/icons/GiftIcon";
 import { REWARD_TYPES, PURCHASE_TYPES, PURCHASES } from "../../constants";
+import Confetti from "../animations/Confetti";
 
 const GIFTS = gql`
   query Gifts {
@@ -235,6 +236,7 @@ const GiftPopUp = ({
           </Text>
         )}
       </Flex>
+      <Confetti />
     </PopUp>
   );
 };
