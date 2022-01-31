@@ -281,6 +281,7 @@ const Words = ({
       {wordArray.map((word, index) => {
         return (
           <Text
+            transition={isClicked(word) || !isActive(word) ? "null" : "all 700ms ease-in"}
             minW={{ base: "30vw", md: "8vw" }}
             textAlign="center"
             color="white"
