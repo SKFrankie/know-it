@@ -11,6 +11,7 @@ import { SubmitButton } from "../ui/Button";
 import { Error } from "../ui/Alert";
 import Link from "../ui/Link";
 import Form from "../ui/Form";
+import Loading from "./Loading";
 
 const SIGN_UP = gql`
   mutation Signup($email: String!, $username: String!, $password: String!) {
@@ -43,7 +44,7 @@ export default function Signup() {
   });
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (

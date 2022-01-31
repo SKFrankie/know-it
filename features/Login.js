@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Link from "../ui/Link";
 import Form from "../ui/Form";
 import { Error } from "../ui/Alert";
+import Loading from "./Loading";
 
 import Input from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
@@ -32,7 +33,7 @@ export default function Login() {
   });
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (

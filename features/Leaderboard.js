@@ -23,6 +23,7 @@ const RANKING_USERS = gql`
 `;
 
 const Leaderboard = () => {
+  const TOP_USERS_NUMBER = 10;
   const [currentUser] = useUserContext();
   const [users, setUsers] = useState([]);
   const { data, loading, error } = useQuery(RANKING_USERS, {
@@ -51,25 +52,28 @@ const Leaderboard = () => {
     return false;
   };
 
-  const isInTopThree = (index) => {
-    if (users.length < 3 || index < 3) {
+  const isInTop= (index) => {
+    if (users.length < TOP_USERS_NUMBER || index < TOP_USERS_NUMBER) {
       return true;
     }
     return false;
   };
 
   const isInBasicRanking = (user, index) => {
-    if (index >= 3) {
+    if (index >= TOP_USERS_NUMBER) {
       if (
         data.rankingUsers.length >= index + 2 &&
         data.rankingUsers[index + 1].userId === currentUser.userId
       ) {
+        // is after current user
         return true;
       }
       if (user.userId === currentUser.userId) {
+        // is current user
         return true;
       }
       if (index - 1 >= 0 && data.rankingUsers[index - 1].userId === currentUser.userId) {
+        // is before current user
         return true;
       }
     }
@@ -77,7 +81,7 @@ const Leaderboard = () => {
   };
 
   const isTruncatable = (index) => {
-    if (index === 3) {
+    if (index === TOP_USERS_NUMBER) {
       return true;
     }
     if (index - 2 >= 0 && data.rankingUsers[index - 2].userId === currentUser.userId) {
@@ -105,7 +109,7 @@ const Leaderboard = () => {
         <Flex direction="column" justify="center" align="center" w="100%" mt={2}>
           <Searchbar onChange={handleSearch} />
           {(data?.rankingUsers || []).map((user, index) => {
-            if (isInTopThree(index)) {
+            if (isInTop(index)) {
               return (
                 <Row
                   display={displayUser(user)}
