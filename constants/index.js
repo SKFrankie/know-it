@@ -37,19 +37,19 @@ const GAMES_SECTIONS = [
   {
     name: "Grammar Geek",
     path: "/games/grammar-geek",
-    image: "/images/GrammarGeekMonster.png",
+    image: "/images/GrammarGeekImage.png",
     align: "end",
   },
   {
     name: "Synonym Roll",
     path: "/games/synonym-roll",
-    image: "/images/SynonymRollMonster.png",
+    image: "/images/SynonymRollImage.png",
     align: "center",
   },
   {
     name: "Antonym Hunt",
     path: "/games/antonym-hunt",
-    image: "/images/AntonymHuntMonster.png",
+    image: "/images/AntonymHuntImage.png",
     align: "start",
   },
   {
