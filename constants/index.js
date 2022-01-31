@@ -55,7 +55,7 @@ const GAMES_SECTIONS = [
   {
     name: "Fab Vocab",
     path: "/games/fab-vocab",
-    image: "/images/FabVocabMonster.png",
+    image: "/images/FabVocabImage.png",
     align: "end",
   },
 ];
@@ -77,7 +77,7 @@ const GAME_TYPES = {
     image: "/images/SynonymRollImage.png",
     right: "/images/SynonymRollImageRight.png",
   },
-  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab" },
+  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab", image: "/images/FabVocabImage.png", right: "/images/FabVocabImageRight.png" },
   ANTONYM_HUNT: {
     name: "ANTONYM_HUNT",
     label: "Antonym Hunt",

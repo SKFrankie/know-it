@@ -157,7 +157,7 @@ const FabVocabGame = ({
         <Flex
           direction={{ base: "column", md: "row" }}
           alignItems={{ base: "center", md: "initial" }}
-          my={2}
+          my={7}
           w="100%"
           justify="space-around"
         >
