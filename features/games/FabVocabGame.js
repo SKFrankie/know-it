@@ -171,6 +171,7 @@ const FabVocabGame = ({
             my={2}
             loading="eager"
             fallbackSrc="/images/Fallback.png"
+            boxShadow="lg"
           />
           {/* GOOGLE AD */}
           <Flex
