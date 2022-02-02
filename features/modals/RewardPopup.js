@@ -47,6 +47,7 @@ const GET_AVATAR_GIFT = gql`
 
 const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
   const [collection, setCollection] = useState([]);
+  const [currentUser] = useUserContext();
   const { data, loading, error } = useQuery(GET_RANKING_REWARDS, {
     onCompleted: (data) => {
       switch (rankingGift) {
@@ -86,8 +87,22 @@ const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
     return `Congratulations, you've reached ${text} of the ranking last time! Select your Monstar!`;
   };
 
+  const AlreadyGotAllGigils = () => {
+    // no need to display the modal if the user already has all the gifts
+    for (const avatar of collection) {
+      const notInInventory =
+        currentUser.inventory.find((i) => i.avatarId === avatar.avatarId) === undefined;
+      if (notInInventory) {
+        // at least on is not in user inventory so we can display the modal
+        return false;
+      }
+    }
+    // all the gifts are in the user inventory so we can't display the modal
+    return true;
+  };
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} {...props}>
+    <Modal isOpen={isOpen && !AlreadyGotAllGigils()} onClose={onClose} {...props}>
       <Flex
         direction="column"
         alignItems="center"
