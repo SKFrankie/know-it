@@ -14,6 +14,7 @@ import { isCurrentWeek } from "./helpers";
 import Confetti from "../animations/Confetti";
 import useSound from "../../hooks/useSound";
 import { GAME_TYPES } from "../../constants";
+import Info from "./Info";
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -224,6 +225,7 @@ const GameTitle = ({ game }) => {
       <Text fontSize={{ base: "xl", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
+      <Info game={game} />
       <GameImage right game={game} />
     </Flex>
   );
