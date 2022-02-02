@@ -76,21 +76,24 @@ const GAME_TYPES = {
     label: "Synonym Roll",
     image: "/images/SynonymRollImage.png",
     right: "/images/SynonymRollImageRight.png",
+    id:"synonymRoll",
   },
-  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab", image: "/images/FabVocabImage.png", right: "/images/FabVocabImageRight.png" },
+  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab", image: "/images/FabVocabImage.png", right: "/images/FabVocabImageRight.png", id: "fabVocab" },
   ANTONYM_HUNT: {
     name: "ANTONYM_HUNT",
     label: "Antonym Hunt",
     image: "/images/AntonymHuntImage.png",
     right: "/images/AntonymHuntImageRight.png",
+    id: "antonymHunt",
   },
   GRAMMAR_GEEK: {
     name: "GRAMMAR_GEEK",
     label: "Grammar Geek",
     image: "/images/GrammarGeekImage.png",
     right: "/images/GrammarGeekImageRight.png",
+    id: "grammarGeek",
   },
-  KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics" },
+  KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics", id: "knowlympics" },
 };
 
 const POINTS = {
