@@ -3,10 +3,9 @@ import { Icon } from '@chakra-ui/react';
 import { Icon as Iconify } from "@iconify/react";
 import {LinkOverlay} from '../../ui/Link';
 
-const Info = ({game}) => {
-  console.log("game", game)
+const Info = ({id}) => {
   return (
-    <LinkOverlay href={game?.id ? `/about/credits#${game.id}` : `/about/credits`}>
+    <LinkOverlay href={id ? `/about/credits#${id}` : `/about/credits`}>
       <Icon
         name="info-circle-outlined"
         color="white"

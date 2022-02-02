@@ -209,7 +209,7 @@ const GameContainer = ({
             Points : {gameState.points}
           </Text>
         )}
-        <GameTitle game={game} />
+        <GameTitle game={game} knowlympics={knowlympics} />
         {children}
       </Flex>
     </Box>
@@ -218,14 +218,14 @@ const GameContainer = ({
   );
 };
 
-const GameTitle = ({ game }) => {
+const GameTitle = ({ game, knowlympics=false }) => {
   return (
     <Flex justifyContent="center" alignItems={{ base: "end", md: "center" }}>
       <GameImage game={game} />
       <Text fontSize={{ base: "xl", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
-      <Info game={game} />
+      <Info id={knowlympics ? "knowlympics" : game?.id} />
       <GameImage right game={game} />
     </Flex>
   );
