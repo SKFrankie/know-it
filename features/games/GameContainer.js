@@ -14,6 +14,7 @@ import { isCurrentWeek } from "./helpers";
 import Confetti from "../animations/Confetti";
 import useSound from "../../hooks/useSound";
 import { GAME_TYPES } from "../../constants";
+import Info from "./Info";
 
 const GET_TIMER = gql`
   query GetTimer($gameName: GameName!) {
@@ -201,14 +202,14 @@ const GameContainer = ({
     <Box ref={container}>
       <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
-      <Box h={{ base: "0vh", md: "5vh" }} />
+      <Box h={{ base: "0vh", md: "10vh" }} />
       <Flex direction="column" {...props}>
         {knowlympics && (
           <Text m={3} fontSize="md" fontWeight="md">
             Points : {gameState.points}
           </Text>
         )}
-        <GameTitle game={game} />
+        <GameTitle game={game} knowlympics={knowlympics} />
         {children}
       </Flex>
     </Box>
@@ -217,13 +218,14 @@ const GameContainer = ({
   );
 };
 
-const GameTitle = ({ game }) => {
+const GameTitle = ({ game, knowlympics=false }) => {
   return (
     <Flex justifyContent="center" alignItems={{ base: "end", md: "center" }}>
       <GameImage game={game} />
       <Text fontSize={{ base: "xl", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
+      <Info id={knowlympics ? "knowlympics" : game?.id} />
       <GameImage right game={game} />
     </Flex>
   );
@@ -236,7 +238,7 @@ const GameImage = ({ game, right = false, ...props }) => {
       alt={game.label}
       h="auto"
       display="table"
-      w={right && !game.right ? { base: "70px", md: "120px" } : { base: "50px", md: "100px" }}
+      w={right ? { base: "30px", md: "80px" } : { base: "50px", md: "100px" }}
       marginBottom={{ base: "0px", md: "-30px" }}
       mx={2}
       transform={right && !game.right ? "scaleX(-1)" : "scaleX(1)"}
@@ -255,12 +257,12 @@ const EndingScreen = ({
   const [randomGigil, setRandomGigil] = useState("AntonymHuntMonster.png");
   const [play] = useSound("/sounds/endgame.mp3");
   const gigils = [
-    // "AntonymHuntMonster.png",
-    // "FabVocabMonster.png",
-    // "coming-soon-monster.png",
-    // "SynonymRollMonster.png",
-    // "GrammarGeekMonster.png",
-    "TimesUpMonster.png",
+    "Amazing.png",
+    "Awesome.png",
+    "GoodJob.png",
+    "KeepItUp.png",
+    "VeryGood.png",
+    "WellDone.png",
   ];
 
   useEffect(() => {
@@ -282,7 +284,7 @@ const EndingScreen = ({
         </Text>
         <HourGlassIcon boxSize={{ base: "10", md: "20" }} />
       </Flex>
-      <Image src={`/images/${randomGigil}`} alt={randomGigil} w="auto" maxH="200px" />
+      <Image src={`/images/timesup/${randomGigil}`} alt={randomGigil} w="auto" maxH="200px" />
       <Flex
         direction="column"
         justifyContent="center"

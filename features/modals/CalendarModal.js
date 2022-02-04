@@ -13,6 +13,7 @@ import Modal, { PopUp } from "../../ui/Modal";
 import Button from "../../ui/Button";
 import GiftIcon from "../../ui/icons/GiftIcon";
 import { REWARD_TYPES, PURCHASE_TYPES, PURCHASES } from "../../constants";
+import Confetti from "../animations/Confetti";
 
 const GIFTS = gql`
   query Gifts {
@@ -126,6 +127,16 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
     setTodayGift(tmpGift);
   }, [data, currentUser.daysInArow]);
 
+// random gift title
+  const [randomGiftTitle, setRandomGiftTitle] = useState("Gift of the day!");
+  const giftTitles = [
+    "Gift of the day!",
+    "Claim your gift of the day!",
+    "Here's a gift for you!",
+  ];
+  useEffect(() => {
+    setRandomGiftTitle(giftTitles[Math.floor(Math.random() * giftTitles.length)]);
+  }, []);
   return (
     <Modal isOpen={isCalendarOpen} onClose={onCalendarClose} {...props}>
       <Text ml="auto" fontSize="md" my={5}>
@@ -135,7 +146,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
         <Flex alignItems="center">
           <GiftIcon boxSize="20" display={{ base: "none", md: "flex" }} />{" "}
           <Text fontWeight="bold" fontSize={{ base: "4xl", md: "6xl" }}>
-            Gift of the day
+            {randomGiftTitle}
           </Text>
         </Flex>
         <GiftIcon boxSize="20" display={{ base: "flex", md: "none" }} />
@@ -235,6 +246,7 @@ const GiftPopUp = ({
           </Text>
         )}
       </Flex>
+      <Confetti />
     </PopUp>
   );
 };
@@ -321,7 +333,7 @@ const Reward = ({
       >
         <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
         <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
-          x{quantity}
+          {quantity}{reward === "STAR_PERCENTAGE" ? "%" : ""}
         </Text>
       </Flex>
     </Flex>

@@ -21,7 +21,7 @@ const ADDITIONNAL_SECTIONS = [
 
 const SHOP_SECTIONS = [
   { name: "Coins", path: "/shop/coins" },
-  { name: "Money", path: "/shop/money" },
+  { name: "Purchases", path: "/shop/money" },
 ];
 
 const ABOUT_SECTIONS = [
@@ -37,32 +37,32 @@ const GAMES_SECTIONS = [
   {
     name: "Grammar Geek",
     path: "/games/grammar-geek",
-    image: "/images/GrammarGeekMonster.png",
+    image: "/images/GrammarGeekImage.png",
     align: "end",
   },
   {
     name: "Synonym Roll",
     path: "/games/synonym-roll",
-    image: "/images/SynonymRollMonster.png",
+    image: "/images/SynonymRollImage.png",
     align: "center",
   },
   {
     name: "Antonym Hunt",
     path: "/games/antonym-hunt",
-    image: "/images/AntonymHuntMonster.png",
+    image: "/images/AntonymHuntImage.png",
     align: "start",
   },
   {
     name: "Fab Vocab",
     path: "/games/fab-vocab",
-    image: "/images/FabVocabMonster.png",
+    image: "/images/FabVocabImage.png",
     align: "end",
   },
 ];
 
 const REWARD_TYPES = {
   COINS: { image: "/images/coin.png", name: "Coins", label: "coins" },
-  STARS: { image: "/images/stars.png", name: "Stars", label: "stars" },
+  STARS: { image: "/images/star.png", name: "Stars", label: "stars" },
   STAR_PERCENTAGE: {
     image: "/images/star_percentage.png",
     name: "Star Percentage",
@@ -75,22 +75,25 @@ const GAME_TYPES = {
     name: "SYNONYM_ROLL",
     label: "Synonym Roll",
     image: "/images/SynonymRollImage.png",
-    right: "/images/SynonymRollImage.png",
+    right: "/images/SynonymRollImageRight.png",
+    id:"synonymRoll",
   },
-  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab" },
+  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab", image: "/images/FabVocabImage.png", right: "/images/FabVocabImageRight.png", id: "fabVocab" },
   ANTONYM_HUNT: {
     name: "ANTONYM_HUNT",
     label: "Antonym Hunt",
     image: "/images/AntonymHuntImage.png",
     right: "/images/AntonymHuntImageRight.png",
+    id: "antonymHunt",
   },
   GRAMMAR_GEEK: {
     name: "GRAMMAR_GEEK",
     label: "Grammar Geek",
     image: "/images/GrammarGeekImage.png",
-    right: "/images/GrammarGeekImage.png",
+    right: "/images/GrammarGeekImageRight.png",
+    id: "grammarGeek",
   },
-  KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics" },
+  KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics", id: "knowlympics" },
 };
 
 const POINTS = {

@@ -9,14 +9,13 @@ import {
 
 const Modal = ({ isOpen = false, onClose, children, ...props }) => {
   return (
-    <ChakraModal isOpen={isOpen} onClose={onClose} motionPreset="slideInBottom" {...props}>
+    <ChakraModal isOpen={isOpen} onClose={onClose} motionPreset="slideInBottom" allowPinchZoom {...props}>
       <ModalOverlay />
       <ModalContent
         alignSelf={{ base: "initial", md: "center" }}
         isCentered
         bg="deepDarkBlue"
         p="5"
-        m="0"
         minH={{ base: "100%", md: "50%" }}
         minW={{ base: "100%", md: "80%" }}
       >
@@ -34,6 +33,7 @@ const PopUp = ({ isOpen = true, onClose, children, ...props }) => {
       onClose={onClose}
       size="md"
       motionPreset="slideInBottom"
+      allowPinchZoom
       {...props}
     >
       <ModalOverlay />

@@ -9,6 +9,7 @@ import { isPremium } from "../../helpers/premium";
 import { PremiumDescription } from "../../pages/shop/money";
 import Ranking from "./Ranking";
 import Loading from "../Loading";
+import {LinkOverlay} from "../../ui/Link";
 
 const GET_USERS_FROM_ID = gql`
   query Users($userId: ID!) {
@@ -80,8 +81,10 @@ const Profile = ({ userId }) => {
           </ProfileFlex>
           <Flex direction={{ base: "column", md: "row" }} justify="space-between">
             <ProfileFlex mr={{ base: 0, md: 2 }}>
+              <LinkOverlay href="/knowlympics">
               <Text fontSize="2xl">Ranking</Text>
-              <Ranking userId={userId} />
+                <Ranking userId={userId} />
+              </LinkOverlay>
             </ProfileFlex>
             {userId ? null : (
               <ProfileFlex ml={{ base: 0, md: 2 }}>

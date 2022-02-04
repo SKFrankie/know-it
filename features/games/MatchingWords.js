@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text, Button, Box, useToast } from "@chakra-ui/react";
+import { Flex, Text, Button, Box, useToast, Icon } from "@chakra-ui/react";
+import { Icon as Iconify } from "@iconify/react";
 import shuffleArray from "../../helpers/shuffleArray";
 import { POINTS } from "../../constants";
 
@@ -20,6 +21,7 @@ const MatchingWords = ({
     "#0000FF",
   ],
   knowlympics = false,
+  icon,
 }) => {
   const [wordsObject, setWordsObject] = useState({});
   const [currentColor, setCurrentColor] = useState(0);
@@ -140,6 +142,7 @@ const MatchingWords = ({
         onWordClick={onWord1Click}
         variant="left"
       />
+      {icon ? <Icon alignSelf="center" boxSize={7} color="white" as={Iconify} icon={icon} /> : null}
       <WordColumn
         wordsObject={wordsObject}
         matchingWords={matchingWords}
