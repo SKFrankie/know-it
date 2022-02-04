@@ -44,7 +44,7 @@ export default function Home() {
         label="Survey"
         boxSize={{ base: 10, md: 12 }}
         target="_blank"
-        href="https://docs.google.com/forms/d/1IJaVWCyWANObkifxo3AxVydtAqLLX07xZ4lDwP1Ynps/edit"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSc7y4RINsZ-g9gzjP3rSg5AVIfDS2Nu4m09y9Mn--ZvFFr2rA/viewform?usp=pp_url"
         icon={<Icon boxSize={7} as={Iconify} icon="flat-color-icons:survey" />}
         zIndex={1}
       />
