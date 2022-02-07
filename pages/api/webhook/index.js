@@ -119,7 +119,7 @@ export default async function handler(req, res) {
       case "checkout.session.completed":
         // payment has been done
         console.log("purchase done");
-        getPurchase(item, item.token, payment_intent, res);
+        await getPurchase(item, item.token, payment_intent, res);
         break;
       // case "payment_intent.succeeded":
       //   console.log("PaymentIntent was successful!");
