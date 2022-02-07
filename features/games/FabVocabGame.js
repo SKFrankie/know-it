@@ -72,6 +72,7 @@ const FabVocabGame = ({
   });
   const [wordArray, setWordArray] = useState([]);
   const [sentenceArray, setSentenceArray] = useState([]);
+  const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
     // stop timer when no more tries left
@@ -123,6 +124,7 @@ const FabVocabGame = ({
   };
 
   const handleNextQuestion = () => {
+    setImageLoading(true);
     setStopTimer(false);
     if (onNextGame) {
       onNextGame();
@@ -161,16 +163,16 @@ const FabVocabGame = ({
           w="100%"
           justify="space-around"
         >
+          {imageLoading ? <Loading /> : null}
           <Image
+            display={imageLoading ? "none" : "table"}
             maxH={{ base: "50vh", md: "100%" }}
-            w={{ base: "auto"}}
-            display="table"
+            w={{ base: "auto" }}
             maxW={{ base: "100%", md: "50vh" }}
             h={{ base: "100%", md: "max-content" }}
             src={picture}
             my={2}
-            loading="eager"
-            fallbackSrc="/images/Fallback.png"
+            onLoad={() => setImageLoading(false)}
             boxShadow="lg"
           />
           {/* GOOGLE AD */}
