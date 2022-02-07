@@ -60,7 +60,7 @@ const getPurchase = async (item, token, payment_intent) => {
   })
   console.log("après le fetch")
 
-    const content = await res.json();
+    const data = await res.json();
 
 
   console.log("data ici :", data);
