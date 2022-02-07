@@ -42,7 +42,10 @@ const getPurchase = async (item, token, payment_intent) => {
     QUERY = GET_PREMIUM;
   }
 
-  fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
+  console.log("mutation will start", QUERY, variables);
+
+  try  {
+  const data = await fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -54,8 +57,21 @@ const getPurchase = async (item, token, payment_intent) => {
       variables,
     }),
   })
-    .then((r) => r.json())
-    .then((data) => console.log("data returned:", data))
+
+  console.log("data ici :", data);
+
+
+  } catch (err) {
+      console.log("error of current user", err);
+      // something went wrong, we refund the customer
+      const refund = await stripe.refunds.create({
+        payment_intent,
+      });
+      console.log("refudn", refund, payment_intent)
+  }
+
+  console.log("MUTATION DONE");
+
     // getSSRClient(token)
     //   .then((client) => {
     //     console.log("CLIENT :", client);
@@ -66,16 +82,6 @@ const getPurchase = async (item, token, payment_intent) => {
     //     // customer gets his item
     //     console.log("data of curent suser", data);
     //   })
-    .catch((err) => {
-      console.log("error of current user", err);
-      // something went wrong, we refund the customer
-      stripe.refunds.create({
-        payment_intent,
-      });
-      // .then((refund) => {
-      //   console.log("refund", refund, payment_intent);
-      // });
-    });
 };
 
 export const config = {
