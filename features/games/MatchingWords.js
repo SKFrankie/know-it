@@ -165,7 +165,7 @@ const WordColumn = ({ matchingWords, color, onWordClick, wordsObject, variant = 
   }, [matchingWords]);
 
   return (
-    <Flex justify="center" align="center" direction={{ base: "column", md: "row" }}>
+    <Flex justify="center" align="center" direction={{ base: "column", md: "row" }} flexWrap="wrap">
       {shuffleWords.map((word) => (
         <Word
           active={wordsObject[word]?.active}
