@@ -47,10 +47,10 @@ const getPurchase = async (item, token, payment_intent) => {
       console.log("MUTATION : ")
       return client.mutate({ mutation: QUERY, variables });
     })
-    // .then((data) => {
-    //   // customer gets his item
-    //   console.log("data of curent suser", data);
-    // })
+    .then((data) => {
+      // customer gets his item
+      console.log("data of curent suser", data);
+    })
     .catch((err) => {
       console.log("error of current user", err);
       console.log("locationsr", err.graphQLErrors[0].locations);
