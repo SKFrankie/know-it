@@ -11,10 +11,11 @@ class MyDocument extends Document {
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
           <script
+            data-ad-client={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
             async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
-            crossOrigin="anonymous"
-          ></script>
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          />
+
           <script
             dangerouslySetInnerHTML={{
               __html: `
