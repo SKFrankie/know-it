@@ -107,9 +107,7 @@ const Avatar = ({ avatar }) => {
   }, [currentUser.coins, avatar.coinPrice]);
 
   const open = () => {
-    if (canBuy) {
       onOpen();
-    }
   };
   return (
     <Flex
@@ -125,7 +123,7 @@ const Avatar = ({ avatar }) => {
       minW="fit-content"
       h="auto"
       display="table"
-      cursor={canBuy ? "pointer" : "auto"}
+      cursor="pointer"
       filter={!canBuy && !alreadyBought && "grayScale(0.3)"}
       textAlign="center"
     >
@@ -159,6 +157,7 @@ const Avatar = ({ avatar }) => {
               }}
               mx={2}
               w="40%"
+              disabled={!canBuy}
             >
               Purchase
             </SuccessButton>
