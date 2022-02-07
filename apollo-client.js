@@ -35,7 +35,7 @@ const client = new ApolloClient({
 const getSSRClient = async (SSRtoken) => {
   const SSRauthLink = setContext((_, { headers }) => {
     let token;
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && !SSRtoken) {
       token = localStorage.getItem("token");
     } else {
       token = SSRtoken;
