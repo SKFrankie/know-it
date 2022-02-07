@@ -88,9 +88,11 @@ export default async function handler(req, res) {
     // const session_id = event.data.object.id;
     const item = event.data.object?.metadata;
     const payment_intent = event.data.object?.payment_intent;
+    console.log("event", event)
     switch (event.type) {
       case "checkout.session.completed":
         // payment has been done
+        console.log("purchase done")
         getPurchase(item, item.token, payment_intent);
         break;
       // case "payment_intent.succeeded":
