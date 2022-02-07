@@ -70,6 +70,7 @@ export default function Home() {
               display="table"
               maxH={{ base: "40px", md: "80px" }}
               marginBottom={{ base: "-10px", md: "-30px" }}
+              marginLeft={{ base: game.align === "end" ? "auto" : "initial", md: "initial" }}
             />
             <GaButton label={game.name} w={{ base: "100%", md: "60%" }} href={game.path}>
               {game.name}

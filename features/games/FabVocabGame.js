@@ -163,7 +163,7 @@ const FabVocabGame = ({
         >
           <Image
             maxH={{ base: "50vh", md: "100%" }}
-            w={{ base: "auto", md: "100%" }}
+            w={{ base: "auto"}}
             display="table"
             maxW={{ base: "100%", md: "50vh" }}
             h={{ base: "100%", md: "max-content" }}
