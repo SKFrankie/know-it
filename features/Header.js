@@ -53,7 +53,7 @@ const MobileNavbar = () => {
   );
 };
 
-const IconLink = ({ item, router }) => {
+const IconLink = ({ item, router, ...props }) => {
   const [currentUser] = useUserContext();
   return item.restricted && !currentUser.online ? null : (
     <NextLink href={item.path} passHref>
@@ -63,6 +63,7 @@ const IconLink = ({ item, router }) => {
         colorScheme="blueClear"
         aria-label={item.name}
         size="lg"
+        {...props}
         icon={
           <Icon
             boxSize={7}
@@ -150,6 +151,7 @@ const DesktopHeader = () => {
 };
 
 const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
+  const HOME_SECTION = SECTIONS[0];
   return (
     !NO_HEADER_ROUTES.includes(router.pathname) &&
     (currentUser.online ? (
@@ -169,7 +171,15 @@ const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
         {children}
       </Flex>
     ) : (
-      <LoginButton />
+      <Flex position="absolute" right="0" top="0">
+        <LoginButton />
+        <IconLink
+          display={{ base: "flex", md: "none" }}
+          item={HOME_SECTION}
+          key={HOME_SECTION.name}
+          router={router}
+        />
+      </Flex>
     ))
   );
 };

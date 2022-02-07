@@ -43,6 +43,8 @@ const getPurchase = async (item, token, payment_intent) => {
 
   getSSRClient(token)
     .then((client) => {
+      console.log("CLIENT :", client);
+      console.log("MUTATION : ")
       return client.mutate({ mutation: QUERY, variables });
     })
     // .then((data) => {
@@ -51,6 +53,8 @@ const getPurchase = async (item, token, payment_intent) => {
     // })
     .catch((err) => {
       console.log("error of current user", err);
+      console.log("locationsr", err.graphQLErrors[0].locations);
+      console.log("path", err.graphQLErrors[0].path);
       // something went wrong, we refund the customer
       stripe.refunds.create({
         payment_intent,
@@ -88,7 +92,6 @@ export default async function handler(req, res) {
     // const session_id = event.data.object.id;
     const item = event.data.object?.metadata;
     const payment_intent = event.data.object?.payment_intent;
-    console.log("event", event)
     switch (event.type) {
       case "checkout.session.completed":
         // payment has been done

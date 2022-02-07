@@ -13,9 +13,6 @@ const LoginButton = () => {
         aria-label="login"
         size="lg"
         rightIcon={<Icon boxSize={7} color="white" as={Iconify} icon="fe:login" />}
-        position="absolute"
-        right="0"
-        top="0"
         display={{ base: "flex", md: "none" }}
       >
         Login
