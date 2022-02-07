@@ -45,7 +45,8 @@ const getPurchase = async (item, token, payment_intent) => {
   console.log("mutation will start", QUERY, variables);
 
   try  {
-  const data = await fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
+    console.log("dans le try")
+  const res = await fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -57,6 +58,10 @@ const getPurchase = async (item, token, payment_intent) => {
       variables,
     }),
   })
+  console.log("après le fetch")
+
+    const content = await res.json();
+
 
   console.log("data ici :", data);
 
