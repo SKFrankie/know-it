@@ -25,7 +25,7 @@ const REWARD_USER = `
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const getPurchase = async (item, token, payment_intent) => {
+const getPurchase = async (item, token, payment_intent, res) => {
   let variables = {
     coins: parseInt(item?.coins) || undefined,
     stars: parseInt(item?.stars) || undefined,
@@ -44,49 +44,48 @@ const getPurchase = async (item, token, payment_intent) => {
 
   console.log("mutation will start", QUERY, variables);
 
-  try  {
-    console.log("dans le try")
-  const res = await fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      query: QUERY,
-      variables,
-    }),
-  })
-  console.log("après le fetch")
+  try {
+    console.log("dans le try");
+    const res = await fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        query: QUERY,
+        variables,
+      }),
+    });
+    console.log("après le fetch");
 
     const data = await res.json();
 
-
-  console.log("data ici :", data);
-
-
+    console.log("data ici :", data);
+    res.json({ received: true });
   } catch (err) {
-      console.log("error of current user", err);
-      // something went wrong, we refund the customer
-      const refund = await stripe.refunds.create({
-        payment_intent,
-      });
-      console.log("refudn", refund, payment_intent)
+    console.log("error of current user", err);
+    // something went wrong, we refund the customer
+    const refund = await stripe.refunds.create({
+      payment_intent,
+    });
+    console.log("refudn", refund, payment_intent);
+    res.status(400).json({ message: `Webhook Error: ${err}` });
   }
 
   console.log("MUTATION DONE");
 
-    // getSSRClient(token)
-    //   .then((client) => {
-    //     console.log("CLIENT :", client);
-    //     console.log("MUTATION : ")
-    //     return client.mutate({ mutation: QUERY, variables });
-    //   })
-    //   .then((data) => {
-    //     // customer gets his item
-    //     console.log("data of curent suser", data);
-    //   })
+  // getSSRClient(token)
+  //   .then((client) => {
+  //     console.log("CLIENT :", client);
+  //     console.log("MUTATION : ")
+  //     return client.mutate({ mutation: QUERY, variables });
+  //   })
+  //   .then((data) => {
+  //     // customer gets his item
+  //     console.log("data of curent suser", data);
+  //   })
 };
 
 export const config = {
@@ -119,8 +118,8 @@ export default async function handler(req, res) {
     switch (event.type) {
       case "checkout.session.completed":
         // payment has been done
-        console.log("purchase done")
-        getPurchase(item, item.token, payment_intent);
+        console.log("purchase done");
+        getPurchase(item, item.token, payment_intent, res);
         break;
       // case "payment_intent.succeeded":
       //   console.log("PaymentIntent was successful!");
