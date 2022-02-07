@@ -25,7 +25,7 @@ const REWARD_USER = `
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const getPurchase = async (item, token, payment_intent, res) => {
+const getPurchase = async (item, token, payment_intent) => {
   let variables = {
     coins: parseInt(item?.coins) || undefined,
     stars: parseInt(item?.stars) || undefined,
@@ -63,7 +63,6 @@ const getPurchase = async (item, token, payment_intent, res) => {
     const data = await res.json();
 
     console.log("data ici :", data);
-    res.json({ received: true });
   } catch (err) {
     console.log("error of current user", err);
     // something went wrong, we refund the customer
@@ -71,7 +70,6 @@ const getPurchase = async (item, token, payment_intent, res) => {
       payment_intent,
     });
     console.log("refudn", refund, payment_intent);
-    res.status(400).json({ message: `Webhook Error: ${err}` });
   }
 
   console.log("MUTATION DONE");
@@ -119,7 +117,7 @@ export default async function handler(req, res) {
       case "checkout.session.completed":
         // payment has been done
         console.log("purchase done");
-        await getPurchase(item, item.token, payment_intent, res);
+        await getPurchase(item, item.token, payment_intent);
         break;
       // case "payment_intent.succeeded":
       //   console.log("PaymentIntent was successful!");
