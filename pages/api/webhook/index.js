@@ -1,9 +1,10 @@
 import Stripe from "stripe";
 import { buffer } from "micro";
-import { gql } from "@apollo/client";
-import { getSSRClient } from "../../../apollo-client";
+// import { gql } from "@apollo/client";
+// import { getSSRClient } from "../../../apollo-client";
+import fetch from 'node-fetch';
 
-const GET_PREMIUM = gql`
+const GET_PREMIUM = `
   mutation GetPremium($years: Int, $months: Int, $days: Int, $hours: Int, $coins: Int) {
     getPremium(years: $years, months: $months, days: $days, hours: $hours)
     updateCurrentUser(coins: $coins) {
@@ -12,7 +13,7 @@ const GET_PREMIUM = gql`
   }
 `;
 
-const REWARD_USER = gql`
+const REWARD_USER = `
   mutation RewardUser($coins: Int, $stars: Int, $starPercentage: Int) {
     updateCurrentUser(coins: $coins, stars: $stars, starPercentage: $starPercentage) {
       coins
@@ -41,20 +42,32 @@ const getPurchase = async (item, token, payment_intent) => {
     QUERY = GET_PREMIUM;
   }
 
-  getSSRClient(token)
-    .then((client) => {
-      console.log("CLIENT :", client);
-      console.log("MUTATION : ")
-      return client.mutate({ mutation: QUERY, variables });
-    })
-    .then((data) => {
-      // customer gets his item
-      console.log("data of curent suser", data);
-    })
+  fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      query: QUERY,
+      variables,
+    }),
+  })
+    .then((r) => r.json())
+    .then((data) => console.log("data returned:", data))
+    // getSSRClient(token)
+    //   .then((client) => {
+    //     console.log("CLIENT :", client);
+    //     console.log("MUTATION : ")
+    //     return client.mutate({ mutation: QUERY, variables });
+    //   })
+    //   .then((data) => {
+    //     // customer gets his item
+    //     console.log("data of curent suser", data);
+    //   })
     .catch((err) => {
       console.log("error of current user", err);
-      console.log("locationsr", err.graphQLErrors[0].locations);
-      console.log("path", err.graphQLErrors[0].path);
       // something went wrong, we refund the customer
       stripe.refunds.create({
         payment_intent,
