@@ -166,10 +166,8 @@ const FabVocabGame = ({
           {imageLoading ? <Loading /> : null}
           <Image
             display={imageLoading ? "none" : "table"}
-            maxH={{ base: "50vh", md: "100%" }}
-            w={{ base: "auto" }}
-            maxW={{ base: "100%", md: "50vh" }}
-            h={{ base: "100%", md: "max-content" }}
+            w="auto"
+            h={{base:"35vh", md:"60vh"}}
             src={picture}
             my={2}
             onLoad={() => setImageLoading(false)}
