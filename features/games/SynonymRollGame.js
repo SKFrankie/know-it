@@ -20,14 +20,15 @@ const RANDOM_SYNONYMS = gql`
 const ContainedSynonymRollGame = () => {
   const game = GAME_TYPES.SYNONYM_ROLL;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  const [stopTimer, setStopTimer] = useState(false);
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
-      <SynonymRollGame gameState={gameState} setGameState={setGameState} />
+    <GameContainer game={game} gameState={gameState} setGameState={setGameState} stopTimer={stopTimer}>
+      <SynonymRollGame gameState={gameState} setGameState={setGameState} setStopTimer={setStopTimer}/>
     </GameContainer>
   );
 };
 
-const SynonymRollGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false }) => {
+const SynonymRollGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false, setStopTimer }) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_SYNONYMS, {
     fetchPolicy: "no-cache",
@@ -78,6 +79,7 @@ const SynonymRollGame = ({ gameState, setGameState, onNextGame = null, knowlympi
           gameState={gameState}
           knowlympics={knowlympics}
           icon="lucide:equal"
+          setStopTimer={setStopTimer}
         />
       ) : null}
       {error && <Error />}

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Text, Button, Box, useToast, Icon } from "@chakra-ui/react";
+import { NextButton } from "./GameContainer";
 import { Icon as Iconify } from "@iconify/react";
 import shuffleArray from "../../helpers/shuffleArray";
 import { POINTS } from "../../constants";
 
 const MatchingWords = ({
+  setStopTimer,
   matchingWords = null,
   onComplete,
   gameState,
@@ -28,6 +30,7 @@ const MatchingWords = ({
   const [word1, setWord1] = useState(null);
   const [word2, setWord2] = useState(null);
   const [goodAnswers, setGoodAnswers] = useState(0);
+  const [showContinue, setShowContinue] = useState(false);
 
   const toast = useToast();
 
@@ -63,6 +66,12 @@ const MatchingWords = ({
     setWordsObject({ ...tmpObj });
   };
 
+  const handleNext = () => {
+    setStopTimer(false);
+          setShowContinue(false);
+      handleComplete();
+  }
+
   const wordsMatch = (word1, word2) => {
     if (word1 && word2) {
       if (matchingWords[word1] === word2) {
@@ -73,6 +82,10 @@ const MatchingWords = ({
           points: knowlympics ? gameState.points + POINTS.SMALL : 0,
           coins: gameState.coins + POINTS.SMALL,
         };
+        const color = colorArray[currentColor];
+        const tmpObj = { ...wordsObject, [word1]: { color }, [word2]: { color } };
+        setWordsObject(tmpObj);
+        resetWords(tmpObj);
         if (goodAnswers + 1 === Object.keys(matchingWords).length) {
           // all completed
           tmpGameState = {
@@ -83,16 +96,13 @@ const MatchingWords = ({
           };
           // game state is updated here too because there's a return
           setGameState(tmpGameState);
-          handleComplete();
+          setShowContinue(true);
+          setStopTimer(true);
           return;
         }
         setGoodAnswers(goodAnswers + 1);
-        const color = colorArray[currentColor];
-        const tmpObj = { ...wordsObject, [word1]: { color }, [word2]: { color } };
-        setWordsObject(tmpObj);
         setCurrentColor(currentColor + 1);
         setGameState(tmpGameState);
-        resetWords(tmpObj);
         return;
       }
       // words did not match
@@ -129,27 +139,36 @@ const MatchingWords = ({
   };
 
   return (
-    <Flex
-      direction={{ base: "row", md: "column" }}
-      justify="space-around"
-      my={3}
-      mt={{ base: "5vh", md: "15vh" }}
-    >
-      <WordColumn
-        wordsObject={wordsObject}
-        matchingWords={matchingWords}
-        color={colorArray[currentColor]}
-        onWordClick={onWord1Click}
-        variant="left"
-      />
-      {icon ? <Icon alignSelf="center" boxSize={7} color="white" as={Iconify} icon={icon} /> : null}
-      <WordColumn
-        wordsObject={wordsObject}
-        matchingWords={matchingWords}
-        color={colorArray[currentColor]}
-        onWordClick={onWord2Click}
-        variant="right"
-      />
+    <Flex direction="column" justify="center" align="center">
+      <Flex
+        direction={{ base: "row", md: "column" }}
+        justify="space-around"
+        my={3}
+        mt={{ base: "5vh", md: "15vh" }}
+      >
+        <WordColumn
+          wordsObject={wordsObject}
+          matchingWords={matchingWords}
+          color={colorArray[currentColor]}
+          onWordClick={onWord1Click}
+          variant="left"
+        />
+        {icon ? (
+          <Icon alignSelf="center" boxSize={7} color="white" as={Iconify} icon={icon} />
+        ) : null}
+        <WordColumn
+          wordsObject={wordsObject}
+          matchingWords={matchingWords}
+          color={colorArray[currentColor]}
+          onWordClick={onWord2Click}
+          variant="right"
+        />
+      </Flex>
+      {showContinue ? (
+        <NextButton w={{ base: "100%", md: "60%" }} onClick={handleNext}>
+          Continue
+        </NextButton>
+      ) : null}
     </Flex>
   );
 };

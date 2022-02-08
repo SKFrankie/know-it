@@ -21,14 +21,20 @@ const RANDOM_ANTONYM = gql`
 const ContainedAntonymHuntGame = () => {
   const game = GAME_TYPES.ANTONYM_HUNT;
   const [gameState, setGameState] = useState({ points: 0, starPercentage: 0, coins: 0, stars: 0 });
+  const [stopTimer, setStopTimer] = useState(false);
   return (
-    <GameContainer game={game} gameState={gameState} setGameState={setGameState}>
-      <AntonymHuntGame gameState={gameState} setGameState={setGameState} />
+    <GameContainer
+      game={game}
+      gameState={gameState}
+      setGameState={setGameState}
+      stopTimer={stopTimer}
+    >
+      <AntonymHuntGame gameState={gameState} setGameState={setGameState} setStopTimer={setStopTimer} />
     </GameContainer>
   );
 };
 
-const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false }) => {
+const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false, setStopTimer }) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_ANTONYM, {
     fetchPolicy: "no-cache",
@@ -69,6 +75,7 @@ const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympi
       </Text>
       {Object.keys(matchingWords).length ? (
         <MatchingWords
+          setStopTimer={setStopTimer}
           matchingWords={matchingWords}
           onComplete={handleMatchingWordsComplete}
           setGameState={setGameState}

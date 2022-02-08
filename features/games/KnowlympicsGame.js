@@ -48,6 +48,7 @@ const KnowlympicsGame = () => {
             setGameState={setGameState}
             knowlympics
             onNextGame={handleNextGame}
+            setStopTimer={setStopTimer}
           />
         );
       case GAME_TYPES.SYNONYM_ROLL:
@@ -57,6 +58,7 @@ const KnowlympicsGame = () => {
             setGameState={setGameState}
             knowlympics
             onNextGame={handleNextGame}
+            setStopTimer={setStopTimer}
           />
         );
       case GAME_TYPES.FAB_VOCAB:
