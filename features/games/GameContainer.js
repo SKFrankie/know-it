@@ -202,7 +202,7 @@ const GameContainer = ({
     <Box ref={container}>
       <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
-      <Box h={{ base: "0vh", md: "10vh" }} />
+      <Box h={{ base: "5vh", md: "10vh" }} />
       <Flex direction="column" {...props}>
         {knowlympics && (
           <Text m={3} fontSize="md" fontWeight="md">
@@ -220,9 +220,9 @@ const GameContainer = ({
 
 const GameTitle = ({ game, knowlympics=false }) => {
   return (
-    <Flex justifyContent="center" alignItems={{ base: "end", md: "center" }}>
+    <Flex justifyContent="center" alignItems={{ base: "end", md: "center" }} mb={3}>
       <GameImage game={game} />
-      <Text fontSize={{ base: "xl", md: "5xl" }} fontWeight="500">
+      <Text fontSize={{ base: "xl", sm:"2xl", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
       <Info id={knowlympics ? "knowlympics" : game?.id} />
