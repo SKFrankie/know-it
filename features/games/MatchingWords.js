@@ -154,7 +154,7 @@ const MatchingWords = ({
           variant="left"
         />
         {icon ? (
-          <Icon alignSelf="center" boxSize={7} color="white" as={Iconify} icon={icon} />
+          <Icon alignSelf="center" boxSize={7} color="yellowStar" as={Iconify} icon={icon} />
         ) : null}
         <WordColumn
           wordsObject={wordsObject}
