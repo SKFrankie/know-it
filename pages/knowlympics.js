@@ -7,7 +7,7 @@ const Knowlympics = () => {
   const [currentUser] = useUserContext();
   return (
     <Flex direction="column" justify="center" align="center">
-      <Text fontSize={{ base: "3xl", md: "5xl" }} fontWeight="700" color="deepDarkBlue" mb={5}>
+      <Text fontSize={{ base: "3xl", md: "5xl" }} fontWeight="700" color="white" mb={5}>
         Knowlympics
       </Text>
       {/* <Text>What is Knowlympics?</Text> */}
