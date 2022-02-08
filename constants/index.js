@@ -20,8 +20,8 @@ const ADDITIONNAL_SECTIONS = [
 ];
 
 const SHOP_SECTIONS = [
-  { name: "Coins", path: "/shop/coins" },
-  { name: "Purchases", path: "/shop/money" },
+  { name: "Buy Gigils", path: "/shop/coins" },
+  { name: "In-App Purchases", path: "/shop/money" },
 ];
 
 const ABOUT_SECTIONS = [

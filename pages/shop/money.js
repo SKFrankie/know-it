@@ -88,7 +88,7 @@ const PremiumDescription = ({ onOpen, stripeLoading, setStripeLoading, displayBu
         Premium Plans
       </Text>
       <Text mb={2} fontSize="md" fontWeight="md">
-        Get 10% more coins and enjoy playing without any ads!
+        Enjoy playing without any ads AND get 10% more coins each time your play
       </Text>
       {onOpen && (
         <Button onClick={onOpen} mb={2} w="90%" display={{ base: "flex", md: "none" }}>

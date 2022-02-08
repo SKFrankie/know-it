@@ -74,18 +74,18 @@ const RewardPopup = ({ isOpen, onClose, rankingGift = 0, ...props }) => {
     let text;
     switch (rankingGift) {
       case 1:
-        text = "the top";
+        text = "1st";
         break;
       case 2:
-        text = "the second place";
+        text = "2nd";
         break;
       case 3:
-        text = "the third place";
+        text = "3rd";
         break;
       default:
         return "No gifts for you this time!";
     }
-    return `Congratulations, you've reached ${text} of the ranking last time! Select your Monstar!`;
+    return `Congratulations you came in ${text} place! Collect your exclusive Monstar!`;
   };
 
   const AlreadyGotAllGigils = () => {
