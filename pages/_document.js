@@ -36,7 +36,6 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon.png"></link>
-          <meta name="theme-color" content="#fff" />
           <link rel="icon" href="/images/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
@@ -52,6 +51,10 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Ribeye&display=swap"
             rel="stylesheet"
           />
+          <meta name="theme-color" content="#fff" />
+          <meta name="description" content="A learning by gaming app to test and improve your English!!" />
+          <meta property="og:title" content="Know It!" />
+          <meta property="og:image" content="https://res.cloudinary.com/dvdqswi8x/image/upload/v1643625971/Avatar%20Picture/hbkcmb6xgiblmg5qtrk8.png" />
         </Head>
         <Box as="body" p="5%">
           <Main />
