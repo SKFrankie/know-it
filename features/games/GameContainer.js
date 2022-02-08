@@ -238,7 +238,7 @@ const GameImage = ({ game, right = false, ...props }) => {
       alt={game.label}
       h="auto"
       display="table"
-      w={right ? { base: "30px", md: "80px" } : { base: "50px", md: "100px" }}
+      w={right ? { base: "50px", md: "100px" } : { base: "50px", md: "100px" }}
       marginBottom={{ base: "0px", md: "-30px" }}
       mx={2}
       transform={right && !game.right ? "scaleX(-1)" : "scaleX(1)"}
