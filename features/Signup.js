@@ -64,7 +64,7 @@ export default function Signup() {
             <Field name="email">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.email}>
-                  <Input first {...field} id="email" type="email" placeholder="email" required />
+                  <Input first {...field} id="email" type="email" placeholder="email" autoComplete="email" required />
                 </FormControl>
               )}
             </Field>

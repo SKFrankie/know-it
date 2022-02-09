@@ -57,6 +57,7 @@ export default function Login() {
                     id="email"
                     type="email"
                     placeholder="Email"
+                    autoComplete="email"
                     first={true}
                     required
                   />
