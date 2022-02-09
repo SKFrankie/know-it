@@ -20,6 +20,7 @@ const Ranking = ({ userId }) => {
   const [currentUser] = useUserContext();
   const [rank, setRank] = useState(null);
   const { data, loading, error } = useQuery(RANKING_USERS, {
+    fetchPolicy: "no-cache",
     onCompleted: (data) => {
       const userIdToCheck = userId || currentUser.userId;
       const tmpRank = data.rankingUsers.findIndex((user) => user.userId === userIdToCheck);

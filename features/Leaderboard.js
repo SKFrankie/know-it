@@ -27,6 +27,7 @@ const Leaderboard = () => {
   const [currentUser] = useUserContext();
   const [users, setUsers] = useState([]);
   const { data, loading, error } = useQuery(RANKING_USERS, {
+    fetchPolicy: "no-cache",
     onCompleted: (data) => {
       setUsers(data.rankingUsers);
     },
