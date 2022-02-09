@@ -329,6 +329,7 @@ const Reward = ({
         alignItems="center"
         m={2}
         direction="column"
+        boxShadow="dark-lg"
         {...props}
       >
         <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
