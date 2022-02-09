@@ -206,7 +206,7 @@ const GameContainer = ({
       <Flex direction="column" {...props}>
         {knowlympics && (
           <Text m={3} fontSize="md" fontWeight="md">
-            Points : {gameState.points}
+            Medals: {gameState.points}
           </Text>
         )}
         <GameTitle game={game} knowlympics={knowlympics} />
@@ -293,20 +293,20 @@ const EndingScreen = ({
       >
         {/* <Text>Watch this ad for 10% more coins</Text> */}
         {knowlympics && (
-          <PointDisplayer label="Points">
+          <PointDisplayer label="Medals">
             <Text fontSize="md">{points}</Text>
           </PointDisplayer>
         )}
         {currentUser.online ? (
           <>
             {!knowlympics && (
-              <PointDisplayer label="Starbar">
+              <PointDisplayer label="Star bar points">
                 <Text color="yellowStar" fontSize="md">
-                  +{starPercentage}%
+                  +{starPercentage}
                 </Text>
               </PointDisplayer>
             )}
-            <PointDisplayer label="Coins won">
+            <PointDisplayer label="Coins earned">
               <CoinCurrencyNoUser quantity={coins} fontSize="md" />
             </PointDisplayer>
           </>

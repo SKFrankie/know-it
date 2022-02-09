@@ -15,7 +15,7 @@ const Knowlympics = () => {
         <Info id="knowlympics" />
       </Flex>
       {/* <Text>What is Knowlympics?</Text> */}
-      <KnowlympicsButton text="Start" disabled={!currentUser?.stars} />
+      <KnowlympicsButton text="Compete" disabled={!currentUser?.stars} />
       <Leaderboard />
       {/* <KnowlympicsButton text="Start" disabled={!currentUser?.stars} display={{base: "block", md: "none"}}/> */}
     </Flex>

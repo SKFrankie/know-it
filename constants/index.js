@@ -135,7 +135,7 @@ const PURCHASES = {
   // premium
   [PURCHASE_TYPES.HOURS_12_PREMIUM]: {
     label: PURCHASE_TYPES.HOURS_12_PREMIUM,
-    name: "Premium : 12 Hours package",
+    name: "Premium : 12 Hours bundle",
     description: getPremiumDescription("12 hours", "50"),
     price: "0.50",
     quantity: 12,
@@ -145,7 +145,7 @@ const PURCHASES = {
   },
   [PURCHASE_TYPES.MONTH_1_PREMIUM]: {
     label: PURCHASE_TYPES.MONTH_1_PREMIUM,
-    name: "Premium : 1 Month package",
+    name: "Premium : 1 Month bundle",
     description: getPremiumDescription("1 month", "350"),
     price: "1.99",
     quantity: 1,
@@ -155,7 +155,7 @@ const PURCHASES = {
   },
   [PURCHASE_TYPES.YEAR_1_PREMIUM]: {
     label: PURCHASE_TYPES.YEAR_1_PREMIUM,
-    name: "Premium : 1 Year package",
+    name: "Premium : 1 Year bundle",
     description: getPremiumDescription("1 year", "1000"),
     price: "6.99",
     quantity: 1,

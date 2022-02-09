@@ -86,7 +86,7 @@ const KnowlympicsButton = ({
       </NextLink>
       {disabled && (
         <Text fontSize="xs">
-          You need to be logged in and at least one star to play Knowlympics
+          You need to be logged in and have at least one star to play Knowlympics
         </Text>
       )}
     </Box>

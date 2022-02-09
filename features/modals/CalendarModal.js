@@ -173,7 +173,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
           </Flex>
         )}
         <Text fontSize="xs" my={5} color="white" fontWeight="semi-bold">
-          5 bonus coins every day after the 25th day
+          5 bonus coins every day after the 25th day until reset
         </Text>
         <Box h={{ base: "0", md: recoverGiftHeight }} />
         <GiftPopUp gift={todayGift} isOpen={isOpen} onClose={onClose} />

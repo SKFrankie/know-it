@@ -94,7 +94,7 @@ const Profile = ({ userId }) => {
               <ProfileFlex ml={{ base: 0, md: 2 }}>
                 {isPremium(user) ? (
                   <>
-                    <Text fontSize="2xl">Premium Plan</Text>
+                    <Text fontSize="2xl">Premium Bundle</Text>
                     <Text
                       fontSize={{ base: "md", md: "3xl" }}
                       p={{ base: "auto", md: "5" }}

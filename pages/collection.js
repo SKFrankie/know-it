@@ -5,7 +5,7 @@ const Collection = () => {
   return (
     <Flex direction="column" justify="center" align="center">
       <Text m={3} textAlign="center" fontWeight="bold" fontSize="2xl">
-        My Gigil Collection
+        My Gigil Monster Collection
       </Text>
       <GigilCollection />
     </Flex>
