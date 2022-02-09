@@ -42,10 +42,10 @@ export default function Home() {
         boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
         colorScheme="red"
         label="Survey"
-        boxSize={{ base: 10, md: 12 }}
+        boxSize={{ base: 10, md: "60px" }}
         target="_blank"
         href="https://docs.google.com/forms/d/e/1FAIpQLSc7y4RINsZ-g9gzjP3rSg5AVIfDS2Nu4m09y9Mn--ZvFFr2rA/viewform?usp=pp_url"
-        icon={<Icon boxSize={7} as={Iconify} icon="flat-color-icons:survey" />}
+        icon={<Icon boxSize={{base:7, md:"50px"}} as={Iconify} icon="flat-color-icons:survey" />}
         zIndex={1}
       />
       {currentUser.online ? (
@@ -95,9 +95,9 @@ const GiftButton = ({ ...props }) => {
         boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
         colorScheme="blueClear"
         label="Calendar"
-        boxSize={{ base: 10, md: 12 }}
+        boxSize={{ base: 10, md: "60px" }}
         onClick={() => onOpen()}
-        icon={<GiftIcon boxSize={{ base: 7, md: 8 }} />}
+        icon={<GiftIcon boxSize={{ base: 7, md: "50px" }} />}
         zIndex={1}
         {...props}
       />
