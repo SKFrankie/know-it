@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLazyQuery, gql } from "@apollo/client";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Text, Image, Spacer } from "@chakra-ui/react";
 import { useUserContext } from "../../context/user";
 import dateToString from "../../helpers/dateToString";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
@@ -82,9 +82,13 @@ const Profile = ({ userId }) => {
           <Flex direction={{ base: "column", md: "row" }} justify="space-between">
             <ProfileFlex mr={{ base: 0, md: 2 }}>
               <LinkOverlay href="/knowlympics">
-              <Text fontSize="2xl">Ranking</Text>
+                <Text fontSize="2xl">Current Ranking</Text>
+              </LinkOverlay>
+              <Spacer/>
+              <LinkOverlay href="/knowlympics">
                 <Ranking userId={userId} />
               </LinkOverlay>
+              <Spacer/>
             </ProfileFlex>
             {userId ? null : (
               <ProfileFlex ml={{ base: 0, md: 2 }}>

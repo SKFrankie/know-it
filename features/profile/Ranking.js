@@ -51,16 +51,17 @@ const Ranking = ({ userId }) => {
         <Text
           fontSize={{ base: "md", md: "3xl" }}
           p={{ base: "auto", md: "5" }}
-          textAlign={{ base: "auto", md: "center" }}
+          textAlign="center"
         >
-          Current rank{" "}
+          You are in{" "}
           <Text as="span" color="#F0940B">
             {rank}
             {getSuperscriptOrdinal(rank)}
           </Text>
+          {" "}place!
         </Text>
       ) : (
-        <Text>No rank yet this week</Text>
+        <Text textAlign="center">No rank yet this week</Text>
       )}
     </>
   );
