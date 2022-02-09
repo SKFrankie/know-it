@@ -6,7 +6,7 @@ import { Formik, Field } from "formik";
 import { GoogleSignup } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
 import { useRouter } from "next/router";
-import Input from "../ui/Input";
+import Input, {Password} from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
 import { Error } from "../ui/Alert";
 import Link from "../ui/Link";
@@ -85,10 +85,9 @@ export default function Signup() {
             <Field name="password">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.password}>
-                  <Input
+                  <Password
                     {...field}
                     id="password"
-                    type="password"
                     placeholder="password"
                     autoComplete="current-password"
                     required
@@ -102,10 +101,9 @@ export default function Signup() {
             >
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.password}>
-                  <Input
+                  <Password
                     {...field}
                     id="confirm"
-                    type="password"
                     placeholder="confirm password"
                     autoComplete="current-password"
                     required

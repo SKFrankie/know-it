@@ -11,7 +11,7 @@ import Form from "../ui/Form";
 import { Error } from "../ui/Alert";
 import Loading from "./Loading";
 
-import Input from "../ui/Input";
+import Input, {Password} from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
 
 const LOGIN = gql`
@@ -66,10 +66,9 @@ export default function Login() {
             <Field name="password">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.password}>
-                  <Input
+                  <Password
                     {...field}
                     id="password"
-                    type="password"
                     placeholder="Password"
                     autoComplete="current-password"
                     last={true}
