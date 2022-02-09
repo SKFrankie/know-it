@@ -3,7 +3,7 @@ import { Icon } from '@chakra-ui/react';
 import { Icon as Iconify } from "@iconify/react";
 import {LinkOverlay} from '../../ui/Link';
 
-const Info = ({id}) => {
+const Info = ({id, ...props}) => {
   return (
     <LinkOverlay href={id ? `/about/credits#${id}` : `/about/credits`}>
       <Icon
@@ -11,6 +11,7 @@ const Info = ({id}) => {
         color="white"
         as={Iconify}
         icon="ant-design:info-circle-outlined"
+        {...props}
       />
     </LinkOverlay>
   );
