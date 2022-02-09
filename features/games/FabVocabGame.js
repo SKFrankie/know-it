@@ -253,8 +253,8 @@ const Words = ({
     if (words[word]?.correct) {
       const tmpGameState = {
         ...gameState,
-        starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.SMALL + bonusPoints,
-        points: knowlympics ? gameState.points + POINTS.SMALL + bonusPoints : 0,
+        starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.MEDIUM + bonusPoints,
+        points: knowlympics ? gameState.points + POINTS.MEDIUM + bonusPoints : 0,
         coins: gameState.coins + POINTS.SMALL + bonusPoints,
       };
       setGameState(tmpGameState);

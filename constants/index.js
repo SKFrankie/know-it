@@ -97,7 +97,8 @@ const GAME_TYPES = {
 };
 
 const POINTS = {
-  SMALL: 5,
+  SMALL: 1,
+  MEDIUM: 2,
   BIG: 10,
   HUGE: 20,
 };

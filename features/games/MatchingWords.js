@@ -78,8 +78,8 @@ const MatchingWords = ({
         // words matched
         const tmpGameState = {
           ...gameState,
-          starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.SMALL,
-          points: knowlympics ? gameState.points + POINTS.SMALL : 0,
+          starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.MEDIUM,
+          points: knowlympics ? gameState.points + POINTS.MEDIUM : 0,
           coins: gameState.coins + POINTS.SMALL,
         };
         const color = colorArray[currentColor];
@@ -90,8 +90,8 @@ const MatchingWords = ({
           // all completed
           tmpGameState = {
             ...tmpGameState,
-            starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.SMALL,
-            points: knowlympics ? gameState.points + POINTS.SMALL : 0,
+            starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.MEDIUM,
+            points: knowlympics ? gameState.points + POINTS.MEDIUM : 0,
             coins: gameState.coins + POINTS.SMALL,
           };
           // game state is updated here too because there's a return

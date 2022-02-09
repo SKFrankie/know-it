@@ -61,8 +61,8 @@ const GrammarGeekGame = ({
     if (isCorrect) {
       setGameState((prevState) => ({
         ...prevState,
-        starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.SMALL,
-        points: knowlympics ? gameState.points + POINTS.SMALL : 0,
+        starPercentage: knowlympics ? 0 : gameState.starPercentage + POINTS.MEDIUM,
+        points: knowlympics ? gameState.points + POINTS.MEDIUM : 0,
         coins: gameState.coins + POINTS.SMALL,
       }));
     }
