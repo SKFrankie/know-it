@@ -316,7 +316,7 @@ const EndingScreen = ({
             to <Link href="/login">Login</Link> or <Link href="/signup">Sign up</Link>
           </Text>
         )}
-        <Button w="70%" bg="#A80909" href="/">
+        <Button w="70%" bg="green" href="/">
           Continue
         </Button>
       </Flex>
@@ -344,7 +344,7 @@ const PointDisplayer = ({ label, children }) => {
 
 const NextButton = ({ onNext, children, ...props }) => {
   return (
-    <Button bg="#A80909" onClick={onNext} w="100%" my={3} {...props}>
+    <Button bg="green" onClick={onNext} w="100%" my={3} {...props}>
       {children}
     </Button>
   );
