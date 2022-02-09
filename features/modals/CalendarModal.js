@@ -172,7 +172,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
             ))}
           </Flex>
         )}
-        <Text fontSize="xs" my={5} color="green" fontWeight="bold">
+        <Text fontSize="xs" my={5} color="white" fontWeight="semi-bold">
           5 bonus coins every day after the 25th day
         </Text>
         <Box h={{ base: "0", md: recoverGiftHeight }} />
@@ -307,7 +307,7 @@ const RecoverGifts = ({ totalGifts, ...props }) => {
 const Reward = ({
   reward = "STARS",
   quantity = 0,
-  color = "#06B402",
+  color = "white",
   received = false,
   day = 0,
   ...props
