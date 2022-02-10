@@ -15,7 +15,6 @@ const Timer = ({ maxTime, timer, ...props }) => {
       trackColor="transparent"
       color="deepDarkBlue"
       borderRadius="50%"
-      thickness="15px"
       m={2}
       {...props}
     >
