@@ -5,7 +5,7 @@ import {LinkOverlay} from '../../ui/Link';
 
 const Info = ({id, ...props}) => {
   return (
-    <LinkOverlay href={id ? `/about/credits#${id}` : `/about/credits`} target="_blank">
+    <LinkOverlay href={id ? `/about/credits#${id}` : `/about/credits`}>
       <Icon
         name="info-circle-outlined"
         color="white"
