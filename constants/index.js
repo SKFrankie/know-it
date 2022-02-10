@@ -10,7 +10,7 @@ const SECTIONS = [
     name: "Gigil Collection",
     path: "/collection",
     restricted: true,
-    icon: "emojione-monotone:alien-monster",
+    icon: "noto-v1:alien-monster",
   },
   { name: "About", path: "/about/about-us", webOnly: true },
   { name: "Settings", path: "/settings", icon: "ci:settings-filled" },
