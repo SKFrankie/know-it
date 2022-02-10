@@ -8,7 +8,12 @@ import { useUserContext } from "../../context/user";
 const MoneyItems = ({ title, sellingItems, image, stripeLoading, setStripeLoading }) => {
   return (
     <Flex my={5} direction="column">
-      <Text mb={3} fontSize="3xl" fontWeight="bold" textAlign={{ base: "left", md: "center" }}>
+      <Text
+        mb={3}
+        fontSize={{ base: "xl", md: "3xl" }}
+        fontWeight="bold"
+        textAlign={{ base: "left", md: "center" }}
+      >
         {title}
       </Text>
       <Flex justify="space-around" alignItems="center" flexWrap="wrap">
