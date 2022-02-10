@@ -29,7 +29,6 @@ const ABOUT_SECTIONS = [
   { name: "Terms of Service", path: "/about/terms-of-service" },
   { name: "Credits", path: "/about/credits" },
   { name: "About Us", path: "/about/about-us" },
-  { name: "Contact", path: "/about/contact" },
 ];
 
 const NO_HEADER_ROUTES = ["/login", "/signup"];
