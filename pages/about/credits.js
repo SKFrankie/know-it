@@ -1,52 +1,212 @@
 import AboutContainer from "../../features/about/AboutContainer";
-import { Text } from "@chakra-ui/react";
+import { Text, UnorderedList, ListItem } from "@chakra-ui/react";
+import {SectionTitle, SubTitle} from "../../ui/Title";
+
+
 const AboutUs = () => {
   return (
     <AboutContainer>
-      <Text id="antonymHunt" fontSize="lg">
-        Antonym Hunt
+      <SectionTitle id="how-to-play">HOW TO PLAY KNOW IT!</SectionTitle>
+      <SubTitle>SIMPLIFIED RULES</SubTitle>
+      <Text>
+        Earn points in Grammar Geek, Synonym Roll, Antonym Hunt and Fab Vocab. After each round,
+        your points will fill the Star Bar. Points are also converted into coins. Use coins to buy
+        and collect Gigil Monsters in the SHOP. You can see your entire Gigil Monster collection in
+        your Inventory and choose one for your avatar. Play games and Fill your Star Bar! When a
+        Star Bar is filled, you win a Star. Stars allow you to compete in the KNOWLYMPICS.
       </Text>
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-
-1914 translation by H. Rackham
-"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-
-Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-
-1914 translation by H. Rackham
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principlelorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu nunc eu
-      <Text id="synonymRoll" fontSize="lg">
-        Synonym Roll
+      <SubTitle>POINTS, COINS, STARS, MEDALS AND BONUSES!</SubTitle>
+      <Text>
+        Grammar Geek, Synonym Roll, Antonym Hunt and Fab Vocab Point system:
+        <br />
+        1 correct answer = 2 Points and 1 Coin <br />
+        Accumulate 100 Points to fill the Star Bar and win one Star. Bonus: In some games making
+        zero mistakes can make you win bonus coins / points!
       </Text>
-
-Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-
-1914 translation by H. Rackham
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principlelorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu nunc eu
-      <Text id="grammarGeek" fontSize="lg">
-        GrammarGeek
-      </Text>
-
-Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-
-1914 translation by H. Rackham
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principlelorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu nunc eu
-
-      <Text id="fabVocab" fontSize="lg">
-        Fab Vocab
-      </Text>
-1914 translation by H. Rackham
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principlelorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu nunc eu
-
       <Text id="knowlympics" fontSize="lg">
-        Knowlympics
+        Knowlympics Point System:
       </Text>
+      <Text>
+        1 correct answer = 2 Medals and 1 Coin <br />
+        Weekly Ranking is based on your accumulated Medals earned during the current week in the
+        Knowlympics competition. See how many medals you earned and how you are ranked against other
+        players in the Weekly Ranking.
+        <br />
+        Need more coins? Want more Stars? Visit the Shop for In-App purchases.
+      </Text>
+      <SectionTitle id="how-to-play">MORE ABOUT KNOW IT!</SectionTitle>
+      <SubTitle id="grammarGeek">Q: How do I play GRAMMAR GEEK?</SubTitle>
+      <UnorderedList>
+        <ListItem>From the Home Page, click on Grammar Geek.</ListItem>
+        <ListItem>Choose the answer that best completes the sentence.</ListItem>
+        <ListItem>Correct answers appear in GREEN and wrong answers appear in RED.</ListItem>
+        <ListItem>
+          After you choose your answer, the timer will stop so that you can see the grammar tense or
+          grammar point related to the correct answer.{" "}
+        </ListItem>
+        <ListItem>Click on CONTINUE for the next sentence. The timer will start again.</ListItem>
+        <ListItem>When Time’s Up, you will see your reward. </ListItem>
+        <ListItem>
+          If your answers are 100% correct during the round, you win 10% more points.
+        </ListItem>
+        <ListItem>Click on Continue to play another round.</ListItem>
+      </UnorderedList>
+      <SubTitle id="synonymRoll">Q: How do I play SYNONYM ROLL?</SubTitle>
+      <UnorderedList>
+        <ListItem>From the Home Page, click on SYNONYM ROLL.</ListItem>
+        <ListItem>
+          Match words that are synonyms. A synonym is a word or phrase that has the same or nearly
+          the same meaning as another word or phrase in the same language.
+        </ListItem>
+        <ListItem>Synonyms could be pairs of nouns, verbs, adverbs or adjectives.</ListItem>
+        <ListItem>
+          Answers are color coded. Correct answers appear in the same color. You will get an error
+          message if the words do not match.
+        </ListItem>
+        <ListItem>
+          After you complete a set, the timer will stop so that you can see all the color coded
+          answers.
+        </ListItem>
+        <ListItem>If your answers are 100% in a completed set, you win 10% more points.</ListItem>
+        <ListItem>Uncompleted sets = 0 points</ListItem>
+        <ListItem>
+          Click on CONTINUE for the next set. Points are earned for sets that are completed.
+        </ListItem>
+        <ListItem>When Time’s Up, you will see your reward. </ListItem>
+        <ListItem>Click on Continue to play another game.</ListItem>
+      </UnorderedList>
+      <SubTitle id="antonymHunt">Q: How do I play ANTONYM HUNT?</SubTitle>
+      <UnorderedList>
+        <ListItem>From the Home Page, click on ANTONYM HUNT.</ListItem>
+        <ListItem>
+          Match words that are antonyms. An antonym is a word or phrase that has the opposite
+          meaning as another word or phrase in the same language.
+        </ListItem>
+        <ListItem>Antonyms could be pairs of nouns, verbs, adverbs or adjectives.</ListItem>
+        <ListItem>
+          Answers are color coded. Correct answers appear in the same color. You will get an error
+          message if the words do not match.
+        </ListItem>
+        <ListItem>
+          After you complete a set, the timer will stop so that you can see all the color coded
+          answers.
+        </ListItem>
+        <ListItem>If your answers are 100% in a completed set, you win 10% more points.</ListItem>
+        <ListItem>Uncompleted sets = 0 points</ListItem>
+        <ListItem>
+          Click on CONTINUE for the next set. Points are earned for sets that are completed.
+        </ListItem>
+        <ListItem>When Time’s Up, you will see your reward. </ListItem>
+        <ListItem>Click on Continue to play another game.</ListItem>
+      </UnorderedList>
+      <SubTitle id="fabVocab">Q: How do I play FAB VOCAB?</SubTitle>
+      <UnorderedList>
+        <ListItem>From the Home Page, click on FAB VOCAB </ListItem>
+        <ListItem>
+          Look at the picture. Choose 5 words that correspond to what you see in the picture.{" "}
+        </ListItem>
+        <ListItem>
+          Answers are color coded. Correct answers appear in green. Incorrect answers appear in red.
+          You can only choose 5 words. After choosing 5 words, you will see the answers.
+        </ListItem>
+        <ListItem>
+          Then, choose the one of the three sentences that describes what you see in the picture.
+          The correct answer appears in green. The incorrect answers appear in red.
+        </ListItem>
+        <ListItem>
+          After you complete a set, the timer will stop so that you can see all the color coded
+          answers.
+        </ListItem>
+        <ListItem>If your answers are 100% in a completed set, you win 10% more points.</ListItem>
+        <ListItem>Uncompleted sets = 0 points</ListItem>
+        <ListItem>
+          Click on CONTINUE for the next set. Points are earned for sets that are completed.
+        </ListItem>
+        <ListItem>When Time’s Up, you will see your reward. </ListItem>
+        <ListItem>Click on Continue to play another game.</ListItem>
+      </UnorderedList>
+      <SubTitle>How do I use STARS and the STAR BAR?</SubTitle>
+      <UnorderedList>
+        <ListItem>When you earn 100 points in the games, you fill the Star Bar.</ListItem>
+        <ListItem>When the STAR BAR is filled, you win one star.</ListItem>
+        <ListItem>Stars allow you to compete in the Knowlympics.</ListItem>
+        <ListItem>In order to be ranked, you have to earn medals in the Knowlympics.</ListItem>
+      </UnorderedList>
+      <SubTitle>How do I compete in the KNOWLYMPICS and get on the WEEKLY RANKING?</SubTitle>
+      <UnorderedList>
+        <ListItem>You can compete in the Knowlympics if you have at least one star.</ListItem>
+        <ListItem>If the Knowlympics podium is grey, then you are out of stars.</ListItem>
+        <ListItem>
+          Click on the Knowlympics podium to see your ranking on the Weekly Rank chart.
+        </ListItem>
+        <ListItem>Click on compete to play in the Knowlympics.</ListItem>
+        <ListItem>
+          In the Knowlympics (which includes Grammar Geek, Synonym Roll, Antonym Hunt and Fab Vocab
+          questions) you earn medals as well as coins.{" "}
+        </ListItem>
+        <ListItem>The competition is timed.</ListItem>
+        <ListItem>
+          At the end of the week, if you are ranked 1st, 2nd or 3rd place, you win an exclusive
+          Gigil Monster for your collection.
+        </ListItem>
+      </UnorderedList>
+
+      <SubTitle>How do I see my RANKING</SubTitle>
+      <UnorderedList>
+        <ListItem>
+          If you have at least one star, from the Home Page, you can click on KNOWLYMPICS and you
+          will find the weekly ranking.
+        </ListItem>
+        <ListItem>Weekly rankings are reset on Sunday at midnight (Paris time).</ListItem>
+        <ListItem>
+          You could also click on Profile (or the Profile icon) and you will see your current Gigil
+          Monster avatar, your Current Ranking, the current number of Stars and Coins you have
+          earned, your current Star Bar and the date on which you started playing Know It!
+        </ListItem>
+      </UnorderedList>
+
+      <SubTitle>How do I collect my GIFT OF THE DAY?</SubTitle>
+      <UnorderedList>
+        <ListItem>
+          From the Home Page, click on the Gift icon to receive your daily gift (more coins and
+          Stars).
+        </ListItem>
+        <ListItem>DAY 1 starts on the 1st of each month.</ListItem>
+        <ListItem>On the 26th til the end of the month, your gift is 5 coins per day.</ListItem>
+        <ListItem>
+          If you miss any days, you can pay a one time purchase to receive unclaimed gifts and
+          receive double the amount of each gift you have already collected that month.{" "}
+        </ListItem>
+      </UnorderedList>
+
+      <SubTitle>How can I buy Gigil Monsters?</SubTitle>
+      <UnorderedList>
+        <ListItem>From the Home Page, click on the SHOP.</ListItem>
+        <ListItem>
+          You will see the Gigil Collections. There are up to 10 Gigils in one collection.
+        </ListItem>
+        <ListItem>
+          Click on a Gigil Monster to see the name of the Gigil Monster and the purchase offer. You
+          can enlarge the pictures to get a closer look at the details, and then purchase using the
+          coins you have earned, or cancel.
+        </ListItem>
+        <ListItem>
+          Not enough coins to buy more Gigil Monsters? Purchase more coins in the Shop.
+        </ListItem>
+      </UnorderedList>
+
+      <SubTitle>Where can I see My Gigil Monster Collection and change my avatar?</SubTitle>
+      <UnorderedList>
+        <ListItem>
+          Click on Gigil Collection (or the pink Gigil Monster icon) to see your Gigil Monster
+          Collection. At the top of the page you will see the number of Gigil Monsters you have
+          purchased.
+        </ListItem>
+        <ListItem>
+          Click on any Gigil Monster to enlarge the picture or to select as your avatar.
+        </ListItem>
+      </UnorderedList>
+      <Text>Need more coins? Want more Stars? Visit the Shop for In-App purchases.</Text>
     </AboutContainer>
   );
 };
