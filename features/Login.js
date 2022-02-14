@@ -38,6 +38,9 @@ export default function Login() {
 
   return (
     <>
+      <Text align="center" fontSize="xl">
+        No account yet? <Link href="/signup">Sign Up</Link>
+      </Text>
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { setSubmitting }) => {
@@ -79,8 +82,8 @@ export default function Login() {
               )}
             </Field>
             <SubmitButton isLoading={props.isSubmitting}>Login</SubmitButton>
-            <Text align="center">
-              No account yet? <Link href="/signup">Sign Up</Link>
+            <Text fontSize="3xl" fontWeight="bold" textAlign="center">
+              OR
             </Text>
             <GoogleLogin />
             {error && <Error title="Something went wrong" />}

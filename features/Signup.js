@@ -49,6 +49,9 @@ export default function Signup() {
 
   return (
     <>
+            <Text align="center" fontSize="xl">
+              Already registered? <Link href="login">Login</Link>
+            </Text>
       <Formik
         initialValues={{ email: "", username: "", password: "", confirm: "", checkbox: false }}
         onSubmit={(values, { setSubmitting }) => {
@@ -139,10 +142,9 @@ export default function Signup() {
             >
               Sign up
             </SubmitButton>
-            <Text align="center">
-              Already registered? <Link href="login">Login</Link>
-            </Text>
+            <Text fontSize="3xl" fontWeight="bold" textAlign="center">OR</Text>
             <GoogleSignup disabled={errors.checkbox || !props.values.checkbox} />
+            <Text fontSize="sm" textAlign="center">(You have to agree to Terms of Service first)</Text>
             {errors.checkbox && <Error title={errors.checkbox} />}
             {error && <Error title="Something went wrong" />}
           </Form>
