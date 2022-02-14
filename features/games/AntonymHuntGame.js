@@ -77,11 +77,11 @@ const AntonymHuntGame = ({
   return (
     <>
       <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "md" }}>
-        Find the word with the{" "}
-        <Box as="span" fontWeight="500">
+        Pair up words that have{" "}
+        <Box as="span" fontWeight="bold">
           opposite
         </Box>{" "}
-        meaning
+        meanings.
       </Text>
       {Object.keys(matchingWords).length ? (
         <MatchingWords

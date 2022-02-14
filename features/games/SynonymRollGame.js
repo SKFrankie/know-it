@@ -79,12 +79,12 @@ const SynonymRollGame = ({
 
   return (
     <>
-      <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "md" }}>
-        Find the word with the{" "}
-        <Box as="span" fontWeight="500">
-          same
+      <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "sm" }}>
+        Pair up words with the{" "}
+        <Box as="span" fontWeight="bold">
+          same or similar
         </Box>{" "}
-        meaning
+        meanings.
       </Text>
       {Object.keys(matchingWords).length ? (
         <MatchingWords

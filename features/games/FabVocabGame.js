@@ -180,7 +180,7 @@ const FabVocabGame = ({
           >
             <Text fontWeight={400}>What do you see in the picture ?</Text>
             <Text fontSize="xs" fontWeight={500}>
-              Find {totalCorrectWords} words
+              Choose {totalCorrectWords} words
             </Text>
             <Words
               words={words}
