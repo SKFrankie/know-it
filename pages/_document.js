@@ -52,9 +52,15 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <meta name="theme-color" content="#fff" />
-          <meta name="description" content="A learning by gaming app to test and improve your English!!" />
+          <meta
+            name="description"
+            content="A learning by gaming app to test and improve your English!!"
+          />
           <meta property="og:title" content="Know It!" />
-          <meta property="og:image" content="https://res.cloudinary.com/dvdqswi8x/image/upload/v1643625971/Avatar%20Picture/hbkcmb6xgiblmg5qtrk8.png" />
+          <meta
+            property="og:image"
+            content="https://res.cloudinary.com/dvdqswi8x/image/upload/v1643625971/Avatar%20Picture/hbkcmb6xgiblmg5qtrk8.png"
+          />
         </Head>
         <Box as="body" p="5%">
           <Main />

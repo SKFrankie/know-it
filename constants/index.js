@@ -76,9 +76,15 @@ const GAME_TYPES = {
     label: "Synonym Roll",
     image: "/images/SynonymRollImage.png",
     right: "/images/SynonymRollImageRight.png",
-    id:"synonymRoll",
+    id: "synonymRoll",
   },
-  FAB_VOCAB: { name: "FAB_VOCAB", label: "Fab Vocab", image: "/images/FabVocabImage.png", right: "/images/FabVocabImageRight.png", id: "fabVocab" },
+  FAB_VOCAB: {
+    name: "FAB_VOCAB",
+    label: "Fab Vocab",
+    image: "/images/FabVocabImage.png",
+    right: "/images/FabVocabImageRight.png",
+    id: "fabVocab",
+  },
   ANTONYM_HUNT: {
     name: "ANTONYM_HUNT",
     label: "Antonym Hunt",

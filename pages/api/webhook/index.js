@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { buffer } from "micro";
 // import { gql } from "@apollo/client";
 // import { getSSRClient } from "../../../apollo-client";
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
 const GET_PREMIUM = `
   mutation GetPremium($years: Int, $months: Int, $days: Int, $hours: Int, $coins: Int) {

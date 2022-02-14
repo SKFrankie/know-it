@@ -86,9 +86,7 @@ const FabVocabGame = ({
     const tmpTotalCorrectWords = Object.keys(
       Object.fromEntries(Object.entries(words).filter(([key, { correct }]) => correct))
     ).length;
-    setWordTries(
-      tmpTotalCorrectWords
-    );
+    setWordTries(tmpTotalCorrectWords);
     setTotalCorrectWords(tmpTotalCorrectWords);
     setSentenceTries(
       Object.keys(
@@ -167,7 +165,7 @@ const FabVocabGame = ({
           <Image
             display={imageLoading ? "none" : "table"}
             w="auto"
-            h={{base:"35vh", md:"60vh"}}
+            h={{ base: "35vh", md: "60vh" }}
             src={picture}
             my={2}
             onLoad={() => setImageLoading(false)}

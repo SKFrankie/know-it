@@ -1,7 +1,6 @@
 import AboutContainer from "../../features/about/AboutContainer";
 import { Text, UnorderedList, ListItem } from "@chakra-ui/react";
-import {SectionTitle, SubTitle} from "../../ui/Title";
-
+import { SectionTitle, SubTitle } from "../../ui/Title";
 
 const AboutUs = () => {
   return (
@@ -35,8 +34,8 @@ const AboutUs = () => {
         Need more coins? Want more Stars? Visit the Shop for In-App purchases.
       </Text>
       <Text align="center">Either you Know It! or you don’t.</Text>
- 
-<Text align="center">If you don’t then play until you’re a KNOW-IT-ALL</Text>
+
+      <Text align="center">If you don’t then play until you’re a KNOW-IT-ALL</Text>
 
       <SectionTitle id="how-to-play">MORE ABOUT KNOW IT!</SectionTitle>
       <SubTitle id="grammarGeek">Q: How do I play GRAMMAR GEEK?</SubTitle>

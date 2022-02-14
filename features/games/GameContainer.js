@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Box, Image, Text } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import { isPremium } from "../../helpers/premium";
@@ -113,11 +113,10 @@ const GameContainer = ({
       }
     };
     router.events.on("routeChangeStart", handleRouteChange);
-      return () => {
-        router.events.off("routeChangeStart", handleRouteChange);
-      }
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
   }, [initialUserStarPercentage, timer]);
-
 
   useEffect(() => {
     if (initialUserStarPercentage === null) {
@@ -218,11 +217,11 @@ const GameContainer = ({
   );
 };
 
-const GameTitle = ({ game, knowlympics=false }) => {
+const GameTitle = ({ game, knowlympics = false }) => {
   return (
     <Flex justifyContent="center" alignItems={{ base: "end", md: "center" }} mb={3}>
       <GameImage game={game} />
-      <Text fontSize={{ base: "xl", sm:"2xl", md: "5xl" }} fontWeight="500">
+      <Text fontSize={{ base: "xl", sm: "2xl", md: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
       <Info id={knowlympics ? "knowlympics" : game?.id} />

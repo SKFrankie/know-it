@@ -14,7 +14,7 @@ const StarComplete = ({ isActive = false }) => {
   return (
     <MotionBox
       initial={{ scale: 1 }}
-      animate={{ scale: isActive ? 3 : 1}}
+      animate={{ scale: isActive ? 3 : 1 }}
       transition={{
         type: "spring",
         stiffness: 260,

@@ -45,7 +45,9 @@ export default function Home() {
         boxSize={{ base: 10, md: "60px" }}
         target="_blank"
         href="https://docs.google.com/forms/d/e/1FAIpQLSc7y4RINsZ-g9gzjP3rSg5AVIfDS2Nu4m09y9Mn--ZvFFr2rA/viewform?usp=pp_url"
-        icon={<Icon boxSize={{base:7, md:"50px"}} as={Iconify} icon="flat-color-icons:survey" />}
+        icon={
+          <Icon boxSize={{ base: 7, md: "50px" }} as={Iconify} icon="flat-color-icons:survey" />
+        }
         zIndex={1}
       />
       {currentUser.online ? (

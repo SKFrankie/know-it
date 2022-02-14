@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Input as ChakraInput, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
 
 const Input = ({ first, last, ...props }) => {
@@ -15,8 +15,8 @@ const Input = ({ first, last, ...props }) => {
 };
 
 const Password = ({ ...props }) => {
-    const [show, setShow] = React.useState(false)
-  const handleClick = () => setShow(!show)
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
 
   return (
     <InputGroup>
@@ -33,7 +33,7 @@ const Password = ({ ...props }) => {
       </InputRightElement>
     </InputGroup>
   );
-}
+};
 
 export { Password };
 export default Input;

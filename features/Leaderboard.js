@@ -53,7 +53,7 @@ const Leaderboard = () => {
     return false;
   };
 
-  const isInTop= (index) => {
+  const isInTop = (index) => {
     if (users.length < TOP_USERS_NUMBER || index < TOP_USERS_NUMBER) {
       return true;
     }

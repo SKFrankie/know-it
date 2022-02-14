@@ -107,7 +107,7 @@ const Avatar = ({ avatar }) => {
   }, [currentUser.coins, avatar.coinPrice]);
 
   const open = () => {
-      onOpen();
+    onOpen();
   };
   return (
     <Flex

@@ -13,8 +13,8 @@ const Link = ({ children, href, ...props }) => {
 };
 const LinkOverlay = ({ children, href, ...props }) => {
   return (
-    <NextLink href={href}  passHref>
-      <ChakraLink _focus={{boxShadow:"none"}}  _hover={{textDecoration:"none"}} {...props}>
+    <NextLink href={href} passHref>
+      <ChakraLink _focus={{ boxShadow: "none" }} _hover={{ textDecoration: "none" }} {...props}>
         {children}
       </ChakraLink>
     </NextLink>

@@ -5,7 +5,7 @@ const Timer = ({ maxTime, timer, ...props }) => {
   return (
     <CircularProgress
       value={(timer / maxTime) * 100}
-      size={{base:"4rem", md:"5rem"}}
+      size={{ base: "4rem", md: "5rem" }}
       justify="center"
       alignItems="center"
       minW="50px"

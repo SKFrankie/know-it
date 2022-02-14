@@ -9,7 +9,7 @@ import { isPremium } from "../../helpers/premium";
 import { PremiumDescription } from "../../pages/shop/money";
 import Ranking from "./Ranking";
 import Loading from "../Loading";
-import {LinkOverlay} from "../../ui/Link";
+import { LinkOverlay } from "../../ui/Link";
 
 const GET_USERS_FROM_ID = gql`
   query Users($userId: ID!) {
@@ -84,11 +84,11 @@ const Profile = ({ userId }) => {
               <LinkOverlay href="/knowlympics">
                 <Text fontSize="2xl">Current Ranking</Text>
               </LinkOverlay>
-              <Spacer/>
+              <Spacer />
               <LinkOverlay href="/knowlympics">
                 <Ranking userId={userId} />
               </LinkOverlay>
-              <Spacer/>
+              <Spacer />
             </ProfileFlex>
             {userId ? null : (
               <ProfileFlex ml={{ base: 0, md: 2 }}>

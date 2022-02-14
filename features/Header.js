@@ -15,7 +15,7 @@ import { Icon as Iconify } from "@iconify/react";
 import { NO_HEADER_ROUTES, SECTIONS, ADDITIONNAL_SECTIONS } from "../constants";
 import { useRouter } from "next/router";
 import { useUserContext } from "../context/user";
-import Link, {LinkOverlay} from "../ui/Link.js";
+import Link, { LinkOverlay } from "../ui/Link.js";
 import { logout } from "./auth/helper.js";
 import { CoinCurrency, StarCurrency, StarPercentage } from "./Currency.js";
 import { MyAvatar } from "../ui/Avatar.js";

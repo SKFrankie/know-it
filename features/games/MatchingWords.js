@@ -68,9 +68,9 @@ const MatchingWords = ({
 
   const handleNext = () => {
     setStopTimer(false);
-          setShowContinue(false);
-      handleComplete();
-  }
+    setShowContinue(false);
+    handleComplete();
+  };
 
   const wordsMatch = (word1, word2) => {
     if (word1 && word2) {

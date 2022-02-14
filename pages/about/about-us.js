@@ -1,6 +1,6 @@
 import AboutContainer from "../../features/about/AboutContainer";
-import { Text} from "@chakra-ui/react";
-import {SectionTitle, SubTitle} from "../../ui/Title";
+import { Text } from "@chakra-ui/react";
+import { SectionTitle, SubTitle } from "../../ui/Title";
 import Link from "../../ui/Link";
 const AboutUs = () => {
   return (
@@ -14,7 +14,11 @@ const AboutUs = () => {
         <br />
         <br />
         Contact Us on{" "}
-        <Link align="center" target="_blank" href="https://www.linkedin.com/in/bluepopcorn-production-87605622a">
+        <Link
+          align="center"
+          target="_blank"
+          href="https://www.linkedin.com/in/bluepopcorn-production-87605622a"
+        >
           LinkedIn
         </Link>
       </Text>
@@ -31,10 +35,27 @@ const AboutUs = () => {
         Know It! is our first WebApp. Thank you for playing!
       </Text>
 
-      <SubTitle><Link target="_blank" href="https://zokiasu.netlify.app">Pierrick / ZKS Development</Link></SubTitle>
-      <Text>I’m mainly a front-end developer and UX/UI Designer. I worked as the UX/UI designer for this project.  I analyzed the project and discussed the details with the product team and then created the mockup and its prototyping using Figma.</Text>
-      <SubTitle><Link target="_blank" href="http://cozy-codeur.fr">Jimmy / Cozy Codeur</Link></SubTitle>
-      <Text>Full Stack French developer, I worked as a freelancer for the integration of this project design and coded the game logic with ReactJs / NextJs. I also worked on the creation of a platform that allows anyone on the team to add / delete / change data (Gigil Monsters, Game questions, etc…) using Reactjs / Graphql / neo4j.</Text>
+      <SubTitle>
+        <Link target="_blank" href="https://zokiasu.netlify.app">
+          Pierrick / ZKS Development
+        </Link>
+      </SubTitle>
+      <Text>
+        I’m mainly a front-end developer and UX/UI Designer. I worked as the UX/UI designer for this
+        project. I analyzed the project and discussed the details with the product team and then
+        created the mockup and its prototyping using Figma.
+      </Text>
+      <SubTitle>
+        <Link target="_blank" href="http://cozy-codeur.fr">
+          Jimmy / Cozy Codeur
+        </Link>
+      </SubTitle>
+      <Text>
+        Full Stack French developer, I worked as a freelancer for the integration of this project
+        design and coded the game logic with ReactJs / NextJs. I also worked on the creation of a
+        platform that allows anyone on the team to add / delete / change data (Gigil Monsters, Game
+        questions, etc…) using Reactjs / Graphql / neo4j.
+      </Text>
     </AboutContainer>
   );
 };

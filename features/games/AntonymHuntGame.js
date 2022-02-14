@@ -29,12 +29,22 @@ const ContainedAntonymHuntGame = () => {
       setGameState={setGameState}
       stopTimer={stopTimer}
     >
-      <AntonymHuntGame gameState={gameState} setGameState={setGameState} setStopTimer={setStopTimer} />
+      <AntonymHuntGame
+        gameState={gameState}
+        setGameState={setGameState}
+        setStopTimer={setStopTimer}
+      />
     </GameContainer>
   );
 };
 
-const AntonymHuntGame = ({ gameState, setGameState, onNextGame = null, knowlympics = false, setStopTimer }) => {
+const AntonymHuntGame = ({
+  gameState,
+  setGameState,
+  onNextGame = null,
+  knowlympics = false,
+  setStopTimer,
+}) => {
   const [matchingWords, setMatchingWords] = useState({});
   const { data, error, loading, refetch } = useQuery(RANDOM_ANTONYM, {
     fetchPolicy: "no-cache",

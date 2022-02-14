@@ -6,7 +6,7 @@ import { Formik, Field } from "formik";
 import { GoogleSignup } from "./auth/GoogleAuth";
 import { storeToken } from "./auth/helper";
 import { useRouter } from "next/router";
-import Input, {Password} from "../ui/Input";
+import Input, { Password } from "../ui/Input";
 import { SubmitButton } from "../ui/Button";
 import { Error } from "../ui/Alert";
 import Link from "../ui/Link";
@@ -49,9 +49,9 @@ export default function Signup() {
 
   return (
     <>
-            <Text align="center" fontSize="xl">
-              Already registered? <Link href="login">Login</Link>
-            </Text>
+      <Text align="center" fontSize="xl">
+        Already registered? <Link href="login">Login</Link>
+      </Text>
       <Formik
         initialValues={{ email: "", username: "", password: "", confirm: "", checkbox: false }}
         onSubmit={(values, { setSubmitting }) => {
@@ -67,7 +67,15 @@ export default function Signup() {
             <Field name="email">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.email}>
-                  <Input first {...field} id="email" type="email" placeholder="email" autoComplete="email" required />
+                  <Input
+                    first
+                    {...field}
+                    id="email"
+                    type="email"
+                    placeholder="email"
+                    autoComplete="email"
+                    required
+                  />
                 </FormControl>
               )}
             </Field>
@@ -142,9 +150,13 @@ export default function Signup() {
             >
               Sign up
             </SubmitButton>
-            <Text fontSize="3xl" fontWeight="bold" textAlign="center">OR</Text>
+            <Text fontSize="3xl" fontWeight="bold" textAlign="center">
+              OR
+            </Text>
             <GoogleSignup disabled={errors.checkbox || !props.values.checkbox} />
-            <Text fontSize="sm" textAlign="center">(You have to agree to Terms of Service first)</Text>
+            <Text fontSize="sm" textAlign="center">
+              (You have to agree to Terms of Service first)
+            </Text>
             {errors.checkbox && <Error title={errors.checkbox} />}
             {error && <Error title="Something went wrong" />}
           </Form>

@@ -33,7 +33,7 @@ const client = new ApolloClient({
 });
 
 const getSSRClient = async (SSRtoken) => {
-  console.log("creating ssr session with", SSRtoken)
+  console.log("creating ssr session with", SSRtoken);
   const SSRauthLink = setContext((_, { headers }) => {
     let token;
     if (typeof window !== "undefined" && !SSRtoken) {

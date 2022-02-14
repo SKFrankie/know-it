@@ -127,13 +127,9 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
     setTodayGift(tmpGift);
   }, [data, currentUser.daysInArow]);
 
-// random gift title
+  // random gift title
   const [randomGiftTitle, setRandomGiftTitle] = useState("Gift of the day!");
-  const giftTitles = [
-    "Gift of the day!",
-    "Claim your gift of the day!",
-    "Here's a gift for you!",
-  ];
+  const giftTitles = ["Gift of the day!", "Claim your gift of the day!", "Here's a gift for you!"];
   useEffect(() => {
     setRandomGiftTitle(giftTitles[Math.floor(Math.random() * giftTitles.length)]);
   }, []);
@@ -334,7 +330,8 @@ const Reward = ({
       >
         <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
         <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
-          {quantity}{reward === "STAR_PERCENTAGE" ? "%" : ""}
+          {quantity}
+          {reward === "STAR_PERCENTAGE" ? "%" : ""}
         </Text>
       </Flex>
     </Flex>

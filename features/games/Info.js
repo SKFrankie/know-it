@@ -1,9 +1,9 @@
-import React from 'react';
-import { Icon } from '@chakra-ui/react';
+import React from "react";
+import { Icon } from "@chakra-ui/react";
 import { Icon as Iconify } from "@iconify/react";
-import {LinkOverlay} from '../../ui/Link';
+import { LinkOverlay } from "../../ui/Link";
 
-const Info = ({id, ...props}) => {
+const Info = ({ id, ...props }) => {
   return (
     <LinkOverlay href={id ? `/about/credits#${id}` : `/about/credits`}>
       <Icon
@@ -18,4 +18,3 @@ const Info = ({id, ...props}) => {
 };
 
 export default Info;
-
