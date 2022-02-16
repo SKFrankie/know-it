@@ -139,7 +139,7 @@ const Avatar = ({ avatar }) => {
           alignItems="center"
         >
           <Text m={2}>
-            Do you want to buy this Gigil monster for{" "}
+            Do you want to buy this for{" "}
             <Box as="span" display="inline" fontWeight="bold">
               {avatar.coinPrice} coins
             </Box>

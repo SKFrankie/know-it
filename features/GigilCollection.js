@@ -72,8 +72,11 @@ const Gigil = ({ avatar }) => {
           justify="space-around"
           alignItems="center"
         >
-          <Text m={2}>Select this Gigil as your new avatar?</Text>
+          <Text m={2}>Change avatar?</Text>
           <AvatarImage big picture={avatar?.picture} />
+          <Text fontSize="xs" fontWeight="bold">
+            {avatar?.name}
+          </Text>
           <Flex m={3} w="100%" alignItems="center" justify="center">
             <SuccessButton
               onClick={() => {

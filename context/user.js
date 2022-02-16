@@ -31,6 +31,7 @@ const CURRENT_USER_AND_TOP_3 = gql`
       }
       inventory {
         avatarId
+        name
         picture
       }
     }
