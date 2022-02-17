@@ -67,6 +67,7 @@ export default function Home() {
           >
             <Image
               src={game.image}
+              loading="lazy"
               alt={game.name}
               w="auto"
               display="table"

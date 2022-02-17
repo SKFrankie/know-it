@@ -39,18 +39,9 @@ class MyDocument extends Document {
           <link rel="icon" href="/images/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Ribeye&display=swap"
-            rel="stylesheet"
-          />
+          <link rel="stylesheet" media="print" onLoad="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap"/>
+          <link rel="stylesheet" media="print" onLoad="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap"/>
+          <link rel="stylesheet" media="print" onLoad="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Ribeye&display=swap"/>
           <meta name="theme-color" content="#fff" />
           <meta
             name="description"
