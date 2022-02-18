@@ -8,7 +8,11 @@ import { StarPercentage } from "../Currency"
 
 const HowToPlayPopup = ({ ...props }) => {
   useEffect(() => {
-    console.log(localStorage.getItem("howToPlay"));
+    const noOpen = JSON.parse(localStorage.getItem("SawHowToPlay"));
+    if(noOpen) {
+      return;
+    }
+    localStorage.setItem("SawHowToPlay", true);
     onOpen()
   }, []);
   const {isOpen, onOpen, onClose} = useDisclosure();
@@ -67,7 +71,7 @@ const HowToPlay = () => {
           <Text fontSize="xl">Choose a game:</Text>
           <Text>
             {GAMES_SECTIONS.map((game, index) => (
-              <Text as="span" fontWeight="bold">
+              <Text key={game.name}  as="span" fontWeight="bold">
                 {game.name}
                 {index === GAMES_SECTIONS.length - 1 ? "" : " / "}
               </Text>
