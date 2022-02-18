@@ -63,7 +63,7 @@ const StarPercentage = ({ quantity = 0, ...props }) => {
   }, [currentUser.starPercentage]);
   quantity = currentUser.online && !quantity ? currentUser.starPercentage : quantity;
   return (
-    <Flex w="100%" {...props} alignItems="center" placeContent={{ base: "center", md: "initial" }}>
+    <Flex w="100%" alignItems="center" placeContent={{ base: "center", md: "initial" }}{...props} >
       <Progress
         size="md"
         borderRadius={10}

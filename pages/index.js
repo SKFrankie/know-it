@@ -13,6 +13,7 @@ import CalendarModal from "../features/modals/CalendarModal";
 import GiftIcon from "../ui/icons/GiftIcon";
 import RewardPopup from "../features/modals/RewardPopup";
 import FirstGigil from "../features/modals/FirstGigil";
+import HowToPlayPopup from "../features/modals/HowToPlayPopup";
 import StripeComponent from "../features/stripe/StripeComponent";
 
 export default function Home() {
@@ -84,6 +85,7 @@ export default function Home() {
       <KnowlympicsButton href="/knowlympics" disabled={!currentUser.online} />
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
       <FirstGigil />
+      <HowToPlayPopup/>
       <StripeComponent />
     </>
   );

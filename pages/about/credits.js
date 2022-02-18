@@ -1,4 +1,5 @@
 import AboutContainer from "../../features/about/AboutContainer";
+import { HowToPlay } from "../../features/modals/HowToPlayPopup";
 import { Text, UnorderedList, ListItem } from "@chakra-ui/react";
 import { SectionTitle, SubTitle } from "../../ui/Title";
 
@@ -6,6 +7,7 @@ const AboutUs = () => {
   return (
     <AboutContainer>
       <SectionTitle id="how-to-play">HOW TO PLAY KNOW IT!</SectionTitle>
+      <HowToPlay />
       <SubTitle>SIMPLIFIED RULES</SubTitle>
       <Text>
         Earn points in Grammar Geek, Synonym Roll, Antonym Hunt and Fab Vocab. After each round,
