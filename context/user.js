@@ -3,6 +3,18 @@ import { useQuery, useMutation, gql } from "@apollo/client";
 import { isCurrentWeek } from "../features/games/helpers";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
 
+const rankingGiftConditions = (date) => {
+  // if it was not this week, the first user to log this week triggers the gifting process
+  const today = new Date();
+  // here we don't trigger the process because gifts have already been received this week
+  if (isCurrentWeek(date)) return false;
+  // we also check if it was "in the future" it can happen with different time zones, in that case we don't send the gifts again
+  if (today < date) return false;
+  // if it wasn't this week and it was in the past, we trigger the process
+  return true
+}
+
+
 // rankingUsers must be used only here to get last week ranking
 const CURRENT_USER_AND_TOP_3 = gql`
   query CurrentUser {
@@ -72,8 +84,7 @@ export function UserWrapper({ children }) {
       const [first, second, third] = res.rankingUsers;
       // then the last time users had a ranked gift
       const lastRankingGiftDate = new Date(res.lastRankingGiftDate);
-      if (!isCurrentWeek(lastRankingGiftDate)) {
-        // if it was not this week, the first user to log this week triggers the gifting process
+      if (rankingGiftConditions(lastRankingGiftDate)) {
         SetUsersGifts({
           variables: { first: first?.userId, second: second?.userId, third: third?.userId },
         });
