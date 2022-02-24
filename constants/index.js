@@ -7,7 +7,7 @@ const SECTIONS = [
     icon: "entypo:shop",
   },
   {
-    name: "Gigil Collection",
+    name: "My Gigil Collection",
     path: "/collection",
     restricted: true,
     icon: "noto-v1:alien-monster",
