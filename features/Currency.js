@@ -48,11 +48,14 @@ const CoinCurrencyNoUser = ({ quantity = 0, ...props }) => {
   );
 };
 
-const StarPercentage = ({ quantity = 0, ...props }) => {
+const StarPercentage = ({ quantity = 0, noAnimation=false, ...props }) => {
   const [previousQuantity, setPreviousQuantity] = useState(quantity);
   const [animateStar, setAnimateStar] = useState(false);
   const [currentUser] = useUserContext();
   useEffect(() => {
+    if (noAnimation) {
+      return;
+    }
     const tmpQuantity = currentUser?.starPercentage;
     if (tmpQuantity < previousQuantity) {
       setAnimateStar(true);

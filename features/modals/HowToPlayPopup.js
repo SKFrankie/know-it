@@ -4,9 +4,11 @@ import {Flex, Text, useDisclosure, Divider, Image } from "@chakra-ui/react";
 import Button from "../../ui/Button";
 import { GAMES_SECTIONS } from "../../constants";
 import { StarPercentage } from "../Currency"
+import { useUserContext } from "../../context/user";
 
 
 const HowToPlayPopup = ({ ...props }) => {
+  const [currentUser] = useUserContext();
   useEffect(() => {
     const noOpen = JSON.parse(localStorage.getItem("SawHowToPlay"));
     if(noOpen) {
@@ -18,14 +20,20 @@ const HowToPlayPopup = ({ ...props }) => {
   const {isOpen, onOpen, onClose} = useDisclosure();
   return (
     <Modal isOpen={isOpen} onClose={onClose} {...props}>
-        <Text fontSize="3xl" fontWeight="bold" alignSelf="center" textAlign="center">
-          How to play
-        </Text>
-        <Divider m={3} />
+      <Text fontSize="3xl" fontWeight="bold" alignSelf="center" textAlign="center">
+        How to play
+      </Text>
+      <Divider m={3} />
       <HowToPlay />
+      {currentUser?.online ? (
+        <Button w="80%" alignSelf="center" colorScheme="green" onClick={onClose}>
+          Got it!
+        </Button>
+      ) : (
         <Button w="80%" alignSelf="center" colorScheme="green" href="/signup">
           Sign Up
         </Button>
+      )}
     </Modal>
   );
 };
@@ -80,12 +88,12 @@ const HowToPlay = () => {
           <InBetweenImage src="/images/GrammarGeekImageRight.png" alt={"grammar"} />
         </Section>
         <Section>
-          <Text fontSize="lg" mb={1}>
+          <Text fontSize="lg" mb={4}>
             Play to win <b>Points</b> and collect <b>Stars</b> to <b>Compete</b> in the{" "}
             <b>Knowlympics</b>. Earn <b>Medals</b> and move up in the <b>RANKING</b>!
           </Text>
           {/* starbar */}
-          <StarPercentage quantity={50}  w="50%" placeContent="center" />
+          <StarPercentage noAnimation quantity={60}  w="50%" placeContent="center" />
         </Section>
         <Section pb="5">
           <Text fontSize="lg">
