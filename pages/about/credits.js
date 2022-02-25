@@ -20,7 +20,7 @@ const AboutUs = () => {
       <Text>
         Grammar Geek, Synonym Roll, Antonym Hunt and Fab Vocab Point system:
         <br />
-        1 correct answer = 2 Points and 1 Coin <br />
+        1 correct answer = 2 Points and 2 Coin <br />
         Accumulate 100 Points to fill the Star Bar and win one Star. Bonus: In some games making
         zero mistakes can make you win bonus coins / points!
       </Text>
@@ -28,7 +28,7 @@ const AboutUs = () => {
         Knowlympics Point System:
       </Text>
       <Text>
-        1 correct answer = 2 Medals and 1 Coin <br />
+        1 correct answer = 2 Medals and 2 Coin <br />
         Weekly Ranking is based on your accumulated Medals earned during the current week in the
         Knowlympics competition. See how many medals you earned and how you are ranked against other
         players in the Weekly Ranking.
@@ -51,9 +51,6 @@ const AboutUs = () => {
         </ListItem>
         <ListItem>Click on CONTINUE for the next sentence. The timer will start again.</ListItem>
         <ListItem>When Time’s Up, you will see your reward. </ListItem>
-        <ListItem>
-          If your answers are 100% correct during the round, you win 10% more points.
-        </ListItem>
         <ListItem>Click on Continue to play another round.</ListItem>
       </UnorderedList>
       <SubTitle id="synonymRoll">Q: How do I play SYNONYM ROLL?</SubTitle>
@@ -72,7 +69,6 @@ const AboutUs = () => {
           After you complete a set, the timer will stop so that you can see all the color coded
           answers.
         </ListItem>
-        <ListItem>If your answers are 100% in a completed set, you win 10% more points.</ListItem>
         <ListItem>Uncompleted sets = 0 points</ListItem>
         <ListItem>
           Click on CONTINUE for the next set. Points are earned for sets that are completed.
@@ -96,7 +92,6 @@ const AboutUs = () => {
           After you complete a set, the timer will stop so that you can see all the color coded
           answers.
         </ListItem>
-        <ListItem>If your answers are 100% in a completed set, you win 10% more points.</ListItem>
         <ListItem>Uncompleted sets = 0 points</ListItem>
         <ListItem>
           Click on CONTINUE for the next set. Points are earned for sets that are completed.
@@ -122,7 +117,6 @@ const AboutUs = () => {
           After you complete a set, the timer will stop so that you can see all the color coded
           answers.
         </ListItem>
-        <ListItem>If your answers are 100% in a completed set, you win 10% more points.</ListItem>
         <ListItem>Uncompleted sets = 0 points</ListItem>
         <ListItem>
           Click on CONTINUE for the next set. Points are earned for sets that are completed.

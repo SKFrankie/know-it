@@ -39,3 +39,18 @@ a {
   font-family: "Maven Pro", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+.notification {
+  position: relative;
+}
+
+.notification::after {
+  content: "!";
+  position: absolute;
+  top: -5px;
+  right: 3px;
+  width: 1.2em;
+  height: 1.2em;
+  background: red;
+  border-radius: 50%;
+}

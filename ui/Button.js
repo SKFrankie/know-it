@@ -1,8 +1,10 @@
-import { Box, Text, Button as ChakraButton } from "@chakra-ui/react";
+import { Box, Text, Button as ChakraButton, Icon } from "@chakra-ui/react";
+import { Icon as Iconify } from "@iconify/react";
 import NextLink from "next/link";
 import React from "react";
 import Podium from "../features/Podium";
 import * as ga from "../lib/ga";
+import { useUserContext } from "../context/user";
 
 const SubmitButton = ({ children, ...props }) => {
   return (
@@ -66,11 +68,13 @@ const KnowlympicsButton = ({
       action: "Knowlympics",
     });
   };
+  const [currentUser] = useUserContext();
   return (
     <Box textAlign="center" filter={disabled ? "grayscale(1)" : null} {...props}>
       <Podium px="4" />
       <NextLink href={href} passHref>
         <ChakraButton
+        className={currentUser?.stars ? "notification" : null}
           borderRadius="10px"
           w={{ base: "100%", md: "30vw" }}
           py="25px"

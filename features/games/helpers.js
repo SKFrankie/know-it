@@ -13,6 +13,7 @@ const getFirstAndLastDayOfWeek = () => {
   const start = new Date(today.setDate(diff));
   const end = new Date(today.setDate(diff + 6));
   end.setHours(23, 59, 59, 0);
+  start.setHours(0, 0, 0, 0);
   return [start, end];
 };
 
