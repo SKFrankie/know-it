@@ -134,7 +134,7 @@ const AvatarPicture = ({ avatar, ...props }) => {
         src={
           avatar?.picture
             ? avatar?.picture
-            : "https://res.cloudinary.com/dvdqswi8x/image/upload/v1639908743/Avatar%20Picture/wprwgtldhxwx4t3ntdur.png"
+            : "https://res.cloudinary.com/dvdqswi8x/image/upload/v1646038725/Avatar%20Picture/bws9ei18vgswkgitk6qs.jpg"
         }
         alt="avatar"
       />
