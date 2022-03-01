@@ -47,6 +47,9 @@ const GeneralSettings = () => {
       <SettingButton href="/about/credits" last>
         Credits
       </SettingButton>
+      <SettingButton href="/about/contact" last>
+        Contact
+      </SettingButton>
     </SettingBlock>
   );
 };

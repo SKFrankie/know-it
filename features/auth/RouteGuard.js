@@ -27,6 +27,7 @@ const RouteGuard = ({ children }) => {
       "/about/terms-of-service",
       "/about/credits",
       "/about/about-us",
+      "/about/contact",
       "/settings",
       ...publicGames,
     ];
