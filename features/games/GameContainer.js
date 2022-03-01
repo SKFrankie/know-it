@@ -6,7 +6,7 @@ import { MobileGameHeader, DesktopGameHeader } from "../Header";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import { isPremium } from "../../helpers/premium";
 import HourGlassIcon from "../../ui/icons/HourGlassIcon";
-import { CoinCurrencyNoUser } from "../Currency";
+import { CoinCurrencyNoUser, MedalCurrency } from "../Currency";
 import Button from "../../ui/Button";
 import Link from "../../ui/Link";
 import { useUserContext } from "../../context/user";
@@ -204,9 +204,12 @@ const GameContainer = ({
       <Box h={{ base: "5vh", md: "10vh" }} />
       <Flex direction="column" {...props}>
         {knowlympics && (
+          <>
           <Text m={3} fontSize="md" fontWeight="md">
-            Knowlympic Medals: {gameState.points}
+            Knowlympic Medals
           </Text>
+          <MedalCurrency quantity={gameState.points || 0}/>
+          </>
         )}
         <GameTitle game={game} knowlympics={knowlympics} />
         {children}

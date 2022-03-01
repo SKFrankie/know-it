@@ -4,7 +4,7 @@ import { Flex, Text, Image, Spacer } from "@chakra-ui/react";
 import { useUserContext } from "../../context/user";
 import dateToString from "../../helpers/dateToString";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
-import { CoinCurrency, StarCurrency, StarPercentage } from "../Currency.js";
+import { CoinCurrency, StarCurrency, StarPercentage, MedalCurrency } from "../Currency.js";
 import { isPremium } from "../../helpers/premium";
 import { PremiumDescription } from "../../pages/shop/money";
 import Ranking from "./Ranking";
@@ -74,6 +74,7 @@ const Profile = ({ userId }) => {
               <Flex my={4}>
                 <StarCurrency quantity={userId ? user?.stars : null} />
                 <CoinCurrency quantity={userId ? user?.coins : null} />
+                <MedalCurrency rightIcon={false} quantity={userId ? user?.points : null} />
               </Flex>
               <StarPercentage quantity={userId ? user?.starPercentage : null} />
               <Text fontSize="xs">Member since {dateToString(user?.createdAt)}</Text>

@@ -50,7 +50,9 @@ const CoinCurrencyNoUser = ({ quantity = 0, ...props }) => {
   );
 };
 
-const MedalCurrency = ({quantity = 0, ...props}) => {
+const MedalCurrency = ({quantity = null, ...props}) => {
+  const [currentUser] = useUserContext();
+  quantity = currentUser.online && (quantity ===null) ? currentUser.points : quantity;
   return (
     <Currency rightIcon quantity={quantity} color="white" src="/images/medal.png" alt="medal" {...props} />
   );
