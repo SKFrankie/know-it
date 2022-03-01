@@ -110,6 +110,7 @@ const Leaderboard = () => {
       {data && (
         <Flex direction="column" justify="center" align="center" w="100%" mt={2}>
           <Searchbar onChange={handleSearch} />
+          <Head/>
           {(data?.rankingUsers || []).map((user, index) => {
             if (isInTop(index)) {
               return (
@@ -157,7 +158,7 @@ const Row = ({ display = true, user, index, length, ...props }) => {
       <NextLink href={`/profile/${user.userId}`}>
         <Flex
           my="0.5px"
-          borderTopRadius={index ? 0 : 6}
+          borderTopRadius={0}
           borderBottomRadius={index + 1 === length ? 6 : 0}
           bg={user.userId === currentUser?.userId ? "orange" : "blueClear.500"}
           textAlign="center"
@@ -177,11 +178,38 @@ const Row = ({ display = true, user, index, length, ...props }) => {
           <Text flex={1} textAlign="start">
             {user.username}
           </Text>
-          <Text flex={1}>{index + 1}</Text>
-          <MedalCurrency quantity={user.points} flex={1} textAlign="end"/>
+          <Text flex={3}>{index + 1}</Text>
+          <MedalCurrency quantity={user.points} />
         </Flex>
       </NextLink>
     )
+  );
+};
+
+const Head = () => {
+  return (
+    <Flex
+      direction="row"
+      justify="space-between"
+      align="center"
+      w="100%"
+      p={1}
+      px={5}
+      fontSize={{ base: "sm", md: "md" }}
+      align="center"
+      bg="blueClear.500"
+      borderTopRadius={6}
+      textAlign="center"
+    >
+    <Flex w="40px" h="40px" justify="center" align="center"/>
+      <Text flex={1} textAlign="start">
+        Username
+      </Text>
+      <Text flex={3}>Ranking</Text>
+      <Text mx={2}>
+        Medals
+      </Text>
+    </Flex>
   );
 };
 
