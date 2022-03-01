@@ -4,6 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import { getFirstDayOfWeek, getLastDayOfWeek } from "./games/helpers";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
 import { useUserContext } from "../context/user";
+import {MedalCurrency} from "./Currency"
 import Loading from "./Loading";
 import Error from "./Error";
 import NextLink from "next/link";
@@ -177,9 +178,7 @@ const Row = ({ display = true, user, index, length, ...props }) => {
             {user.username}
           </Text>
           <Text flex={1}>{index + 1}</Text>
-          <Text flex={1} textAlign="end">
-            {user.points}
-          </Text>
+          <MedalCurrency quantity={user.points} flex={1} textAlign="end"/>
         </Flex>
       </NextLink>
     )

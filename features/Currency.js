@@ -10,14 +10,16 @@ const Currency = ({
   quantity = 0,
   color = "yellowStar",
   fontSize = "sm",
+  rightIcon=false,
   ...props
 }) => {
   return (
     <Flex color={color} alignItems="center" mx={2} {...props}>
-      <Image boxSize="30px" src={src} alt={alt} />
+      {!rightIcon && <Image boxSize="30px" src={src} alt={alt} /> }
       <Text mx={1} color={color} fontSize={fontSize}>
         {quantity}
       </Text>
+      {rightIcon && <Image boxSize="30px" src={src} alt={alt} /> }
     </Flex>
   );
 };
@@ -47,6 +49,13 @@ const CoinCurrencyNoUser = ({ quantity = 0, ...props }) => {
     <Currency quantity={quantity} color="#06B402" src="/images/coin.png" alt="coin" {...props} />
   );
 };
+
+const MedalCurrency = ({quantity = 0, ...props}) => {
+  return (
+    <Currency rightIcon quantity={quantity} color="white" src="/images/medal.png" alt="medal" {...props} />
+  );
+}
+
 
 const StarPercentage = ({ quantity = 0, noAnimation=false, ...props }) => {
   const [previousQuantity, setPreviousQuantity] = useState(quantity);
@@ -84,4 +93,4 @@ const StarPercentage = ({ quantity = 0, noAnimation=false, ...props }) => {
 };
 
 export default Currency;
-export { StarCurrency, CoinCurrency, StarPercentage, CoinCurrencyNoUser };
+export { StarCurrency, CoinCurrency, StarPercentage, CoinCurrencyNoUser, MedalCurrency };
