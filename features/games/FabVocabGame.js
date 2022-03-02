@@ -8,7 +8,6 @@ import Error from "../Error";
 import Loading from "../Loading";
 import { GAME_TYPES, POINTS } from "../../constants";
 import shuffleArray from "../../helpers/shuffleArray";
-import imageDimensions from "../../helpers/imageDimensions";
 
 const RANDOM_FAB_VOCAB = gql`
   query RandomFabVocab {
@@ -167,7 +166,7 @@ const FabVocabGame = ({
             display={imageLoading ? "none" : "table"}
             w="auto"
             h={{ base: "35vh", md: "60vh" }}
-            src={imageDimensions(picture)}
+            src={picture}
             my={2}
             onLoad={() => setImageLoading(false)}
             boxShadow="lg"

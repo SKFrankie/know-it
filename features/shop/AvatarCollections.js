@@ -7,7 +7,6 @@ import { useUserContext } from "../../context/user";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
 import { PopUp } from "../../ui/Modal";
 import { SuccessButton, CancelButton } from "../../ui/Button";
-import imageDimensions from "../../helpers/imageDimensions";
 
 const AVATAR_COLLECTIONS = gql`
   query AvatarCollections {
@@ -184,7 +183,7 @@ const AvatarImage = ({ picture, big = false, ...props }) => {
     >
       <Image
         alignSelf="center"
-        src={imageDimensions(picture)}
+        src={picture}
         maxH={big ? { base: "200px", md: "410px" } : { base: "80px", md: "100px" }}
       />
     </Flex>
