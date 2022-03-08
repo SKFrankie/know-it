@@ -230,7 +230,7 @@ const AvatarImage = ({ user }) => {
 
 const Searchbar = ({ onChange }) => {
   return (
-    <Input onChange={onChange} bg="white" my={3} placeholder="Search by username" color="black" />
+    <Input onChange={onChange} bg="white" my={3} placeholder="Find a friend’s ranking by username" color="black" />
   );
 };
 
