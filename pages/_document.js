@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Layout from "../ui/Layout";
 
 class MyDocument extends Document {
   render() {
@@ -48,10 +49,10 @@ class MyDocument extends Document {
             content="https://res.cloudinary.com/dvdqswi8x/image/upload/v1643625971/Avatar%20Picture/hbkcmb6xgiblmg5qtrk8.png"
           />
         </Head>
-        <Box as="body" p="5%">
+        <Layout>
           <Main />
           <NextScript />
-        </Box>
+        </Layout>
       </Html>
     );
   }
