@@ -15,6 +15,7 @@ import RewardPopup from "../features/modals/RewardPopup";
 import FirstGigil from "../features/modals/FirstGigil";
 import HowToPlayPopup from "../features/modals/HowToPlayPopup";
 import StripeComponent from "../features/stripe/StripeComponent";
+import GoogleAd from "../features/GoogleAd";
 
 export default function Home() {
   const [currentUser] = useUserContext();
@@ -88,6 +89,7 @@ export default function Home() {
         ))}
       </Flex>
       <KnowlympicsButton href="/knowlympics" disabled={!currentUser.online} />
+      <GoogleAd/>
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
       <FirstGigil />
       <HowToPlayPopup />

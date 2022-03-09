@@ -11,7 +11,15 @@ const GoogleAdContainer = ({ children }) => {
 const GoogleAd = ({ ...props }) => {
   return (
     <GoogleAdContainer>
-      <p>Pub google ici</p>
+      <ins
+        className="adsbygoogle"
+        style="display:block"
+        // data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
+        // data-ad-slot="xxxxxxxx"
+        data-adtest={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_TEST || "off"}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
     </GoogleAdContainer>
   );
 };
