@@ -35,11 +35,6 @@ export default function Home() {
           name="description"
           content="A learning by gaming Progressive Web App to test and improve your English!"
         />
-        <script
-          data-ad-client={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
       </Head>
       <Title display={{ base: "none", md: "flex" }} />
       <GaIconButton

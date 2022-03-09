@@ -13,10 +13,10 @@ const GoogleAd = ({ ...props }) => {
     <GoogleAdContainer>
       <ins
         className="adsbygoogle"
-        style="display:block"
-        // data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
-        // data-ad-slot="xxxxxxxx"
-        data-adtest={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_TEST || "off"}
+        style={{display:"block"}}
+        data-ad-client={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+        data-ad-slot="7998246655"
+        data-adtest={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_TEST || "off"}`}
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>

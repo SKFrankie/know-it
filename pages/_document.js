@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import Layout from "../ui/Layout";
 
@@ -11,7 +10,11 @@ class MyDocument extends Document {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
-
+        <script
+          data-ad-client={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        />
           <script
             dangerouslySetInnerHTML={{
               __html: `
