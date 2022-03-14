@@ -6,7 +6,7 @@ import createCheckOutSession from "../../helpers/stripe";
 
 const PremiumButtons = ({ stripeLoading, setStripeLoading, ...props }) => {
   const packages = [
-    PURCHASE_TYPES.HOURS_12_PREMIUM,
+    PURCHASE_TYPES.HOURS_24_PREMIUM,
     PURCHASE_TYPES.MONTH_1_PREMIUM,
     PURCHASE_TYPES.YEAR_1_PREMIUM,
   ];

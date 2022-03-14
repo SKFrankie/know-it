@@ -111,7 +111,7 @@ const POINTS = {
 };
 
 const PURCHASE_TYPES = {
-  HOURS_12_PREMIUM: "HOURS_12_PREMIUM",
+  HOURS_24_PREMIUM: "HOURS_24_PREMIUM",
   MONTH_1_PREMIUM: "MONTH_1_PREMIUM",
   YEAR_1_PREMIUM: "YEAR_1_PREMIUM",
 
@@ -141,12 +141,12 @@ const getCoinsDescription = (coins) => {
 
 const PURCHASES = {
   // premium
-  [PURCHASE_TYPES.HOURS_12_PREMIUM]: {
-    label: PURCHASE_TYPES.HOURS_12_PREMIUM,
-    name: "12 Hour Bundle",
-    description: getPremiumDescription("12 hours", "50"),
+  [PURCHASE_TYPES.HOURS_24_PREMIUM]: {
+    label: PURCHASE_TYPES.HOURS_24_PREMIUM,
+    name: "24 Hour Bundle",
+    description: getPremiumDescription("24 hours", "50"),
     price: "0.50",
-    quantity: 12,
+    quantity: 24,
     type: "hours",
     bonusCoins: 50,
     premium: true,
