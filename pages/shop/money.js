@@ -55,7 +55,7 @@ const Money = () => {
         setStripeLoading={setStripeLoading}
         sellingItems={sellingStars}
         image="/images/star.png"
-        title="Knowlympic Stars"
+        title="Get KNOWLYMPIC STARS and COMPETE NOW!"
       />
       <Divider w="90%" alignSelf="center" borderBottomWidth="2px" borderColor="blueClear2.500" />
       <MoneyItems
@@ -63,7 +63,7 @@ const Money = () => {
         setStripeLoading={setStripeLoading}
         sellingItems={sellingCoins}
         image="/images/coin.png"
-        title="Coins for Gigil Monsters"
+        title="Get coins for your Gigil Monster Avatars!"
       />
       <Modal isOpen={isOpen} onClose={onClose}>
         <Flex direction="column" m={5} textAlign="center" justify="center">

@@ -59,7 +59,7 @@ const PremiumButton = ({ packageItem, stripeLoading, setStripeLoading }) => {
         <Text fontSize="sm" fontWeight="bold">
           {item?.name}
         </Text>
-        <Text color="yellowStar" fontSize="xs">
+        <Text color="yellow" fontSize="xs">
           (+{item?.bonusCoins} coins)
         </Text>
       </Flex>

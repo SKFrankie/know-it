@@ -10,9 +10,9 @@ const MoneyItems = ({ title, sellingItems, image, stripeLoading, setStripeLoadin
     <Flex my={5} direction="column">
       <Text
         mb={3}
-        fontSize={{ base: "xl", md: "3xl" }}
+        fontSize={{ base: "xs", md: "3xl" }}
         fontWeight="bold"
-        textAlign={{ base: "left", md: "center" }}
+        textAlign="center"
       >
         {title}
       </Text>
@@ -65,7 +65,7 @@ const MoneyItem = ({ sellingItem, image, stripeLoading, setStripeLoading }) => {
         minW="5.5em"
       >
         <Image boxSize={{base: "50px", md:"150px"}} src={image} alt={item?.name} />
-        <Text fontSize="xs">x{item?.name}</Text>
+        <Text fontSize="xs">{item?.name}</Text>
       </Flex>
       <Text fontSize="sm">{item?.price}€</Text>
     </Flex>
