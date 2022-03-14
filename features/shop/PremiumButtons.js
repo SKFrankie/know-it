@@ -34,6 +34,7 @@ const PremiumButton = ({ packageItem, stripeLoading, setStripeLoading }) => {
   }, [packageItem, currentUser]);
   return (
     <Flex
+      minW="10vw"
       direction="column"
       bg="darkBlue"
       borderRadius={8}
