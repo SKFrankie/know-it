@@ -64,7 +64,7 @@ const MoneyItem = ({ sellingItem, image, stripeLoading, setStripeLoading }) => {
         p={2}
         minW="5.5em"
       >
-        <Image boxSize="50px" src={image} alt={item?.name} />
+        <Image boxSize={{base: "50px", md:"150px"}} src={image} alt={item?.name} />
         <Text fontSize="xs">x{item?.name}</Text>
       </Flex>
       <Text fontSize="sm">{item?.price}€</Text>
