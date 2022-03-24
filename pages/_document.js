@@ -1,7 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import Layout from "../ui/Layout";
-import { getCookieConsentValue } from "react-cookie-consent";
-import { useCookies } from "react-cookie";
 
 class MyDocument extends Document {
   render() {
