@@ -1,5 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import Layout from "../ui/Layout";
+import { getCookieConsentValue } from "react-cookie-consent";
+import { useCookies } from "react-cookie";
 
 class MyDocument extends Document {
   render() {
@@ -19,7 +21,7 @@ class MyDocument extends Document {
               var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
               if (match) return match[2];
             }
-            if (getCookie("CookieConsent") !== "false") {
+            if (getCookie("CookieConsent") === "true") {
               gtag('js', new Date());
               gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
                 page_path: window.location.pathname,

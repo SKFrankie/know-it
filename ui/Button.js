@@ -5,6 +5,8 @@ import React from "react";
 import Podium from "../features/Podium";
 import * as ga from "../lib/ga";
 import { useUserContext } from "../context/user";
+import { getCookieConsentValue } from "react-cookie-consent";
+import { useCookies } from "react-cookie";
 
 const SubmitButton = ({ children, ...props }) => {
   return (
@@ -63,11 +65,15 @@ const KnowlympicsButton = ({
   disabled = true,
   ...props
 }) => {
-  const GaEvent = () => {
-    ga.event({
-      action: "Knowlympics",
-    });
-  };
+  const [cookies] = useCookies(["CookieConsent"]);
+    const isConsent = getCookieConsentValue();
+    if (isConsent === "true") {
+      const GaEvent = () => {
+        ga.event({
+          action: "Knowlympics",
+        });
+      };
+    };
   const [currentUser] = useUserContext();
   return (
     <Box textAlign="center" filter={disabled ? "grayscale(1)" : null} {...props}>
