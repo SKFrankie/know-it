@@ -32,6 +32,8 @@ const CookieConsent = () => {
     Cookies.remove("_ga");
     Cookies.remove("_gat");
     Cookies.remove("_gid");
+    Cookies.remove("__stripe_sid");
+    Cookies.remove("__stripe_mid");
   };
 
   return (
