@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 
 const CookieConsent = () => {
   const [cookies, setCookie] = useCookies(["CookieConsent"]);
+  const [allCookies, setAllCookie] = useCookies();
   useEffect(() => {
     const isConsent = getCookieConsentValue();
     if (isConsent === "true") {
@@ -13,12 +14,14 @@ const CookieConsent = () => {
     if (isConsent !== "true") {
       handleDecline();
     }
-  }, []);
+  }, [allCookies]);
   const handleAccept = () => {
     window.location.reload();
   };
   const handleDecline = () => {
-    //remove google analytics cookies
+    for (let cookie in allCookies) {
+      Cookies.remove(cookie);
+    }
     Cookies.remove("1P_JAR");
     Cookies.remove("1P_JAR_SUB");
     Cookies.remove("1P_JAR_SUP");
@@ -26,8 +29,8 @@ const CookieConsent = () => {
     Cookies.remove("CONSENT");
     Cookies.remove("NID");
     Cookies.remove("AEC");
-    Cookies.remove("__gads", { domain: ".google.com"});
-    Cookies.remove("__gads", { domain: ".bluepopcorn.fun"});
+    Cookies.remove("__gads", { domain: ".google.com", path: "/" });
+    Cookies.remove("__gads", { domain: "localhost", path: "/"});
     Cookies.remove("_ga_DXD5VTP725");
     Cookies.remove("_ga");
     Cookies.remove("_gat");
