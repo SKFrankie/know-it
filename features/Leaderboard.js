@@ -24,7 +24,7 @@ const RANKING_USERS = gql`
 `;
 
 const Leaderboard = () => {
-  const TOP_USERS_NUMBER = 100;
+  const TOP_USERS_NUMBER = 50;
   const [currentUser] = useUserContext();
   const [users, setUsers] = useState([]);
   const { data, loading, error } = useQuery(RANKING_USERS, {
