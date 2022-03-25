@@ -6,6 +6,7 @@ const Layout = ({children}) => {
     var ads = document.getElementsByClassName("adsbygoogle").length;
     for (var i = 0; i < ads; i++) {
       try {
+        (adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
         (adsbygoogle = window.adsbygoogle || []).push({});
       } catch (e) {}
     }
