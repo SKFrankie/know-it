@@ -38,6 +38,9 @@ export default function Login() {
 
   return (
     <>
+      <Text align="center" fontSize="xl">
+        No account yet? <Link color="#69fb69" href="/signup">Sign Up</Link>
+      </Text>
       <Formik
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { setSubmitting }) => {
@@ -87,9 +90,6 @@ export default function Login() {
           </Form>
         )}
       </Formik>
-      <Text align="center" fontSize="xl">
-        No account yet? <Link color="#69fb69" href="/signup">Sign Up</Link>
-      </Text>
     </>
   );
 }

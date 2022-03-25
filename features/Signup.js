@@ -49,6 +49,9 @@ export default function Signup() {
 
   return (
     <>
+      <Text mt={2} align="center" fontSize="xl">
+        Already registered? <Link color="#69fb69" href="login">Login</Link>
+      </Text>
       <Formik
         initialValues={{ email: "", username: "", password: "", confirm: "", checkbox: false }}
         onSubmit={(values, { setSubmitting }) => {
@@ -159,9 +162,6 @@ export default function Signup() {
           </Form>
         )}
       </Formik>
-      <Text mt={2} align="center" fontSize="xl">
-        Already registered? <Link color="#69fb69" href="login">Login</Link>
-      </Text>
     </>
   );
 }
