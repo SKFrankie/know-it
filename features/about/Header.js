@@ -8,7 +8,7 @@ import { ABOUT_SECTIONS } from "../../constants";
 const Header = () => {
   const router = useRouter();
   return (
-    <Flex w="100%">
+    <Flex w="100%" flexWrap="wrap">
       {ABOUT_SECTIONS.map((section) => (
         <Link
           fontSize={{ base: "sm", md: "md" }}
