@@ -42,7 +42,7 @@ const GoogleSignup = ({ ...props }) => {
   return (
     <GoogleAuth
       {...props}
-      text="Sign up with google"
+      text="Sign up with Google"
       handleSuccess={handleSuccess}
       loading={loading}
     />
@@ -60,11 +60,11 @@ const GoogleLogin = () => {
     },
     ...basicQueryResultSupport,
   });
-  return <GoogleAuth text="Login with google" handleSuccess={handleSuccess} loading={loading} />;
+  return <GoogleAuth text="Login with Google" handleSuccess={handleSuccess} loading={loading} />;
 };
 
 const GoogleAuth = ({
-  text = "Login with google",
+  text = "Login with Google",
   handleSuccess,
   loading = false,
   disabled,
