@@ -53,7 +53,7 @@ const CookieConsent = () => {
         onAccept={handleAccept}
         onDecline={handleDecline}
       >
-        This website uses cookies to enhance the user experience.
+      BluePopcorn Production and its advertising partners use cookies to ensure the proper functioning of certain parts of the site. If you agree to this, please accept or decline the collection of data, however, we must inform you that some cookies are necessary for your experience and cannot be blocked. You can also subscribe to No Ads. See our <Link href="/about/cookies">Cookie Consent Policy</Link> for more information.
       </ReactCookieConsent>
   );
 };

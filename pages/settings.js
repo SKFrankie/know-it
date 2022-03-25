@@ -44,8 +44,11 @@ const GeneralSettings = () => {
       <SettingButton href="/about/about-us">About</SettingButton>
       <SettingButton href="/about/terms-of-service">Terms of Service</SettingButton>
       <SettingButton href="/about/privacy-policy">Privacy Policy</SettingButton>
-      <SettingButton href="/about/credits" last>
+      <SettingButton href="/about/credits">
         Credits
+      </SettingButton>
+      <SettingButton href="/about/cookies">
+        Cookie Consent
       </SettingButton>
       <SettingButton href="/about/contact" last>
         Contact
