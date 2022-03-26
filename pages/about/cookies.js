@@ -156,7 +156,7 @@ const CookieConsent = () => {
       </Text>
 
       <UnorderedList>
-        <ListItem>Email: bluepopcornproduction@gmail.com</ListItem>
+        <ListItem>Email: contact@bluepopcorn.fun</ListItem>
       </UnorderedList>
     </AboutContainer>
   );
