@@ -13,6 +13,7 @@ const MoneyItems = ({ title, sellingItems, image, stripeLoading, setStripeLoadin
         fontSize={{ base: "xs", md: "3xl" }}
         fontWeight="bold"
         textAlign="center"
+        color="yellowStar"
       >
         {title}
       </Text>
