@@ -24,9 +24,9 @@ const Currency = ({
   );
 };
 
-const StarCurrency = ({ quantity = 0, ...props }) => {
+const StarCurrency = ({ quantity = null, ...props }) => {
   const [currentUser] = useUserContext();
-  quantity = currentUser.online && !quantity ? currentUser.stars : quantity;
+  quantity = currentUser.online && quantity === null ? currentUser.stars : quantity;
   return (
     <LinkOverlay href="/knowlympics" alignSelf="center">
       <Currency cursor="pointer" quantity={quantity} {...props} />
@@ -34,9 +34,9 @@ const StarCurrency = ({ quantity = 0, ...props }) => {
   );
 };
 
-const CoinCurrency = ({ quantity = 0, ...props }) => {
+const CoinCurrency = ({ quantity = null, ...props }) => {
   const [currentUser] = useUserContext();
-  quantity = currentUser.online && !quantity ? currentUser.coins : quantity;
+  quantity = currentUser.online && quantity === null ? currentUser.coins : quantity;
   return (
     <LinkOverlay href="/shop/coins" alignSelf="center">
       <CoinCurrencyNoUser cursor="pointer" quantity={quantity} {...props} />
@@ -59,7 +59,7 @@ const MedalCurrency = ({quantity = null, ...props}) => {
 }
 
 
-const StarPercentage = ({ quantity = 0, noAnimation=false, ...props }) => {
+const StarPercentage = ({ quantity = null, noAnimation=false, ...props }) => {
   const [previousQuantity, setPreviousQuantity] = useState(quantity);
   const [animateStar, setAnimateStar] = useState(false);
   const [currentUser] = useUserContext();
@@ -75,7 +75,7 @@ const StarPercentage = ({ quantity = 0, noAnimation=false, ...props }) => {
     }
     setPreviousQuantity(tmpQuantity);
   }, [currentUser.starPercentage]);
-  quantity = currentUser.online && !quantity ? currentUser.starPercentage : quantity;
+  quantity = currentUser.online && quantity === null ? currentUser.starPercentage : quantity;
   return (
     <Flex w="100%" alignItems="center" placeContent={{ base: "center", md: "initial" }}{...props} >
       <Progress
