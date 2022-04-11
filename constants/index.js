@@ -112,8 +112,8 @@ const POINTS = {
 };
 
 const PURCHASE_TYPES = {
-  HOURS_24_PREMIUM: "HOURS_24_PREMIUM",
-  MONTH_1_PREMIUM: "MONTH_1_PREMIUM",
+  MONTH_3_PREMIUM: "MONTH_3_PREMIUM",
+  MONTH_6_PREMIUM: "MONTH_6_PREMIUM",
   YEAR_1_PREMIUM: "YEAR_1_PREMIUM",
 
   STARS_5: "STARS_5",
@@ -142,22 +142,22 @@ const getCoinsDescription = (coins) => {
 
 const PURCHASES = {
   // premium
-  [PURCHASE_TYPES.HOURS_24_PREMIUM]: {
-    label: PURCHASE_TYPES.HOURS_24_PREMIUM,
-    name: "24 Hours",
-    description: getPremiumDescription("24 hours", "50"),
-    price: "0.99",
-    quantity: 24,
-    type: "hours",
+  [PURCHASE_TYPES.MONTH_3_PREMIUM]: {
+    label: PURCHASE_TYPES.MONTH_3_PREMIUM,
+    name: "3 Months",
+    description: getPremiumDescription("3 months", "500"),
+    price: "1.99",
+    quantity: 3,
+    type: "months",
     bonusCoins: 500,
     premium: true,
   },
-  [PURCHASE_TYPES.MONTH_1_PREMIUM]: {
-    label: PURCHASE_TYPES.MONTH_1_PREMIUM,
-    name: "1 Month",
-    description: getPremiumDescription("1 month", "350"),
-    price: "1.99",
-    quantity: 1,
+  [PURCHASE_TYPES.MONTH_6_PREMIUM]: {
+    label: PURCHASE_TYPES.MONTH_6_PREMIUM,
+    name: "6 Months",
+    description: getPremiumDescription("6 months", "1000"),
+    price: "2.99",
+    quantity: 6,
     type: "months",
     bonusCoins: 1000,
     premium: true,
@@ -165,8 +165,8 @@ const PURCHASES = {
   [PURCHASE_TYPES.YEAR_1_PREMIUM]: {
     label: PURCHASE_TYPES.YEAR_1_PREMIUM,
     name: "1 Year",
-    description: getPremiumDescription("1 year", "1000"),
-    price: "6.99",
+    description: getPremiumDescription("1 year", "2500"),
+    price: "4.99",
     quantity: 1,
     type: "years",
     bonusCoins: 2500,
