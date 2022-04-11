@@ -177,7 +177,7 @@ const Row = ({ display = true, user, index, length, ...props }) => {
         >
           <AvatarImage user={user} />
           <Text flex={1} textAlign="start">
-            {user.username}
+            {user.username.slice(0, 15)}
           </Text>
           <Text flex={3}>{index + 1}</Text>
           <MedalCurrency quantity={user.points} />
