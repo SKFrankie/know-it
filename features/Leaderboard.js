@@ -102,6 +102,7 @@ const Leaderboard = () => {
       borderRadius={10}
       my={4}
     >
+      <Text mb="2" fontSize="xl">LEADERBOARD</Text>
       <Text fontSize="lg">Weekly Ranking</Text>
       <Text>~</Text>
       <Text fontSize="xs">
