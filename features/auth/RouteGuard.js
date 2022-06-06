@@ -33,12 +33,12 @@ const RouteGuard = ({ children }) => {
       ...publicGames,
     ];
     const path = url.split("?")[0];
-    if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path)) {
+    if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path) && !path.includes("reset-password")) {
       setAuthorized(false);
       redirect(router, "/login");
     } else {
       setAuthorized(true);
-      if (currentUser.online && ["/login", "/signup"].includes(path)) {
+      if (currentUser.online && (["/login", "/signup"].includes(path) || path.includes("reset-password"))) {
         redirect(router, "/");
       }
     }
