@@ -1,6 +1,6 @@
-const storeToken = (token, router) => {
+const storeToken = (token, router, redirectUrl="/") => {
   localStorage.setItem("token", token);
-  redirect(router, "/");
+  redirect(router, redirectUrl);
 };
 
 const redirect = async (router, route) => {

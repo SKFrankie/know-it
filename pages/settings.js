@@ -4,6 +4,7 @@ import Button from "../ui/Button";
 import AccountSettingPopup from "../features/modals/AccountSettingPopup";
 import { logout } from "../features/auth/helper.js";
 import { useRouter } from "next/router";
+import { useEffect } from 'react';
 
 const Settings = () => {
   const router = useRouter();
@@ -58,6 +59,8 @@ const GeneralSettings = () => {
 };
 
 const AccountSettings = () => {
+  const router = useRouter();
+  const { openPassword } = router.query;
   const [{ tpo }] = useUserContext();
   return (
     <SettingBlock title="Account Settings">
@@ -72,7 +75,7 @@ const AccountSettings = () => {
           <AccountSettingButton label="mail" type="email">
             Email
           </AccountSettingButton>
-          <AccountSettingButton last label="password" type="password">
+          <AccountSettingButton defaultOpen={openPassword} last label="password" type="password">
             Password
           </AccountSettingButton>{" "}
         </>
@@ -119,8 +122,13 @@ const SettingTitle = ({ children, ...props }) => {
   );
 };
 
-const AccountSettingButton = ({ label, type, children, ...props }) => {
+const AccountSettingButton = ({ label, type, defaultOpen, children, ...props }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  useEffect(() => {
+    if (defaultOpen) {
+      onOpen();
+      }
+  }, [defaultOpen]);
   return (
     <>
       <SettingButton onClick={onOpen} {...props}>
