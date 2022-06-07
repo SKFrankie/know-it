@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Text, Image, Flex, Box } from "@chakra-ui/react";
+import { Text, Image, Flex, Box, Icon } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
+import { Icon as Iconify } from "@iconify/react";
 import GameContainer, { NextButton } from "./GameContainer";
 import { GAME_TYPES, POINTS } from "../../constants";
 import { basicQueryResultSupport } from "../../helpers/apollo-helpers";
@@ -8,7 +9,7 @@ import shuffleArray from "../../helpers/shuffleArray";
 import Error from "../Error";
 import Loading from "../Loading";
 import Button from "../../ui/Button";
-import InfoIcon from "../../ui/icons/InfoIcon";
+import { LinkOverlay } from "../../ui/Link";
 
 const RANDOM_GRAMMAR_GEEK = gql`
   query RandomGrammarGeek {
@@ -17,7 +18,10 @@ const RANDOM_GRAMMAR_GEEK = gql`
       sentence
       correctWord
       wrongWords
-      hint
+      modules {
+        grammarModuleId
+        name
+      }
     }
   }
 `;
@@ -52,7 +56,7 @@ const GrammarGeekGame = ({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState({});
-  const [hint, setHint] = useState("");
+  const [modules, setModules] = useState([]);
   const [showHint, setShowHint] = useState(false);
 
   const [answerArray, setAnswerArray] = useState([]);
@@ -95,7 +99,7 @@ const GrammarGeekGame = ({
     setAnswers(tmpAnswers);
 
     setQuestion(question.sentence);
-    setHint(question.hint);
+    setModules(question.modules);
     setShowHint(false);
 
     setAnswerArray(shuffleArray(Object.keys(tmpAnswers)));
@@ -124,7 +128,9 @@ const GrammarGeekGame = ({
           answerArray={answerArray}
           onAnswerClick={handleAnswerClick}
         />
-        <Hint hint={hint} showHint={showHint} />
+        {modules.map ((module) => (
+          <Hint key={module.grammarModuleId} hint={module.name} showHint={showHint} id={module.grammarModuleId} />
+        ))}
         {showHint && (
           <NextButton w={{ base: "100%", md: "40%" }} onNext={handleNextQuestion}>
             Continue
@@ -220,8 +226,11 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
   );
 };
 
-const Hint = ({ hint, showHint }) => {
+const Hint = ({ hint, showHint, id }) => {
   return (
+  <LinkOverlay href={`/grammar-module/${id}`} target="_blank"
+      minW={{ base: "60%", md: "50%" }}
+  >
     <Flex
       justify="center"
       align="center"
@@ -230,17 +239,26 @@ const Hint = ({ hint, showHint }) => {
       boxSizing="border-box"
       borderRadius="5px"
       m={4}
-      minW={{ base: "60%", md: "35%" }}
       color="#04C417"
       p={2}
       display={showHint && hint ? "flex" : "none"}
       position="relative"
       textAlign="center"
+      cursor="pointer"
+      _hover={{ color: "#00B9F5" }}
     >
+      <Icon
+        name="info-circle-outlined"
+        color="white"
+        as={Iconify}
+        icon="ant-design:info-circle-outlined"
+        sx={{position: "absolute", top: "5%", right: "5%",}}
+      />
       <Text m={6} fontSize="xl" fontWeight="bold">
         {hint?.toUpperCase()}
       </Text>
     </Flex>
+    </LinkOverlay>
   );
 };
 
