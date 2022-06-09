@@ -26,7 +26,7 @@ const GrammarModule = () => {
     onCompleted: (data) => {
       const { grammarModules } = data;
       const [tmpModule] = grammarModules;
-      const text = tmpModule.text.replace(/\n/g, '<br>');
+      const text = tmpModule.text
       setModule({...tmpModule, text});
     },
     onError: (error) => {
@@ -42,7 +42,7 @@ const GrammarModule = () => {
   return (
     <Box px={{base: 1, md: "8vh"}}>
       <SectionTitle pb="2vh">{module?.name}</SectionTitle>
-      <Text  dangerouslySetInnerHTML={{__html: module?.text}}/>
+      <Box className="html-text" dangerouslySetInnerHTML={{__html: module?.text}}/>
     </Box>
   );
 };

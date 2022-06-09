@@ -54,3 +54,7 @@ a {
   background: red;
   border-radius: 50%;
 }
+
+.html-text table tbody tr td{
+  border-width: 1px;
+}
