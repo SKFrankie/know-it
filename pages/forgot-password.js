@@ -20,7 +20,7 @@ export default function ForgotPassword() {
   const [mail, setMail] = useState("");
   const [success, setSuccess] = useState(false);
   const [resetPassword, { loading, error }] = useMutation(RESET_PASSWORD, {
-    onCompleted(data) {
+    onCompleted() {
       setSuccess(true);
     },
     ...basicQueryResultSupport,
