@@ -39,7 +39,10 @@ export default function Login() {
   return (
     <>
       <Text align="center" fontSize="xl">
-        No account yet? <Link color="#69fb69" href="/signup">Sign Up</Link>
+        No account yet?{" "}
+        <Link color="#69fb69" href="/signup">
+          Sign Up
+        </Link>
       </Text>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -90,6 +93,11 @@ export default function Login() {
           </Form>
         )}
       </Formik>
+      <Text align="center" fontSize="xl">
+        <Link color="#69fb69" href="/forgot-password">
+          I Forgot my password
+        </Link>
+      </Text>
     </>
   );
 }

@@ -21,6 +21,7 @@ const RouteGuard = ({ children }) => {
     const publicPaths = [
       "/login",
       "/signup",
+      "/forgot-password",
       "/",
       "/shop/coins",
       "/about/privacy-policy",

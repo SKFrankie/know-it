@@ -10,7 +10,7 @@ const Resetpassword = () => {
       router.push("/");
     }
       storeToken(token, router, "/settings?openPassword=true");
-  }, [token]);
+  }, [token, router]);
   return <div>Reset password</div>;
 };
 

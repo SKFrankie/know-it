@@ -128,7 +128,7 @@ const AccountSettingButton = ({ label, type, defaultOpen, children, ...props }) 
     if (defaultOpen) {
       onOpen();
       }
-  }, [defaultOpen]);
+  }, [defaultOpen, onOpen]);
   return (
     <>
       <SettingButton onClick={onOpen} {...props}>
