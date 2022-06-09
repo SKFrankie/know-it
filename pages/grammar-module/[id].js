@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { Box } from '@chakra-ui/react';
-import { SectionTitle, SubTitle } from "../../ui/Title";
+import { SectionTitle } from "../../ui/Title";
 import { Text } from '@chakra-ui/react';
 
 const GET_MODULES_FROM_ID = gql`
@@ -38,7 +38,7 @@ const GrammarModule = () => {
     if (!id) {
       router.push("/");
     }
-  }, [id]);
+  }, [id, router]);
   return (
     <Box px={{base: 1, md: "8vh"}}>
       <SectionTitle pb="2vh">{module?.name}</SectionTitle>
