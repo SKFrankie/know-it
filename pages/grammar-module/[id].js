@@ -4,7 +4,6 @@ import { gql } from '@apollo/client';
 import { useQuery } from '@apollo/client';
 import { Box } from '@chakra-ui/react';
 import { SectionTitle } from "../../ui/Title";
-import { Text } from '@chakra-ui/react';
 
 const GET_MODULES_FROM_ID = gql`
   query GrammarModules($grammarModuleId: ID!) {
