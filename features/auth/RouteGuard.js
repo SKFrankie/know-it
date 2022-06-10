@@ -34,7 +34,7 @@ const RouteGuard = ({ children }) => {
       ...publicGames,
     ];
     const path = url.split("?")[0];
-    if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path) && !path.includes("reset-password")) {
+    if (!currentUser.loading && !currentUser.online && !publicPaths.includes(path) && !path.includes("reset-password") && !path.includes("grammar-module")) {
       setAuthorized(false);
       redirect(router, "/login");
     } else {
