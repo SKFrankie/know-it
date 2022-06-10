@@ -21,6 +21,7 @@ const RANDOM_GRAMMAR_GEEK = gql`
       modules {
         grammarModuleId
         name
+        text
       }
     }
   }
@@ -129,7 +130,7 @@ const GrammarGeekGame = ({
           onAnswerClick={handleAnswerClick}
         />
         {modules.map ((module) => (
-          <Hint key={module.grammarModuleId} hint={module.name} showHint={showHint} id={module.grammarModuleId} />
+          <Hint key={module.grammarModuleId} hint={module.name} showHint={showHint} id={module.grammarModuleId}  activateLink={module.text}/>
         ))}
         {showHint && (
           <NextButton w={{ base: "100%", md: "40%" }} onNext={handleNextQuestion}>
@@ -226,9 +227,9 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
   );
 };
 
-const Hint = ({ hint, showHint, id }) => {
+const Hint = ({activateLink, hint, showHint, id }) => {
   return (
-  <LinkOverlay href={`/grammar-module/${id}`} target="_blank"
+  <LinkOverlay href={activateLink ? `/grammar-module/${id}` : ""} target={activateLink ? "_blank" : null}
       minW={{ base: "60%", md: "50%" }}
   >
     <Flex
