@@ -133,7 +133,13 @@ const GameContainer = ({
     if (stopTimer) {
       // stop timer and scroll to bottom (for small screens)
       if (container.current) {
-        container.current.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo(0, document.body.scrollHeight);
+
+        // console.log("container.current.scrollHeight", container.current.scrollHeight)
+        // container.current.scrollIntoView({
+        //   top: document.body.scrollHeigh,
+        //   behavior: "smooth",
+        // });
       }
       clearInterval(timerInterval.current);
     } else {
@@ -144,7 +150,7 @@ const GameContainer = ({
     return () => {
       clearInterval(timerInterval.current);
     };
-  }, [stopTimer]);
+  }, [stopTimer, container]);
 
   useEffect(() => {
     if (timer <= 0) {

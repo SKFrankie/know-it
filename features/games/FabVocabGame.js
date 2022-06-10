@@ -122,6 +122,7 @@ const FabVocabGame = ({
   };
 
   const handleNextQuestion = () => {
+    window.scrollTo(0, 0)
     setImageLoading(true);
     setStopTimer(false);
     if (onNextGame) {
