@@ -95,7 +95,7 @@ export default function Login() {
       </Formik>
       <Text align="center" fontSize="xl">
         <Link color="#69fb69" href="/forgot-password">
-          I Forgot my password
+          Oops! I forgot my password.
         </Link>
       </Text>
     </>

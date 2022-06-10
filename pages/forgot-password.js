@@ -40,7 +40,7 @@ export default function ForgotPassword() {
         <Input
           id="email"
           type="email"
-          placeholder="Email you used to sign up"
+          placeholder="Your Email Address"
           autoComplete="email"
           first={true}
           value={mail}
@@ -51,8 +51,8 @@ export default function ForgotPassword() {
       </FormControl>
       <SubmitButton isLoading={loading}>Reset my password</SubmitButton>
       </Form>
-      {error && <Error>Something went wrong, make sure you signed up with this email and you didn't use Google authentication</Error>}
-      {success && (<Text textAlign="center">We sent you an email with a link to reset your password!</Text>)}
+      {error && <Error>Something went wrong. Please enter the email address you used to sign up or continue using Google authentification.</Error>}
+      {success && (<Text textAlign="center">An email with a link to reset your password has been sent to you.  Be sure to check your SPAM.</Text>)}
     </ClientOnly>
   );
 }
