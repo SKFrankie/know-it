@@ -55,7 +55,7 @@ const GrammarModule = () => {
   }, [id, router]);
   return (
     <Box px={{ base: 1, md: "8vh" }}>
-      <SectionTitle pb="2vh">{module?.name}</SectionTitle>
+      <SectionTitle pb="2vh">{module?.name?.toUpperCase()}</SectionTitle>
       {isPremium(currentUser) ? (
         <>
           <Box mb="3" className="html-text" dangerouslySetInnerHTML={{ __html: module?.text }} />
