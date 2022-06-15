@@ -229,7 +229,7 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
 
 const Hint = ({activateLink, hint, showHint, id }) => {
   return (
-  <LinkOverlay href={activateLink ? `/grammar-module/${id}` : ""} target={activateLink ? "_blank" : null}
+  <LinkOverlay href={activateLink ? `/grammar-module/${id}` : null} target={activateLink ? "_blank" : null}
       minW={{ base: "60%", md: "50%" }}
   >
     <Flex
