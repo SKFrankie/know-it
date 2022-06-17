@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from 'react';
-import { gql } from '@apollo/client';
-import { useQuery } from '@apollo/client';
-import { Box } from '@chakra-ui/react';
+import { useEffect, useState } from "react";
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { Box } from "@chakra-ui/react";
 import { SectionTitle } from "../../ui/Title";
-import Link from '../../ui/Link';
-import { UnorderedList } from '@chakra-ui/react';
-import { ListItem } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/react';
+import Link from "../../ui/Link";
+import { UnorderedList } from "@chakra-ui/react";
+import { ListItem } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import { useUserContext } from "../../context/user";
 import { isPremium } from "../../helpers/premium";
 
@@ -27,21 +27,21 @@ const GET_MODULES_FROM_ID = gql`
   }
 `;
 
-const GrammarModule = ({showModules=false, moduleId}) => {
+const GrammarModule = ({ showModules = false, moduleId }) => {
   const router = useRouter();
   const { id } = router.query;
   const [module, setModule] = useState(null);
   const [modules, setModules] = useState([]);
   const [currentUser] = useUserContext();
 
-    console.log(moduleId, "moduleid");
+  console.log(moduleId, "moduleid");
   useQuery(GET_MODULES_FROM_ID, {
     variables: { grammarModuleId: id || moduleId },
     onCompleted: (data) => {
       const { grammarModules, allModules } = data;
       const [tmpModule] = grammarModules;
-      const text = tmpModule.text
-      setModule({...tmpModule, text});
+      const text = tmpModule.text;
+      setModule({ ...tmpModule, text });
       setModules(allModules);
     },
     onError: (error) => {
@@ -60,22 +60,7 @@ const GrammarModule = ({showModules=false, moduleId}) => {
       {isPremium(currentUser) ? (
         <>
           <Box mb="3" className="html-text" dangerouslySetInnerHTML={{ __html: module?.text }} />
-          {showModules && (
-            <>
-              <SectionTitle pb="2vh">More Modules</SectionTitle>
-              <UnorderedList>
-                {modules.map((module) => (
-                  <ListItem key={module.grammarModuleId}>
-                    {module.text ? (
-                      <Link href={`/grammar-module/${module.grammarModuleId}`}>{module.name}</Link>
-                    ) : (
-                      <Text>{module.name}</Text>
-                    )}
-                  </ListItem>
-                ))}
-              </UnorderedList>
-            </>
-          )}
+          {showModules && <AllModules modules={modules} />}
         </>
       ) : (
         <Box textAlign="center">
@@ -89,4 +74,24 @@ const GrammarModule = ({showModules=false, moduleId}) => {
   );
 };
 
+const AllModules = ({ modules }) => {
+  return (
+    <>
+      <SectionTitle pb="2vh">More Modules</SectionTitle>
+      <UnorderedList>
+        {modules.map((module) => (
+          <ListItem key={module.grammarModuleId}>
+            {module.text ? (
+              <Link href={`/grammar-module/${module.grammarModuleId}`}>{module.name}</Link>
+            ) : (
+              <Text>{module.name}</Text>
+            )}
+          </ListItem>
+        ))}
+      </UnorderedList>
+    </>
+  );
+};
+
 export default GrammarModule;
+export { AllModules };

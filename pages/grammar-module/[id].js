@@ -1,8 +1,7 @@
-
-import GrammarModule from '../../features/games/GrammarModule';
+import GrammarModule from "../../features/games/GrammarModule";
 
 const GrammarModulePage = () => {
-  return <GrammarModule showModules/>
+  return <GrammarModule showModules />;
 };
 
-export default GrammarModulepage;
+export default GrammarModulePage;
