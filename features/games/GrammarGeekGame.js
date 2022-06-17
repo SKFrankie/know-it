@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, Image, Flex, Box, Icon } from "@chakra-ui/react";
+import { Text, Image, Flex, Box, Icon, useDisclosure } from "@chakra-ui/react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { Icon as Iconify } from "@iconify/react";
 import GameContainer, { NextButton } from "./GameContainer";
@@ -10,6 +10,8 @@ import Error from "../Error";
 import Loading from "../Loading";
 import Button from "../../ui/Button";
 import { LinkOverlay } from "../../ui/Link";
+import Modal from '../../ui/Modal';
+import GrammarModule from './GrammarModule';
 
 const RANDOM_GRAMMAR_GEEK = gql`
   query RandomGrammarGeek {
@@ -130,7 +132,7 @@ const GrammarGeekGame = ({
           onAnswerClick={handleAnswerClick}
         />
         {modules.map ((module) => (
-          <Hint key={module.grammarModuleId} hint={module.name} showHint={showHint} id={module.grammarModuleId}  activateLink={module.text}/>
+          <Hint key={module.grammarModuleId} hint={module.name} showHint={showHint} id={module.grammarModuleId}  text={module.text}/>
         ))}
         {showHint && (
           <NextButton w={{ base: "100%", md: "40%" }} onNext={handleNextQuestion}>
@@ -227,12 +229,15 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
   );
 };
 
-const Hint = ({activateLink, hint, showHint, id }) => {
+const Hint = ({text, hint, showHint, id }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  console.log("id", id)
   return (
-  <LinkOverlay href={activateLink ? `/grammar-module/${id}` : null} target={activateLink ? "_blank" : null}
-      minW={{ base: "60%", md: "50%" }}
-  >
+    // <LinkOverlay href={text ? `/grammar-module/${id}` : null} target={text ? "_blank" : null}
+    //     minW={{ base: "60%", md: "50%" }}
+    // >
     <Flex
+      onClick={text ? onOpen : null}
       justify="center"
       align="center"
       flexDirection="column"
@@ -253,13 +258,16 @@ const Hint = ({activateLink, hint, showHint, id }) => {
         color="white"
         as={Iconify}
         icon="ant-design:info-circle-outlined"
-        sx={{position: "absolute", top: "5%", right: "5%",}}
+        sx={{ position: "absolute", top: "5%", right: "5%" }}
       />
       <Text m={6} fontSize="xl" fontWeight="bold">
         {hint?.toUpperCase()}
       </Text>
+      <Modal isOpen={isOpen} onClose={onClose}>
+      <GrammarModule moduleId={id}/>
+      </Modal>
     </Flex>
-    </LinkOverlay>
+    // </LinkOverlay>
   );
 };
 
