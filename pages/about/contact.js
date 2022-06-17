@@ -25,6 +25,9 @@ const Contact = () => {
           Twitter
         </Link>
       </ListItem>
+      <ListItem>
+          Email: contact@bluepopcorn.fun
+      </ListItem>
       </UnorderedList>
     </AboutContainer>
   );
