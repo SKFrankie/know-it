@@ -27,7 +27,7 @@ const SHOP_SECTIONS = [
 const ABOUT_SECTIONS = [
   { name: "Privacy Policy", path: "/about/privacy-policy" },
   { name: "Terms of Service", path: "/about/terms-of-service" },
-  { name: "Credits", path: "/about/credits" },
+  { name: "How to Play", path: "/about/credits" },
   { name: "About Us", path: "/about/about-us" },
   { name: "Cookie Consent", path: "/about/cookies" },
   { name: "Contact", path: "/about/contact" },
