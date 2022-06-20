@@ -10,6 +10,7 @@ import { ListItem } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 import { useUserContext } from "../../context/user";
 import { isPremium } from "../../helpers/premium";
+import Loading from '../Loading';
 
 const GET_MODULES_FROM_ID = gql`
   query GrammarModules($grammarModuleId: ID!) {
@@ -34,7 +35,7 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
   const [modules, setModules] = useState([]);
   const [currentUser] = useUserContext();
 
-  const [fetchModule] = useLazyQuery(GET_MODULES_FROM_ID, {
+  const [fetchModule, {loading}] = useLazyQuery(GET_MODULES_FROM_ID, {
     fetchPolicy: "no-cache",
     onCompleted: (data) => {
       const { grammarModules, allModules } = data;
@@ -54,6 +55,10 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
     }
     fetchModule({ variables: { grammarModuleId: id || moduleId } });
   }, [id, router]);
+
+  if (loading) {
+    return <Loading/>
+  }
   return (
     <Box px={{ base: 1, md: "8vh" }}>
       <SectionTitle pb="2vh">{currentModule?.name?.toUpperCase()}</SectionTitle>
