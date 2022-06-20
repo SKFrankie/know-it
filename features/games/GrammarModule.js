@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { gql } from "@apollo/client";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { Box } from "@chakra-ui/react";
 import { SectionTitle } from "../../ui/Title";
 import Link from "../../ui/Link";
@@ -30,12 +30,12 @@ const GET_MODULES_FROM_ID = gql`
 const GrammarModule = ({ showModules = false, moduleId }) => {
   const router = useRouter();
   const { id } = router.query;
-  const [module, setModule] = useState(null);
+  const [currentModule, setModule] = useState(null);
   const [modules, setModules] = useState([]);
   const [currentUser] = useUserContext();
 
-  useQuery(GET_MODULES_FROM_ID, {
-    variables: { grammarModuleId: id || moduleId },
+  const [fetchModule] = useLazyQuery(GET_MODULES_FROM_ID, {
+    fetchPolicy: "no-cache",
     onCompleted: (data) => {
       const { grammarModules, allModules } = data;
       const [tmpModule] = grammarModules;
@@ -52,13 +52,14 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
     if (!id && !moduleId) {
       router.push("/");
     }
+    fetchModule({ variables: { grammarModuleId: id || moduleId } });
   }, [id, router]);
   return (
     <Box px={{ base: 1, md: "8vh" }}>
-      <SectionTitle pb="2vh">{module?.name?.toUpperCase()}</SectionTitle>
+      <SectionTitle pb="2vh">{currentModule?.name?.toUpperCase()}</SectionTitle>
       {isPremium(currentUser) ? (
         <>
-          <Box mb="3" className="html-text" dangerouslySetInnerHTML={{ __html: module?.text }} overflow="scroll" />
+          <Box mb="3" className="html-text" dangerouslySetInnerHTML={{ __html: currentModule?.text }} overflowX="auto" />
           {showModules && <AllModules modules={modules} />}
         </>
       ) : (
