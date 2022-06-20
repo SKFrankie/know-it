@@ -52,6 +52,21 @@ export default function Home() {
         }
         zIndex={1}
       />
+      <GaIconButton
+        position="fixed"
+        top={{ base: "30vh", md: "45vh" }}
+        left="2%"
+        boxShadow="0px 2.16px 2.16px rgba(0, 0, 0, 0.25), inset 0px 2.16px 2.16px rgba(0, 0, 0, 0.25)"
+        bg="orange"
+        label="Survey"
+        boxSize={{ base: 10, md: "60px" }}
+        target="_blank"
+        href="/grammar-module"
+        icon={
+          <Icon boxSize={{ base: 7, md: "50px" }} as={Iconify} icon="emojione:closed-book" />
+        }
+        zIndex={1}
+      />
       {currentUser.online ? (
         <>
           <GiftButton position="fixed" top={{ base: "10vh", md: "25vh" }} right="2%" />
