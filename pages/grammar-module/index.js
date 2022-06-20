@@ -10,7 +10,7 @@ import { useUserContext } from "../../context/user";
 
 const GET_MODULES = gql`
   query GrammarModules {
-    grammarModules {
+    grammarModules(options: {sort: {name: ASC}}) {
       grammarModuleId
       name
       text

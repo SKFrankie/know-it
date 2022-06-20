@@ -19,7 +19,7 @@ const GET_MODULES_FROM_ID = gql`
       text
     }
 
-    allModules: grammarModules {
+    allModules: grammarModules(options: {sort: {name: ASC}}) {
       grammarModuleId
       name
       text
