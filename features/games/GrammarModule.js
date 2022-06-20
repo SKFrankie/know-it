@@ -34,7 +34,6 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
   const [modules, setModules] = useState([]);
   const [currentUser] = useUserContext();
 
-  console.log(moduleId, "moduleid");
   useQuery(GET_MODULES_FROM_ID, {
     variables: { grammarModuleId: id || moduleId },
     onCompleted: (data) => {
@@ -59,7 +58,7 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
       <SectionTitle pb="2vh">{module?.name?.toUpperCase()}</SectionTitle>
       {isPremium(currentUser) ? (
         <>
-          <Box mb="3" className="html-text" dangerouslySetInnerHTML={{ __html: module?.text }} />
+          <Box mb="3" className="html-text" dangerouslySetInnerHTML={{ __html: module?.text }} overflow="scroll" />
           {showModules && <AllModules modules={modules} />}
         </>
       ) : (
