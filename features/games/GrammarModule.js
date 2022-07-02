@@ -71,7 +71,7 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
         <Box textAlign="center">
           <Text mb="2">Sorry you need to be a premium user to see this content</Text>
           <Link href="/shop/money" fontSize="3xl">
-            I want to become a premium user
+          CLICK HERE to get the Premium Bundle and become a Premium User.
           </Link>
         </Box>
       )}
