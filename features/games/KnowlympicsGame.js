@@ -24,7 +24,7 @@ const KnowlympicsGame = () => {
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [stopTimer, setStopTimer] = useState(false);
   useEffect(() => {
-    if (!currentUser.stars === 0) {
+    if (currentUser.stars <= 0) {
       // redirect to home page if user has no stars to play the game
       redirect(router, "/");
     }
