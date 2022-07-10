@@ -55,6 +55,12 @@ a {
   border-radius: 50%;
 }
 
-.html-text table tbody tr td{
+/* grammar modules text html */
+
+.html-text table tbody tr td {
   border-width: 1px;
+}
+
+.html-text ul {
+  padding: revert;
 }
