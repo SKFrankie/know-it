@@ -64,3 +64,7 @@ a {
 .html-text ul {
   padding: revert;
 }
+
+.grammarModule td {
+  padding: 5px;
+}
