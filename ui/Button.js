@@ -62,6 +62,7 @@ const KnowlympicsButton = ({
   children,
   href = "/games/knowlympics",
   text = "Knowlympics",
+  text2 = "",
   disabled = true,
   ...props
 }) => {
@@ -80,7 +81,7 @@ const KnowlympicsButton = ({
       <Podium px="4" />
       <NextLink href={href} passHref>
         <ChakraButton
-        className={currentUser?.stars ? "notification" : null}
+          className={currentUser?.stars ? "notification" : null}
           borderRadius="10px"
           w={{ base: "100%", md: "30vw" }}
           py="25px"
@@ -92,6 +93,12 @@ const KnowlympicsButton = ({
           onClick={GaEvent}
         >
           {text}
+          {text2 ? (
+            <>
+              {" "}
+              <br /> {text2}{" "}
+            </>
+          ) : null}
         </ChakraButton>
       </NextLink>
       {disabled && (

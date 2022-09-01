@@ -98,7 +98,7 @@ export default function Home() {
           </Flex>
         ))}
       </Flex>
-      <KnowlympicsButton href="/knowlympics" disabled={!currentUser.online} />
+      <KnowlympicsButton text2="Leaderboard" href="/knowlympics" disabled={!currentUser.online} />
       <GoogleAd/>
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
       <FirstGigil />
