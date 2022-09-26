@@ -63,10 +63,7 @@ const Leaderboard = () => {
 
   const isInBasicRanking = (user, index) => {
     if (index >= TOP_USERS_NUMBER) {
-      if (
-        data.rankingUsers.length >= index + 2 &&
-        data.rankingUsers[index + 1].userId === currentUser.userId
-      ) {
+      if ( data.rankingUsers.length >= index + 2 && data.rankingUsers[index + 1].userId === currentUser.userId ) {
         // is after current user
         return true;
       }

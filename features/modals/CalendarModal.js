@@ -94,10 +94,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
     }
     const lastSeenDate = new Date(currentUser.lastSeen);
     const today = new Date();
-    if (
-      today.getMonth() !== lastSeenDate.getMonth() ||
-      today.getYear() !== lastSeenDate.getYear()
-    ) {
+    if ( today.getMonth() !== lastSeenDate.getMonth() || today.getYear() !== lastSeenDate.getYear() ) {
       // New month!
       UpdateLastSeen({ variables: { daysInArow: 1 } }).then(() => {
         giveGift();
