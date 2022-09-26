@@ -88,10 +88,8 @@ const PremiumDescription = ({ onOpen, stripeLoading, setStripeLoading, displayBu
         Premium Bundles
       </Text>
       <Text textAlign="center" mb={2} fontSize="md" fontWeight="md">
-        Want NO ADS? 
-        Get a premium bundle 
-        and 
-        enjoy the master grammar geek guide+ in bonus
+        Want NO ADS?<br/>
+        Get a premium bundle and enjoy the master grammar geek guide+ in bonus
       </Text>
       {onOpen && (
         <Button onClick={onOpen} mb={2} w="90%" display={{ base: "flex", md: "none" }}>
