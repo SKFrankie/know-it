@@ -12,16 +12,17 @@ const Modal = ({ isOpen = false, onClose, children, ...props }) => {
       isOpen={isOpen}
       onClose={onClose}
       motionPreset="slideInBottom"
-      allowPinchZoom
+      allowPinchZoom3
       {...props}
     >
-      <ModalOverlay />
       <ModalContent
         alignSelf={{ base: "initial", md: "center" }}
         isCentered
         bg="deepDarkBlue"
         top={{ base: "0vh", md: "25vh", lg: "8vh" }}
-        p="5"
+        py="5"
+
+        margin="0"
         minH={{ base: "100%", md: "50%" }}
         minW={{ base: "100%", md: "80%" }}
       >
