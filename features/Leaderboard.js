@@ -46,10 +46,13 @@ const Leaderboard = ({ ...props }) => {
       setUsers(data.rankingUsers);
       return;
     }
+
     const filteredUsers = data?.rankingUsers.filter((user) =>
       user.username.toLowerCase().includes(value.toLowerCase())
     );
     setUsers(filteredUsers);
+    setIndexStart(0);
+    setCurrentPage(1);
   };
 
   const displayUser = (user) => {
@@ -77,7 +80,7 @@ const Leaderboard = ({ ...props }) => {
             fontSize="lg" 
             fontWeight="semibold"
           >
-            Weekly Ranking
+            KNOWLYMPICS Weekly Ranking
           </Text>
           <Text>~</Text>
           <Text fontSize="xs">
@@ -86,7 +89,7 @@ const Leaderboard = ({ ...props }) => {
           <Flex direction="column" justify="center" align="center" w="100%">
             <Searchbar onChange={handleSearch} />
             
-            {(data?.rankingUsers || []).map((user, index) => {
+            {(users || []).map((user, index) => {
               if (user.userId === currentUser.userId) {
                 return (
                   <Row
@@ -103,7 +106,7 @@ const Leaderboard = ({ ...props }) => {
               return null;
             })}
             
-            {(data?.rankingUsers || []).slice(indexStart, indexStart + 10).map((user, index) => {
+            {(users || []).slice(indexStart, indexStart + 10).map((user, index) => {
                 return (
                   <Row
                     display={displayUser(user)}
@@ -112,7 +115,7 @@ const Leaderboard = ({ ...props }) => {
                     index={indexStart + index}
                     length={users.length}
                     borderTopRadius={index === 0 ? 6 : 0}
-                    borderBottomRadius={index + 1 === (data?.rankingUsers || []).slice(indexStart, indexStart + 10).length ? 6 : 0}
+                    borderBottomRadius={index + 1 === (users || []).slice(indexStart, indexStart + 10).length ? 6 : 0}
                   />
                 );
             })}
@@ -127,7 +130,12 @@ const Leaderboard = ({ ...props }) => {
                 bg="transparent"
                 _focus={{ boxShadow: "none" }}
                 _hover={{ opacity: 0.8 }}
-                onClick={() => { setCurrentPage(currentPage - 1); setIndexStart(indexStart - 10) }}
+                onClick={() => { 
+                  if (currentPage > 1) { 
+                    setCurrentPage(currentPage - 1); 
+                    setIndexStart(indexStart - 10) 
+                  } 
+                }}
               >
                 <Icon 
                   as={Iconify} 
@@ -137,7 +145,7 @@ const Leaderboard = ({ ...props }) => {
                 />
               </ChakraButton>
                 {
-                  [...Array(Math.ceil((data?.rankingUsers || []).length/10))].map((e, i) => (
+                  [...Array(Math.ceil((users || []).length/10))].map((e, i) => (
                     <ChakraButton onClick={() => { setCurrentPage(i + 1); setIndexStart((i) * 10) }}
                       key={'page-'+i}
                       bg="transparent"
@@ -159,7 +167,12 @@ const Leaderboard = ({ ...props }) => {
                 bg="transparent"
                 _focus={{ boxShadow: "none" }}
                 _hover={{ opacity: 0.8 }}
-                onClick={() => { setCurrentPage(currentPage + 1); setIndexStart(indexStart + 10) }}
+                onClick={() => { 
+                  if (currentPage < Math.ceil((users || []).length/10)) { 
+                    setCurrentPage(currentPage + 1); 
+                    setIndexStart(indexStart + 10) 
+                  } 
+                }}
               >
                 <Icon 
                   as={Iconify} 
