@@ -55,7 +55,9 @@ const Profile = ({ userId }) => {
   }, [userId, currentUser]);
 
   return (
-    <Flex direction="column">
+    <Flex 
+      direction="column"
+    >
       {user ? (
         <>
           <ProfileFlex direction="row" justify="center">
@@ -132,6 +134,7 @@ const AvatarPicture = ({ avatar, ...props }) => {
         boxSize={{ base: "40vh", md: "30vh" }}
         w="auto"
         h="auto"
+        borderRadius={{ base: "50%", md: "10px" }}
         src={
           avatar?.picture
             ? avatar?.picture
@@ -139,9 +142,10 @@ const AvatarPicture = ({ avatar, ...props }) => {
         }
         alt="avatar"
       />
-      {avatar?.collections?.length && !avatar?.collections[0].name.includes("MONSTARS") ? (
-        <Text fontSize="xs">{avatar?.collections[0].name}</Text>
-      ) : null}
+      {
+        avatar?.collections?.length && !avatar?.collections[0].name.includes("MONSTARS") ? 
+        ( <Text fontSize="xs">{avatar?.collections[0].name}</Text> ) : null
+      }
     </Flex>
   );
 };
