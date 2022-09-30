@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Text, Input, Image } from "@chakra-ui/react";
+import { Flex, Text, Input, Image, Box, Button as ChakraButton } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
 import { getFirstDayOfWeek, getLastDayOfWeek } from "./games/helpers";
 import { basicQueryResultSupport } from "../helpers/apollo-helpers";
@@ -8,6 +8,8 @@ import {MedalCurrency} from "./Currency"
 import Loading from "./Loading";
 import Error from "./Error";
 import NextLink from "next/link";
+import { Icon } from "@chakra-ui/react";
+import { Icon as Iconify } from "@iconify/react";
 
 // different query to get current week rank
 const RANKING_USERS = gql`
@@ -23,10 +25,13 @@ const RANKING_USERS = gql`
   }
 `;
 
-const Leaderboard = () => {
-  const TOP_USERS_NUMBER = 50;
+const Leaderboard = ({ ...props }) => {
   const [currentUser] = useUserContext();
   const [users, setUsers] = useState([]);
+
+	const [indexStart, setIndexStart] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+
   const { data, loading, error } = useQuery(RANKING_USERS, {
     fetchPolicy: "no-cache",
     onCompleted: (data) => {
@@ -54,97 +59,118 @@ const Leaderboard = () => {
     return false;
   };
 
-  const isInTop = (index) => {
-    if (users.length < TOP_USERS_NUMBER || index < TOP_USERS_NUMBER) {
-      return true;
-    }
-    return false;
-  };
-
-  const isInBasicRanking = (user, index) => {
-    if (index >= TOP_USERS_NUMBER) {
-      if (
-        data.rankingUsers.length >= index + 2 &&
-        data.rankingUsers[index + 1].userId === currentUser.userId
-      ) {
-        // is after current user
-        return true;
-      }
-      if (user.userId === currentUser.userId) {
-        // is current user
-        return true;
-      }
-      if (index - 1 >= 0 && data.rankingUsers[index - 1].userId === currentUser.userId) {
-        // is before current user
-        return true;
-      }
-    }
-    return false;
-  };
-
-  const isTruncatable = (index) => {
-    if (index === TOP_USERS_NUMBER) {
-      return true;
-    }
-    if (index - 2 >= 0 && data.rankingUsers[index - 2].userId === currentUser.userId) {
-      return true;
-    }
-    return false;
-  };
-
   return (
     <Flex
       direction="column"
       bg="deepDarkBlue"
       textAlign="center"
-      p={2}
-      w={{ base: "90%", md: "80%" }}
+      justifyItems="center"
+      p={{ base: 2, md: 3 }}
+      w={{ base: "100%", md: "80%" }}
       borderRadius={10}
-      my={4}
+      {...props}
     >
-      <Text mb="2" fontSize="xl">LEADERBOARD</Text>
-      <Text fontSize="lg">Weekly Ranking</Text>
-      <Text>~</Text>
-      <Text fontSize="xs">
-        {getFirstDayOfWeek()} - {getLastDayOfWeek()}
-      </Text>
+
       {data && (
-        <Flex direction="column" justify="center" align="center" w="100%" mt={2}>
-          <Searchbar onChange={handleSearch} />
-          <Head/>
-          {(data?.rankingUsers || []).map((user, index) => {
-            if (isInTop(index)) {
-              return (
-                <Row
-                  display={displayUser(user)}
-                  user={user}
-                  key={user.userId}
-                  index={index}
-                  length={users.length}
+        <>
+          <Text 
+            fontSize="lg" 
+            fontWeight="semibold"
+          >
+            Weekly Ranking
+          </Text>
+          <Text>~</Text>
+          <Text fontSize="xs">
+            {getFirstDayOfWeek()} - {getLastDayOfWeek()}
+          </Text>
+          <Flex direction="column" justify="center" align="center" w="100%">
+            <Searchbar onChange={handleSearch} />
+            
+            {(data?.rankingUsers || []).map((user, index) => {
+              if (user.userId === currentUser.userId) {
+                return (
+                  <Row
+                    display={displayUser(user)}
+                    user={user}
+                    key={user.userId}
+                    index={index}
+                    length={users.length}
+                    borderRadius={6}
+                    marginBottom={3}
+                  />
+                );
+              }
+              return null;
+            })}
+            
+            {(data?.rankingUsers || []).slice(indexStart, indexStart + 10).map((user, index) => {
+                return (
+                  <Row
+                    display={displayUser(user)}
+                    user={user}
+                    key={user.userId}
+                    index={indexStart + index}
+                    length={users.length}
+                    borderTopRadius={index === 0 ? 6 : 0}
+                    borderBottomRadius={index + 1 === (data?.rankingUsers || []).slice(indexStart, indexStart + 10).length ? 6 : 0}
+                  />
+                );
+            })}
+            
+            <Flex
+              alignItems="center"
+              placeContent="center"
+              w="100%"
+              mt={2}
+            >
+              <ChakraButton 
+                bg="transparent"
+                _focus={{ boxShadow: "none" }}
+                _hover={{ opacity: 0.8 }}
+                onClick={() => { setCurrentPage(currentPage - 1); setIndexStart(indexStart - 10) }}
+              >
+                <Icon 
+                  as={Iconify} 
+                  icon="ep:arrow-left-bold"
+                  h="0.9rem"
+                  w="0.9rem"
                 />
-              );
-            }
-            if (isInBasicRanking(user, index)) {
-              return (
-                <Row
-                  display={displayUser(user)}
-                  user={user}
-                  key={user.userId}
-                  index={index}
-                  length={users.length}
+              </ChakraButton>
+                {
+                  [...Array(Math.ceil((data?.rankingUsers || []).length/10))].map((e, i) => (
+                    <ChakraButton onClick={() => { setCurrentPage(i + 1); setIndexStart((i) * 10) }}
+                      key={'page-'+i}
+                      bg="transparent"
+                      color={ (i+1) === currentPage ? "orange":"white" }
+                      _focus={{ boxShadow: "none" }}
+                      _hover={{ opacity: 0.8 }}
+                      p={0}
+                      m={0}
+                      mx={1}
+                      minW={0}
+                    >
+                      <Text p={0} m={0}>
+                        { Number(i + 1) }
+                      </Text>
+                    </ChakraButton>
+                  ))
+                }
+              <ChakraButton 
+                bg="transparent"
+                _focus={{ boxShadow: "none" }}
+                _hover={{ opacity: 0.8 }}
+                onClick={() => { setCurrentPage(currentPage + 1); setIndexStart(indexStart + 10) }}
+              >
+                <Icon 
+                  as={Iconify} 
+                  icon="ep:arrow-right-bold"
+                  h="0.9rem"
+                  w="0.9rem"
                 />
-              );
-            }
-            if (isTruncatable(index)) {
-              return (
-                <Text key={user.userId} fontSize="xs">
-                  ...
-                </Text>
-              );
-            }
-            return null;
-          })}
-        </Flex>
+              </ChakraButton>
+            </Flex>
+          </Flex>
+        </>
       )}
       {loading && <Loading />}
       {error && <Error />}
@@ -152,74 +178,100 @@ const Leaderboard = () => {
   );
 };
 
-const Row = ({ display = true, user, index, length, ...props }) => {
+const Row = ({ display = true, user, index, ...props }) => {
   const [currentUser] = useUserContext();
   return (
     display && (
       <NextLink href={`/profile/${user.userId}`}>
         <Flex
-          my="0.5px"
-          borderTopRadius={0}
-          borderBottomRadius={index + 1 === length ? 6 : 0}
+          my="1px"
           bg={user.userId === currentUser?.userId ? "orange" : "blueClear.500"}
           textAlign="center"
           w="100%"
           key={user.userId}
           direction="row"
           justify="space-between"
-          p={1}
-          px={5}
+          pl={2}
           fontSize={{ base: "sm", md: "md" }}
           align="center"
           cursor="pointer"
           _hover={{ opacity: 0.8 }}
+          overflow="hidden"
           {...props}
         >
-          <AvatarImage user={user} />
-          <Text flex={1} textAlign="start">
-            {user.username.slice(0, 15)}
-          </Text>
-          <Text flex={3}>{index + 1}</Text>
-          <MedalCurrency quantity={user.points} />
+          <Flex align="center">
+            <AvatarImage user={user} />
+            <Text
+              textAlign="start"
+              fontSize={{ base: "sm", md: "md" }}
+              fontWeight="semibold"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
+            >
+              {user.username.slice(0, 15)}
+            </Text>
+          </Flex>
+
+          <Flex align="center" h="100%">
+            <MedalCurrency
+              textAlign="center" 
+              alignItems="center" 
+              justifyContent="center"
+              m={0}
+              pr={2}
+              quantity={user.points} 
+              rightIcon
+            />
+            <Text 
+              w={"70px"}
+              minW={"70px"}
+              flex={3} 
+              px={5}
+              py={2}
+              bg={user.userId === currentUser?.userId ? "#B48F32" : "darkBlue"}
+            >
+              {index + 1}
+            </Text>
+          </Flex>
         </Flex>
       </NextLink>
     )
   );
 };
 
-const Head = () => {
-  return (
-    <Flex
-      direction="row"
-      justify="space-between"
-      align="center"
-      w="100%"
-      p={1}
-      px={5}
-      fontSize={{ base: "sm", md: "md" }}
-      align="center"
-      bg="blueClear.500"
-      borderTopRadius={6}
-      textAlign="center"
-    >
-    <Flex w="40px" h="40px" justify="center" align="center"/>
-      <Text flex={1} textAlign="start">
-        Username
-      </Text>
-      <Text flex={3}>Ranking</Text>
-      <Text mx={2}>
-        Medals
-      </Text>
-    </Flex>
-  );
-};
+// const Head = () => {
+//   return (
+//     <Flex
+//       direction="row"
+//       justify="space-between"
+//       align="center"
+//       w="100%"
+//       p={1}
+//       px={5}
+//       fontSize={{ base: "sm", md: "md" }}
+//       align="center"
+//       bg="blueClear.500"
+//       borderTopRadius={6}
+//       textAlign="center"
+//     >
+//     <Flex w="40px" h="40px" justify="center" align="center"/>
+//       <Text flex={1} textAlign="start">
+//         Username
+//       </Text>
+//       <Text flex={3}>Ranking</Text>
+//       <Text mx={2}>
+//         Medals
+//       </Text>
+//     </Flex>
+//   );
+// };
 
 const AvatarImage = ({ user }) => {
   return (
     <Image
-      boxSize="40px"
+      boxSize="25px"
       mr={2}
-      borderRadius={5}
       src={
         user?.currentAvatar?.picture ||
         "https://res.cloudinary.com/dvdqswi8x/image/upload/v1646038725/Avatar%20Picture/bws9ei18vgswkgitk6qs.jpg"

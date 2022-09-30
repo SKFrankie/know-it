@@ -14,7 +14,7 @@ const Currency = ({
   ...props
 }) => {
   return (
-    <Flex color={color} alignItems="center" mx={2} {...props}>
+    <Flex color={color} alignItems="center" {...props}>
       {!rightIcon && <Image boxSize="30px" src={src} alt={alt} /> }
       <Text mx={1} color={color} fontSize={fontSize}>
         {quantity}
@@ -54,7 +54,7 @@ const MedalCurrency = ({quantity = null, ...props}) => {
   const [currentUser] = useUserContext();
   quantity = currentUser.online && (quantity ===null) ? currentUser.points : quantity;
   return (
-    <Currency rightIcon quantity={quantity} color="white" src="/images/medal.png" alt="medal" {...props} />
+    <Currency quantity={quantity} color="white" src="/images/medal.png" alt="medal" {...props} />
   );
 }
 

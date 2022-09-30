@@ -12,7 +12,7 @@ const Layout = ({children}) => {
     }
   }, []);
   return (
-    <Box as="body" p="5%">
+    <Box as="body" p={'1rem'}>
       {children}
     </Box>
   );

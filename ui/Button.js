@@ -22,6 +22,7 @@ const SubmitButton = ({ children, ...props }) => {
     </ChakraButton>
   );
 };
+
 const Button = ({ children, href, ...props }) => {
   if (href) {
     return (
@@ -62,8 +63,8 @@ const KnowlympicsButton = ({
   children,
   href = "/games/knowlympics",
   text = "Knowlympics",
-  text2 = "",
   disabled = true,
+  podium = false,
   ...props
 }) => {
   const [cookies] = useCookies(["CookieConsent"]);
@@ -78,7 +79,7 @@ const KnowlympicsButton = ({
   const [currentUser] = useUserContext();
   return (
     <Box textAlign="center" filter={disabled ? "grayscale(1)" : null} {...props}>
-      <Podium px="4" />
+      {podium && <Podium px="4" />}
       <NextLink href={href} passHref>
         <ChakraButton
           className={currentUser?.stars ? "notification" : null}
@@ -93,12 +94,6 @@ const KnowlympicsButton = ({
           onClick={GaEvent}
         >
           {text}
-          {text2 ? (
-            <>
-              {" "}
-              <br /> {text2}{" "}
-            </>
-          ) : null}
         </ChakraButton>
       </NextLink>
       {disabled && (
