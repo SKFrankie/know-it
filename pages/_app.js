@@ -1,5 +1,4 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import "../styles/globals.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ApolloProvider } from "@apollo/client";
@@ -10,6 +9,8 @@ import { UserWrapper } from "../context/user";
 import * as ga from "../lib/ga";
 import { RouteGuard } from "../features/auth/RouteGuard";
 import Layout from "../features/Layout";
+
+import "../styles/globals.css";
 
 const theme = extendTheme({
   colors: {

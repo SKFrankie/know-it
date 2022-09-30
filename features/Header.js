@@ -88,6 +88,7 @@ const DesktopHeader = () => {
         position="fixed"
         top="0"
         left="0"
+        p={2}
         justify="space-between"
         width="100%"
         zIndex="2"
@@ -98,7 +99,6 @@ const DesktopHeader = () => {
               Know It!
             </Text>
           </NextLink>
-          <Text fontSize="xs">a BluePopcorn Production</Text>
         </Flex>
         <Flex justify="space-around" align="center">
           {SECTIONS.map((section) =>

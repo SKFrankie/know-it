@@ -10,7 +10,11 @@ const Settings = () => {
   const router = useRouter();
   const [{ online }] = useUserContext();
   return (
-    <Flex direction="column">
+    <Flex 
+    direction="column"
+    maxWidth={{ base: "100%", md: "60%" }}
+    margin="0 auto"
+    >
       <GeneralSettings />
       {online && (
         <>
