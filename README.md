@@ -2,7 +2,26 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, copy .env.local.example to .env.local and fill up the things you need :
+
+```
+NEXT_PUBLIC_GOOGLE_ANALYTICS=
+NEXT_PUBLIC_APOLLO_SERVER_URI=http://localhost:4001/graphql
+NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID=
+NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_SECRET=
+NEXT_PUBLIC_GOOGLE_ADSENSE=
+NEXT_PUBLIC_GOOGLE_ADSENSE_TEST=on
+
+NEXT_PUBLIC_CLIENT_URL=http://localhost:3000
+
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+```
+
+
+
+Then, run the development server:
 
 ```bash
 npm run dev

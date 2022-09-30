@@ -43,13 +43,7 @@ const PremiumButton = ({ packageItem, stripeLoading, setStripeLoading }) => {
       m={5}
       cursor="pointer"
       _hover={{ opacity: "0.8" }}
-      onClick={
-        stripeLoading || !item
-          ? null
-          : () => {
-              createCheckOutSession(item, setStripeLoading);
-            }
-      }
+      onClick={ stripeLoading || !item ? null : () => { createCheckOutSession(item, setStripeLoading); }}
     >
       <Flex
         direction="column"
