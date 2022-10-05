@@ -58,7 +58,6 @@ const PodiumStep = ({ podium, step }) => {
           }}
         >
           <Image
-            display={{ base: "none", lg: "block" }}
             src="/images/gigil2.png"
             alt="trophy"
             mb="-10px"
@@ -68,7 +67,7 @@ const PodiumStep = ({ podium, step }) => {
               width: "3.75rem",
             }}
           />
-          <Image
+          {/* <Image
             display={{ base: "block", lg: "none" }}
             src="/images/trophy.png"
             alt="trophy"
@@ -77,7 +76,7 @@ const PodiumStep = ({ podium, step }) => {
               overflow: "hidden",
               width: "1.75rem",
             }}
-          />
+          /> */}
         </motion.div>
       )}
       <motion.div

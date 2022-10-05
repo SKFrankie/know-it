@@ -33,6 +33,7 @@ const theme = extendTheme({
     },
     yellowStar: "#FFBE0B",
     orange: "#F0940B",
+    green: "#037F01",
   },
   styles: {
     global: {

@@ -183,23 +183,6 @@ const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
   );
 };
 
-// const MobileHeader = () => {
-//   const [currentUser] = useUserContext();
-//   const router = useRouter();
-//   const isGame = router.pathname.includes("/games");
-//   return (
-//     !isGame && (
-//       <MobileHeaderBox currentUser={currentUser} router={router}>
-//         <CoinCurrency />
-//         <LinkOverlay position="absolute" top="20px" href="/profile">
-//           <MyAvatar />
-//         </LinkOverlay>
-//         <StarCurrency />
-//       </MobileHeaderBox>
-//     )
-//   );
-// };
-
 const MobileGameHeader = ({ maxTime = 100, timer = 0 }) => {
   const [currentUser] = useUserContext();
   const router = useRouter();

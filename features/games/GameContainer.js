@@ -204,11 +204,14 @@ const GameContainer = ({
     setGameState({ ...gameState, stars: parseInt(tmpStarPercentage / 100) });
   }, [initialUserStarPercentage, gameState.starPercentage]);
   return timer > 0 ? (
-    <Box ref={container}>
+    <Box refs={container}>
       <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
-      <Box h={{ base: "5vh", lg: "10vh" }} />
-      <Flex direction="column" {...props}>
+      <Flex 
+        mt={{ base:"10vh", lg:"6vh" }} 
+        direction="column" 
+        {...props}
+      >
         {knowlympics && (
           <>
           <Text m={3} fontSize="md" fontWeight="md">

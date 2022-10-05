@@ -57,6 +57,7 @@ const Profile = ({ userId, ...props }) => {
   return (
     <Flex 
       direction="column"
+      pb="5vh"
       {...props}
     >
       {user ? (

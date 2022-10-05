@@ -78,7 +78,6 @@ const GameSection = ({...props}) => {
 			>
 				{
 					GAMES_SECTIONS.map((game) => (
-						<>
 							<Button
 								key={ game.name }
 								href={ game.path }
@@ -96,7 +95,6 @@ const GameSection = ({...props}) => {
 									<Text>{ game.name }</Text>
 								</Box>
 							</Button>
-						</>
 					))
 				}
 			</Grid>

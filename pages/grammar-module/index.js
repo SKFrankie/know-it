@@ -3,7 +3,6 @@ import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
 import Link from "../../ui/Link";
 import { isPremium } from "../../helpers/premium";
 import { useUserContext } from "../../context/user";
@@ -36,9 +35,8 @@ const GrammarModulesPage = () => {
         <AllModules modules={modules} />
       ) : (
         <Box textAlign="center">
-          <Text mb="2">Sorry you need to be a premium user to see this content</Text>
           <Link href="/shop/money" fontSize="3xl">
-          CLICK HERE to get the Premium Bundle and become a Premium User.
+            Click Here to get the Grammar Geek Guide+ and become a Premium User
           </Link>
         </Box>
       )}

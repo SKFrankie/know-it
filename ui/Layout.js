@@ -12,9 +12,7 @@ const Layout = ({children}) => {
     }
   }, []);
   return (
-    <Box 
-      as="body"
-    >
+    <Box>
       { children }
     </Box>
   );

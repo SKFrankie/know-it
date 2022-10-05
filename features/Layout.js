@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
         }
       </Head>
       <DesktopHeader />
-      <Box as="body" p="1rem">
+      <Box>
         { children } 
       </Box>
       <CookieConsent />

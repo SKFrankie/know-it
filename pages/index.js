@@ -18,12 +18,13 @@ import HowToPlayPopup from "../features/modals/HowToPlayPopup";
 import StripeComponent from "../features/stripe/StripeComponent";
 import GoogleAd from "../features/GoogleAd";
 import GameSection from "../features/GameSection";
-import Podium from "../features/Podium";
 
 import Button from "../ui/Button";
 import { KnowlympicsButton } from "../ui/Button";
 import { MyAvatar } from "../ui/Avatar";
 import GiftIcon from "../ui/icons/GiftIcon";
+
+import { isPremium } from "../helpers/premium";
 
 const TOP_RANKING_USERS = gql`
   query RankingUsers {
@@ -48,12 +49,10 @@ export default function Home() {
     fetchPolicy: "no-cache",
     onCompleted: (data) => {
       setTopRank(data.rankingUsers.slice(0, 5));
-      //retrieve the user's index from the list
       const userIndex = data.rankingUsers.findIndex(
         (user) => user.userId === currentUser.id
       );
       setUserRanking(userIndex + 1);
-      console.log("userIndex", userIndex);
     },
     ...basicQueryResultSupport,
   });
@@ -73,11 +72,11 @@ export default function Home() {
           content="A learning by gaming Progressive Web App to test and improve your English!"
         />
       </Head>
+
       <Container
-        // maxW={{ lg:"70vw" }}
         minW={{ base: "100vw", lg: "85vw", xl: "90vw" }}
         mr={{ lg:"1vw" }}
-        py={{ base: "0.5rem" }}
+        pt={{ base: "2rem" }}
         pb={{ base: "5rem", lg: "2rem" }}
       >
         <Flex
@@ -111,9 +110,7 @@ export default function Home() {
               </Flex>
             </Box>
           </Flex>
-          <NextLink
-            href="/settings"
-          >
+          <NextLink href="/settings">
             <Icon 
               as={Iconify}
               icon="ci:settings-filled"
@@ -122,13 +119,14 @@ export default function Home() {
             />
           </NextLink>
         </Flex>
+
         <Box
           display={{ base: "none", lg: "grid" }}
           gridTemplateColumns="repeat(2, 1fr)"
           gridGap={{ base: "0", lg: "3vh" }}
           mb={{ lg: "3vh" }}
         >
-          <Box 
+          <Box
             bg="deepDarkBlue"
             borderRadius="15px"
             padding="1.2rem"
@@ -152,23 +150,16 @@ export default function Home() {
               right="0"
               left="0"
             >
-              <NextLink
-                marginLeft="auto"
-                marginRight="auto"
+              <Button
+                mx="auto"
+                px="5rem"
                 href="/shop/coins"
               >
-                <Button
-                  bg="blueClear.500"
-                  marginLeft="auto"
-                  marginRight="auto"
-                  px="5rem"
-                >
-                  Go to Shop
-                </Button>
-              </NextLink>
+                Go to Shop
+              </Button>
             </Flex>
           </Box>
-          <Grid 
+          <Grid
             gridTemplateRows="repeat(2, 1fr)"
             gridGap={{ base: "0", lg: "3vh" }}
           >
@@ -206,18 +197,18 @@ export default function Home() {
                   )
                 }
                 <Flex>
-                  <NextLink href="/games/knowlympics">
-                      <Button
-                        bg="orange"
-                        marginLeft="auto"
-                        marginRight="auto"
-                        fontSize="0.8rem"
-                        w="100%"
-                        mx="3rem"
-                      >
-                        Knowlympics
-                      </Button>
-                  </NextLink>
+                  <Button
+                    className={currentUser?.stars ? "notification" : null}
+                    bg="green"
+                    marginLeft="auto"
+                    marginRight="auto"
+                    fontSize="0.8rem"
+                    w="100%"
+                    mx="3rem"
+                    href="/games/knowlympics"
+                  >
+                    Knowlympics
+                  </Button>
                 </Flex>
               </Box>
 
@@ -261,52 +252,48 @@ export default function Home() {
                 alignItems="center"
               >
               {data && topRank.map((user, index) => (
-                  <>
-                    <NextLink
-                      href={`/profile/${user.userId}`}
-                      cursor="pointer"
+                  <NextLink
+                    key={user.userId}
+                    href={`/profile/${user.userId}`}
+                  >
+                    <Flex
+                      alignItems="center"
+                      flexDirection="column"
+                      justify="space-between"
+                      minW={{ base: "5vw", lg: "8vw" }}
                     >
-                      <Flex
-                        key={user.userId}
-                        alignItems="center"
-                        flexDirection="column"
-                        justify="space-between"
-                        minW={{ base: "5vw", lg: "8vw" }}
+                      <Box
+                        position="relative"
+                        borderRadius="0.5rem"
+                        overflow="hidden"
                       >
-                        <Box
-                          position="relative"
+                        <MyAvatar
                           borderRadius="0.5rem"
-                          overflow="hidden"
-                        >
-                          <MyAvatar
-                            borderRadius="0.5rem"
-                            w="100%"
-                            h={{ base: "5vh", lg: "8vh", xl: "10vh", '2xl': "15vh" }}
-                            src={user.currentAvatar.picture}
-                            /* shadow */
-                            boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-                          />
-                          <Text
-                            position="absolute"
-                            top="0"
-                            right="0"
-                            bg="blueClear.500"
-                            px="0.7rem"
-                            pb="0.1rem"
-                            borderBottomLeftRadius="0.5rem"
-                          >
-                            { (index + 1) }
-                          </Text>
-                        </Box>
+                          w={{ lg: "6vw" }}
+                          h="100%"
+                          src={user.currentAvatar.picture}
+                          boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+                        />
                         <Text
-                          fontWeight="semibold"
-                          fontSize={{ base: "0.5rem", lg: "0.7rem", xl: "0.8rem", '2xl': "1rem" }}
+                          position="absolute"
+                          top="0"
+                          right="0"
+                          bg="blueClear.500"
+                          px="0.7rem"
+                          pb="0.1rem"
+                          borderBottomLeftRadius="0.5rem"
                         >
-                          {user.username}
+                          { (index + 1) }
                         </Text>
-                      </Flex>
-                    </NextLink>
-                  </>
+                      </Box>
+                      <Text
+                        fontWeight="semibold"
+                        fontSize={{ base: "0.5rem", lg: "0.7rem", xl: "0.8rem", '2xl': "1rem" }}
+                      >
+                        {user.username}
+                      </Text>
+                    </Flex>
+                  </NextLink>
                 ))
               }
               {loading && <Loading />}
@@ -315,14 +302,16 @@ export default function Home() {
             </Box>
           </Grid>
         </Box>
+
         <GameSection mb={{ base: "5vh", lg: "0" }}/>
+
         <Flex
           bg={{ lg:"#036788" }}
-          p={{ lg: "1rem" }}
           position={{ lg: "fixed" }}
-          left={{ lg: "0" }}
           top={{ lg: "4.25rem" }}
+          left={{ lg: "0" }}
           height={{ lg: "100vh" }}
+          p={{ lg: "1rem" }}
           pt={{ lg: "2rem" }}
           pb={{ lg: "15vh" }}
           flexDirection={{ base: "row", lg: "column" }}
@@ -336,12 +325,12 @@ export default function Home() {
               label="Grammar Guide+"
               boxSize={{ base: "3.5rem", lg: "5rem" }}
               target="_blank"
-              href="/grammar-module"
               marginRight="auto"
               marginLeft="auto"
               mb="0.5rem"
+              href={ isPremium(currentUser) ? "/grammar-module" : "/shop/money" }
               icon={
-                <Icon boxSize={{ base: "2.3rem", lg: "3rem" }} as={Iconify} icon="emojione:closed-book" />
+                <Image boxSize={{ base: "2.3rem", lg: "3rem" }} src="/images/GrammarGeekImageRight.png" alt="Grammar Guide+" />
               }
             />
             <Text 
@@ -393,7 +382,7 @@ export default function Home() {
             <GaIconButton
               boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
               colorScheme="blueClear"
-              label="MGG"
+              label="Leaderboard"
               boxSize={{ base: "3.5rem", lg: "5rem" }}
               target="_blank"
               href="/knowlympics"
@@ -401,12 +390,7 @@ export default function Home() {
               marginLeft="auto"
               mb="0.5rem"
               icon={
-                <Icon 
-                  boxSize={{ base: "2.3rem", lg: "3rem" }} 
-                  as={Iconify} 
-                  icon="iconoir:leaderboard-star"
-                  textColor="#F0940B"
-                />
+                <Image boxSize={{ base: "1.8rem", lg: "1.8rem" }} src="/images/trophy.png" alt="Leaderboard" />
               }
             />
             <Text 
@@ -417,13 +401,16 @@ export default function Home() {
             </Text>
           </Flex>
         </Flex>
+        
         <KnowlympicsButton
           display={{ base: "flex", lg: "none" }}
+          bg="green"
           text="Knowlympics"
           width="100%"
           disabled={!currentUser?.stars}
         />
       </Container>
+
       <GoogleAd/>
       <RewardPopup isOpen={isOpen} onClose={onClose} rankingGift={currentUser.rankingGift} />
       <FirstGigil />
