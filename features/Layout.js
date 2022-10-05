@@ -1,8 +1,10 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import React from "react";
-import { DesktopHeader, MobileNavbar, MobileHeader } from "./Header";
-import CookieConsent from "./CookieConsent";
 import Head from "next/head";
+
+import { DesktopHeader, MobileNavbar } from "./Header";
+import CookieConsent from "./CookieConsent";
+
 import { useUserContext } from "../context/user";
 import { isPremium } from "../helpers/premium";
 
@@ -12,16 +14,19 @@ const Layout = ({ children }) => {
     <>
       <Head>
         <title>Know It!</title>
-        {!isPremium(currentUser) && <script
-          data-ad-client={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />}
+        {
+          !isPremium(currentUser) && 
+          <script
+            data-ad-client={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          />
+        }
       </Head>
       <DesktopHeader />
-      <MobileHeader />
-      <Box h={{ base: "10vh", md: "5vh" }} />
-      {children} <Box h={{ base: "10vh", md: "0" }} />
+      <Box>
+        { children } 
+      </Box>
       <CookieConsent />
       <MobileNavbar />
     </>

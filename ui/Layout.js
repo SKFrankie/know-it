@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import {Box} from "@chakra-ui/react"
+import React, { useEffect } from 'react'
+import { Box } from "@chakra-ui/react"
 
 const Layout = ({children}) => {
   useEffect(() => {
@@ -12,8 +12,8 @@ const Layout = ({children}) => {
     }
   }, []);
   return (
-    <Box as="body" p={'1rem'}>
-      {children}
+    <Box>
+      { children }
     </Box>
   );
 }

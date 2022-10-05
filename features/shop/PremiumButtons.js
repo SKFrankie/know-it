@@ -13,7 +13,7 @@ const PremiumButtons = ({ stripeLoading, setStripeLoading, ...props }) => {
     PURCHASE_TYPES.YEAR_2_PREMIUM,
   ];
   return (
-    <Flex direction={{ base: "column", md: "row" }} justify="space-around" {...props}>
+    <Flex direction={{ base: "column", lg: "row" }} justify="space-around" {...props}>
       {packages.map((item) => (
         <PremiumButton
           key={item}

@@ -204,11 +204,14 @@ const GameContainer = ({
     setGameState({ ...gameState, stars: parseInt(tmpStarPercentage / 100) });
   }, [initialUserStarPercentage, gameState.starPercentage]);
   return timer > 0 ? (
-    <Box ref={container}>
+    <Box refs={container}>
       <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
-      <Box h={{ base: "5vh", md: "10vh" }} />
-      <Flex direction="column" {...props}>
+      <Flex 
+        mt={{ base:"10vh", lg:"6vh" }} 
+        direction="column" 
+        {...props}
+      >
         {knowlympics && (
           <>
           <Text m={3} fontSize="md" fontWeight="md">
@@ -228,9 +231,9 @@ const GameContainer = ({
 
 const GameTitle = ({ game, knowlympics = false }) => {
   return (
-    <Flex justifyContent="center" alignItems={{ base: "end", md: "center" }} mb={3}>
+    <Flex justifyContent="center" alignItems={{ base: "end", lg: "center" }} mb={3}>
       <GameImage game={game} />
-      <Text fontSize={{ base: "xl", sm: "2xl", md: "5xl" }} fontWeight="500">
+      <Text fontSize={{ base: "xl", sm: "2xl", lg: "5xl" }} fontWeight="500">
         {game.label}
       </Text>
       <Info id={knowlympics ? "knowlympics" : game?.id} />
@@ -246,8 +249,8 @@ const GameImage = ({ game, right = false, ...props }) => {
       alt={game.label}
       h="auto"
       display="table"
-      w={right ? { base: "50px", md: "100px" } : { base: "50px", md: "100px" }}
-      marginBottom={{ base: "0px", md: "-30px" }}
+      w={right ? { base: "50px", lg: "100px" } : { base: "50px", lg: "100px" }}
+      mb={{ base: "0px", lg: "-30px" }}
       mx={2}
       transform={right && !game.right ? "scaleX(-1)" : "scaleX(1)"}
       {...props}
@@ -282,22 +285,22 @@ const EndingScreen = ({
   return (
     <Flex direction="column" justifyContent="center" alignItems="center">
       <Flex
-        position={{ base: "absolute", md: "initial" }}
+        position={{ base: "absolute", lg: "initial" }}
         top="5"
         justifyContent="center"
-        alignItems={{ base: "end", md: "center" }}
+        alignItems={{ base: "end", lg: "center" }}
       >
-        <Text fontSize={{ base: "4xl", md: "70px" }} fontWeight="500">
+        <Text fontSize={{ base: "4xl", lg: "70px" }} fontWeight="500">
           Time's up!
         </Text>
-        <HourGlassIcon boxSize={{ base: "10", md: "20" }} />
+        <HourGlassIcon boxSize={{ base: "10", lg: "20" }} />
       </Flex>
       <Image src={`/images/timesup/${randomGigil}`} alt={randomGigil} w="auto" maxH="200px" />
       <Flex
         direction="column"
         justifyContent="center"
         alignItems="center"
-        w={{ base: "100%", md: "40%" }}
+        w={{ base: "100%", lg: "40%" }}
       >
         {/* <Text>Watch this ad for 10% more coins</Text> */}
         {knowlympics && (

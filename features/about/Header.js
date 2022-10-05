@@ -11,7 +11,7 @@ const Header = () => {
     <Flex w="100%" flexWrap="wrap">
       {ABOUT_SECTIONS.map((section) => (
         <Link
-          fontSize={{ base: "sm", md: "md" }}
+          fontSize={{ base: "sm", lg: "md" }}
           m={3}
           color="deepDarkBlue"
           fontWeight={router.pathname === section.path ? "extrabold" : "normal"}

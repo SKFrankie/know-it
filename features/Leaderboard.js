@@ -68,8 +68,8 @@ const Leaderboard = ({ ...props }) => {
       bg="deepDarkBlue"
       textAlign="center"
       justifyItems="center"
-      p={{ base: 2, md: 3 }}
-      w={{ base: "100%", md: "80%" }}
+      p={{ base: 2, lg: 3 }}
+      w={{ base: "100%", lg: "80%" }}
       borderRadius={10}
       {...props}
     >
@@ -77,10 +77,16 @@ const Leaderboard = ({ ...props }) => {
       {data && (
         <>
           <Text 
+            fontSize="1.5rem" 
+            fontWeight="semibold"
+          >
+            KNOWLYMPICS
+          </Text>
+          <Text 
             fontSize="lg" 
             fontWeight="semibold"
           >
-            KNOWLYMPICS Weekly Ranking
+            Weekly Ranking
           </Text>
           <Text>~</Text>
           <Text fontSize="xs">
@@ -99,7 +105,7 @@ const Leaderboard = ({ ...props }) => {
                     index={index}
                     length={users.length}
                     borderRadius={6}
-                    marginBottom={3}
+                    mb={3}
                   />
                 );
               }
@@ -205,7 +211,7 @@ const Row = ({ display = true, user, index, ...props }) => {
           direction="row"
           justify="space-between"
           pl={2}
-          fontSize={{ base: "sm", md: "md" }}
+          fontSize={{ base: "sm", lg: "md" }}
           align="center"
           cursor="pointer"
           _hover={{ opacity: 0.8 }}
@@ -216,7 +222,7 @@ const Row = ({ display = true, user, index, ...props }) => {
             <AvatarImage user={user} />
             <Text
               textAlign="start"
-              fontSize={{ base: "sm", md: "md" }}
+              fontSize={{ base: "sm", lg: "md" }}
               fontWeight="semibold"
               whiteSpace="nowrap"
               overflow="hidden"
@@ -252,33 +258,6 @@ const Row = ({ display = true, user, index, ...props }) => {
     )
   );
 };
-
-// const Head = () => {
-//   return (
-//     <Flex
-//       direction="row"
-//       justify="space-between"
-//       align="center"
-//       w="100%"
-//       p={1}
-//       px={5}
-//       fontSize={{ base: "sm", md: "md" }}
-//       align="center"
-//       bg="blueClear.500"
-//       borderTopRadius={6}
-//       textAlign="center"
-//     >
-//     <Flex w="40px" h="40px" justify="center" align="center"/>
-//       <Text flex={1} textAlign="start">
-//         Username
-//       </Text>
-//       <Text flex={3}>Ranking</Text>
-//       <Text mx={2}>
-//         Medals
-//       </Text>
-//     </Flex>
-//   );
-// };
 
 const AvatarImage = ({ user }) => {
   return (

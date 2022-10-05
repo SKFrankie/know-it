@@ -79,7 +79,7 @@ const SynonymRollGame = ({
 
   return (
     <>
-      <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "sm" }}>
+      <Text textAlign="center" justify="center" fontSize={{ base: "sm", lg: "sm" }}>
         Pair up words with the{" "}
         <Box as="span" fontWeight="bold">
           same or similar
