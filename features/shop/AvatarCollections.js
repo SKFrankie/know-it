@@ -70,8 +70,8 @@ const AvatarCollection = ({ collection, now }) => {
         {collection.name}
       </Text>
       <Flex
-        flexWrap={{ base: "nowrap", md: "wrap" }}
-        overflow={{ base: "scroll", md: "initial" }}
+        flexWrap={{ base: "nowrap", lg: "wrap" }}
+        overflow={{ base: "scroll", lg: "initial" }}
         w="100%"
       >
         {collection.avatars.map((avatar) => (
@@ -178,13 +178,13 @@ const AvatarImage = ({ picture, big = false, ...props }) => {
       p={2}
       borderRadius="4px"
       bg="white"
-      boxSize={big ? { base: "250px", md: "410px" } : { base: "100px", md: "120px" }}
+      boxSize={big ? { base: "250px", lg: "410px" } : { base: "100px", lg: "120px" }}
       {...props}
     >
       <Image
         alignSelf="center"
         src={picture}
-        maxH={big ? { base: "200px", md: "410px" } : { base: "80px", md: "100px" }}
+        maxH={big ? { base: "200px", lg: "410px" } : { base: "80px", lg: "100px" }}
       />
     </Flex>
   );

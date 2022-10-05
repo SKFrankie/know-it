@@ -84,7 +84,7 @@ const KnowlympicsButton = ({
         <ChakraButton
           className={currentUser?.stars ? "notification" : null}
           borderRadius="10px"
-          w={{ base: "100%", md: "30vw" }}
+          w={{ base: "100%", lg: "30vw" }}
           py="25px"
           bg="orange"
           fontSize="xl"

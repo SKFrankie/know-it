@@ -58,7 +58,7 @@ const PodiumStep = ({ podium, step }) => {
           }}
         >
           <Image
-            display={{ base: "none", md: "block" }}
+            display={{ base: "none", lg: "block" }}
             src="/images/gigil2.png"
             alt="trophy"
             mb="-10px"
@@ -69,7 +69,7 @@ const PodiumStep = ({ podium, step }) => {
             }}
           />
           <Image
-            display={{ base: "block", md: "none" }}
+            display={{ base: "block", lg: "none" }}
             src="/images/trophy.png"
             alt="trophy"
             style={{
@@ -86,7 +86,7 @@ const PodiumStep = ({ podium, step }) => {
           borderTopLeftRadius: ".5rem",
           borderTopRightRadius: ".5rem",
           display: "flex",
-          marginBottom: -1,
+          mb: -1,
           placeContent: "center",
           width: "4rem",
           boxShadow: "inset 0px 4.54962px 4.54962px rgba(0, 0, 0, 0.25)",

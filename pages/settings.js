@@ -11,9 +11,10 @@ const Settings = () => {
   const [{ online }] = useUserContext();
   return (
     <Flex 
-    direction="column"
-    maxWidth={{ base: "100%", md: "60%" }}
-    margin="0 auto"
+      direction="column"
+      maxWidth={{ base: "100%", lg: "60%" }}
+      px={{ base: "2vh", lg: "0" }}
+      mx="auto"
     >
       <GeneralSettings />
       {online && (
@@ -24,7 +25,7 @@ const Settings = () => {
               logout(router);
             }}
             mt={5}
-            display={{ base: "block", md: "none" }}
+            display={{ base: "block", lg: "none" }}
             bg="#A80909"
           >
             Logout
@@ -115,7 +116,7 @@ const SettingBlock = ({ children, title, ...props }) => {
 const SettingTitle = ({ children, ...props }) => {
   return (
     <Text
-      fontSize={{ base: "lg", md: "2xl" }}
+      fontSize={{ base: "lg", lg: "2xl" }}
       fontWeight="700"
       color="deepDarkBlue"
       mb={3}

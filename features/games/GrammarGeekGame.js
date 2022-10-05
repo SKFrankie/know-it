@@ -135,7 +135,7 @@ const GrammarGeekGame = ({
           <Hint key={module.grammarModuleId} hint={module.name} showHint={showHint} id={module.grammarModuleId}  text={module.text}/>
         ))}
         {showHint && (
-          <NextButton w={{ base: "100%", md: "40%" }} onNext={handleNextQuestion}>
+          <NextButton w={{ base: "100%", lg: "40%" }} onNext={handleNextQuestion}>
             Continue
           </NextButton>
         )}
@@ -157,9 +157,9 @@ const Question = ({ question }) => {
       boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
       borderRadius="15px"
       m={4}
-      w={{ base: "100%", md: "50%" }}
+      w={{ base: "100%", lg: "50%" }}
     >
-      <Text textAlign="center" m={4} fontSize={{ base: "2xl", md: "3xl" }}>
+      <Text textAlign="center" m={4} fontSize={{ base: "2xl", lg: "3xl" }}>
         {question}
       </Text>
     </Flex>
@@ -198,8 +198,8 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
     <Flex
       justify="center"
       align="center"
-      flexDirection={{ base: "column", md: "row" }}
-      w={{ base: "90%", md: "100%" }}
+      flexDirection={{ base: "column", lg: "row" }}
+      w={{ base: "90%", lg: "100%" }}
       m={4}
       flexWrap="wrap"
       alignContent="center"
@@ -215,7 +215,7 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
             w="auto"
             minW="fit-content"
             display="table"
-            w={{ base: "100%", md: "20%" }}
+            w={{ base: "100%", lg: "20%" }}
             m={4}
             onClick={() => {
               handleClick(answer);
@@ -234,7 +234,7 @@ const Hint = ({text, hint, showHint, id }) => {
   console.log("id", id)
   return (
     // <LinkOverlay href={text ? `/grammar-module/${id}` : null} target={text ? "_blank" : null}
-    //     minW={{ base: "60%", md: "50%" }}
+    //     minW={{ base: "60%", lg: "50%" }}
     // >
     <Flex
       onClick={text ? onOpen : null}

@@ -13,7 +13,7 @@ const LoginButton = () => {
         aria-label="login"
         size="lg"
         rightIcon={<Icon boxSize={7} color="white" as={Iconify} icon="fe:login" />}
-        display={{ base: "flex", md: "none" }}
+        display={{ base: "flex", lg: "none" }}
       >
         Login
       </ChakraButton>

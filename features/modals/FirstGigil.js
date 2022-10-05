@@ -70,7 +70,7 @@ const FirstGigil = () => {
         alignItems="center"
         justifyContent="center"
         textAlign="center"
-        p={{ base: 5, md: 10 }}
+        p={{ base: 5, lg: 10 }}
       >
         <Text fontSize="xl" fontWeight="bold">
           Select your first Gigil Monster!

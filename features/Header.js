@@ -33,7 +33,7 @@ const MobileNavbar = () => {
       <Flex
         boxShadow="0px -4px 4px rgba(255, 255, 255, 0.25)"
         bg="darkBlue"
-        display={isGame ? "none" : { base: "flex", md: "none" }}
+        display={isGame ? "none" : { base: "flex", lg: "none" }}
         position="fixed"
         bottom="0"
         left="0"
@@ -84,8 +84,7 @@ const DesktopHeader = () => {
     !NO_HEADER_ROUTES.includes(router.pathname) && (
       <Flex
         bg="deepDarkBlue"
-        display={{ base: "none", md: "flex" }}
-        position="fixed"
+        display={{ base: "none", lg: "flex" }}
         top="0"
         left="0"
         p={2}
@@ -157,7 +156,7 @@ const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
     (currentUser.online ? (
       <Flex
         bg="darkBlue"
-        display={{ base: "flex", md: "none" }}
+        display={{ base: "flex", lg: "none" }}
         position="fixed"
         top="0"
         left="0"
@@ -174,7 +173,7 @@ const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
       <Flex position="absolute" right="0" top="0">
         <LoginButton />
         <IconLink
-          display={{ base: "flex", md: "none" }}
+          display={{ base: "flex", lg: "none" }}
           item={HOME_SECTION}
           key={HOME_SECTION.name}
           router={router}
@@ -184,22 +183,22 @@ const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
   );
 };
 
-const MobileHeader = () => {
-  const [currentUser] = useUserContext();
-  const router = useRouter();
-  const isGame = router.pathname.includes("/games");
-  return (
-    !isGame && (
-      <MobileHeaderBox currentUser={currentUser} router={router}>
-        <CoinCurrency />
-        <LinkOverlay position="absolute" top="20px" href="/profile">
-          <MyAvatar />
-        </LinkOverlay>
-        <StarCurrency />
-      </MobileHeaderBox>
-    )
-  );
-};
+// const MobileHeader = () => {
+//   const [currentUser] = useUserContext();
+//   const router = useRouter();
+//   const isGame = router.pathname.includes("/games");
+//   return (
+//     !isGame && (
+//       <MobileHeaderBox currentUser={currentUser} router={router}>
+//         <CoinCurrency />
+//         <LinkOverlay position="absolute" top="20px" href="/profile">
+//           <MyAvatar />
+//         </LinkOverlay>
+//         <StarCurrency />
+//       </MobileHeaderBox>
+//     )
+//   );
+// };
 
 const MobileGameHeader = ({ maxTime = 100, timer = 0 }) => {
   const [currentUser] = useUserContext();
@@ -222,8 +221,8 @@ const DesktopGameHeader = ({ maxTime = 100, timer = 0 }) => {
       position="fixed"
       left="0"
       w="30%"
-      top={{ base: "0", md: "auto" }}
-      display={{ base: currentUser?.online ? "none" : "flex", md: "flex" }}
+      top={{ base: "0", lg: "auto" }}
+      display={{ base: currentUser?.online ? "none" : "flex", lg: "flex" }}
     >
       <Timer maxTime={maxTime} timer={timer} mx={3} />
       {currentUser.online ? <StarPercentage /> : null}
@@ -231,4 +230,4 @@ const DesktopGameHeader = ({ maxTime = 100, timer = 0 }) => {
   );
 };
 
-export { MobileNavbar, DesktopHeader, MobileHeader, MobileGameHeader, DesktopGameHeader };
+export { MobileNavbar, DesktopHeader, MobileGameHeader, DesktopGameHeader };

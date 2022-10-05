@@ -41,14 +41,14 @@ const GaIconButton = ({ label = "button", children, onClick, href, ...props }) =
     return (
       <NextLink href={href} passHref>
         <IconButton onClick={GaEvent} {...props}>
-          {children}
+          { children }
         </IconButton>
       </NextLink>
     );
   } else {
     return (
       <IconButton onClick={GaEvent} {...props}>
-        {children}
+        { children }
       </IconButton>
     );
   }
