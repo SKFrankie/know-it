@@ -143,7 +143,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
           </Text>
         </Flex>
         <GiftIcon boxSize="20" display={{ base: "flex", lg: "none" }} />
-        <RecoverGifts totalGifts={totalGifts} />
+        {/* <RecoverGifts totalGifts={totalGifts} /> */}
         {loading && <Loading />}
         {error && <Error />}
         {data && (
