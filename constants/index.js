@@ -59,7 +59,7 @@ const GAMES_SECTIONS = [
     path: "/games/fab-vocab",
     image: "/images/FabVocabImage.png",
     align: "end",
-  },
+  }
 ];
 
 const REWARD_TYPES = {

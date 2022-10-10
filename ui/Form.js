@@ -5,7 +5,7 @@ const Form = ({ children, ...props }) => {
   return (
     <form {...props}>
       <Flex justify="center">
-        <Flex w={{ base: "100%", md: "60%" }} direction="column">
+        <Flex w={{ base: "100%", lg: "60%" }} direction="column">
           {children}
         </Flex>
       </Flex>

@@ -7,6 +7,8 @@ import * as ga from "../lib/ga";
 import { useUserContext } from "../context/user";
 import { getCookieConsentValue } from "react-cookie-consent";
 import { useCookies } from "react-cookie";
+import Star from "../features/Star";
+import StarComplete from "../features/animations/StarComplete";
 
 const SubmitButton = ({ children, ...props }) => {
   return (
@@ -65,6 +67,7 @@ const KnowlympicsButton = ({
   text = "Knowlympics",
   disabled = true,
   podium = false,
+  bg="orange",
   ...props
 }) => {
   const [cookies] = useCookies(["CookieConsent"]);
@@ -84,9 +87,9 @@ const KnowlympicsButton = ({
         <ChakraButton
           className={currentUser?.stars ? "notification" : null}
           borderRadius="10px"
-          w={{ base: "100%", md: "30vw" }}
+          w={{ base: "100%", lg: "30vw" }}
           py="25px"
-          bg="orange"
+          bg={bg}
           fontSize="xl"
           fontWeight="bold"
           boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"

@@ -52,7 +52,7 @@ const Ranking = ({ userId }) => {
       {loading && <Loading />}
       {error && <Error />}
       {rank ? (
-        <Text fontSize={{ base: "md", md: "3xl" }} p={{ base: "auto", md: "5" }} textAlign="center">
+        <Text fontSize={{ base: "md", lg: "3xl" }} p={{ base: "auto", lg: "5" }} textAlign="center">
           You are in{" "}
           <Text as="span" color="#F0940B">
             {getSuperscriptOrdinal(rank)}

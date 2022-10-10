@@ -135,23 +135,23 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
       <Text ml="auto" fontSize="md" my={5}>
         Reset in {daysUntilNextMonth()} days
       </Text>
-      <Flex direction="column" textAlign="center" alignItems="center">
+      <Flex p="1rem" direction="column" textAlign="center" alignItems="center">
         <Flex alignItems="center">
-          <GiftIcon boxSize="20" display={{ base: "none", md: "flex" }} />{" "}
-          <Text fontWeight="bold" fontSize={{ base: "4xl", md: "6xl" }}>
+          <GiftIcon boxSize="20" display={{ base: "none", lg: "flex" }} />{" "}
+          <Text fontWeight="bold" fontSize={{ base: "4xl", lg: "6xl" }}>
             {randomGiftTitle}
           </Text>
         </Flex>
-        <GiftIcon boxSize="20" display={{ base: "flex", md: "none" }} />
-        <RecoverGifts totalGifts={totalGifts} />
+        <GiftIcon boxSize="20" display={{ base: "flex", lg: "none" }} />
+        {/* <RecoverGifts totalGifts={totalGifts} /> */}
         {loading && <Loading />}
         {error && <Error />}
         {data && (
           <Flex
             flexWrap="wrap"
             my={5}
-            mx={{ base: 0, md: 6 }}
-            p={{ base: 0, md: 2 }}
+            mx={{ base: 0, lg: 6 }}
+            p={{ base: 0, lg: 2 }}
             justify="center"
           >
             {data.gifts.map((gift) => (
@@ -168,7 +168,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
         <Text fontSize="xs" my={5} color="white" fontWeight="semi-bold">
           5 bonus coins every day after the 25th day until reset
         </Text>
-        <Box h={{ base: "0", md: recoverGiftHeight }} />
+        <Box h={{ base: "0", lg: recoverGiftHeight }} />
         <GiftPopUp gift={todayGift} isOpen={isOpen} onClose={onClose} />
       </Flex>
     </Modal>
@@ -218,7 +218,7 @@ const GiftPopUp = ({
         alignItems="center"
         justifyContent="center"
         textAlign="center"
-        p={{ base: 5, md: 10 }}
+        p={{ base: 5, lg: 10 }}
       >
         {gift ? (
           <>
@@ -267,12 +267,12 @@ const RecoverGifts = ({ totalGifts, ...props }) => {
   const [stripeLoading, setStripeLoading] = useState(false);
   return (
     <Flex
-      maxH={{ base: "auto", md: recoverGiftHeight }}
-      position={{ base: "initial", md: "absolute" }}
+      maxH={{ base: "auto", lg: recoverGiftHeight }}
+      position={{ base: "initial", lg: "absolute" }}
       bottom="0"
-      borderRadius={{ base: 21, md: 0 }}
+      borderRadius={{ base: 21, lg: 0 }}
       bg="darkBlue"
-      m={{ base: 3, md: 0 }}
+      m={{ base: 3, lg: 0 }}
       p={3}
       w="100%"
       direction="column"
@@ -280,7 +280,7 @@ const RecoverGifts = ({ totalGifts, ...props }) => {
       alignItems="center"
       {...props}
     >
-      <Text fontSize={{ base: "md", md: "lg" }}>
+      <Text fontSize={{ base: "md", lg: "lg" }}>
         Purchase unclaimed gifts and double the ones you’ve received!
       </Text>
       <Button
@@ -288,7 +288,7 @@ const RecoverGifts = ({ totalGifts, ...props }) => {
         onClick={() => {
           createCheckOutSession(item, setStripeLoading);
         }}
-        w={{ base: "80%", md: "40%" }}
+        w={{ base: "80%", lg: "40%" }}
         m={3}
       >
         {parseFloat(item?.price || 0)}€
@@ -309,7 +309,7 @@ const Reward = ({
   return (
     <Flex direction="column" alignItems="center" justify="center">
       {day ? (
-        <Text fontWeight="bold" fontSize={{ base: "sm", md: "md" }}>
+        <Text fontWeight="bold" fontSize={{ base: "sm", lg: "md" }}>
           Day {day}
         </Text>
       ) : null}
@@ -325,8 +325,8 @@ const Reward = ({
         boxShadow="dark-lg"
         {...props}
       >
-        <Image boxSize={{ base: "30px", md: "55px" }} src={image} alt={name} />
-        <Text mx={1} color={color} fontSize={{ base: "sm", md: "md" }}>
+        <Image boxSize={{ base: "30px", lg: "55px" }} src={image} alt={name} />
+        <Text mx={1} color={color} fontSize={{ base: "sm", lg: "md" }}>
           {quantity}
           {reward === "STAR_PERCENTAGE" ? "%" : ""}
         </Text>

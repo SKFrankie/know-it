@@ -28,11 +28,11 @@ const GigilCollection = () => {
   const { error, data } = useQuery(AVATAR_COUNT, { ...basicQueryResultSupport });
   return (
     <>
-      {data && (
+      {/* {data && (
         <Text mx={5} alignSelf="flex-end" textAlign="right" fontSize="xs">
           {currentUser?.inventory?.length} / {data.avatarsCount}
         </Text>
-      )}
+      )} */}
       <Flex flexWrap="wrap" borderRadius="10" placeContent="center" m={2}>
         {currentUser?.inventory?.map((avatar) => (
           <Gigil key={avatar?.avatarId} avatar={avatar} />

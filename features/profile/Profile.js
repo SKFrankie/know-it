@@ -31,7 +31,7 @@ const GET_USERS_FROM_ID = gql`
   }
 `;
 
-const Profile = ({ userId }) => {
+const Profile = ({ userId, ...props }) => {
   const [currentUser] = useUserContext();
   const [stripeLoading, setStripeLoading] = useState(false);
   const [user, setUser] = useState(null);
@@ -57,19 +57,21 @@ const Profile = ({ userId }) => {
   return (
     <Flex 
       direction="column"
+      pb="5vh"
+      {...props}
     >
       {user ? (
         <>
           <ProfileFlex direction="row" justify="center">
-            <AvatarPicture avatar={user?.currentAvatar} display={{ base: "none", md: "flex" }} />
+            <AvatarPicture avatar={user?.currentAvatar} display={{ base: "none", lg: "flex" }} />
             <Flex
-              minW={{ base: "auto", md: "50%" }}
+              minW={{ base: "auto", lg: "50%" }}
               direction="column"
-              alignItems={{ base: "center", md: "initial" }}
+              alignItems={{ base: "center", lg: "initial" }}
               justify="space-around"
               m={4}
             >
-              <AvatarPicture avatar={user?.currentAvatar} display={{ base: "flex", md: "none" }} />
+              <AvatarPicture avatar={user?.currentAvatar} display={{ base: "flex", lg: "none" }} />
               <Text fontSize="3xl" fontWeight="bold">
                 {user?.username}
               </Text>
@@ -82,8 +84,8 @@ const Profile = ({ userId }) => {
               <Text fontSize="xs">Member since {dateToString(user?.createdAt)}</Text>
             </Flex>
           </ProfileFlex>
-          <Flex direction={{ base: "column", md: "row" }} justify="space-between">
-            <ProfileFlex mr={{ base: 0, md: 2 }}>
+          <Flex direction={{ base: "column", lg: "row" }} justify="space-between">
+            <ProfileFlex mr={{ base: 0, lg: 2 }}>
               <LinkOverlay href="/knowlympics">
                 <Text fontSize="2xl">Current Ranking</Text>
               </LinkOverlay>
@@ -94,14 +96,14 @@ const Profile = ({ userId }) => {
               <Spacer />
             </ProfileFlex>
             {userId ? null : (
-              <ProfileFlex ml={{ base: 0, md: 2 }}>
+              <ProfileFlex ml={{ base: 0, lg: 2 }}>
                 {isPremium(user) ? (
                   <>
                     <Text fontSize="2xl">Premium Bundle</Text>
                     <Text
-                      fontSize={{ base: "md", md: "3xl" }}
-                      p={{ base: "auto", md: "5" }}
-                      textAlign={{ base: "auto", md: "center" }}
+                      fontSize={{ base: "md", lg: "3xl" }}
+                      p={{ base: "auto", lg: "5" }}
+                      textAlign={{ base: "auto", lg: "center" }}
                     >
                       Premium until{" "}
                       <Text as="span" color="#F0940B">
@@ -113,7 +115,7 @@ const Profile = ({ userId }) => {
                   <PremiumDescription
                     stripeLoading={stripeLoading}
                     setStripeLoading={setStripeLoading}
-                    displayButtons={{ base: "flex", md: "flex" }}
+                    displayButtons={{ base: "flex", lg: "flex" }}
                   />
                 )}
               </ProfileFlex>
@@ -131,10 +133,10 @@ const AvatarPicture = ({ avatar, ...props }) => {
   return (
     <Flex direction="column" {...props}>
       <Image
-        boxSize={{ base: "40vh", md: "30vh" }}
+        boxSize={{ base: "40vh", lg: "30vh" }}
         w="auto"
         h="auto"
-        borderRadius={{ base: "50%", md: "10px" }}
+        borderRadius={{ base: "50%", lg: "10px" }}
         src={
           avatar?.picture
             ? avatar?.picture

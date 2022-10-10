@@ -60,7 +60,7 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
     return <Loading/>
   }
   return (
-    <Box px={{ base: 1, md: "8vh" }} className="grammarModule">
+    <Box px={{ base: 1, lg: "8vh" }} className="grammarModule">
       <SectionTitle pb="2vh">{currentModule?.name?.toUpperCase()}</SectionTitle>
       {isPremium(currentUser) ? (
         <>

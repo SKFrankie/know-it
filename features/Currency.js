@@ -7,19 +7,48 @@ import { LinkOverlay } from "../ui/Link";
 const Currency = ({
   src = "/images/star.png",
   alt = "star",
-  quantity = 0,
+  quantity = null,
   color = "yellowStar",
   fontSize = "sm",
   rightIcon=false,
+  boxSize,
   ...props
 }) => {
   return (
-    <Flex color={color} alignItems="center" {...props}>
-      {!rightIcon && <Image boxSize="30px" src={src} alt={alt} /> }
-      <Text mx={1} color={color} fontSize={fontSize}>
-        {quantity}
-      </Text>
-      {rightIcon && <Image boxSize="30px" src={src} alt={alt} /> }
+    <Flex 
+      color={color} 
+      alignItems="center"
+      justifyItems="center"
+      {...props}
+    >
+      {
+        !rightIcon && 
+        <Image 
+          boxSize={ boxSize ? boxSize : "30px" }
+          src={src} 
+          alt={alt} 
+        /> 
+      }
+      {
+        quantity !== null &&
+        (
+          <Text 
+            mr={1} 
+            color={color} 
+            fontSize={fontSize}
+          >
+            {quantity}
+          </Text>
+        )
+      }
+      {
+        rightIcon && 
+        <Image 
+          boxSize={ boxSize ? boxSize : "30px" } 
+          src={src} 
+          alt={alt} 
+        /> 
+      }
     </Flex>
   );
 };
@@ -77,7 +106,7 @@ const StarPercentage = ({ quantity = null, noAnimation=false, ...props }) => {
   }, [currentUser.starPercentage]);
   quantity = currentUser.online && quantity === null ? currentUser.starPercentage : quantity;
   return (
-    <Flex w="100%" alignItems="center" placeContent={{ base: "center", md: "initial" }}{...props} >
+    <Flex w="100%" alignItems="center" placeContent={{ base: "center", lg: "initial" }}{...props} >
       <Progress
         size="md"
         borderRadius={10}

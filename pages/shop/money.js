@@ -46,7 +46,7 @@ const Money = () => {
             onOpen={onOpen}
             stripeLoading={stripeLoading}
             setStripeLoading={setStripeLoading}
-            displayButtons={{ base: "none", md: "flex" }}
+            displayButtons={{ base: "none", lg: "flex" }}
           />
         </Flex>
       )}
@@ -70,7 +70,7 @@ const Money = () => {
           <PremiumDescription
             stripeLoading={stripeLoading}
             setStripeLoading={setStripeLoading}
-            displayButtons={{ base: "flex", md: "flex" }}
+            displayButtons={{ base: "flex", lg: "flex" }}
           />
           <Text mb={2} fontSize="lg" fontWeight="md">
             Your purchase allows us to help everyone learn English
@@ -87,12 +87,11 @@ const PremiumDescription = ({ onOpen, stripeLoading, setStripeLoading, displayBu
       <Text mb={2} fontSize="2xl" fontWeight="bold">
         Premium Bundles
       </Text>
-      <Text textAlign="center" mb={2} fontSize="md" fontWeight="md">
-        Want NO ADS?<br/>
-        Get a premium bundle and enjoy the master grammar geek guide+ in bonus
+      <Text textAlign="center" mb={2} fontSize="lg" fontWeight="semibold">
+        Buy Grammar Geek Guide+ and <br/>Play without Ads
       </Text>
       {onOpen && (
-        <Button onClick={onOpen} mb={2} w="90%" display={{ base: "flex", md: "none" }}>
+        <Button onClick={onOpen} mb={2} w="90%" display={{ base: "flex", lg: "none" }}>
           See More
         </Button>
       )}

@@ -141,10 +141,10 @@ const MatchingWords = ({
   return (
     <Flex direction="column" justify="center" align="center">
       <Flex
-        direction={{ base: "row", md: "column" }}
+        direction={{ base: "row", lg: "column" }}
         justify="space-around"
         my={3}
-        mt={{ base: "5vh", md: "15vh" }}
+        mt={{ base: "5vh", lg: "15vh" }}
       >
         <WordColumn
           wordsObject={wordsObject}
@@ -165,7 +165,7 @@ const MatchingWords = ({
         />
       </Flex>
       {showContinue ? (
-        <NextButton w={{ base: "100%", md: "60%" }} onClick={handleNext}>
+        <NextButton w={{ base: "100%", lg: "60%" }} onClick={handleNext}>
           Continue
         </NextButton>
       ) : null}
@@ -184,7 +184,7 @@ const WordColumn = ({ matchingWords, color, onWordClick, wordsObject, variant = 
   }, [matchingWords]);
 
   return (
-    <Flex justify="center" align="center" direction={{ base: "column", md: "row" }} flexWrap="wrap">
+    <Flex justify="center" align="center" direction={{ base: "column", lg: "row" }} flexWrap="wrap">
       {shuffleWords.map((word) => (
         <Word
           active={wordsObject[word]?.active}
@@ -213,8 +213,8 @@ const Word = ({ word, color = "green", onWordClick, finalColor, active }) => {
         _hover={{ background: finalColor ? finalColor : active ? color : "transparent" }}
         bg={finalColor ? finalColor : active ? color : "transparent"}
         fontWeight="bold"
-        fontSize={{ base: "md", md: "xl" }}
-        minW={{ base: "30vw", md: "8vw" }}
+        fontSize={{ base: "md", lg: "xl" }}
+        minW={{ base: "30vw", lg: "8vw" }}
       >
         {word}
       </Button>

@@ -6,7 +6,7 @@ const Title = ({ ...props }) => {
   return (
     <Flex direction="column" align="center" justify="center" margin={5} {...props}>
       <Flex>
-        <Heading as="h1" fontSize={{ base: "5xl", md: "8vw" }} fontFamily="Ribeye">
+        <Heading as="h1" fontSize={{ base: "5xl", lg: "8vw" }} fontFamily="Ribeye">
           Know It!
         </Heading>
         <Info mt="210%" />

@@ -76,7 +76,7 @@ const AntonymHuntGame = ({
 
   return (
     <>
-      <Text textAlign="center" justify="center" fontSize={{ base: "sm", md: "md" }}>
+      <Text textAlign="center" justify="center" fontSize={{ base: "sm", lg: "md" }}>
         Pair up words that have{" "}
         <Box as="span" fontWeight="bold">
           opposite

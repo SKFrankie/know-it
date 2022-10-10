@@ -156,8 +156,8 @@ const FabVocabGame = ({
     <>
       {data && (
         <Flex
-          direction={{ base: "column", md: "row" }}
-          alignItems={{ base: "center", md: "initial" }}
+          direction={{ base: "column", lg: "row" }}
+          alignItems={{ base: "center", lg: "initial" }}
           my={7}
           w="100%"
           justify="space-around"
@@ -166,7 +166,7 @@ const FabVocabGame = ({
           <Image
             display={imageLoading ? "none" : "table"}
             w="auto"
-            h={{ base: "35vh", md: "60vh" }}
+            h={{ base: "35vh", lg: "60vh" }}
             src={picture}
             my={2}
             onLoad={() => setImageLoading(false)}
@@ -174,7 +174,7 @@ const FabVocabGame = ({
           />
           {/* GOOGLE AD */}
           <Flex
-            fontSize={{ base: "sm", md: "md" }}
+            fontSize={{ base: "sm", lg: "md" }}
             fontWeight={500}
             direction="column"
             alignItems="center"
@@ -281,7 +281,7 @@ const Words = ({
         return (
           <Text
             transition={isClicked(word) || !isActive(word) ? "null" : "all 700ms ease-in"}
-            minW={{ base: "30vw", md: "8vw" }}
+            minW={{ base: "30vw", lg: "8vw" }}
             textAlign="center"
             color="white"
             border={!isActive(word) ? "1px solid" : "1px solid transparent"}

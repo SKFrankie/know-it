@@ -47,18 +47,21 @@ a {
 .notification::after {
   content: "";
   position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 1rem;
-  height: 1rem;
-  background: red;
-  border-radius: 50%;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  top: 7px;
+  right: 6px;
+  background: url("/images/star.png") no-repeat center center;
+  background-size: 35px;
+  width: 35px;
+  height: 35px;
+  animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
+  }
+  25% {
+    opacity: 0.75;
   }
   50% {
     opacity: .5;
