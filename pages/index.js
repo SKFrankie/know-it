@@ -257,7 +257,7 @@ export default function Home() {
                 alignItems="center"
               >
               {
-                (topRank.length > 0) && 
+                (data.rankingUsers.length > 0) && 
                 topRank.map((user, index) => (
                   <NextLink
                     key={user.userId}
