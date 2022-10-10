@@ -176,7 +176,7 @@ export default function Home() {
               justifyContent="space-between"
             >
               <Box
-                gridColumn="span 2"
+                gridColumn={ currentUser?.points > 0 ? "span 2" : "span 3" }
               >
                 { userRanking === 0 ? 
                   <Text
@@ -214,29 +214,32 @@ export default function Home() {
                   </Button>
                 </Flex>
               </Box>
-
-              <Flex
-                marginLeft="auto"
-                marginRight="auto"
-                px="1.5rem"
-                flexDirection="column"
-                borderLeft="1px"
-                borderLeftColor="blueClear.500"
-              >
-                <Image 
-                  boxSize={{ base: "2rem", lg: "3rem", xl: "12vh" }}
-                  src="/images/medal.png" 
-                  marginLeft="auto"
-                  marginRight="auto"
-                  alt="medal"
-                />
-                <Text
-                  textAlign="center"
-                  fontWeight="semibold"
-                >
-                  { currentUser?.points } Medals
-                </Text>
-              </Flex>
+              {
+                currentUser?.points > 0 && (
+                  <Flex
+                    marginLeft="auto"
+                    marginRight="auto"
+                    px="1.5rem"
+                    flexDirection="column"
+                    borderLeft="1px"
+                    borderLeftColor="blueClear.500"
+                  >
+                    <Image 
+                      boxSize={{ base: "2rem", lg: "3rem", xl: "12vh" }}
+                      src="/images/medal.png" 
+                      marginLeft="auto"
+                      marginRight="auto"
+                      alt="medal"
+                    />
+                    <Text
+                      textAlign="center"
+                      fontWeight="semibold"
+                    >
+                      { currentUser?.points } Medals
+                    </Text>
+                  </Flex>
+                )
+              }
             </Grid>
             <Flex
               bg="deepDarkBlue"
