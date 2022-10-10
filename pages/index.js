@@ -276,7 +276,7 @@ export default function Home() {
                       >
                         <MyAvatar
                           borderRadius="0.5rem"
-                          w={{ lg: "9vw", xl:"5vw" }}
+                          w={{ lg: "8vw", '2xl':"5vw" }}
                           h="100%"
                           src={user.currentAvatar.picture}
                           boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
@@ -326,7 +326,7 @@ export default function Home() {
         </Box>
 
         <Flex
-          flexDirection="column-reverse"
+          flexDirection={{base:"column", lg:"column-reverse"}}
         >
           <GameSection mb={{ base: "5vh", lg: "0" }}/>
 
