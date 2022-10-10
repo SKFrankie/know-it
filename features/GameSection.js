@@ -14,7 +14,9 @@ const GameSection = ({...props}) => {
 	return (
 		<Box
 			bg={{ base: "transparent", lg: "deepDarkBlue" }}
-			padding={{ base: "0", lg: "1.2rem" }}
+			px={{ base: "0", lg: "1rem" }}
+			pt={{ base: "0", lg: "0.5rem" }}
+			pb={{ base: "0", lg: "1rem" }}
 			borderRadius={{ base: "0", lg: "15px" }}
 			{...props}
 		>
@@ -74,7 +76,7 @@ const GameSection = ({...props}) => {
 			</Box>
 			<Grid
 				templateColumns={{ base: "repeat(2, 1fr)", lg: GAMES_SECTIONS.length >= 6 ? `repeat(6, 1fr)` : `repeat(${GAMES_SECTIONS.length}, 1fr)` }}
-				gap={{ base: "5vh", lg: "8vh" }}
+				gap={{ base: "5vh", lg: "3vh", xl: "8vh" }}
 			>
 				{
 					GAMES_SECTIONS.map((game) => (
@@ -88,7 +90,7 @@ const GameSection = ({...props}) => {
 									<Image
 										mx="auto"
 										mb="0.2rem"
-										boxSize={{ base: "5rem", lg: "5rem" }}
+										boxSize={{ base: "5rem" }}
 										src={ game.image } 
 										alt={ game.name } 
 									/>

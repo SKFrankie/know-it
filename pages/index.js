@@ -48,7 +48,9 @@ export default function Home() {
   const { data, loading, error  } = useQuery(TOP_RANKING_USERS, {
     fetchPolicy: "no-cache",
     onCompleted: (data) => {
+      console.log("data", data)
       setTopRank(data.rankingUsers.slice(0, 5));
+      console.log("topRank", topRank)
       const userIndex = data.rankingUsers.findIndex(
         (user) => user.userId === currentUser.id
       );
@@ -75,8 +77,7 @@ export default function Home() {
 
       <Container
         minW={{ base: "100vw", lg: "85vw", xl: "90vw" }}
-        mr={{ lg:"1vw" }}
-        pt={{ base: "2rem" }}
+        pt={{ base: "0", lg: "2rem" }}
         pb={{ base: "5rem", lg: "2rem" }}
       >
         <Flex
@@ -129,7 +130,7 @@ export default function Home() {
           <Box
             bg="deepDarkBlue"
             borderRadius="15px"
-            padding="1.2rem"
+            padding="1rem"
             position="relative"
           >
             <Text
@@ -139,10 +140,12 @@ export default function Home() {
               Play games, earn coins and collect all the Gigils Monsters!
             </Text>
 
-            <SvgComponent
-              width="100%"
-              mb="1rem"
-            />
+            <Box
+              w={{lg:"100%", xl:"70%"}}
+              mx="auto"
+            >
+              <SvgComponent />
+            </Box>
             
             <Flex
               position="absolute"
@@ -235,15 +238,17 @@ export default function Home() {
                 </Text>
               </Flex>
             </Grid>
-            <Box
+            <Flex
               bg="deepDarkBlue"
+              flexDirection="column"
               borderRadius="15px"
-              padding="1rem"
+              py="0.5rem"
+              px="1rem"
             >
               <Text
                 fontWeight="semibold"
                 fontSize={{ base: "0.3rem", md:"0.5rem", lg: "1rem", xl: "1.5rem" }}
-                mb="1rem"
+                mb="0.5rem"
               >
                 Top Knowlympics
               </Text>
@@ -251,7 +256,9 @@ export default function Home() {
                 justify="space-between"
                 alignItems="center"
               >
-              {data && topRank.map((user, index) => (
+              {
+                (topRank.length > 0) && 
+                topRank.map((user, index) => (
                   <NextLink
                     key={user.userId}
                     href={`/profile/${user.userId}`}
@@ -260,7 +267,7 @@ export default function Home() {
                       alignItems="center"
                       flexDirection="column"
                       justify="space-between"
-                      minW={{ base: "5vw", lg: "8vw" }}
+                      minW={{ base: "5vw", lg: "5vw", xl:"8vw" }}
                     >
                       <Box
                         position="relative"
@@ -269,7 +276,7 @@ export default function Home() {
                       >
                         <MyAvatar
                           borderRadius="0.5rem"
-                          w={{ lg: "6vw" }}
+                          w={{ lg: "8vw", '2xl':"5vw" }}
                           h="100%"
                           src={user.currentAvatar.picture}
                           boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
@@ -298,110 +305,152 @@ export default function Home() {
               }
               {loading && <Loading />}
               {error && <Error />}
+              {
+                ((topRank.length === 0) && !loading) &&
+                <Box
+                  width="100%"
+                >
+                  <Text
+                    fontWeight="semibold"
+                    fontSize={{ lg: "1.2rem", xl: "1.5rem", '2xl': "1.8rem" }}
+                    textAlign="center"
+                  >
+                    The ranking is empty.<br/>
+                    Play now and take the first place!
+                  </Text>
+                </Box>
+              }
               </Flex>
-            </Box>
+            </Flex>
           </Grid>
         </Box>
 
-        <GameSection mb={{ base: "5vh", lg: "0" }}/>
-
         <Flex
-          bg={{ lg:"#036788" }}
-          position={{ lg: "fixed" }}
-          top={{ lg: "4.25rem" }}
-          left={{ lg: "0" }}
-          height={{ lg: "100vh" }}
-          p={{ lg: "1rem" }}
-          pt={{ lg: "2rem" }}
-          pb={{ lg: "15vh" }}
-          flexDirection={{ base: "row", lg: "column" }}
-          justifyContent="space-between"
-          mb={{ base: "5vh", lg: "0" }}
+          flexDirection={{base:"column", lg:"column-reverse"}}
         >
-          <Flex flexDirection="column">
-            <GaIconButton
-              boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-              colorScheme="blueClear"
-              label="Grammar Guide+"
-              boxSize={{ base: "3.5rem", lg: "5rem" }}
-              target="_blank"
-              marginRight="auto"
-              marginLeft="auto"
-              mb="0.5rem"
-              href={ isPremium(currentUser) ? "/grammar-module" : "/shop/money" }
-              icon={
-                <Image boxSize={{ base: "2.3rem", lg: "3rem" }} src="/images/GrammarGeekImageRight.png" alt="Grammar Guide+" />
-              }
-            />
-            <Text 
-              fontSize={{ base: "0.7rem", lg: "0.8rem" }}
-              textAlign="center"
+          <GameSection mb={{ base: "5vh", lg: "0" }}/>
+
+          <Flex
+            justifyContent="space-between"
+            mb={{ base: "5vh", lg: "3vh" }}
+          >
+            <Flex 
+              flexDirection={{ base:"column", lg:"row" }}
+              flexGrow="1"
+              alignItems="center"
+              bg={{ lg:"deepDarkBlue" }}
+              borderRadius={{ lg: "0.5rem" }}
+              mr={{ lg: "1rem" }}
+              p={{ lg: "0.5rem" }}
             >
-              Grammar Guide+
-            </Text>
-          </Flex>
-          <Flex flexDirection="column">
-            <GaIconButton
-              boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-              colorScheme="red"
-              label="Survey"
-              boxSize={{ base: "3.5rem", lg: "5rem" }}
-              target="_blank"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSc7y4RINsZ-g9gzjP3rSg5AVIfDS2Nu4m09y9Mn--ZvFFr2rA/viewform?usp=pp_url"
-              marginRight="auto"
-              marginLeft="auto"
-              mb="0.5rem"
-              icon={
-                <Icon boxSize={{ base: "2.3rem", lg: "3rem" }} as={Iconify} icon="flat-color-icons:survey" />
-              }
-            />
-            <Text 
-              fontSize={{ base: "0.7rem", lg: "0.8rem" }}
-              textAlign="center"
+              <GaIconButton
+                boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+                colorScheme="blueClear"
+                label="Grammar Guide+"
+                boxSize={{ base: "3.5rem", lg: "5rem" }}
+                target="_blank"
+                mx={{ base:"auto", lg:"0" }}
+                mb={{ base:"0.5rem", lg:"0" }}
+                mr={{lg:"1rem"}}
+                href={ isPremium(currentUser) ? "/grammar-module" : "/shop/money" }
+                icon={
+                  <Image boxSize={{ base: "2.3rem", lg: "3rem" }} src="/images/GrammarGeekImageRight.png" alt="Grammar Guide+" />
+                }
+              />
+              <Text 
+                fontSize={{ base: "0.7rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
+                textAlign="center"
+              >
+                Grammar Guide+
+              </Text>
+            </Flex>
+            <Flex 
+              flexDirection={{ base:"column", lg:"row" }}
+              flexGrow="1"
+              alignItems="center"
+              bg={{ lg:"deepDarkBlue" }}
+              borderRadius={{ lg: "0.5rem" }}
+              p={{ lg: "0.5rem" }}
+              mr={{ lg: "1rem" }}
             >
-              Survey
-            </Text>
-          </Flex>
-          {
-            currentUser.online ? (
-              <Flex flexDirection="column">
-                <GiftButton 
-                  marginRight="auto"
-                  marginLeft="auto"
-                />
-                <Text 
-                  fontSize={{ base: "0.7rem", lg: "0.8rem" }}
-                  textAlign="center"
+              <GaIconButton
+                boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+                colorScheme="red"
+                label="Survey"
+                boxSize={{ base: "3.5rem", lg: "5rem" }}
+                target="_blank"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc7y4RINsZ-g9gzjP3rSg5AVIfDS2Nu4m09y9Mn--ZvFFr2rA/viewform?usp=pp_url"
+                mx={{ base:"auto", lg:"0" }}
+                mb={{base:"0.5rem", lg:"0"}}
+                mr={{lg:"1rem"}}
+                icon={
+                  <Icon boxSize={{ base: "2.3rem", lg: "3rem" }} as={Iconify} icon="flat-color-icons:survey" />
+                }
+              />
+              <Text 
+                fontSize={{ base: "0.7rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
+                textAlign="center"
+              >
+                Survey
+              </Text>
+            </Flex>
+            {
+              currentUser.online ? (
+                <Flex 
+                  flexDirection={{ base:"column", lg:"row" }}
+                  flexGrow="1"
+                  alignItems="center"
+                  bg={{ lg:"deepDarkBlue" }}
+                  borderRadius={{ lg: "0.5rem" }}
+                  p={{ lg: "0.5rem" }}
+                  mr={{ lg: "1rem" }}
                 >
-                  Free Gift
-                </Text>
-              </Flex>
-            ) : null
-          }
-          <Flex flexDirection="column">
-            <GaIconButton
-              boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-              colorScheme="blueClear"
-              label="Leaderboard"
-              boxSize={{ base: "3.5rem", lg: "5rem" }}
-              target="_blank"
-              href="/knowlympics"
-              marginRight="auto"
-              marginLeft="auto"
-              mb="0.5rem"
-              icon={
-                <Image boxSize={{ base: "1.8rem", lg: "1.8rem" }} src="/images/trophy.png" alt="Leaderboard" />
-              }
-            />
-            <Text 
-              fontSize={{ base: "0.7rem", lg: "0.8rem" }}
-              textAlign="center"
+                  <GiftButton 
+                    mx={{ base:"auto", lg:"0" }}
+                    mb={{base:"0.5rem", lg:"0"}}
+                  />
+                  <Text 
+                    fontSize={{ base: "0.7rem", lg: "1rem", xl:"1.5rem" }}
+                    textAlign="center"
+                    ml={{ lg:"1rem" }}
+                  >
+                    Free Gift
+                  </Text>
+                </Flex>
+              ) : null
+            }
+            <Flex 
+              flexDirection={{ base:"column", lg:"row" }}
+              flexGrow="1"
+              alignItems="center"
+              bg={{ lg:"deepDarkBlue" }}
+              borderRadius={{ lg: "0.5rem" }}
+              p={{ lg: "0.5rem" }}
             >
-              Leaderboard
-            </Text>
+              <GaIconButton
+                boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+                colorScheme="blueClear"
+                label="Leaderboard"
+                boxSize={{ base: "3.5rem", lg: "5rem" }}
+                target="_blank"
+                href="/knowlympics"
+                mx={{ base:"auto", lg:"0" }}
+                mb={{base:"0.5rem", lg:"0"}}
+                mr={{lg:"1rem"}}
+                icon={
+                  <Image boxSize={{ base: "1.8rem", lg: "1.8rem" }} src="/images/trophy.png" alt="Leaderboard" />
+                }
+              />
+              <Text 
+                fontSize={{ base: "0.7rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
+                textAlign="center"
+              >
+                Leaderboard
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
-        
+
         <KnowlympicsButton
           display={{ base: "flex", lg: "none" }}
           bg="green"

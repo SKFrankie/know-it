@@ -6,7 +6,7 @@ import Leaderboard from "../features/Leaderboard";
 const Knowlympics = () => {
   const [currentUser] = useUserContext();
   return (
-    <Flex my={{ base: "5vh" }} direction="column" justify="center" align="center">
+    <Flex p="1rem" my={{ base: "5vh" }} direction="column" justify="center" align="center">
       <KnowlympicsButton 
         text="Knowlympics"
         width="100%"
