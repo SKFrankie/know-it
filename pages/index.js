@@ -45,7 +45,7 @@ export default function Home() {
   const [topRank, setTopRank] = useState([]);
   const [userRanking, setUserRanking] = useState(0);
 
-  const { data, loading, error  } = useQuery(TOP_RANKING_USERS, {
+  const { loading, error  } = useQuery(TOP_RANKING_USERS, {
     fetchPolicy: "no-cache",
     onCompleted: (data) => {
       console.log("data", data)
@@ -257,7 +257,7 @@ export default function Home() {
                 alignItems="center"
               >
               {
-                (data.rankingUsers.length > 0) && 
+                (topRank.length > 0) && 
                 topRank.map((user, index) => (
                   <NextLink
                     key={user.userId}
