@@ -212,7 +212,12 @@ export default function Home() {
                     </Text>
                   )
                 }
-                <Flex>
+                <Flex
+                  justify="space-between"
+                  alignItems="center"
+                  textAlign="center"
+                  flexDirection="column"
+                >
                   <Button
                     className={currentUser?.stars ? "notification" : null}
                     bg="green"
@@ -222,9 +227,18 @@ export default function Home() {
                     w="100%"
                     mx="3rem"
                     href="/games/knowlympics"
+                    disabled={currentUser?.stars < 1}
                   >
                     Knowlympics
                   </Button>
+                  {
+                    (currentUser?.stars < 1) && 
+                    (
+                      <Text fontSize="xs">
+                        You need to be logged in and have at least one star to play Knowlympics
+                      </Text>
+                    )
+                  }
                 </Flex>
               </Box>
               {
