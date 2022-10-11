@@ -195,7 +195,7 @@ export default function Home() {
                   <Text
                     fontWeight="semibold"
                     textAlign="center"
-                    fontSize={{ base: "0.3rem", md:"0.5rem", lg: "1rem", xl: "1.5rem" }}
+                    fontSize={{ lg: "1rem", xl: "1.5rem" }}
                     mb={{ base: "1rem", lg: "2rem" }}
                   >
                     Play knowlympics to reach the highest ranking
@@ -205,14 +205,19 @@ export default function Home() {
                     <Text
                       fontWeight="semibold"
                       textAlign="center"
-                      fontSize="1rem"
+                      fontSize={{ lg: "1rem", xl: "1.5rem" }}
                       mb="1rem"
                     >
                       You rank #{ userRanking } this week in the<br/> Knowlympics
                     </Text>
                   )
                 }
-                <Flex>
+                <Flex
+                  justify="space-between"
+                  alignItems="center"
+                  textAlign="center"
+                  flexDirection="column"
+                >
                   <Button
                     className={currentUser?.stars ? "notification" : null}
                     bg="green"
@@ -222,9 +227,18 @@ export default function Home() {
                     w="100%"
                     mx="3rem"
                     href="/games/knowlympics"
+                    disabled={currentUser?.stars < 1}
                   >
                     Knowlympics
                   </Button>
+                  {
+                    (currentUser?.stars < 1) && 
+                    (
+                      <Text fontSize="xs">
+                        You need to be logged in and have at least one star to play Knowlympics
+                      </Text>
+                    )
+                  }
                 </Flex>
               </Box>
               {
