@@ -204,10 +204,10 @@ const GameContainer = ({
     setGameState({ ...gameState, stars: parseInt(tmpStarPercentage / 100) });
   }, [initialUserStarPercentage, gameState.starPercentage]);
   return timer > 0 ? (
-    <Box refs={container}>
+    <Box refs={container} pt={{base:"10vh", lg:"auto"}}>
       <MobileGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
       <DesktopGameHeader maxTime={data?.games[0]?.timer} timer={timer} />
-      <Flex 
+      <Flex
         mt={{ base:"10vh", lg:"6vh" }} 
         direction="column" 
         {...props}
