@@ -81,7 +81,14 @@ const KnowlympicsButton = ({
     };
   const [currentUser] = useUserContext();
   return (
-    <Flex flexDirection="column" textAlign="center" filter={disabled ? "grayscale(1)" : null} {...props}>
+    <Flex 
+      flexDirection="column" 
+      textAlign="center"
+      alignItems="center"
+      justifyContent="center"
+      filter={disabled ? "grayscale(1)" : null} 
+      {...props}
+    >
       {podium && <Podium px="4" />}
       <NextLink href={href} passHref>
         <ChakraButton

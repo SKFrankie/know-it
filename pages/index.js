@@ -135,6 +135,7 @@ export default function Home() {
           gridGap={{ base: "0", lg: "3vh" }}
           mb={{ lg: "3vh" }}
         >
+          {/* Shop Box */}
           <Box
             bg="deepDarkBlue"
             boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
@@ -171,10 +172,12 @@ export default function Home() {
               </Button>
             </Flex>
           </Box>
+
           <Grid
             gridTemplateRows="repeat(2, 1fr)"
             gridGap={{ base: "0", lg: "3vh" }}
           >
+            {/* User detail */}
             <Grid
               bg="deepDarkBlue"
               boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
@@ -251,6 +254,7 @@ export default function Home() {
                 )
               }
             </Grid>
+            {/* Top 5 Knowlympics */}
             <Flex
               bg="deepDarkBlue"
               boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
@@ -343,7 +347,7 @@ export default function Home() {
         <Flex
           flexDirection={{base:"column", lg:"column-reverse"}}
         >
-          <GameSection mb={{ base: "5vh", lg: "0" }} boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"/>
+          <GameSection mb={{ base: "5vh", lg: "0" }} boxShadow={{ lg:"0px 4px 4px rgba(0, 0, 0, 0.25)" }}/>
 
           <Flex
             display={{ base: "flex", lg:"grid"}}
