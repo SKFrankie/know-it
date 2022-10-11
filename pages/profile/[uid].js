@@ -5,7 +5,7 @@ const ProfileWithId = () => {
   const router = useRouter();
   const { uid } = router.query;
 
-  return <ProfileContainer userId={uid} />;
+  return <ProfileContainer userId={uid} px="1rem" />;
 };
 
 export default ProfileWithId;

@@ -170,7 +170,10 @@ const MobileHeaderBox = ({ children, currentUser, router, ...props }) => {
         {children}
       </Flex>
     ) : (
-      <Flex position="absolute" right="0" top="0">
+      <Flex
+        alignItems="center"
+        justify="end"
+      >
         <LoginButton />
         <IconLink
           display={{ base: "flex", lg: "none" }}

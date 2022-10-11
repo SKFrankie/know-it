@@ -1,4 +1,4 @@
-import { Box, Text, Button as ChakraButton, Icon } from "@chakra-ui/react";
+import { Box, Text, Button as ChakraButton, Icon, Flex } from "@chakra-ui/react";
 import { Icon as Iconify } from "@iconify/react";
 import NextLink from "next/link";
 import React from "react";
@@ -81,7 +81,7 @@ const KnowlympicsButton = ({
     };
   const [currentUser] = useUserContext();
   return (
-    <Box textAlign="center" filter={disabled ? "grayscale(1)" : null} {...props}>
+    <Flex flexDirection="column" textAlign="center" filter={disabled ? "grayscale(1)" : null} {...props}>
       {podium && <Podium px="4" />}
       <NextLink href={href} passHref>
         <ChakraButton
@@ -104,7 +104,7 @@ const KnowlympicsButton = ({
           You need to be logged in and have at least one star to play Knowlympics
         </Text>
       )}
-    </Box>
+    </Flex>
   );
 };
 

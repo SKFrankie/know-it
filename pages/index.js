@@ -45,14 +45,14 @@ export default function Home() {
   const [topRank, setTopRank] = useState([]);
   const [userRanking, setUserRanking] = useState(0);
 
-  const { data, loading, error  } = useQuery(TOP_RANKING_USERS, {
+  const { loading, error  } = useQuery(TOP_RANKING_USERS, {
     fetchPolicy: "no-cache",
     onCompleted: (data) => {
-      console.log("data", data)
       setTopRank(data.rankingUsers.slice(0, 5));
-      console.log("topRank", topRank)
       const userIndex = data.rankingUsers.findIndex(
-        (user) => user.userId === currentUser.id
+        (user) =>{ 
+          return user.userId === currentUser.userId
+        }
       );
       setUserRanking(userIndex + 1);
     },
@@ -80,6 +80,7 @@ export default function Home() {
         pt={{ base: "0", lg: "2rem" }}
         pb={{ base: "5rem", lg: "2rem" }}
       >
+        {/* User detail in mobile display */}
         <Flex
           display={{ base: "flex", lg: "none" }}
           bg="deepDarkBlue"
@@ -92,17 +93,17 @@ export default function Home() {
           justify="space-between"
           alignItems="center"
         >
+        {
+          currentUser.online ? 
           <Flex alignItems="center">
             <MyAvatar size="md" mr="1rem" boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)" />
             <Box>
-              <NextLink
-                href="/profile"
-              >
+              <NextLink href="/profile">
                 <Text
                   fontWeight="semibold"
                   fontSize="1.2rem"
                 >
-                  {currentUser.username}
+                  { currentUser.username }
                 </Text>
               </NextLink>
               <Flex>
@@ -111,6 +112,13 @@ export default function Home() {
               </Flex>
             </Box>
           </Flex>
+          :
+          <NextLink href="/login">
+            <Text p="0.5rem" color="white" fontSize="1.2rem" fontWeight="bold">
+              Login
+            </Text>
+          </NextLink>
+        }
           <NextLink href="/settings">
             <Icon 
               as={Iconify}
@@ -129,6 +137,7 @@ export default function Home() {
         >
           <Box
             bg="deepDarkBlue"
+            boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
             borderRadius="15px"
             padding="1rem"
             position="relative"
@@ -168,6 +177,7 @@ export default function Home() {
           >
             <Grid
               bg="deepDarkBlue"
+              boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
               gridTemplateColumns="repeat(3, 1fr)"
               borderRadius="15px"
               padding="1rem"
@@ -176,7 +186,7 @@ export default function Home() {
               justifyContent="space-between"
             >
               <Box
-                gridColumn="span 2"
+                gridColumn={ currentUser?.points > 0 ? "span 2" : "span 3" }
               >
                 { userRanking === 0 ? 
                   <Text
@@ -214,32 +224,36 @@ export default function Home() {
                   </Button>
                 </Flex>
               </Box>
-
-              <Flex
-                marginLeft="auto"
-                marginRight="auto"
-                px="1.5rem"
-                flexDirection="column"
-                borderLeft="1px"
-                borderLeftColor="blueClear.500"
-              >
-                <Image 
-                  boxSize={{ base: "2rem", lg: "3rem", xl: "12vh" }}
-                  src="/images/medal.png" 
-                  marginLeft="auto"
-                  marginRight="auto"
-                  alt="medal"
-                />
-                <Text
-                  textAlign="center"
-                  fontWeight="semibold"
-                >
-                  { currentUser?.points } Medals
-                </Text>
-              </Flex>
+              {
+                currentUser?.points > 0 && (
+                  <Flex
+                    marginLeft="auto"
+                    marginRight="auto"
+                    px="1.5rem"
+                    flexDirection="column"
+                    borderLeft="1px"
+                    borderLeftColor="blueClear.500"
+                  >
+                    <Image 
+                      boxSize={{ base: "2rem", lg: "3rem", xl: "12vh" }}
+                      src="/images/medal.png" 
+                      marginLeft="auto"
+                      marginRight="auto"
+                      alt="medal"
+                    />
+                    <Text
+                      textAlign="center"
+                      fontWeight="semibold"
+                    >
+                      { currentUser?.points } Medals
+                    </Text>
+                  </Flex>
+                )
+              }
             </Grid>
             <Flex
               bg="deepDarkBlue"
+              boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
               flexDirection="column"
               borderRadius="15px"
               py="0.5rem"
@@ -252,12 +266,9 @@ export default function Home() {
               >
                 Top Knowlympics
               </Text>
-              <Flex
-                justify="space-between"
-                alignItems="center"
-              >
+              <Grid gridTemplateColumns="repeat(5, 1fr)">
               {
-                (data.rankingUsers.length > 0) && 
+                (topRank.length > 0) && 
                 topRank.map((user, index) => (
                   <NextLink
                     key={user.userId}
@@ -276,7 +287,7 @@ export default function Home() {
                       >
                         <MyAvatar
                           borderRadius="0.5rem"
-                          w={{ lg: "8vw", '2xl':"5vw" }}
+                          w={{ lg: "7vw", '2xl':"5vw" }}
                           h="100%"
                           src={user.currentAvatar.picture}
                           boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
@@ -296,6 +307,10 @@ export default function Home() {
                       <Text
                         fontWeight="semibold"
                         fontSize={{ base: "0.5rem", lg: "0.7rem", xl: "0.8rem", '2xl': "1rem" }}
+                        textAlign="center"
+                        overflow="hidden"
+                        whiteSpace="nowrap"
+                        textOverflow="ellipsis"
                       >
                         {user.username}
                       </Text>
@@ -320,7 +335,7 @@ export default function Home() {
                   </Text>
                 </Box>
               }
-              </Flex>
+              </Grid>
             </Flex>
           </Grid>
         </Box>
@@ -328,26 +343,29 @@ export default function Home() {
         <Flex
           flexDirection={{base:"column", lg:"column-reverse"}}
         >
-          <GameSection mb={{ base: "5vh", lg: "0" }}/>
+          <GameSection mb={{ base: "5vh", lg: "0" }} boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"/>
 
           <Flex
+            display={{ base: "flex", lg:"grid"}}
+            gridTemplateColumns="repeat(4, 1fr)"
+            gridGap="3vh"
             justifyContent="space-between"
             mb={{ base: "5vh", lg: "3vh" }}
           >
-            <Flex 
+            <Flex
               flexDirection={{ base:"column", lg:"row" }}
               flexGrow="1"
               alignItems="center"
               bg={{ lg:"deepDarkBlue" }}
+              boxShadow={{ lg:"0px 4px 4px rgba(0, 0, 0, 0.25)" }}
               borderRadius={{ lg: "0.5rem" }}
-              mr={{ lg: "1rem" }}
-              p={{ lg: "0.5rem" }}
+              p={{ lg: "1rem" }}
             >
               <GaIconButton
                 boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
                 colorScheme="blueClear"
                 label="Grammar Guide+"
-                boxSize={{ base: "3.5rem", lg: "5rem" }}
+                boxSize={{ base: "3.5rem" }}
                 target="_blank"
                 mx={{ base:"auto", lg:"0" }}
                 mb={{ base:"0.5rem", lg:"0" }}
@@ -364,20 +382,20 @@ export default function Home() {
                 Grammar Guide+
               </Text>
             </Flex>
-            <Flex 
+            <Flex
               flexDirection={{ base:"column", lg:"row" }}
               flexGrow="1"
               alignItems="center"
               bg={{ lg:"deepDarkBlue" }}
+              boxShadow={{ lg:"0px 4px 4px rgba(0, 0, 0, 0.25)" }}
               borderRadius={{ lg: "0.5rem" }}
-              p={{ lg: "0.5rem" }}
-              mr={{ lg: "1rem" }}
+              p={{ lg: "1rem" }}
             >
               <GaIconButton
                 boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
                 colorScheme="red"
                 label="Survey"
-                boxSize={{ base: "3.5rem", lg: "5rem" }}
+                boxSize={{ base: "3.5rem" }}
                 target="_blank"
                 href="https://docs.google.com/forms/d/e/1FAIpQLSc7y4RINsZ-g9gzjP3rSg5AVIfDS2Nu4m09y9Mn--ZvFFr2rA/viewform?usp=pp_url"
                 mx={{ base:"auto", lg:"0" }}
@@ -396,14 +414,14 @@ export default function Home() {
             </Flex>
             {
               currentUser.online ? (
-                <Flex 
+                <Flex
                   flexDirection={{ base:"column", lg:"row" }}
                   flexGrow="1"
                   alignItems="center"
                   bg={{ lg:"deepDarkBlue" }}
+                  boxShadow={{ lg:"0px 4px 4px rgba(0, 0, 0, 0.25)" }}
                   borderRadius={{ lg: "0.5rem" }}
-                  p={{ lg: "0.5rem" }}
-                  mr={{ lg: "1rem" }}
+                  p={{ lg: "1rem" }}
                 >
                   <GiftButton 
                     mx={{ base:"auto", lg:"0" }}
@@ -419,19 +437,20 @@ export default function Home() {
                 </Flex>
               ) : null
             }
-            <Flex 
+            <Flex
               flexDirection={{ base:"column", lg:"row" }}
               flexGrow="1"
               alignItems="center"
               bg={{ lg:"deepDarkBlue" }}
+              boxShadow={{ lg:"0px 4px 4px rgba(0, 0, 0, 0.25)" }}
               borderRadius={{ lg: "0.5rem" }}
-              p={{ lg: "0.5rem" }}
+              p={{ lg: "1rem" }}
             >
               <GaIconButton
                 boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
                 colorScheme="blueClear"
                 label="Leaderboard"
-                boxSize={{ base: "3.5rem", lg: "5rem" }}
+                boxSize={{ base: "3.5rem" }}
                 target="_blank"
                 href="/knowlympics"
                 mx={{ base:"auto", lg:"0" }}
@@ -477,7 +496,7 @@ const GiftButton = ({ ...props }) => {
       <GaIconButton
         boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
         colorScheme="blueClear"
-        boxSize={{ base: "3.5rem", lg: "5rem" }}
+        boxSize={{ base: "3.5rem" }}
         target="_blank"
         marginRight="0.25rem"
         marginLeft="0.25rem"
