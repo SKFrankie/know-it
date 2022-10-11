@@ -195,7 +195,7 @@ export default function Home() {
                   <Text
                     fontWeight="semibold"
                     textAlign="center"
-                    fontSize={{ base: "0.3rem", md:"0.5rem", lg: "1rem", xl: "1.5rem" }}
+                    fontSize={{ lg: "1rem", xl: "1.5rem" }}
                     mb={{ base: "1rem", lg: "2rem" }}
                   >
                     Play knowlympics to reach the highest ranking
@@ -205,7 +205,7 @@ export default function Home() {
                     <Text
                       fontWeight="semibold"
                       textAlign="center"
-                      fontSize="1rem"
+                      fontSize={{ lg: "1rem", xl: "1.5rem" }}
                       mb="1rem"
                     >
                       You rank #{ userRanking } this week in the<br/> Knowlympics
