@@ -231,7 +231,7 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
 
 const Hint = ({text, hint, showHint, id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log("id", id)
+  // console.log("id", id)
   return (
     // <LinkOverlay href={text ? `/grammar-module/${id}` : null} target={text ? "_blank" : null}
     //     minW={{ base: "60%", lg: "50%" }}

@@ -42,10 +42,10 @@ const getPurchase = async (item, token, payment_intent) => {
     QUERY = GET_PREMIUM;
   }
 
-  console.log("mutation will start", QUERY, variables);
+  // console.log("mutation will start", QUERY, variables);
 
   try {
-    console.log("dans le try");
+    // console.log("dans le try");
     const res = await fetch(process.env.NEXT_PUBLIC_APOLLO_SERVER_URI, {
       method: "POST",
       headers: {
@@ -58,21 +58,21 @@ const getPurchase = async (item, token, payment_intent) => {
         variables,
       }),
     });
-    console.log("après le fetch");
+    // console.log("après le fetch");
 
     const data = await res.json();
 
-    console.log("data ici :", data);
+    // console.log("data ici :", data);
   } catch (err) {
     console.log("error of current user", err);
     // something went wrong, we refund the customer
     const refund = await stripe.refunds.create({
       payment_intent,
     });
-    console.log("refudn", refund, payment_intent);
+    // console.log("refudn", refund, payment_intent);
   }
 
-  console.log("MUTATION DONE");
+  // console.log("MUTATION DONE");
 
   // getSSRClient(token)
   //   .then((client) => {

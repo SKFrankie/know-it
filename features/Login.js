@@ -54,7 +54,7 @@ export default function Login() {
         }}
       >
         {(props) => (
-          <Form onSubmit={props.handleSubmit} style={{ marginTop: "4rem" }}>
+          <Form onSubmit={props.handleSubmit} style={{ marginTop: "4rem", paddingRight:"1rem", paddingLeft:"1rem" }}>
             <Field name="email">
               {({ field, form }) => (
                 <FormControl isInvalid={form.errors.email}>
