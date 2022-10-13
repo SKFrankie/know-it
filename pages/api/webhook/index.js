@@ -42,7 +42,7 @@ const getPurchase = async (item, token, payment_intent) => {
     QUERY = GET_PREMIUM;
   }
 
-  // console.log("mutation will start", QUERY, variables);
+  console.log("mutation will start", QUERY, variables);
 
   try {
     // console.log("dans le try");
