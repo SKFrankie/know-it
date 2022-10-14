@@ -82,7 +82,7 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
 const AllModules = ({ modules }) => {
   return (
     <>
-      <SectionTitle p="2vh">More Modules</SectionTitle>
+      <SectionTitle p="2vh">Grammar Guide+</SectionTitle>
       <UnorderedList>
         {modules.map((module) => (
           <ListItem key={module.grammarModuleId}>

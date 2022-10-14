@@ -282,7 +282,7 @@ export default function Home() {
                 fontSize={{ base: "0.3rem", md:"0.5rem", lg: "1rem", xl: "1.5rem" }}
                 mb="0.5rem"
               >
-                Top 5
+                Knowlympics Top 5
               </Text>
               <Grid gridTemplateColumns="repeat(5, 1fr)">
               {
@@ -315,8 +315,9 @@ export default function Home() {
                           top="0"
                           right="0"
                           bg="blueClear.500"
-                          px="0.7rem"
+                          px="0.5rem"
                           pb="0.1rem"
+                          fontSize={{ lg: "0.5rem", xl:"0.7rem"}}
                           borderBottomLeftRadius="0.5rem"
                         >
                           { (index + 1) }
