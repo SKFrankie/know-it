@@ -132,7 +132,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
   }, []);
   return (
     <Modal isOpen={isCalendarOpen} onClose={onCalendarClose} {...props}>
-      <Text >
+      <Text>
         Reset in {daysUntilNextMonth()} days
       </Text>
       <Flex p="1rem" direction="column" textAlign="center" alignItems="center">
