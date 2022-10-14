@@ -394,7 +394,7 @@ export default function Home() {
                 }
               />
               <Text 
-                fontSize={{ base: "0.7rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
+                fontSize={{ base: "0.6rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
                 textAlign="center"
               >
                 Grammar Guide+
@@ -424,7 +424,7 @@ export default function Home() {
                 }
               />
               <Text 
-                fontSize={{ base: "0.7rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
+                fontSize={{ base: "0.6rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
                 textAlign="center"
               >
                 Survey
@@ -479,7 +479,7 @@ export default function Home() {
                 }
               />
               <Text 
-                fontSize={{ base: "0.7rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
+                fontSize={{ base: "0.6rem", md:"1rem", lg: "1rem", xl:"1.5rem" }}
                 textAlign="center"
               >
                 Leaderboard
