@@ -15,6 +15,7 @@ const Settings = () => {
       maxWidth={{ base: "100%", lg: "60%" }}
       px={{ base: "2vh", lg: "0" }}
       mx="auto"
+      pb="12vh"
     >
       <GeneralSettings />
       {online && (
