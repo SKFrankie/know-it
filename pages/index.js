@@ -491,7 +491,7 @@ export default function Home() {
         <KnowlympicsButton
           display={{ base: "flex", lg: "none" }}
           bg="green"
-          text="Knowlympics"
+          text="KNOWLYMPICS"
           width="100%"
           disabled={!currentUser?.stars}
         />

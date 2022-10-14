@@ -8,7 +8,7 @@ const Knowlympics = () => {
   return (
     <Flex p="1rem" my={{ base: "5vh" }} direction="column" justify="center" align="center">
       <KnowlympicsButton 
-        text="Knowlympics"
+        text="KNOWLYMPICS"
         width="100%"
         bg="green"
         podium
