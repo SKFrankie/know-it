@@ -94,7 +94,9 @@ const GameSection = ({...props}) => {
 										src={ game.image } 
 										alt={ game.name } 
 									/>
-									<Text>{ game.name }</Text>
+									<Text
+										fontSize={{ base:"0.8rem", md:"1rem", lg:"1.5rem" }}
+									>{ game.name }</Text>
 								</Box>
 							</Button>
 					))
