@@ -36,7 +36,7 @@ const GrammarModulesPage = () => {
       ) : (
         <Box textAlign="center">
           <Link href="/shop/money" fontSize="3xl">
-            Click Here to get the Grammar Geek Guide+ and become a Premium User
+            Click Here to get the Grammar Guide+ and become a Premium User
           </Link>
         </Box>
       )}
