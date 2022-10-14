@@ -132,7 +132,7 @@ const CalendarModal = ({ isCalendarOpen = false, onCalendarClose, ...props }) =>
   }, []);
   return (
     <Modal isOpen={isCalendarOpen} onClose={onCalendarClose} {...props}>
-      <Text ml="auto" fontSize="md" my={5}>
+      <Text >
         Reset in {daysUntilNextMonth()} days
       </Text>
       <Flex p="1rem" direction="column" textAlign="center" alignItems="center">
@@ -321,6 +321,7 @@ const Reward = ({
         color={color}
         alignItems="center"
         m={2}
+        mb="1.5rem"
         direction="column"
         boxShadow="dark-lg"
         {...props}
