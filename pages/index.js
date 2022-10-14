@@ -198,7 +198,7 @@ export default function Home() {
                     fontSize={{ lg: "1rem", xl: "1.5rem" }}
                     mb={{ base: "1rem", lg: "2rem" }}
                   >
-                    Play in the KNOWLYMPICS to ranked in the Top 5!
+                    Play in the KNOWLYMPICS to rank in the Top 5!
                   </Text>
                   :
                   (
@@ -223,7 +223,7 @@ export default function Home() {
                     bg="green"
                     marginLeft="auto"
                     marginRight="auto"
-                    fontSize="0.8rem"
+                    fontSize="1.2rem"
                     w="100%"
                     mx="3rem"
                     href="/games/knowlympics"
@@ -279,7 +279,7 @@ export default function Home() {
             >
               <Text
                 fontWeight="semibold"
-                fontSize={{ base: "0.3rem", md:"0.5rem", lg: "0.7rem", xl: "1rem" }}
+                fontSize={{ base: "0.3rem", md:"0.5rem", lg: "1rem", xl: "1.5rem" }}
                 mb="0.5rem"
               >
                 Top 5
