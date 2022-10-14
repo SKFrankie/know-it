@@ -213,12 +213,12 @@ const GameContainer = ({
         {...props}
       >
         {knowlympics && (
-          <>
-          <Text m={3} fontSize="md" fontWeight="md">
-            Knowlympic Medals
-          </Text>
-          <MedalCurrency quantity={gameState.points || 0}/>
-          </>
+          <Box pt={{ lg:"2rem" }} pl={{ lg:"2rem" }}>
+            <Text m={3} fontSize="md" fontWeight="md">
+              Knowlympic Medals
+            </Text>
+            <MedalCurrency quantity={gameState.points || 0}/>
+          </Box>
         )}
         <GameTitle game={game} knowlympics={knowlympics} />
         {children}
