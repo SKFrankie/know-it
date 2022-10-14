@@ -198,7 +198,7 @@ export default function Home() {
                     fontSize={{ lg: "1rem", xl: "1.5rem" }}
                     mb={{ base: "1rem", lg: "2rem" }}
                   >
-                    Play knowlympics to reach the highest ranking
+                    Play in the KNOWLYMPICS to ranked in the Top 5!
                   </Text>
                   :
                   (
@@ -208,7 +208,7 @@ export default function Home() {
                       fontSize={{ lg: "1rem", xl: "1.5rem" }}
                       mb="1rem"
                     >
-                      You rank #{ userRanking } this week in the<br/> Knowlympics
+                      You rank #{ userRanking } this week in the<br/> KNOWLYMPICS
                     </Text>
                   )
                 }
@@ -229,13 +229,13 @@ export default function Home() {
                     href="/games/knowlympics"
                     disabled={currentUser?.stars < 1}
                   >
-                    Knowlympics
+                    KNOWLYMPICS
                   </Button>
                   {
                     (currentUser?.stars < 1) && 
                     (
                       <Text fontSize="xs">
-                        You need to be logged in and have at least one star to play Knowlympics
+                        You need to be logged in and have at least one star to play KNOWLYMPICS
                       </Text>
                     )
                   }
@@ -279,10 +279,10 @@ export default function Home() {
             >
               <Text
                 fontWeight="semibold"
-                fontSize={{ base: "0.3rem", md:"0.5rem", lg: "1rem", xl: "1.5rem" }}
+                fontSize={{ base: "0.3rem", md:"0.5rem", lg: "0.7rem", xl: "1rem" }}
                 mb="0.5rem"
               >
-                Top Knowlympics
+                Top 5
               </Text>
               <Grid gridTemplateColumns="repeat(5, 1fr)">
               {
