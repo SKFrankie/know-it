@@ -271,5 +271,5 @@ const Hint = ({text, hint, showHint, id }) => {
   );
 };
 
-export { GrammarGeekGame, Answers };
+export { GrammarGeekGame, Answers, Hint };
 export default ContainedGrammarGeekGame;
