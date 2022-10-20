@@ -62,7 +62,7 @@ const GAMES_SECTIONS = [
     image: "/images/AntonymHuntImage.png",
   },
   {
-    name: "Numbers+",
+    name: "3-2-1 Go",
     path: "/games/numbers-plus",
     image: "/images/AntonymHuntImage.png",
   },
@@ -114,7 +114,7 @@ const GAME_TYPES = {
   },
   NUMBERS_PLUS: {
     name: "NUMBERS_PLUS",
-    label: "Numbers+",
+    label: "3-2-1 Go",
     id: "numbersPlus",
   },
   KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics", id: "knowlympics" },
