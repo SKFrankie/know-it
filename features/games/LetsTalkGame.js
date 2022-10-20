@@ -118,7 +118,7 @@ const LetsTalkGame = ({
 
   return (
     <>
-      <Text textAlign="center" justify="center" fontSize={{ base: "sm", lg: "md" }}>
+      <Text textAlign="center" justify="center" mt="4" fontSize={{ base: "sm", lg: "md" }}>
         Choose the best response to each question or statement
       </Text>
       <Flex justify="center" align="center" flexDirection="column" m={2} w="100%">

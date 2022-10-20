@@ -59,12 +59,12 @@ const GAMES_SECTIONS = [
   {
     name: "Let's Talk",
     path: "/games/lets-talk",
-    image: "/images/AntonymHuntImage.png",
+    image: "/images/LetsTalkImage.png",
   },
   {
     name: "3-2-1 Go",
     path: "/games/numbers-plus",
-    image: "/images/AntonymHuntImage.png",
+    image: "/images/NumbersPlusImage.png",
   },
 ];
 
@@ -110,11 +110,15 @@ const GAME_TYPES = {
   LETS_TALK: {
     name: "LETS_TALK",
     label: "Let's Talk",
+    image: "/images/LetsTalkImage.png",
+    right: "/images/LetsTalkImageRight.png",
     id: "letsTalk",
   },
   NUMBERS_PLUS: {
     name: "NUMBERS_PLUS",
     label: "3-2-1 Go",
+    image: "/images/NumbersPlusImage.png",
+    right: "/images/NumbersPlusImageRight.png",
     id: "numbersPlus",
   },
   KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics", id: "knowlympics" },
