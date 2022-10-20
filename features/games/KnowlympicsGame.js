@@ -9,6 +9,8 @@ import { AntonymHuntGame } from "./AntonymHuntGame";
 import { SynonymRollGame } from "./SynonymRollGame";
 import { FabVocabGame } from "./FabVocabGame";
 import { GrammarGeekGame } from "./GrammarGeekGame";
+import {LetsTalkGame} from './LetsTalkGame';
+import {NumbersPlusGame} from './NumbersPlusGame';
 
 const KnowlympicsGame = () => {
   const games = [
@@ -16,6 +18,8 @@ const KnowlympicsGame = () => {
     GAME_TYPES.FAB_VOCAB,
     GAME_TYPES.ANTONYM_HUNT,
     GAME_TYPES.GRAMMAR_GEEK,
+    GAME_TYPES.LETS_TALK,
+    GAME_TYPES.NUMBERS_PLUS,
   ];
   const [currentUser] = useUserContext();
   const router = useRouter();
@@ -74,6 +78,26 @@ const KnowlympicsGame = () => {
       case GAME_TYPES.GRAMMAR_GEEK:
         return (
           <GrammarGeekGame
+            gameState={gameState}
+            setGameState={setGameState}
+            knowlympics
+            onNextGame={handleNextGame}
+            setStopTimer={setStopTimer}
+          />
+        );
+      case GAME_TYPES.LETS_TALK:
+        return (
+          <LetsTalkGame
+            gameState={gameState}
+            setGameState={setGameState}
+            knowlympics
+            onNextGame={handleNextGame}
+            setStopTimer={setStopTimer}
+          />
+        );
+      case GAME_TYPES.NUMBERS_PLUS:
+        return (
+          <NumbersPlusGame
             gameState={gameState}
             setGameState={setGameState}
             knowlympics
