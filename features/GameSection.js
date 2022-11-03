@@ -31,48 +31,6 @@ const GameSection = ({...props}) => {
 				>
 					Games
 				</Text>
-				{
-					GAMES_SECTIONS.length > 6 && 
-					(
-						<Flex
-							alignItems="center"
-						>
-							<Button
-								bg="red"
-								shadow="none"
-								borderRadius="50%"
-								px="0"
-								py="0.7rem"
-								w="fit-content"
-								h="fit-content"
-								mr="0.5rem"
-							>
-								<Icon 
-									as={Iconify} 
-									icon="ep:arrow-left-bold"
-									h="0.9rem"
-									w="0.9rem"
-								/>
-							</Button>
-							<Button
-								bg="red"
-								shadow="none"
-								borderRadius="50%"
-								px="0"
-								py="0.7rem"
-								w="fit-content"
-								h="fit-content"
-							>
-									<Icon 
-										as={Iconify} 
-										icon="ep:arrow-right-bold"
-										h="0.9rem"
-										w="0.9rem"
-									/>
-							</Button>
-						</Flex>
-					)
-				}
 			</Box>
 			<Grid
 				templateColumns={{ base: "repeat(2, 1fr)", lg: GAMES_SECTIONS.length >= 6 ? `repeat(6, 1fr)` : `repeat(${GAMES_SECTIONS.length}, 1fr)` }}

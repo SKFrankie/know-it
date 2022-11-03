@@ -40,26 +40,32 @@ const GAMES_SECTIONS = [
     name: "Grammar Geek",
     path: "/games/grammar-geek",
     image: "/images/GrammarGeekImage.png",
-    align: "end",
   },
   {
     name: "Synonym Roll",
     path: "/games/synonym-roll",
     image: "/images/SynonymRollImage.png",
-    align: "center",
   },
   {
     name: "Antonym Hunt",
     path: "/games/antonym-hunt",
     image: "/images/AntonymHuntImage.png",
-    align: "start",
   },
   {
     name: "Fab Vocab",
     path: "/games/fab-vocab",
     image: "/images/FabVocabImage.png",
-    align: "end",
-  }
+  },
+  {
+    name: "Let's Talk",
+    path: "/games/lets-talk",
+    image: "/images/LetsTalkImage.png",
+  },
+  {
+    name: "3-2-1 Go",
+    path: "/games/numbers-plus",
+    image: "/images/NumbersPlusImage.png",
+  },
 ];
 
 const REWARD_TYPES = {
@@ -100,6 +106,20 @@ const GAME_TYPES = {
     image: "/images/GrammarGeekImage.png",
     right: "/images/GrammarGeekImageRight.png",
     id: "grammarGeek",
+  },
+  LETS_TALK: {
+    name: "LETS_TALK",
+    label: "Let's Talk",
+    image: "/images/LetsTalkImage.png",
+    right: "/images/LetsTalkImageRight.png",
+    id: "letsTalk",
+  },
+  NUMBERS_PLUS: {
+    name: "NUMBERS_PLUS",
+    label: "3-2-1 Go",
+    image: "/images/NumbersPlusImage.png",
+    right: "/images/NumbersPlusImageRight.png",
+    id: "numbersPlus",
   },
   KNOWLYMPICS: { name: "KNOWLYMPICS", label: "Knowlympics", id: "knowlympics" },
 };

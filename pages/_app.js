@@ -16,6 +16,7 @@ const theme = extendTheme({
   colors: {
     darkBlue: "#007EA7",
     deepDarkBlue: "#00455B",
+    midDarkBlue: "#035E7B",
     blueClear: {
       500: "#00A5DB",
       600: "#00BEDC",
