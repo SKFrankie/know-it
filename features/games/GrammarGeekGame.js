@@ -214,6 +214,9 @@ const Answers = ({ answers, setAnswers, answerArray, onAnswerClick }) => {
             answer={answer}
             w="auto"
             minW="fit-content"
+            whiteSpace="normal"
+            h="fit-content"
+            p="3"
             display="table"
             w={{ base: "100%", lg: "20%" }}
             m={4}
