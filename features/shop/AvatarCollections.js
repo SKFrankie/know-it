@@ -127,7 +127,7 @@ const Avatar = ({ avatar }) => {
       filter={!canBuy && !alreadyBought && "grayScale(0.3)"}
       textAlign="center"
     >
-      <AvatarImage picture={avatar.picture} />
+      <AvatarImage picture={avatar?.picture} />
       <Text fontSize="xs">{alreadyBought ? "Purchased" : `${avatar.coinPrice} coins`}</Text>
       <PopUp isOpen={isOpen} onClose={onClose}>
         <Flex
@@ -145,7 +145,7 @@ const Avatar = ({ avatar }) => {
             </Box>
             ?
           </Text>
-          <AvatarImage big picture={avatar.picture} />
+          <AvatarImage big picture={avatar?.picture} />
           <Text fontSize="xs" fontWeight="bold">
             {avatar?.name}
           </Text>

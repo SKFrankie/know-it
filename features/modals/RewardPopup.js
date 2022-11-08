@@ -175,7 +175,7 @@ const Monstar = ({ avatar, onClose, setHasClicked }) => {
       onClick={handleClick}
       _hover={{ bg: "orange" }}
     >
-      <AvatarImage picture={avatar.picture} />
+      <AvatarImage picture={avatar?.picture} />
     </Flex>
   );
 };

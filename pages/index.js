@@ -307,7 +307,7 @@ export default function Home() {
                           borderRadius="0.5rem"
                           w={{ lg: "7vw", '2xl':"5vw" }}
                           h="100%"
-                          src={user.currentAvatar.picture}
+                          src={user?.currentAvatar?.picture}
                           boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
                         />
                         <Text
