@@ -125,9 +125,9 @@ const NumbersPlusGame = ({
   return (
     <>
       <Text textAlign="center" justify="center" mt="4" fontSize={{ base: "sm", lg: "md" }}>
-        Find the right way to write the numbers
+      How do you write the number in the box?
       </Text>
-      <Flex justify="center" align="center" flexDirection="column" m={2} w="100%">
+      <Flex justify="center" align="center" flexDirection="column" w="100%">
         <Question question={question} modules={modules} />
         <Answers
           answers={answers}
@@ -190,7 +190,7 @@ const Question = ({ question, modules }) => {
         borderRadius="15px"
         m={4}
         mt={0}
-        w={{ base: "100%", lg: "50%" }}
+        minW={{ base: "100%", lg: "50%" }}
       >
         <Text textAlign="center" m={4} fontSize={{ base: "2xl", lg: "3xl" }}>
           {question}
