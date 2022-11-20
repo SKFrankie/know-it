@@ -124,6 +124,37 @@ const AboutUs = () => {
         <ListItem>When Time’s Up, you will see your reward. </ListItem>
         <ListItem>Click on Continue to play another game.</ListItem>
       </UnorderedList>
+      <SubTitle id="letsTalk">Q: How do I play LET’S TALK?</SubTitle>
+      <UnorderedList>
+        <ListItem>From the Home Page, click on Let’s Talk.</ListItem>
+        <ListItem>Choose the best response to the statement or question.</ListItem>
+        <ListItem>Correct answers appear in GREEN and wrong answers appear in RED.</ListItem>
+        <ListItem>After you choose your answer, the timer will stop.</ListItem>
+        <ListItem>Click on CONTINUE for the next sentence. The timer will start again</ListItem>
+        <ListItem>
+          When Time’s Up, you will see your reward. You must finish the game to receive your reward.
+        </ListItem>
+        <ListItem>Click on Continue to play another round.</ListItem>
+      </UnorderedList>
+      <SubTitle id="numbersPlus">Q: How do I play 3-2-1 GO?</SubTitle>
+      <UnorderedList>
+        <ListItem>From the Home Page, click on 3-2-1 Go!</ListItem>
+        <ListItem>Choose the answer that corresponds to the number that is written.</ListItem>
+        <ListItem>Correct answers appear in GREEN and wrong answers appear in RED.</ListItem>
+        <ListItem>
+          After you choose your answer, the timer will stop so that you can see the module that
+          corresponds to the correct answer.
+        </ListItem>
+        <ListItem>
+          You can access the modules if you subscribe to Grammar+ Guide and No Ads Bundle. Click on
+          the Shop and go to In-App purchases
+        </ListItem>
+        <ListItem>Click on CONTINUE for the next sentence. The timer will start again.</ListItem>
+        <ListItem>
+          When Time’s Up, you will see your reward. Always finish the game to receive your reward.
+        </ListItem>
+        <ListItem>Click on Continue to play another round.</ListItem>
+      </UnorderedList>
       <SubTitle>How do I use STARS and the STAR BAR?</SubTitle>
       <UnorderedList>
         <ListItem>When you earn 100 points in the games, you fill the Star Bar.</ListItem>

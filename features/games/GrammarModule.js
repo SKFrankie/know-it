@@ -64,15 +64,25 @@ const GrammarModule = ({ showModules = false, moduleId }) => {
       <SectionTitle pb="2vh">{currentModule?.name?.toUpperCase()}</SectionTitle>
       {isPremium(currentUser) ? (
         <>
-          <Box mb="3" className="html-text" dangerouslySetInnerHTML={{ __html: currentModule?.text }} overflowX="auto" />
+          <Box
+            mb="3"
+            className="html-text"
+            dangerouslySetInnerHTML={{ __html: currentModule?.text }}
+            overflowX="auto"
+          />
           {showModules && <AllModules modules={modules} />}
         </>
       ) : (
         <Box textAlign="center">
           <Text mb="2">Sorry you need to be a premium user to see this content</Text>
+          <Text fontSize="2xl">Become a PREMIUM USER!</Text>
           <Link href="/shop/money" fontSize="3xl">
-          CLICK HERE to get the Premium Bundle and become a Premium User.
+            CLICK HERE for the Premium Bundle offers
           </Link>
+          <Text mt="2" fontSize="2xl">
+            PREMIUM BUNDLE =<br />
+            Grammar Guide+<br/> and <br/>“No Ads” Subscription{" "}
+          </Text>
         </Box>
       )}
     </Box>

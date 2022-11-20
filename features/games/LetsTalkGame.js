@@ -146,10 +146,14 @@ const Question = ({ question }) => {
     <Flex
       justify="center"
       align="center"
+      flexDirection="column"
+      border="2px solid #00B9F5"
       boxSizing="border-box"
+      boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
+      borderRadius="15px"
       m={4}
+      w={{ base: "100%", lg: "50%" }}
     >
-      <Image mx="auto" mb="0.2rem" boxSize={{ base: "5rem" }} src="/images/GrammarGeekImage.png" />
       <Text textAlign="center" m={4} fontSize={{ base: "2xl", lg: "3xl" }}>
         {question}
       </Text>
