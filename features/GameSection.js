@@ -34,7 +34,7 @@ const GameSection = ({...props}) => {
 			</Box>
 			<Grid
 				templateColumns={{ base: "repeat(2, 1fr)", lg: GAMES_SECTIONS.length >= 6 ? `repeat(6, 1fr)` : `repeat(${GAMES_SECTIONS.length}, 1fr)` }}
-				gap={{ base: "5vh", lg: "3vh", xl: "8vh" }}
+				gap={{ base: "5vh" }}
 			>
 				{
 					GAMES_SECTIONS.map((game) => (
@@ -53,7 +53,7 @@ const GameSection = ({...props}) => {
 										alt={ game.name } 
 									/>
 									<Text
-										fontSize={{ base:"0.8rem", md:"1rem", lg:"1.5rem" }}
+										fontSize={{ base:"0.8rem", xl:"1rem" }}
 									>{ game.name }</Text>
 								</Box>
 							</Button>
