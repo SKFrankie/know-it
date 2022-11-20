@@ -249,7 +249,7 @@ const GameImage = ({ game, right = false, ...props }) => {
       alt={game.label}
       h="auto"
       display="table"
-      w={right ? { base: "50px", lg: "100px" } : { base: "50px", lg: "100px" }}
+      w={right ? { base: "70px", lg: "120px" } : { base: "70px", lg: "120px" }}
       mb={{ base: "0px", lg: "-30px" }}
       mx={2}
       transform={right && !game.right ? "scaleX(-1)" : "scaleX(1)"}
