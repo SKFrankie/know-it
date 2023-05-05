@@ -166,7 +166,7 @@ const PURCHASES = {
   // premium
   [PURCHASE_TYPES.MONTH_1_PREMIUM]: {
     label: PURCHASE_TYPES.MONTH_1_PREMIUM,
-    name: "1 Months",
+    name: "1 Month",
     description: getPremiumDescription("1 months", "150"),
     price: "1.00",
     quantity: 1,
@@ -206,7 +206,7 @@ const PURCHASES = {
   },
   [PURCHASE_TYPES.YEAR_2_PREMIUM]: {
     label: PURCHASE_TYPES.YEAR_2_PREMIUM,
-    name: "2 Year",
+    name: "2 Years",
     description: getPremiumDescription("2 year", "7500"),
     price: "11.00",
     quantity: 2,
